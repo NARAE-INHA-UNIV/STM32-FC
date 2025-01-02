@@ -1,4 +1,4 @@
-24924807862173936
+24926543652867458
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -71608,6 +71608,13 @@ Oscillator_SeikoEpson_SG-8002DC
 DIL DIP PDIP 2.54mm 7.62mm 300mil
 0
 4
+4
+PWM_Connector
+PWM_Conn_3x01
+
+
+0
+6
 4
 PWM_Connector
 PWM_Conn_3x02

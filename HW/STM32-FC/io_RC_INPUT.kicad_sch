@@ -484,7 +484,7 @@
 				)
 			)
 		)
-		(symbol "PWM_Connector:PWM_Conn_3x02"
+		(symbol "PWM_Connector:PWM_Conn_3x01"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -496,7 +496,7 @@
 					)
 				)
 			)
-			(property "Value" "PWM_Conn_3x02"
+			(property "Value" "PWM_Conn_3x01"
 				(at 0 10.16 0)
 				(effects
 					(font
@@ -531,7 +531,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "PWM_Conn_3x02_0_1"
+			(symbol "PWM_Conn_3x01_0_1"
 				(rectangle
 					(start -5.08 5.08)
 					(end 5.08 -5.08)
@@ -544,7 +544,7 @@
 					)
 				)
 			)
-			(symbol "PWM_Conn_3x02_1_1"
+			(symbol "PWM_Conn_3x01_1_1"
 				(pin input line
 					(at -7.62 2.54 0)
 					(length 2.54)
@@ -563,24 +563,6 @@
 						)
 					)
 				)
-				(pin input line
-					(at -7.62 0 0)
-					(length 2.54)
-					(name "CH2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 				(pin power_in line
 					(at 7.62 2.54 180)
 					(length 2.54)
@@ -591,7 +573,7 @@
 							)
 						)
 					)
-					(number "3"
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -609,7 +591,7 @@
 							)
 						)
 					)
-					(number "4"
+					(number "3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -962,12 +944,6 @@
 		(color 0 0 0 0)
 		(uuid "a7360c54-cf62-4520-85bc-ee6f4704735b")
 	)
-	(junction
-		(at 49.53 48.26)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "a84da4ee-faf2-428e-8028-2fe84c26f795")
-	)
 	(wire
 		(pts
 			(xy 31.75 48.26) (xy 33.02 48.26)
@@ -977,6 +953,16 @@
 			(type default)
 		)
 		(uuid "01c5492d-47cd-4ed4-b794-4cf3f582a07f")
+	)
+	(wire
+		(pts
+			(xy -20.32 60.96) (xy -11.43 60.96)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "024daa19-ebcc-4b10-8010-250b72a4fdc1")
 	)
 	(wire
 		(pts
@@ -1010,16 +996,6 @@
 	)
 	(wire
 		(pts
-			(xy 48.26 50.8) (xy 57.15 50.8)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "58764eba-d3b5-4be4-93c9-67d2af2164a9")
-	)
-	(wire
-		(pts
 			(xy 55.88 105.41) (xy 54.61 105.41)
 		)
 		(stroke
@@ -1027,26 +1003,6 @@
 			(type default)
 		)
 		(uuid "855a60c9-bb77-4029-af66-4db8aff1fb04")
-	)
-	(wire
-		(pts
-			(xy 49.53 63.5) (xy 52.07 63.5)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9510a6e2-a2a3-4054-affc-0529e4c0abce")
-	)
-	(wire
-		(pts
-			(xy 48.26 48.26) (xy 49.53 48.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "958ba37b-217c-4228-831e-592a96e9deb4")
 	)
 	(wire
 		(pts
@@ -1067,6 +1023,16 @@
 			(type default)
 		)
 		(uuid "a3d59123-c7d2-4957-b7fc-93d6c0e989c5")
+	)
+	(wire
+		(pts
+			(xy -36.83 54.61) (xy -35.56 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a943daf8-86f0-487f-852a-ac10efcbafb3")
 	)
 	(wire
 		(pts
@@ -1150,23 +1116,23 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 48.26) (xy 62.23 48.26)
+			(xy -36.83 49.53) (xy -35.56 49.53)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f836b799-71a2-43b9-8302-532a2f405625")
+	)
+	(wire
+		(pts
+			(xy 48.26 48.26) (xy 62.23 48.26)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "f8841c7c-f3af-4fa4-a1e0-283af332f123")
-	)
-	(wire
-		(pts
-			(xy 49.53 48.26) (xy 49.53 63.5)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fea55206-3270-4811-8027-16c2638c8f91")
 	)
 	(rectangle
 		(start 25.4 80.01)
@@ -1225,6 +1191,17 @@
 		)
 		(uuid "1730f573-6c53-4caa-957c-a7245996d67e")
 	)
+	(label "RSSI_IN"
+		(at -11.43 60.96 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right bottom)
+		)
+		(uuid "4ddcba62-fa6a-4e86-b4c1-e2dc90e657d1")
+	)
 	(label "UART1_RX"
 		(at 60.96 139.7 180)
 		(fields_autoplaced yes)
@@ -1257,17 +1234,6 @@
 			(justify right bottom)
 		)
 		(uuid "9d95241e-8fdd-4852-b51d-0a48da89c2b6")
-	)
-	(label "RSSI_IN"
-		(at 57.15 50.8 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify right bottom)
-		)
-		(uuid "e03ef8b6-c180-4539-ae1f-2482e162d8b8")
 	)
 	(label "RSSI_IN"
 		(at 60.96 142.24 180)
@@ -1303,6 +1269,77 @@
 			(justify right)
 		)
 		(uuid "3956a89a-6b11-4786-9eec-752ea8f66cac")
+	)
+	(symbol
+		(lib_id "PWM_Connector:PWM_Conn_3x01")
+		(at -27.94 52.07 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0225553e-8df4-46f3-aaf5-a9790d0118a4")
+		(property "Reference" "J9"
+			(at -27.94 44.196 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+			)
+		)
+		(property "Value" "RCIN"
+			(at -27.94 45.974 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+			)
+		)
+		(property "Footprint" "PWM_Connector:PWM_Conn_3x02"
+			(at -36.83 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at -36.83 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x03, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at -27.94 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "473d0b5e-f01d-4897-ad18-30762dc04cc2")
+		)
+		(pin "2"
+			(uuid "93863094-f41e-441e-8377-502688eed9c5")
+		)
+		(pin "3"
+			(uuid "bb1664b5-5574-4ef4-9e40-f7086b730e13")
+		)
+		(instances
+			(project "STM32-FC"
+				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
+					(reference "J9")
+					(unit 1)
+				)
+			)
+		)
 	)
 	(symbol
 		(lib_id "power:+3.3V")
@@ -1437,6 +1474,136 @@
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
 					(reference "Q1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+5V")
+		(at -36.83 49.53 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "61178ccf-caac-4eef-8984-b4644a6eac36")
+		(property "Reference" "#PWR059"
+			(at -33.02 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+5V"
+			(at -38.354 47.752 90)
+			(effects
+				(font
+					(size 1 1)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at -36.83 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at -36.83 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at -36.83 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "09dddf26-855a-4512-b585-30299123b075")
+		)
+		(instances
+			(project "STM32-FC"
+				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
+					(reference "#PWR059")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at -36.83 54.61 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "6f7daa51-cbbd-4bef-bf6a-0c17be915847")
+		(property "Reference" "#PWR060"
+			(at -43.18 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at -38.1 57.15 90)
+			(effects
+				(font
+					(size 1 1)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at -36.83 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at -36.83 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at -36.83 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0b32f73e-7299-4ec4-87c0-1a3c2f7ae786")
+		)
+		(instances
+			(project "STM32-FC"
+				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
+					(reference "#PWR060")
 					(unit 1)
 				)
 			)
@@ -1910,7 +2077,7 @@
 		)
 	)
 	(symbol
-		(lib_id "PWM_Connector:PWM_Conn_3x02")
+		(lib_id "PWM_Connector:PWM_Conn_3x01")
 		(at 40.64 50.8 0)
 		(mirror y)
 		(unit 1)
@@ -1970,9 +2137,6 @@
 		)
 		(pin "3"
 			(uuid "183f5dea-907e-4c0e-a6a3-1afc5301b189")
-		)
-		(pin "4"
-			(uuid "2a2b1ee1-5a98-49ec-a7b9-c259be962a01")
 		)
 		(instances
 			(project "STM32-FC"
