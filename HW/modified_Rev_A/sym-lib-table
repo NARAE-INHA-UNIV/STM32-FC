@@ -1,0 +1,6 @@
+(sym_lib_table
+  (lib (name "TS-1187A-B-A-B")(type "Legacy")(uri "${KIPRJMOD}/Custom_Parts/TS-1187A-B-A-B.lib")(options "")(descr ""))
+  (lib (name "BMI088")(type "Legacy")(uri "${KIPRJMOD}/Custom_Parts/BMI088.lib")(options "")(descr ""))
+  (lib (name "LIS2MDLTR")(type "Legacy")(uri "${KIPRJMOD}/Custom_Parts/LIS2MDLTR.lib")(options "")(descr ""))
+  (lib (name "PWM_Connector")(type "KiCad")(uri "${KIPRJMOD}/Custom_Parts/PWM_Connector.kicad_sym")(options "")(descr ""))
+)
