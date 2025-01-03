@@ -5,4 +5,6 @@
   (lib (name "LIS2MDLTR")(type "Legacy")(uri "${KIPRJMOD}/Custom_Parts/LIS2MDLTR/LIS2MDLTR.lib")(options "")(descr ""))
   (lib (name "PWM_Connector")(type "KiCad")(uri "${KIPRJMOD}/Custom_Parts/PWM_Connector/PWM_Connector.kicad_sym")(options "")(descr ""))
   (lib (name "ATA6561-GAQW")(type "KiCad")(uri "${KIPRJMOD}/Custom_Parts/ATA6561-GAQW/ATA6561-GAQW.kicad_sym")(options "")(descr ""))
+  (lib (name "ICM-42688-P")(type "KiCad")(uri "C:/Users/정영우/AppData/Local/Microsoft/Windows/INetCache/IE/AF68ZT1F/ICM-42688-P[1].kicad_sym")(options "")(descr ""))
+  (lib (name "BMI323")(type "KiCad")(uri "C:/Users/정영우/Desktop/UAV project/BMI323/KiCADv6/2025-01-03_06-35-49.kicad_sym")(options "")(descr ""))
 )
