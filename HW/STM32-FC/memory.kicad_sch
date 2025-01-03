@@ -5,10 +5,12 @@
 	(uuid "20f27cd6-0646-49e4-a666-313938a6524b")
 	(paper "A4")
 	(title_block
-		(title "STM32 Flight Controller")
+		(title "Memory")
 		(date "2025-01-03")
 		(rev "A")
-		(company "INHA UNIV. NARAE")
+		(company "NARAE")
+		(comment 1 "INHA Univ. Areo-modelling Club")
+		(comment 2 "2024 Winter UAV Project ")
 	)
 	(lib_symbols
 		(symbol "Device:C_Small"
@@ -591,20 +593,20 @@
 		)
 	)
 	(junction
-		(at 71.12 24.13)
+		(at 80.01 22.86)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "00a71d2e-9684-4b57-872d-7181821debf2")
 	)
 	(junction
-		(at 59.69 40.64)
+		(at 68.58 39.37)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f1bb2b34-4f5f-45a3-9c3c-c63b572b80a2")
 	)
 	(wire
 		(pts
-			(xy 38.1 67.31) (xy 49.53 67.31)
+			(xy 46.99 66.04) (xy 58.42 66.04)
 		)
 		(stroke
 			(width 0)
@@ -614,7 +616,7 @@
 	)
 	(wire
 		(pts
-			(xy 59.69 24.13) (xy 71.12 24.13)
+			(xy 68.58 22.86) (xy 80.01 22.86)
 		)
 		(stroke
 			(width 0)
@@ -624,7 +626,7 @@
 	)
 	(wire
 		(pts
-			(xy 49.53 30.48) (xy 60.96 30.48)
+			(xy 58.42 29.21) (xy 69.85 29.21)
 		)
 		(stroke
 			(width 0)
@@ -634,7 +636,7 @@
 	)
 	(wire
 		(pts
-			(xy 59.69 24.13) (xy 59.69 40.64)
+			(xy 68.58 22.86) (xy 68.58 39.37)
 		)
 		(stroke
 			(width 0)
@@ -644,7 +646,7 @@
 	)
 	(wire
 		(pts
-			(xy 48.26 38.1) (xy 60.96 38.1)
+			(xy 57.15 36.83) (xy 69.85 36.83)
 		)
 		(stroke
 			(width 0)
@@ -654,7 +656,7 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 22.86) (xy 71.12 24.13)
+			(xy 80.01 21.59) (xy 80.01 22.86)
 		)
 		(stroke
 			(width 0)
@@ -664,7 +666,7 @@
 	)
 	(wire
 		(pts
-			(xy 59.69 43.18) (xy 59.69 40.64)
+			(xy 68.58 41.91) (xy 68.58 39.37)
 		)
 		(stroke
 			(width 0)
@@ -674,7 +676,7 @@
 	)
 	(wire
 		(pts
-			(xy 60.96 40.64) (xy 59.69 40.64)
+			(xy 69.85 39.37) (xy 68.58 39.37)
 		)
 		(stroke
 			(width 0)
@@ -684,7 +686,7 @@
 	)
 	(wire
 		(pts
-			(xy 60.96 43.18) (xy 59.69 43.18)
+			(xy 69.85 41.91) (xy 68.58 41.91)
 		)
 		(stroke
 			(width 0)
@@ -694,7 +696,7 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 52.07) (xy 44.45 53.34)
+			(xy 53.34 50.8) (xy 53.34 52.07)
 		)
 		(stroke
 			(width 0)
@@ -704,7 +706,7 @@
 	)
 	(wire
 		(pts
-			(xy 48.26 35.56) (xy 60.96 35.56)
+			(xy 57.15 34.29) (xy 69.85 34.29)
 		)
 		(stroke
 			(width 0)
@@ -714,7 +716,7 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 50.8) (xy 71.12 52.07)
+			(xy 80.01 49.53) (xy 80.01 50.8)
 		)
 		(stroke
 			(width 0)
@@ -724,7 +726,7 @@
 	)
 	(wire
 		(pts
-			(xy 38.1 69.85) (xy 49.53 69.85)
+			(xy 46.99 68.58) (xy 58.42 68.58)
 		)
 		(stroke
 			(width 0)
@@ -734,7 +736,7 @@
 	)
 	(wire
 		(pts
-			(xy 38.1 72.39) (xy 49.53 72.39)
+			(xy 46.99 71.12) (xy 58.42 71.12)
 		)
 		(stroke
 			(width 0)
@@ -744,7 +746,7 @@
 	)
 	(wire
 		(pts
-			(xy 48.26 33.02) (xy 60.96 33.02)
+			(xy 57.15 31.75) (xy 69.85 31.75)
 		)
 		(stroke
 			(width 0)
@@ -754,7 +756,7 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 46.99) (xy 44.45 45.72)
+			(xy 53.34 45.72) (xy 53.34 44.45)
 		)
 		(stroke
 			(width 0)
@@ -764,7 +766,7 @@
 	)
 	(wire
 		(pts
-			(xy 71.12 24.13) (xy 71.12 25.4)
+			(xy 80.01 22.86) (xy 80.01 24.13)
 		)
 		(stroke
 			(width 0)
@@ -773,8 +775,8 @@
 		(uuid "f1d163ae-0ec6-47d0-ad8f-5b856eb3af59")
 	)
 	(rectangle
-		(start 13.97 13.97)
-		(end 88.9 63.5)
+		(start 22.86 12.7)
+		(end 97.79 62.23)
 		(stroke
 			(width 0)
 			(type dash)
@@ -786,7 +788,7 @@
 	)
 	(text "ZH 1.5mm 3P\nPA10 : UART1_RX"
 		(exclude_from_sim no)
-		(at 14.986 19.304 0)
+		(at 23.876 18.034 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -797,7 +799,7 @@
 	)
 	(text "Flash Memory"
 		(exclude_from_sim no)
-		(at 14.986 16.764 0)
+		(at 23.876 15.494 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -807,7 +809,7 @@
 		(uuid "79d18630-c19b-48d6-ae52-01b22b5cbb6a")
 	)
 	(label "MEM_SPI_MISO"
-		(at 48.26 38.1 0)
+		(at 57.15 36.83 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -818,7 +820,7 @@
 		(uuid "042ee1ec-48a2-4e6a-aebf-52c88d204a91")
 	)
 	(label "MEM_SPI_SCK"
-		(at 48.26 33.02 0)
+		(at 57.15 31.75 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -829,7 +831,7 @@
 		(uuid "4efd437c-d39c-40b0-9fe2-8b4100bbba6e")
 	)
 	(label "MEM_SPI_SCK"
-		(at 49.53 67.31 180)
+		(at 58.42 66.04 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -840,7 +842,7 @@
 		(uuid "74e95c17-072c-44c2-a596-4a63a6b1cd38")
 	)
 	(label "MEM_SPI_MOSI"
-		(at 48.26 35.56 0)
+		(at 57.15 34.29 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -851,7 +853,7 @@
 		(uuid "ac83c1f1-6da3-433a-9c40-06ca4629aa94")
 	)
 	(label "MEM_SPI_MISO"
-		(at 49.53 72.39 180)
+		(at 58.42 71.12 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -862,7 +864,7 @@
 		(uuid "c273f919-64ce-429b-abb8-3a01ad5bce21")
 	)
 	(label "MEM_SPI_MOSI"
-		(at 49.53 69.85 180)
+		(at 58.42 68.58 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -874,7 +876,7 @@
 	)
 	(hierarchical_label "MEM_SPI_MOSI"
 		(shape input)
-		(at 38.1 69.85 180)
+		(at 46.99 68.58 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -886,7 +888,7 @@
 	)
 	(hierarchical_label "MEM_SPI_MISO"
 		(shape output)
-		(at 38.1 72.39 180)
+		(at 46.99 71.12 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -898,7 +900,7 @@
 	)
 	(hierarchical_label "MEM_SPI_SCK"
 		(shape input)
-		(at 38.1 67.31 180)
+		(at 46.99 66.04 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -910,7 +912,7 @@
 	)
 	(hierarchical_label "FLASH_NSS"
 		(shape input)
-		(at 49.53 30.48 180)
+		(at 58.42 29.21 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -922,7 +924,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 44.45 53.34 0)
+		(at 53.34 52.07 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -930,7 +932,7 @@
 		(dnp no)
 		(uuid "265e4da7-5c99-42a0-a8c0-3ccde3a5dee9")
 		(property "Reference" "#PWR039"
-			(at 44.45 59.69 0)
+			(at 53.34 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -939,7 +941,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 44.45 57.15 0)
+			(at 53.34 55.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -948,7 +950,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 44.45 53.34 0)
+			(at 53.34 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -957,7 +959,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 44.45 53.34 0)
+			(at 53.34 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -966,7 +968,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 44.45 53.34 0)
+			(at 53.34 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -988,7 +990,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 44.45 45.72 0)
+		(at 53.34 44.45 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -996,7 +998,7 @@
 		(dnp no)
 		(uuid "8ed0c38b-614c-41aa-ab26-1256bd37c96e")
 		(property "Reference" "#PWR038"
-			(at 44.45 49.53 0)
+			(at 53.34 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1005,7 +1007,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 44.45 41.91 0)
+			(at 53.34 40.64 0)
 			(effects
 				(font
 					(size 1 1)
@@ -1013,7 +1015,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 44.45 45.72 0)
+			(at 53.34 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1022,7 +1024,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 44.45 45.72 0)
+			(at 53.34 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1031,7 +1033,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 44.45 45.72 0)
+			(at 53.34 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1053,7 +1055,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 44.45 49.53 0)
+		(at 53.34 48.26 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1061,7 +1063,7 @@
 		(dnp no)
 		(uuid "c0ce920d-b89e-40d2-bb16-47798b7f87b3")
 		(property "Reference" "C19"
-			(at 46.99 48.26 0)
+			(at 55.88 46.99 0)
 			(effects
 				(font
 					(size 1 1)
@@ -1070,7 +1072,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 46.99 50.8 0)
+			(at 55.88 49.53 0)
 			(effects
 				(font
 					(size 1 1)
@@ -1079,7 +1081,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 44.45 49.53 0)
+			(at 53.34 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1088,7 +1090,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 44.45 49.53 0)
+			(at 53.34 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1097,7 +1099,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 44.45 49.53 0)
+			(at 53.34 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1122,7 +1124,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 71.12 22.86 0)
+		(at 80.01 21.59 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1130,7 +1132,7 @@
 		(dnp no)
 		(uuid "c76139ed-d599-45fc-ae15-2d59930f7139")
 		(property "Reference" "#PWR040"
-			(at 71.12 26.67 0)
+			(at 80.01 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1139,7 +1141,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 71.12 19.05 0)
+			(at 80.01 17.78 0)
 			(effects
 				(font
 					(size 1 1)
@@ -1147,7 +1149,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 71.12 22.86 0)
+			(at 80.01 21.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1156,7 +1158,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 71.12 22.86 0)
+			(at 80.01 21.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1165,7 +1167,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 71.12 22.86 0)
+			(at 80.01 21.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1187,7 +1189,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 71.12 52.07 0)
+		(at 80.01 50.8 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1195,7 +1197,7 @@
 		(dnp no)
 		(uuid "f4b04c26-b496-4d92-8090-1c649499e786")
 		(property "Reference" "#PWR041"
-			(at 71.12 58.42 0)
+			(at 80.01 57.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1204,7 +1206,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 71.12 55.88 0)
+			(at 80.01 54.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1213,7 +1215,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 71.12 52.07 0)
+			(at 80.01 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1222,7 +1224,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 71.12 52.07 0)
+			(at 80.01 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1231,7 +1233,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 71.12 52.07 0)
+			(at 80.01 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1253,7 +1255,7 @@
 	)
 	(symbol
 		(lib_id "Memory_Flash:W25X40CLSN")
-		(at 71.12 38.1 0)
+		(at 80.01 36.83 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1261,7 +1263,7 @@
 		(dnp no)
 		(uuid "fb82c0d3-078d-48c3-a16e-19d4e4329238")
 		(property "Reference" "U5"
-			(at 73.152 49.53 0)
+			(at 82.042 48.26 0)
 			(effects
 				(font
 					(size 1 1)
@@ -1270,7 +1272,7 @@
 			)
 		)
 		(property "Value" "W25X40CLSN"
-			(at 73.152 51.816 0)
+			(at 82.042 50.546 0)
 			(effects
 				(font
 					(size 1 1)
@@ -1279,7 +1281,7 @@
 			)
 		)
 		(property "Footprint" "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
-			(at 71.12 15.24 0)
+			(at 80.01 13.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1288,7 +1290,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.winbond.com/resource-files/W25X40CL_G%2020210505.pdf"
-			(at 73.66 12.7 0)
+			(at 82.55 11.43 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1297,7 +1299,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 71.12 38.1 0)
+			(at 80.01 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)

@@ -5,7 +5,7 @@
   - [ ] 기압 센서 추가
   - [x] PWM Channel 추가(기존 4개/목표 6개)
   - [x] I2C & CAN 인터페이스 추가(고도 측정용 LiDAR, 피토관 센서 등)
-  - [ ] Pixhawk 6 PDB 인터페이스 추가
+  - [x] Pixhawk 6 PM 인터페이스 추가
 - 개량
   - [x] 자이로/가속도/지자계 센서 개량 및 업그레이드
     - [x] 자이로1: ICM-42688-P (SPI1)
@@ -18,11 +18,12 @@
 
 # Update Log
 
-## 2025.01.03
+## 2025.01.03:Big Update:IMU/RC/Conn./MCU
 - PWM Channel 추가(기존 4개/목표 6개)
 - I2C & CAN 인터페이스 추가(고도 측정용 LiDAR, 피토관 센서 등)
 - 자이로/가속도/지자계 센서 개량 및 업그레이드
 - iBus/SRXL2 수신기 연동
 - Spektrum BAT 커넥터 추가
 
-
+## 2025.01.03v2:PM(Power Module) added
+- Power Module 인터페이스 추가
