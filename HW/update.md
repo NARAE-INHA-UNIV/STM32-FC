@@ -1,0 +1,28 @@
+# TODO
+
+- 추가 
+  - [ ] Micro SD Card 기능 추가
+  - [ ] 기압 센서 추가
+  - [x] PWM Channel 추가(기존 4개/목표 6개)
+  - [x] I2C & CAN 인터페이스 추가(고도 측정용 LiDAR, 피토관 센서 등)
+  - [ ] Pixhawk 6 PDB 인터페이스 추가
+- 개량
+  - [x] 자이로/가속도/지자계 센서 개량 및 업그레이드
+    - [x] 자이로1: ICM-42688-P (SPI1)
+    - [x] 자이로2 : BMI323 (SPI3)
+    - [x] 지자계 : LIS2MDLTR (SPI3)
+  - [x] iBus/SRXL2 수신기 연동
+  - [ ] 센서 연결 커낵터를 Pixhawk 6C Mini에 맞게 수정 (GPS/Tele./I2C etc..)
+	- GPS1 일부 배선 미결선
+  - [ ] USB C type 커낵터 수정
+
+# Update Log
+
+## 2025.01.03
+- PWM Channel 추가(기존 4개/목표 6개)
+- I2C & CAN 인터페이스 추가(고도 측정용 LiDAR, 피토관 센서 등)
+- 자이로/가속도/지자계 센서 개량 및 업그레이드
+- iBus/SRXL2 수신기 연동
+- Spektrum BAT 커넥터 추가
+
+

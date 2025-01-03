@@ -623,7 +623,15 @@
       "Root"
     ],
     [
-      "f38d7e71-8093-43fb-9de5-a2dd7a2920e4",
+      "a4ea5d55-2314-4804-8750-f8f12484bbce",
+      "USB & POWER"
+    ],
+    [
+      "3e7c6c79-bc31-4cc9-af6a-d0a28245a7b2",
+      "Memory"
+    ],
+    [
+      "2d70a10f-8989-40ff-9a87-2cfa97b94251",
       "Sensors"
     ],
     [
@@ -631,16 +639,12 @@
       "RC_INPUT"
     ],
     [
-      "a5e21496-2298-442c-958a-77888bcf6eb5",
-      "CAN"
-    ],
-    [
-      "2d5cb814-9fa0-4c0f-a486-66a25a23c0b8",
-      "UART"
-    ],
-    [
       "20dd612a-0830-4eda-be1e-c1591992c654",
       "GPS"
+    ],
+    [
+      "a2773f19-5d2b-46e4-ac82-0d57be5829df",
+      "Communication"
     ]
   ],
   "text_variables": {}
