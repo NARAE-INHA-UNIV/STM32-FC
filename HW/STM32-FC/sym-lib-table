@@ -7,4 +7,5 @@
   (lib (name "ATA6561-GAQW")(type "KiCad")(uri "${KIPRJMOD}/Custom_Parts/ATA6561-GAQW/ATA6561-GAQW.kicad_sym")(options "")(descr ""))
   (lib (name "ICM-42688-P")(type "KiCad")(uri "C:/Users/정영우/AppData/Local/Microsoft/Windows/INetCache/IE/AF68ZT1F/ICM-42688-P[1].kicad_sym")(options "")(descr ""))
   (lib (name "BMI323")(type "KiCad")(uri "C:/Users/정영우/Desktop/UAV project/BMI323/KiCADv6/2025-01-03_06-35-49.kicad_sym")(options "")(descr ""))
+  (lib (name "New_Library")(type "KiCad")(uri "C:/Users/정영우/Desktop/UAV project/Kicad practice/New_Library.kicad_sym")(options "")(descr ""))
 )
