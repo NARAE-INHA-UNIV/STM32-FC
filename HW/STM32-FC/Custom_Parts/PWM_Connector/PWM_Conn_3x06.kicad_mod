@@ -389,4 +389,15 @@
 		(remove_unused_layers no)
 		(uuid "76911adb-30c4-48c6-832d-0dd4aa64a4b7")
 	)
+	(model "${KIPRJMOD}/Custom_Parts/PWM_Connector/triple-row-male-pin-headers-1.snapshot.4/3x6 Male Pin Header Angle.STEP"
+		(offset
+			(xyz 6.35 4 -5.5)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 -180 0)
+		)
+	)
 )

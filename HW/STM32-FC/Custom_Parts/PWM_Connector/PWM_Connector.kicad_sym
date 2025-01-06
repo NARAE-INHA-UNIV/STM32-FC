@@ -22,7 +22,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "PWM_Connector:PWM_Conn_3x01"
 			(at 8.89 -3.81 0)
 			(effects
 				(font
@@ -81,7 +81,7 @@
 					)
 				)
 			)
-			(pin power_in line
+			(pin passive line
 				(at 7.62 2.54 180)
 				(length 2.54)
 				(name "5V"
@@ -99,7 +99,7 @@
 					)
 				)
 			)
-			(pin power_in line
+			(pin passive line
 				(at 7.62 -2.54 180)
 				(length 2.54)
 				(name "GND"
@@ -139,7 +139,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "PWM_Connector:PWM_Conn_3x02"
 			(at 8.89 -3.81 0)
 			(effects
 				(font
@@ -216,7 +216,7 @@
 					)
 				)
 			)
-			(pin power_in line
+			(pin passive line
 				(at 7.62 2.54 180)
 				(length 2.54)
 				(name "5V"
@@ -234,7 +234,7 @@
 					)
 				)
 			)
-			(pin power_in line
+			(pin passive line
 				(at 7.62 -2.54 180)
 				(length 2.54)
 				(name "GND"
@@ -274,7 +274,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "PWM_Connector:PWM_Conn_3x04"
 			(at 8.89 7.62 0)
 			(effects
 				(font
@@ -387,7 +387,7 @@
 					)
 				)
 			)
-			(pin power_in line
+			(pin passive line
 				(at 7.62 3.81 180)
 				(length 2.54)
 				(name "5V"
@@ -405,7 +405,7 @@
 					)
 				)
 			)
-			(pin power_in line
+			(pin passive line
 				(at 7.62 -1.27 180)
 				(length 2.54)
 				(name "GND"
@@ -445,7 +445,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "PWM_Connector:PWM_Conn_3x06"
 			(at 2.54 0 0)
 			(effects
 				(font
@@ -487,7 +487,7 @@
 		)
 		(symbol "PWM_Conn_3x06_1_1"
 			(pin input line
-				(at -7.62 0 0)
+				(at -7.62 3.81 0)
 				(length 2.54)
 				(name "CH1"
 					(effects
@@ -505,7 +505,7 @@
 				)
 			)
 			(pin input line
-				(at -7.62 -2.54 0)
+				(at -7.62 1.27 0)
 				(length 2.54)
 				(name "CH2"
 					(effects
@@ -523,7 +523,7 @@
 				)
 			)
 			(pin input line
-				(at -7.62 -5.08 0)
+				(at -7.62 -1.27 0)
 				(length 2.54)
 				(name "CH3"
 					(effects
@@ -541,7 +541,7 @@
 				)
 			)
 			(pin input line
-				(at 7.62 0 180)
+				(at 7.62 3.81 180)
 				(length 2.54)
 				(name "CH4"
 					(effects
@@ -559,7 +559,7 @@
 				)
 			)
 			(pin input line
-				(at 7.62 -2.54 180)
+				(at 7.62 1.27 180)
 				(length 2.54)
 				(name "CH5"
 					(effects
@@ -577,7 +577,7 @@
 				)
 			)
 			(pin input line
-				(at 7.62 -5.08 180)
+				(at 7.62 -1.27 180)
 				(length 2.54)
 				(name "CH6"
 					(effects
@@ -594,8 +594,8 @@
 					)
 				)
 			)
-			(pin power_in line
-				(at -7.62 3.81 0)
+			(pin passive line
+				(at -7.62 -5.08 0)
 				(length 2.54)
 				(name "5V"
 					(effects
@@ -612,8 +612,8 @@
 					)
 				)
 			)
-			(pin power_in line
-				(at 7.62 3.81 180)
+			(pin passive line
+				(at 7.62 -5.08 180)
 				(length 2.54)
 				(name "GND"
 					(effects
@@ -652,7 +652,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "PWM_Connector:PWM_Conn_3x08"
 			(at 2.54 0 0)
 			(effects
 				(font
@@ -694,7 +694,7 @@
 		)
 		(symbol "PWM_Conn_3x08_1_1"
 			(pin input line
-				(at -7.62 0 0)
+				(at -7.62 3.81 0)
 				(length 2.54)
 				(name "CH1"
 					(effects
@@ -711,8 +711,8 @@
 					)
 				)
 			)
-			(pin power_in line
-				(at 7.62 3.81 180)
+			(pin passive line
+				(at 7.62 -7.62 180)
 				(length 2.54)
 				(name "GND"
 					(effects
@@ -730,7 +730,7 @@
 				)
 			)
 			(pin input line
-				(at -7.62 -2.54 0)
+				(at -7.62 1.27 0)
 				(length 2.54)
 				(name "CH2"
 					(effects
@@ -748,7 +748,7 @@
 				)
 			)
 			(pin input line
-				(at -7.62 -5.08 0)
+				(at -7.62 -1.27 0)
 				(length 2.54)
 				(name "CH3"
 					(effects
@@ -766,7 +766,7 @@
 				)
 			)
 			(pin input line
-				(at -7.62 -7.62 0)
+				(at -7.62 -3.81 0)
 				(length 2.54)
 				(name "CH4"
 					(effects
@@ -784,7 +784,7 @@
 				)
 			)
 			(pin input line
-				(at 7.62 0 180)
+				(at 7.62 3.81 180)
 				(length 2.54)
 				(name "CH5"
 					(effects
@@ -802,7 +802,7 @@
 				)
 			)
 			(pin input line
-				(at 7.62 -2.54 180)
+				(at 7.62 1.27 180)
 				(length 2.54)
 				(name "CH6"
 					(effects
@@ -820,7 +820,7 @@
 				)
 			)
 			(pin input line
-				(at 7.62 -5.08 180)
+				(at 7.62 -1.27 180)
 				(length 2.54)
 				(name "CH7"
 					(effects
@@ -838,7 +838,7 @@
 				)
 			)
 			(pin input line
-				(at 7.62 -7.62 180)
+				(at 7.62 -3.81 180)
 				(length 2.54)
 				(name "CH8"
 					(effects
@@ -855,8 +855,8 @@
 					)
 				)
 			)
-			(pin power_in line
-				(at -7.62 3.81 0)
+			(pin passive line
+				(at -7.62 -7.62 0)
 				(length 2.54)
 				(name "5V"
 					(effects

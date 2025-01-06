@@ -12,9 +12,12 @@
     - [x] 자이로2 : BMI323 (SPI3)
     - [x] 지자계 : LIS2MDLTR (SPI3)
   - [x] iBus/SRXL2 수신기 연동
-  - [ ] 센서 연결 커낵터를 Pixhawk 6C Mini에 맞게 수정 (GPS/Tele./I2C etc..)
+  - [x] 센서 연결 커낵터를 Pixhawk 6C Mini에 맞게 수정 (GPS/Tele./I2C etc..)
 	- GPS1 일부 배선 미결선
   - [ ] USB C type 커낵터 수정
+- TEST
+  - [ ] PM02 Analog data read
+  - [ ] SRXL2 UART half-duplex data read&write
 
 # Update Log
 
@@ -27,3 +30,9 @@
 
 ## 2025.01.03v2:PM(Power Module) added
 - Power Module 인터페이스 추가
+
+## 2025.01.06:Baro/SD Card update
+- GPS1 SW/LED/BUZZER 결선
+- SD Card update
+- 소자 Footprint update
+
