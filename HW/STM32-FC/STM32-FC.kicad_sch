@@ -9087,6 +9087,7 @@
 	)
 	(label "TIM3_CH3"
 		(at 119.38 96.52 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9097,6 +9098,7 @@
 	)
 	(label "TIM5_CH2"
 		(at 184.15 24.13 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9107,6 +9109,7 @@
 	)
 	(label "CAN1_RX"
 		(at 48.26 119.38 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9117,6 +9120,7 @@
 	)
 	(label "TIM1_CH3"
 		(at 48.26 109.22 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9127,6 +9131,7 @@
 	)
 	(label "SPI2_SCK"
 		(at 149.86 54.61 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9137,6 +9142,7 @@
 	)
 	(label "PM_VOLTAGE"
 		(at 119.38 147.32 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9147,6 +9153,7 @@
 	)
 	(label "USB_D-"
 		(at 119.38 81.28 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9157,6 +9164,7 @@
 	)
 	(label "UART4_RX"
 		(at 119.38 167.64 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9167,6 +9175,7 @@
 	)
 	(label "TIM1_CH2"
 		(at 229.87 24.13 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9177,6 +9186,7 @@
 	)
 	(label "SPI2_MISO"
 		(at 119.38 132.08 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9187,6 +9197,7 @@
 	)
 	(label "I2C1_SCL"
 		(at 231.14 71.12 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9197,6 +9208,7 @@
 	)
 	(label "SPI3_MOSI"
 		(at 149.86 104.14 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9207,6 +9219,7 @@
 	)
 	(label "FLASH_NSS"
 		(at 119.38 172.72 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9217,6 +9230,7 @@
 	)
 	(label "SWDIO"
 		(at 275.59 22.86 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9227,6 +9241,7 @@
 	)
 	(label "I2C2_SDA"
 		(at 231.14 99.06 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9237,6 +9252,7 @@
 	)
 	(label "BOOT0"
 		(at 218.44 152.4 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9247,6 +9263,7 @@
 	)
 	(label "SPI3_SCK"
 		(at 149.86 101.6 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9257,6 +9274,7 @@
 	)
 	(label "CAN2_STBY"
 		(at 119.38 152.4 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9267,6 +9285,7 @@
 	)
 	(label "GYRO1_NSS"
 		(at 48.26 83.82 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9277,6 +9296,7 @@
 	)
 	(label "VCAP1"
 		(at 48.26 162.56 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9287,6 +9307,7 @@
 	)
 	(label "V_BATT"
 		(at 149.86 129.54 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9297,6 +9318,7 @@
 	)
 	(label "UART2_TX"
 		(at 48.26 132.08 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9307,6 +9329,7 @@
 	)
 	(label "I2C1_SDA"
 		(at 119.38 119.38 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9317,6 +9340,7 @@
 	)
 	(label "UART1_TX"
 		(at 229.87 36.83 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9327,6 +9351,7 @@
 	)
 	(label "I2C3_SDA"
 		(at 205.74 93.98 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9337,6 +9362,7 @@
 	)
 	(label "I2C2_SCL"
 		(at 119.38 121.92 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9347,6 +9373,7 @@
 	)
 	(label "SPI1_SCK"
 		(at 173.99 93.98 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9357,6 +9384,7 @@
 	)
 	(label "UART2_TX"
 		(at 205.74 68.58 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9367,6 +9395,7 @@
 	)
 	(label "USB_D+"
 		(at 119.38 83.82 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9377,6 +9406,7 @@
 	)
 	(label "UART3_TX"
 		(at 205.74 81.28 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9387,6 +9417,7 @@
 	)
 	(label "SPI3_MOSI"
 		(at 173.99 110.49 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9397,6 +9428,7 @@
 	)
 	(label "SPI1_MISO"
 		(at 119.38 68.58 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9407,6 +9439,7 @@
 	)
 	(label "TIM4_CH2"
 		(at 229.87 21.59 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9417,6 +9450,7 @@
 	)
 	(label "SPI3_SCK"
 		(at 119.38 104.14 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9427,6 +9461,7 @@
 	)
 	(label "UART2_RTS"
 		(at 205.74 71.12 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9437,6 +9472,7 @@
 	)
 	(label "I2C2_SDA"
 		(at 119.38 124.46 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9447,6 +9483,7 @@
 	)
 	(label "CAN2_STBY"
 		(at 205.74 116.84 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9457,6 +9494,7 @@
 	)
 	(label "SPI2_MOSI"
 		(at 149.86 57.15 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9467,6 +9505,7 @@
 	)
 	(label "LED_GREEN"
 		(at 264.16 52.07 270)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9477,6 +9516,7 @@
 	)
 	(label "PM_CURRENT"
 		(at 149.86 29.21 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9487,6 +9527,7 @@
 	)
 	(label "SPI2_MISO"
 		(at 149.86 59.69 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9497,6 +9538,7 @@
 	)
 	(label "TIM3_CH4"
 		(at 119.38 99.06 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9507,6 +9549,7 @@
 	)
 	(label "UART3_RX"
 		(at 48.26 142.24 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9517,6 +9560,7 @@
 	)
 	(label "UART3_RX"
 		(at 205.74 78.74 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9527,6 +9571,7 @@
 	)
 	(label "SPI3_SCK"
 		(at 173.99 107.95 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9537,6 +9582,7 @@
 	)
 	(label "TIM1_CH3"
 		(at 229.87 26.67 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9547,6 +9593,7 @@
 	)
 	(label "RSSI_IN"
 		(at 229.87 40.64 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9557,6 +9604,7 @@
 	)
 	(label "SPI2_MOSI"
 		(at 173.99 58.42 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9567,6 +9615,7 @@
 	)
 	(label "TIM5_CH3"
 		(at 184.15 26.67 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9577,6 +9626,7 @@
 	)
 	(label "BOOT1"
 		(at 218.44 154.94 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9587,6 +9637,7 @@
 	)
 	(label "TIM1_CH2"
 		(at 48.26 104.14 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9597,6 +9648,7 @@
 	)
 	(label "GPS1_LED"
 		(at 231.14 78.74 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9607,6 +9659,7 @@
 	)
 	(label "UART2_RX"
 		(at 48.26 134.62 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9617,6 +9670,7 @@
 	)
 	(label "PM_VOLTAGE"
 		(at 149.86 31.75 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9627,6 +9681,7 @@
 	)
 	(label "MAG_NSS"
 		(at 48.26 91.44 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9637,6 +9692,7 @@
 	)
 	(label "TIM3_CH1"
 		(at 184.15 31.75 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9647,6 +9703,7 @@
 	)
 	(label "I2C3_SDA"
 		(at 119.38 162.56 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9657,6 +9714,7 @@
 	)
 	(label "LED_RED"
 		(at 254 52.07 270)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9667,6 +9725,7 @@
 	)
 	(label "SPI3_MOSI"
 		(at 119.38 109.22 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9677,6 +9736,7 @@
 	)
 	(label "TIM3_CH2"
 		(at 184.15 34.29 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9687,6 +9747,7 @@
 	)
 	(label "GPS1_LED_SW"
 		(at 231.14 76.2 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9697,6 +9758,7 @@
 	)
 	(label "BARO_NSS"
 		(at 48.26 86.36 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9707,6 +9769,7 @@
 	)
 	(label "UART3_RTS"
 		(at 48.26 149.86 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9717,6 +9780,7 @@
 	)
 	(label "UART3_CTS"
 		(at 48.26 147.32 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9727,6 +9791,7 @@
 	)
 	(label "BOOT1"
 		(at 119.38 91.44 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9737,6 +9802,7 @@
 	)
 	(label "GYRO2_NSS"
 		(at 149.86 113.03 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9747,6 +9813,7 @@
 	)
 	(label "UART1_RX"
 		(at 229.87 34.29 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9757,6 +9824,7 @@
 	)
 	(label "CAN1_STBY"
 		(at 119.38 149.86 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9767,6 +9835,7 @@
 	)
 	(label "SPI1_MOSI"
 		(at 149.86 95.25 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9777,6 +9846,7 @@
 	)
 	(label "PM_CURRENT"
 		(at 119.38 144.78 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9787,6 +9857,7 @@
 	)
 	(label "CAN1_TX"
 		(at 48.26 121.92 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9797,6 +9868,7 @@
 	)
 	(label "UART1_TX"
 		(at 119.38 76.2 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9807,6 +9879,7 @@
 	)
 	(label "OSC_IN"
 		(at 48.26 68.58 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9817,6 +9890,7 @@
 	)
 	(label "GPS1_LED_SW"
 		(at 48.26 101.6 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9827,6 +9901,7 @@
 	)
 	(label "TIM4_CH2"
 		(at 119.38 114.3 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9837,6 +9912,7 @@
 	)
 	(label "UART2_CTS"
 		(at 48.26 127 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9847,6 +9923,7 @@
 	)
 	(label "SPI3_MISO"
 		(at 119.38 106.68 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9857,6 +9934,7 @@
 	)
 	(label "SPI2_MISO"
 		(at 173.99 60.96 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9867,6 +9945,7 @@
 	)
 	(label "TIM5_CH2"
 		(at 119.38 55.88 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9877,6 +9956,7 @@
 	)
 	(label "TIM4_CH3"
 		(at 48.26 154.94 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9887,6 +9967,7 @@
 	)
 	(label "SPI1_MISO"
 		(at 173.99 99.06 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9897,6 +9978,7 @@
 	)
 	(label "UART4_TX"
 		(at 231.14 66.04 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9907,6 +9989,7 @@
 	)
 	(label "SWCLK"
 		(at 119.38 88.9 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9917,6 +10000,7 @@
 	)
 	(label "UART3_TX"
 		(at 48.26 139.7 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9927,6 +10011,7 @@
 	)
 	(label "TIM3_CH2"
 		(at 119.38 157.48 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9937,6 +10022,7 @@
 	)
 	(label "UART1_RX"
 		(at 119.38 78.74 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9947,6 +10033,7 @@
 	)
 	(label "BARO_NSS"
 		(at 149.86 118.11 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9957,6 +10044,7 @@
 	)
 	(label "TIM4_CH3"
 		(at 238.76 105.41 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9967,6 +10055,7 @@
 	)
 	(label "SPI1_SCK"
 		(at 119.38 66.04 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9977,6 +10066,7 @@
 	)
 	(label "TIM5_CH1"
 		(at 184.15 21.59 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9987,6 +10077,7 @@
 	)
 	(label "UART3_RTS"
 		(at 205.74 83.82 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -9997,6 +10088,7 @@
 	)
 	(label "FLASH_NSS"
 		(at 149.86 63.5 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10007,6 +10099,7 @@
 	)
 	(label "SPI2_SCK"
 		(at 119.38 129.54 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10017,6 +10110,7 @@
 	)
 	(label "UART2_RTS"
 		(at 48.26 129.54 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10027,6 +10121,7 @@
 	)
 	(label "V_BATT"
 		(at 119.38 142.24 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10037,6 +10132,7 @@
 	)
 	(label "LED_RED"
 		(at 48.26 76.2 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10047,6 +10143,7 @@
 	)
 	(label "UART4_RX"
 		(at 231.14 68.58 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10057,6 +10154,7 @@
 	)
 	(label "USB_D+"
 		(at 149.86 21.59 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10067,6 +10165,7 @@
 	)
 	(label "CAN1_RX"
 		(at 205.74 109.22 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10077,6 +10176,7 @@
 	)
 	(label "UART3_CTS"
 		(at 205.74 86.36 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10087,6 +10187,7 @@
 	)
 	(label "TIM5_CH3"
 		(at 119.38 58.42 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10097,6 +10198,7 @@
 	)
 	(label "SPI2_MOSI"
 		(at 119.38 134.62 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10107,6 +10209,7 @@
 	)
 	(label "CAN2_TX"
 		(at 119.38 111.76 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10117,6 +10220,7 @@
 	)
 	(label "RSSI_IN"
 		(at 119.38 139.7 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10127,6 +10231,7 @@
 	)
 	(label "TIM5_CH4"
 		(at 184.15 29.21 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10137,6 +10242,7 @@
 	)
 	(label "UART5_TX"
 		(at 119.38 170.18 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10147,6 +10253,7 @@
 	)
 	(label "TIM3_CH3"
 		(at 184.15 36.83 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10157,6 +10264,7 @@
 	)
 	(label "TIM3_CH4"
 		(at 184.15 39.37 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10167,6 +10275,7 @@
 	)
 	(label "BOOT0"
 		(at 48.26 58.42 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10177,6 +10286,7 @@
 	)
 	(label "UART5_RX"
 		(at 48.26 124.46 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10187,6 +10297,7 @@
 	)
 	(label "GYRO1_NSS"
 		(at 149.86 110.49 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10197,6 +10308,7 @@
 	)
 	(label "USB_D-"
 		(at 149.86 24.13 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10207,6 +10319,7 @@
 	)
 	(label "SPI1_MOSI"
 		(at 119.38 71.12 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10217,6 +10330,7 @@
 	)
 	(label "GYRO2_NSS"
 		(at 48.26 88.9 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10227,6 +10341,7 @@
 	)
 	(label "TIM4_CH4"
 		(at 229.87 44.45 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10237,6 +10352,7 @@
 	)
 	(label "GPS1_BUZZER"
 		(at 48.26 99.06 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10247,6 +10363,7 @@
 	)
 	(label "I2C1_SCL"
 		(at 119.38 116.84 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10257,6 +10374,7 @@
 	)
 	(label "GPS1_LED"
 		(at 48.26 96.52 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10267,6 +10385,7 @@
 	)
 	(label "BARO_INT"
 		(at 149.86 121.92 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10277,6 +10396,7 @@
 	)
 	(label "CAN2_RX"
 		(at 119.38 127 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10287,6 +10407,7 @@
 	)
 	(label "LED_BLUE"
 		(at 48.26 81.28 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10297,6 +10418,7 @@
 	)
 	(label "UART5_RX"
 		(at 231.14 93.98 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10307,6 +10429,7 @@
 	)
 	(label "TIM5_CH1"
 		(at 119.38 53.34 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10317,6 +10440,7 @@
 	)
 	(label "CAN1_STBY"
 		(at 205.74 104.14 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10327,6 +10451,7 @@
 	)
 	(label "SPI1_SCK"
 		(at 149.86 92.71 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10337,6 +10462,7 @@
 	)
 	(label "CAN2_TX"
 		(at 205.74 119.38 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10347,6 +10473,7 @@
 	)
 	(label "NRST"
 		(at 275.59 27.94 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10357,6 +10484,7 @@
 	)
 	(label "LED_BLUE"
 		(at 274.32 52.07 270)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10367,6 +10495,7 @@
 	)
 	(label "UART4_TX"
 		(at 119.38 165.1 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10377,6 +10506,7 @@
 	)
 	(label "SWDIO"
 		(at 119.38 86.36 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10387,6 +10517,7 @@
 	)
 	(label "MSD_DETECT"
 		(at 119.38 177.8 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10397,6 +10528,7 @@
 	)
 	(label "SPI3_MISO"
 		(at 173.99 113.03 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10407,6 +10539,7 @@
 	)
 	(label "VCAP2"
 		(at 48.26 165.1 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10417,6 +10550,7 @@
 	)
 	(label "UART2_CTS"
 		(at 205.74 73.66 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10427,6 +10561,7 @@
 	)
 	(label "MAG_NSS"
 		(at 149.86 115.57 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10437,6 +10572,7 @@
 	)
 	(label "SPI1_MISO"
 		(at 149.86 97.79 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10447,6 +10583,7 @@
 	)
 	(label "CAN2_RX"
 		(at 205.74 121.92 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10457,6 +10594,7 @@
 	)
 	(label "I2C1_SDA"
 		(at 231.14 73.66 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10467,6 +10605,7 @@
 	)
 	(label "SPI2_SCK"
 		(at 173.99 55.88 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10477,6 +10616,7 @@
 	)
 	(label "UART5_TX"
 		(at 231.14 91.44 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10487,6 +10627,7 @@
 	)
 	(label "TIM1_CH4"
 		(at 229.87 29.21 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10497,6 +10638,7 @@
 	)
 	(label "CAN1_TX"
 		(at 205.74 106.68 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10507,6 +10649,7 @@
 	)
 	(label "TIM1_CH4"
 		(at 48.26 111.76 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10517,6 +10660,7 @@
 	)
 	(label "LED_GREEN"
 		(at 48.26 78.74 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10527,6 +10671,7 @@
 	)
 	(label "I2C3_SCL"
 		(at 205.74 91.44 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10537,6 +10682,7 @@
 	)
 	(label "SPI1_MOSI"
 		(at 173.99 96.52 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10547,6 +10693,7 @@
 	)
 	(label "I2C2_SCL"
 		(at 231.14 96.52 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10557,6 +10704,7 @@
 	)
 	(label "MSD_NSS"
 		(at 149.86 67.31 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10567,6 +10715,7 @@
 	)
 	(label "SWCLK"
 		(at 275.59 25.4 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10577,6 +10726,7 @@
 	)
 	(label "MSD_DETECT"
 		(at 149.86 69.85 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10587,6 +10737,7 @@
 	)
 	(label "MSD_NSS"
 		(at 119.38 175.26 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10597,6 +10748,7 @@
 	)
 	(label "TIM3_CH1"
 		(at 119.38 154.94 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10607,6 +10759,7 @@
 	)
 	(label "SPI3_MISO"
 		(at 149.86 106.68 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10617,6 +10770,7 @@
 	)
 	(label "BARO_INT"
 		(at 48.26 93.98 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10627,6 +10781,7 @@
 	)
 	(label "UART2_RX"
 		(at 205.74 66.04 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10637,6 +10792,7 @@
 	)
 	(label "I2C3_SCL"
 		(at 119.38 73.66 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10647,6 +10803,7 @@
 	)
 	(label "TIM5_CH4"
 		(at 119.38 60.96 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10657,6 +10814,7 @@
 	)
 	(label "NRST"
 		(at 48.26 53.34 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10667,6 +10825,7 @@
 	)
 	(label "OSC_OUT"
 		(at 48.26 71.12 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10677,6 +10836,7 @@
 	)
 	(label "GPS1_BUZZER"
 		(at 231.14 81.28 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -10687,6 +10847,7 @@
 	)
 	(label "TIM4_CH4"
 		(at 48.26 157.48 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)

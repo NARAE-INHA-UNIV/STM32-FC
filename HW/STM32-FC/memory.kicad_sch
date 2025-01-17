@@ -2001,6 +2001,7 @@
 	)
 	(label "MEM_SPI_MISO"
 		(at 57.15 36.83 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2011,6 +2012,7 @@
 	)
 	(label "MEM_SPI_SCK"
 		(at 123.19 43.18 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2021,6 +2023,7 @@
 	)
 	(label "MEM_SPI_MOSI"
 		(at 123.19 38.1 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2031,6 +2034,7 @@
 	)
 	(label "MEM_SPI_SCK"
 		(at 57.15 31.75 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2041,6 +2045,7 @@
 	)
 	(label "MEM_SPI_SCK"
 		(at 58.42 66.04 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2051,6 +2056,7 @@
 	)
 	(label "MEM_SPI_MOSI"
 		(at 57.15 34.29 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2061,6 +2067,7 @@
 	)
 	(label "MEM_SPI_MISO"
 		(at 58.42 71.12 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2071,6 +2078,7 @@
 	)
 	(label "MEM_SPI_MOSI"
 		(at 58.42 68.58 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2081,6 +2089,7 @@
 	)
 	(label "MEM_SPI_MISO"
 		(at 123.19 48.26 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2092,6 +2101,7 @@
 	(hierarchical_label "MEM_SPI_MOSI"
 		(shape input)
 		(at 46.99 68.58 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2103,6 +2113,7 @@
 	(hierarchical_label "MEM_SPI_MISO"
 		(shape output)
 		(at 46.99 71.12 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2114,6 +2125,7 @@
 	(hierarchical_label "MSD_DETECT"
 		(shape output)
 		(at 134.62 55.88 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2125,6 +2137,7 @@
 	(hierarchical_label "MEM_SPI_SCK"
 		(shape input)
 		(at 46.99 66.04 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2136,6 +2149,7 @@
 	(hierarchical_label "MSD_NSS"
 		(shape input)
 		(at 134.62 35.56 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2147,6 +2161,7 @@
 	(hierarchical_label "FLASH_NSS"
 		(shape input)
 		(at 58.42 29.21 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)

@@ -2124,6 +2124,7 @@
 	(hierarchical_label "GPS1_I2C_SCL"
 		(shape input)
 		(at 67.31 34.29 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2135,6 +2136,7 @@
 	(hierarchical_label "GPS2_I2C_SDA"
 		(shape bidirectional)
 		(at 69.85 95.25 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2146,6 +2148,7 @@
 	(hierarchical_label "GPS1_SW"
 		(shape input)
 		(at 80.01 39.37 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2157,6 +2160,7 @@
 	(hierarchical_label "GPS1_SW_LED"
 		(shape input)
 		(at 80.01 41.91 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2168,6 +2172,7 @@
 	(hierarchical_label "GPS1_UART_TX"
 		(shape input)
 		(at 67.31 29.21 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2179,6 +2184,7 @@
 	(hierarchical_label "GPS1_UART_RX"
 		(shape output)
 		(at 67.31 31.75 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2190,6 +2196,7 @@
 	(hierarchical_label "GPS1_I2C_SDA"
 		(shape bidirectional)
 		(at 67.31 36.83 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2201,6 +2208,7 @@
 	(hierarchical_label "GPS2_I2C_SCL"
 		(shape input)
 		(at 69.85 92.71 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2212,6 +2220,7 @@
 	(hierarchical_label "GPS1_BUZZER"
 		(shape input)
 		(at 80.01 46.99 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2223,6 +2232,7 @@
 	(hierarchical_label "GPS2_UART_TX"
 		(shape input)
 		(at 69.85 87.63 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2234,6 +2244,7 @@
 	(hierarchical_label "GPS2_UART_RX"
 		(shape output)
 		(at 69.85 90.17 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
