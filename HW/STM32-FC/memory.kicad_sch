@@ -2001,7 +2001,6 @@
 	)
 	(label "MEM_SPI_MISO"
 		(at 57.15 36.83 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2012,7 +2011,6 @@
 	)
 	(label "MEM_SPI_SCK"
 		(at 123.19 43.18 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2023,7 +2021,6 @@
 	)
 	(label "MEM_SPI_MOSI"
 		(at 123.19 38.1 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2034,7 +2031,6 @@
 	)
 	(label "MEM_SPI_SCK"
 		(at 57.15 31.75 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2045,7 +2041,6 @@
 	)
 	(label "MEM_SPI_SCK"
 		(at 58.42 66.04 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2056,7 +2051,6 @@
 	)
 	(label "MEM_SPI_MOSI"
 		(at 57.15 34.29 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2067,7 +2061,6 @@
 	)
 	(label "MEM_SPI_MISO"
 		(at 58.42 71.12 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2078,7 +2071,6 @@
 	)
 	(label "MEM_SPI_MOSI"
 		(at 58.42 68.58 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2089,7 +2081,6 @@
 	)
 	(label "MEM_SPI_MISO"
 		(at 123.19 48.26 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2101,7 +2092,6 @@
 	(hierarchical_label "MEM_SPI_MOSI"
 		(shape input)
 		(at 46.99 68.58 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2113,7 +2103,6 @@
 	(hierarchical_label "MEM_SPI_MISO"
 		(shape output)
 		(at 46.99 71.12 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2125,7 +2114,6 @@
 	(hierarchical_label "MSD_DETECT"
 		(shape output)
 		(at 134.62 55.88 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2137,7 +2125,6 @@
 	(hierarchical_label "MEM_SPI_SCK"
 		(shape input)
 		(at 46.99 66.04 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2149,7 +2136,6 @@
 	(hierarchical_label "MSD_NSS"
 		(shape input)
 		(at 134.62 35.56 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2161,7 +2147,6 @@
 	(hierarchical_label "FLASH_NSS"
 		(shape input)
 		(at 58.42 29.21 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2179,7 +2164,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0eb69b51-10e3-4a4c-b031-aa9d01346cec")
-		(property "Reference" "R12"
+		(property "Reference" "R13"
 			(at 143.51 31.242 90)
 			(effects
 				(font
@@ -2296,6 +2281,24 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 142.24 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" ""
+			(at 142.24 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "b73d5005-991f-4d54-8975-dbd4fe48d77f")
 		)
@@ -2305,7 +2308,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/3e7c6c79-bc31-4cc9-af6a-d0a28245a7b2"
-					(reference "R12")
+					(reference "R13")
 					(unit 1)
 				)
 			)
@@ -2321,7 +2324,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2864194a-23c2-48db-821a-74741f3bd17c")
-		(property "Reference" "#PWR049"
+		(property "Reference" "#PWR042"
 			(at 53.34 48.26 0)
 			(effects
 				(font
@@ -2371,7 +2374,7 @@
 		(instances
 			(project ""
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/3e7c6c79-bc31-4cc9-af6a-d0a28245a7b2"
-					(reference "#PWR049")
+					(reference "#PWR042")
 					(unit 1)
 				)
 			)
@@ -2387,7 +2390,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "41976d3c-17c2-4453-a458-6135765e0810")
-		(property "Reference" "R14"
+		(property "Reference" "R15"
 			(at 143.764 57.15 90)
 			(effects
 				(font
@@ -2504,6 +2507,24 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 146.05 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" ""
+			(at 146.05 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "c50416b1-6b41-4ece-8d5a-8bdd7ec3a023")
 		)
@@ -2513,7 +2534,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/3e7c6c79-bc31-4cc9-af6a-d0a28245a7b2"
-					(reference "R14")
+					(reference "R15")
 					(unit 1)
 				)
 			)
@@ -2529,7 +2550,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "67617623-d025-4cc8-90e4-09c405bdad72")
-		(property "Reference" "#PWR051"
+		(property "Reference" "#PWR047"
 			(at 107.95 54.61 0)
 			(effects
 				(font
@@ -2580,7 +2601,7 @@
 		(instances
 			(project ""
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/3e7c6c79-bc31-4cc9-af6a-d0a28245a7b2"
-					(reference "#PWR051")
+					(reference "#PWR047")
 					(unit 1)
 				)
 			)
@@ -2596,7 +2617,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7141d9b4-0e9c-49b2-b5de-0cc306117b15")
-		(property "Reference" "#PWR053"
+		(property "Reference" "#PWR043"
 			(at 53.34 58.42 0)
 			(effects
 				(font
@@ -2647,7 +2668,7 @@
 		(instances
 			(project ""
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/3e7c6c79-bc31-4cc9-af6a-d0a28245a7b2"
-					(reference "#PWR053")
+					(reference "#PWR043")
 					(unit 1)
 				)
 			)
@@ -2664,7 +2685,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7aae98ff-4d05-4c31-971d-af935ff6aabc")
-		(property "Reference" "#PWR054"
+		(property "Reference" "#PWR050"
 			(at 204.47 55.88 0)
 			(effects
 				(font
@@ -2716,7 +2737,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/3e7c6c79-bc31-4cc9-af6a-d0a28245a7b2"
-					(reference "#PWR054")
+					(reference "#PWR050")
 					(unit 1)
 				)
 			)
@@ -2731,7 +2752,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7b5457d7-d48e-49b2-81ad-cd0bbb36d741")
-		(property "Reference" "R11"
+		(property "Reference" "R12"
 			(at 140.97 31.242 90)
 			(effects
 				(font
@@ -2848,6 +2869,24 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 139.7 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" ""
+			(at 139.7 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "88b6559c-a237-4079-9736-8cee7b405aa1")
 		)
@@ -2857,7 +2896,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/3e7c6c79-bc31-4cc9-af6a-d0a28245a7b2"
-					(reference "R11")
+					(reference "R12")
 					(unit 1)
 				)
 			)
@@ -2872,7 +2911,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "83ab5237-8be8-4c47-addd-bc67cdcf2543")
-		(property "Reference" "R10"
+		(property "Reference" "R11"
 			(at 138.43 31.242 90)
 			(effects
 				(font
@@ -2989,6 +3028,24 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 137.16 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" ""
+			(at 137.16 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "664de052-96b1-41e5-900d-e6588797231d")
 		)
@@ -2998,7 +3055,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/3e7c6c79-bc31-4cc9-af6a-d0a28245a7b2"
-					(reference "R10")
+					(reference "R11")
 					(unit 1)
 				)
 			)
@@ -3014,7 +3071,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a50cbce6-2f5e-4053-8886-8f3d8a2dc282")
-		(property "Reference" "#PWR046"
+		(property "Reference" "#PWR044"
 			(at 80.01 25.4 0)
 			(effects
 				(font
@@ -3064,7 +3121,7 @@
 		(instances
 			(project ""
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/3e7c6c79-bc31-4cc9-af6a-d0a28245a7b2"
-					(reference "#PWR046")
+					(reference "#PWR044")
 					(unit 1)
 				)
 			)
@@ -3080,7 +3137,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "aa9cf3bc-0412-4e85-8d1e-e06969d4c6a6")
-		(property "Reference" "J6"
+		(property "Reference" "J4"
 			(at 175.895 21.59 0)
 			(effects
 				(font
@@ -3195,6 +3252,24 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 175.26 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" ""
+			(at 175.26 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "10"
 			(uuid "6b9a045a-4943-484f-8ff6-a585730a9be4")
 		)
@@ -3228,7 +3303,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/3e7c6c79-bc31-4cc9-af6a-d0a28245a7b2"
-					(reference "J6")
+					(reference "J4")
 					(unit 1)
 				)
 			)
@@ -3245,7 +3320,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "bcc30056-9229-429d-b84a-7550e001543f")
-		(property "Reference" "#PWR050"
+		(property "Reference" "#PWR049"
 			(at 139.7 45.72 0)
 			(effects
 				(font
@@ -3296,7 +3371,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/3e7c6c79-bc31-4cc9-af6a-d0a28245a7b2"
-					(reference "#PWR050")
+					(reference "#PWR049")
 					(unit 1)
 				)
 			)
@@ -3311,7 +3386,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c0ce920d-b89e-40d2-bb16-47798b7f87b3")
-		(property "Reference" "C20"
+		(property "Reference" "C19"
 			(at 55.88 46.99 0)
 			(effects
 				(font
@@ -3428,6 +3503,24 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 53.34 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" ""
+			(at 53.34 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "f7227cdb-4512-4165-b8e5-554b3e23a4d0")
 		)
@@ -3437,7 +3530,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/3e7c6c79-bc31-4cc9-af6a-d0a28245a7b2"
-					(reference "C20")
+					(reference "C19")
 					(unit 1)
 				)
 			)
@@ -3452,7 +3545,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c6cf966f-0868-4947-ae03-9f2f09436be7")
-		(property "Reference" "C19"
+		(property "Reference" "C20"
 			(at 110.49 43.18 0)
 			(effects
 				(font
@@ -3569,6 +3662,24 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 107.95 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" ""
+			(at 107.95 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "9c6f8106-3d4a-4c3c-976e-30a56c93a6de")
 		)
@@ -3578,7 +3689,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/3e7c6c79-bc31-4cc9-af6a-d0a28245a7b2"
-					(reference "C19")
+					(reference "C20")
 					(unit 1)
 				)
 			)
@@ -3593,7 +3704,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c9a5291e-2243-446e-aa7f-71bec6fea0de")
-		(property "Reference" "R13"
+		(property "Reference" "R14"
 			(at 146.05 31.242 90)
 			(effects
 				(font
@@ -3710,6 +3821,24 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 144.78 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" ""
+			(at 144.78 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "141cb85f-f5cd-4c5b-a051-9ce436a2ffa1")
 		)
@@ -3719,7 +3848,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/3e7c6c79-bc31-4cc9-af6a-d0a28245a7b2"
-					(reference "R13")
+					(reference "R14")
 					(unit 1)
 				)
 			)
@@ -3735,7 +3864,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "de73b422-f262-4085-9df0-f9e259d0e428")
-		(property "Reference" "#PWR048"
+		(property "Reference" "#PWR046"
 			(at 107.95 44.45 0)
 			(effects
 				(font
@@ -3785,7 +3914,7 @@
 		(instances
 			(project ""
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/3e7c6c79-bc31-4cc9-af6a-d0a28245a7b2"
-					(reference "#PWR048")
+					(reference "#PWR046")
 					(unit 1)
 				)
 			)
@@ -3801,7 +3930,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f12493f3-1e6f-40ee-ba2c-97af970f7a80")
-		(property "Reference" "#PWR052"
+		(property "Reference" "#PWR045"
 			(at 80.01 57.15 0)
 			(effects
 				(font
@@ -3852,7 +3981,7 @@
 		(instances
 			(project ""
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/3e7c6c79-bc31-4cc9-af6a-d0a28245a7b2"
-					(reference "#PWR052")
+					(reference "#PWR045")
 					(unit 1)
 				)
 			)
@@ -3885,7 +4014,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "W25X40CLUX:USON_LUXIG_TR_HandSolder"
+		(property "Footprint" "W25X40CLUX:USON_LUXIG TR_WIN-L"
 			(at 80.01 36.83 0)
 			(effects
 				(font
@@ -3984,6 +4113,24 @@
 				(hide yes)
 			)
 		)
+		(property "Sim.Device" ""
+			(at 80.01 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" ""
+			(at 80.01 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "3f7ffbf5-84c4-49cf-89cc-93e2471816a6")
 		)
@@ -4030,7 +4177,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "fbdf2424-28c8-4a5c-8fdd-526400cdd8ab")
-		(property "Reference" "#PWR047"
+		(property "Reference" "#PWR048"
 			(at 137.16 25.4 0)
 			(effects
 				(font
@@ -4080,7 +4227,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/3e7c6c79-bc31-4cc9-af6a-d0a28245a7b2"
-					(reference "#PWR047")
+					(reference "#PWR048")
 					(unit 1)
 				)
 			)

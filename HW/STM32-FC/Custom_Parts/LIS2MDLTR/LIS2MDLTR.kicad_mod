@@ -64,6 +64,7 @@
 			)
 		)
 	)
+	(clearance 0.1)
 	(attr smd)
 	(fp_rect
 		(start -1 -1)
