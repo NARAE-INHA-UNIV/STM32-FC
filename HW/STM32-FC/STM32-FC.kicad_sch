@@ -5977,12 +5977,12 @@
 		(uuid "0eb13583-32e1-46f0-8963-b75d293f3cbf")
 	)
 	(no_connect
-		(at 58.42 137.16)
-		(uuid "3559430d-e459-43cd-9ed2-1f3746e73e8a")
-	)
-	(no_connect
 		(at 266.7 30.48)
 		(uuid "6112c89c-45ee-4531-82e8-521c036e97cf")
+	)
+	(no_connect
+		(at 109.22 175.26)
+		(uuid "b7e17552-ada5-4851-bab7-5384244d6675")
 	)
 	(no_connect
 		(at 109.22 63.5)
@@ -6072,7 +6072,7 @@
 	)
 	(wire
 		(pts
-			(xy 220.98 73.66) (xy 231.14 73.66)
+			(xy 195.58 93.98) (xy 205.74 93.98)
 		)
 		(stroke
 			(width 0)
@@ -6102,7 +6102,7 @@
 	)
 	(wire
 		(pts
-			(xy 195.58 91.44) (xy 205.74 91.44)
+			(xy 220.98 71.12) (xy 231.14 71.12)
 		)
 		(stroke
 			(width 0)
@@ -6282,7 +6282,7 @@
 	)
 	(wire
 		(pts
-			(xy 220.98 71.12) (xy 231.14 71.12)
+			(xy 195.58 91.44) (xy 205.74 91.44)
 		)
 		(stroke
 			(width 0)
@@ -6622,13 +6622,23 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 88.9) (xy 48.26 88.9)
+			(xy 58.42 83.82) (xy 48.26 83.82)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "31bdfc35-0b05-47d3-93cb-d297bfe559c3")
+	)
+	(wire
+		(pts
+			(xy 58.42 88.9) (xy 48.26 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "326a7052-ee3e-4b5f-910b-0b1fbe6bb755")
 	)
 	(wire
 		(pts
@@ -7212,16 +7222,6 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 83.82) (xy 48.26 83.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7086da20-bb00-49c2-8eba-6d351198236b")
-	)
-	(wire
-		(pts
 			(xy 273.05 33.02) (xy 273.05 34.29)
 		)
 		(stroke
@@ -7422,7 +7422,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 86.36) (xy 48.26 86.36)
+			(xy 58.42 91.44) (xy 48.26 91.44)
 		)
 		(stroke
 			(width 0)
@@ -7452,7 +7452,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 91.44) (xy 48.26 91.44)
+			(xy 58.42 86.36) (xy 48.26 86.36)
 		)
 		(stroke
 			(width 0)
@@ -8082,7 +8082,7 @@
 	)
 	(wire
 		(pts
-			(xy 109.22 175.26) (xy 119.38 175.26)
+			(xy 58.42 137.16) (xy 48.26 137.16)
 		)
 		(stroke
 			(width 0)
@@ -8302,7 +8302,7 @@
 	)
 	(wire
 		(pts
-			(xy 195.58 93.98) (xy 205.74 93.98)
+			(xy 220.98 73.66) (xy 231.14 73.66)
 		)
 		(stroke
 			(width 0)
@@ -9186,7 +9186,7 @@
 		(uuid "1305f89c-3737-4e5a-86f3-2d9a273d9eb1")
 	)
 	(label "I2C1_SCL"
-		(at 231.14 71.12 180)
+		(at 205.74 91.44 180)
 		(effects
 			(font
 				(size 1 1)
@@ -9265,16 +9265,6 @@
 		)
 		(uuid "1d85e40b-bb61-4b6a-9b11-7068e33184f9")
 	)
-	(label "GYRO1_NSS"
-		(at 48.26 83.82 0)
-		(effects
-			(font
-				(size 1 1)
-			)
-			(justify left bottom)
-		)
-		(uuid "1f3ee66e-36a8-422c-bbc8-e819be15e723")
-	)
 	(label "VCAP1"
 		(at 48.26 162.56 0)
 		(effects
@@ -9326,7 +9316,7 @@
 		(uuid "2756398d-66e5-4f0c-b3ec-b5f9ebf36f0b")
 	)
 	(label "I2C3_SDA"
-		(at 205.74 93.98 180)
+		(at 231.14 73.66 180)
 		(effects
 			(font
 				(size 1 1)
@@ -9414,6 +9404,16 @@
 			(justify right bottom)
 		)
 		(uuid "46ee5594-3ffa-4ea0-be23-a17204fc490f")
+	)
+	(label "GYRO1_NSS"
+		(at 48.26 88.9 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left bottom)
+		)
+		(uuid "48b7dc32-942e-4d4b-96fb-9b60e73f013a")
 	)
 	(label "SPI3_SCK"
 		(at 119.38 104.14 180)
@@ -9626,7 +9626,7 @@
 		(uuid "626f197f-2420-462b-a823-e50ba0a270a3")
 	)
 	(label "MAG_NSS"
-		(at 48.26 91.44 0)
+		(at 48.26 86.36 0)
 		(effects
 			(font
 				(size 1 1)
@@ -9696,7 +9696,7 @@
 		(uuid "689ee234-d7b4-4531-bf64-61102a34279a")
 	)
 	(label "BARO_NSS"
-		(at 48.26 86.36 0)
+		(at 48.26 91.44 0)
 		(effects
 			(font
 				(size 1 1)
@@ -10216,7 +10216,7 @@
 		(uuid "b609f9ca-cff6-4ac3-b35f-86e331a9a83a")
 	)
 	(label "GYRO2_NSS"
-		(at 48.26 88.9 0)
+		(at 48.26 83.82 0)
 		(effects
 			(font
 				(size 1 1)
@@ -10456,7 +10456,7 @@
 		(uuid "de7594a4-b8d0-4724-bab7-138370ec0cba")
 	)
 	(label "I2C1_SDA"
-		(at 231.14 73.66 180)
+		(at 205.74 93.98 180)
 		(effects
 			(font
 				(size 1 1)
@@ -10526,7 +10526,7 @@
 		(uuid "eaa21985-452d-4f93-b658-03abfa941921")
 	)
 	(label "I2C3_SCL"
-		(at 205.74 91.44 180)
+		(at 231.14 71.12 180)
 		(effects
 			(font
 				(size 1 1)
@@ -10586,12 +10586,12 @@
 		(uuid "f102f383-10e5-40aa-a55b-dff95e809235")
 	)
 	(label "MSD_NSS"
-		(at 119.38 175.26 180)
+		(at 48.26 137.16 0)
 		(effects
 			(font
 				(size 1 1)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
 		(uuid "f1534fb1-13b2-4ef0-ac38-f24aaf768d0c")
 	)

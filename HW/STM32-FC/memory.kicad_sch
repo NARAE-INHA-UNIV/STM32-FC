@@ -1988,7 +1988,7 @@
 		)
 		(uuid "79d18630-c19b-48d6-ae52-01b22b5cbb6a")
 	)
-	(text "PB13 : SPI2_SCK\nPB14 : SPI2_MISO\nPB15 : SPI2_MOSI\n\nPC14 : MSD_NSS\nPC15 : MSD_DETECT"
+	(text "PB13 : SPI2_SCK\nPB14 : SPI2_MISO\nPB15 : SPI2_MOSI\n\nPD7 : MSD_NSS\nPC15 : MSD_DETECT"
 		(exclude_from_sim no)
 		(at 101.346 18.034 0)
 		(effects
@@ -3153,7 +3153,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_Card:microSD_HC_Molex_104031-0811"
+		(property "Footprint" "Connector_Card:microSD_HC_Hirose_DM3D-SF"
 			(at 227.33 25.4 0)
 			(effects
 				(font
@@ -3162,7 +3162,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://datasheet.lcsc.com/lcsc/2110151630_XKB-Connectivity-XKTF-015-N_C381082.pdf"
+		(property "Datasheet" ""
 			(at 175.26 40.64 0)
 			(effects
 				(font
