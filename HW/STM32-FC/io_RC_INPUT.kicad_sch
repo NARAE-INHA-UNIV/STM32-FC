@@ -1041,7 +1041,7 @@
 				(pin bidirectional line
 					(at 8.89 -11.43 180)
 					(length 2.54)
-					(name "RCIN"
+					(name "RSSI"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1059,7 +1059,7 @@
 				(pin bidirectional line
 					(at 8.89 -13.97 180)
 					(length 2.54)
-					(name "RSSI"
+					(name "RCIN"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1755,6 +1755,16 @@
 	)
 	(wire
 		(pts
+			(xy 104.14 34.29) (xy 111.76 34.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "026d9da7-e82c-43f7-b821-8052a0a8381e")
+	)
+	(wire
+		(pts
 			(xy 43.18 59.69) (xy 45.72 59.69)
 		)
 		(stroke
@@ -1965,6 +1975,16 @@
 	)
 	(wire
 		(pts
+			(xy 118.11 34.29) (xy 118.11 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "83428d8e-8337-457d-b929-55ca631e5471")
+	)
+	(wire
+		(pts
 			(xy 120.65 66.04) (xy 119.38 66.04)
 		)
 		(stroke
@@ -1972,16 +1992,6 @@
 			(type default)
 		)
 		(uuid "855a60c9-bb77-4029-af66-4db8aff1fb04")
-	)
-	(wire
-		(pts
-			(xy 106.68 38.1) (xy 118.11 38.1)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8a1f20ae-6585-4cfd-b54b-4f3335fe4953")
 	)
 	(wire
 		(pts
@@ -2155,6 +2165,16 @@
 	)
 	(wire
 		(pts
+			(xy 116.84 34.29) (xy 118.11 34.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d3afd5b1-9397-4bdd-b0c2-f3404bc3d260")
+	)
+	(wire
+		(pts
 			(xy 63.5 81.28) (xy 64.77 81.28)
 		)
 		(stroke
@@ -2162,6 +2182,16 @@
 			(type default)
 		)
 		(uuid "d82d93bd-4543-4d35-ae3a-d266327b644b")
+	)
+	(wire
+		(pts
+			(xy 100.33 38.1) (xy 118.11 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dd6eae88-06c6-40d0-abc2-5b11b187f956")
 	)
 	(wire
 		(pts
@@ -2281,7 +2311,7 @@
 		)
 		(uuid e7dcdaf9-323f-4021-b5f8-6c94c9276fd0)
 	)
-	(text "RCIN (SBUS/PPM)"
+	(text "RCIN (SBUS/PPM/SRXL2)"
 		(exclude_from_sim no)
 		(at 89.916 15.494 0)
 		(effects
@@ -2314,7 +2344,7 @@
 		)
 		(uuid "2e1e838c-a375-4faa-b3c7-212918197d3e")
 	)
-	(text "2.54mm 3P\n\nPA10 : UART1_RX (SBUS)\nPD15 : TIM4_CH4 (PPM)"
+	(text "2.54mm 3P\n\nPA10 : UART1_RX (SBUS)\nPD15 : TIM4_CH4 (PPM)\nPA9 : UART1_TX (SRXL2, Half Duplex)"
 		(exclude_from_sim no)
 		(at 89.916 18.034 0)
 		(effects
@@ -2382,7 +2412,6 @@
 	)
 	(label "UART1_RX"
 		(at 129.54 30.48 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2393,7 +2422,6 @@
 	)
 	(label "UART1_RX"
 		(at 63.5 107.95 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2404,7 +2432,6 @@
 	)
 	(label "RCIN"
 		(at 73.66 77.47 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2415,7 +2442,6 @@
 	)
 	(label "RCIN"
 		(at 63.5 113.03 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2426,7 +2452,6 @@
 	)
 	(label "UART1_TX"
 		(at 63.5 110.49 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2437,7 +2462,6 @@
 	)
 	(label "UART1_TX"
 		(at 135.89 99.06 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2448,7 +2472,6 @@
 	)
 	(label "UART1_RX"
 		(at 128.27 71.12 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2458,8 +2481,7 @@
 		(uuid "9d95241e-8fdd-4852-b51d-0a48da89c2b6")
 	)
 	(label "RCIN"
-		(at 106.68 38.1 0)
-		(fields_autoplaced yes)
+		(at 100.33 38.1 0)
 		(effects
 			(font
 				(size 1 1)
@@ -2468,10 +2490,19 @@
 		)
 		(uuid "cbe92f07-1729-4efb-b6c7-6e9ba29494ee")
 	)
+	(label "UART1_TX"
+		(at 104.14 34.29 0)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify left bottom)
+		)
+		(uuid "e379ed95-c4b6-4c82-8a13-64317a7da6ac")
+	)
 	(hierarchical_label "AUX_CH3"
 		(shape input)
 		(at 66.04 64.77 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2483,7 +2514,6 @@
 	(hierarchical_label "MAIN_CH2"
 		(shape input)
 		(at 43.18 62.23 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2495,7 +2525,6 @@
 	(hierarchical_label "AUX_CH1"
 		(shape input)
 		(at 66.04 59.69 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2507,7 +2536,6 @@
 	(hierarchical_label "UART1_RX"
 		(shape output)
 		(at 53.34 107.95 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2519,7 +2547,6 @@
 	(hierarchical_label "MAIN_CH3"
 		(shape input)
 		(at 43.18 64.77 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2531,7 +2558,6 @@
 	(hierarchical_label "AUX_CH2"
 		(shape input)
 		(at 66.04 62.23 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2543,7 +2569,6 @@
 	(hierarchical_label "AUX_CH4"
 		(shape input)
 		(at 66.04 67.31 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2555,7 +2580,6 @@
 	(hierarchical_label "MAIN_CH6"
 		(shape input)
 		(at 43.18 72.39 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2567,7 +2591,6 @@
 	(hierarchical_label "MAIN_CH4"
 		(shape input)
 		(at 43.18 67.31 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2579,7 +2602,6 @@
 	(hierarchical_label "MAIN_CH7"
 		(shape input)
 		(at 43.18 74.93 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2591,7 +2613,6 @@
 	(hierarchical_label "UART1_TX"
 		(shape input)
 		(at 53.34 110.49 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2603,7 +2624,6 @@
 	(hierarchical_label "MAIN_CH8"
 		(shape input)
 		(at 43.18 77.47 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2615,7 +2635,6 @@
 	(hierarchical_label "MAIN_CH5"
 		(shape input)
 		(at 43.18 69.85 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2627,7 +2646,6 @@
 	(hierarchical_label "PPM_IN"
 		(shape output)
 		(at 53.34 113.03 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2639,7 +2657,6 @@
 	(hierarchical_label "RSSI_IN"
 		(shape output)
 		(at 66.04 74.93 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2651,7 +2668,6 @@
 	(hierarchical_label "MAIN_CH1"
 		(shape input)
 		(at 43.18 59.69 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2720,6 +2736,163 @@
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
 					(reference "#PWR076")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small_US")
+		(at 114.3 34.29 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0a80bf5e-bf48-4ecf-a78d-1bc5b8c55dcc")
+		(property "Reference" "R35"
+			(at 114.3 31.75 90)
+			(effects
+				(font
+					(size 1 1)
+				)
+			)
+		)
+		(property "Value" "0"
+			(at 114.3 36.83 90)
+			(effects
+				(font
+					(size 1 1)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+			(at 114.3 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 114.3 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small US symbol"
+			(at 114.3 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Availability" ""
+			(at 114.3 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Check_prices" ""
+			(at 114.3 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description_1" ""
+			(at 114.3 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MF" ""
+			(at 114.3 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MP" ""
+			(at 114.3 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" ""
+			(at 114.3 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Price" ""
+			(at 114.3 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "SnapEDA_Link" ""
+			(at 114.3 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" ""
+			(at 114.3 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" ""
+			(at 114.3 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6e038351-8aca-4e85-aa42-2bc9787ab039")
+		)
+		(pin "2"
+			(uuid "821b5558-1b98-4d47-8b55-7203a3358f48")
+		)
+		(instances
+			(project "STM32-FC"
+				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
+					(reference "R35")
 					(unit 1)
 				)
 			)
@@ -4113,21 +4286,19 @@
 		(dnp no)
 		(uuid "b8b420e7-3b3a-4a94-b4ad-ce7c4350d7f6")
 		(property "Reference" "R22"
-			(at 140.97 24.13 0)
+			(at 136.652 25.4 0)
 			(effects
 				(font
 					(size 1 1)
 				)
-				(justify left)
 			)
 		)
 		(property "Value" "10k"
-			(at 140.97 26.67 0)
+			(at 142.748 25.4 0)
 			(effects
 				(font
 					(size 1 1)
 				)
-				(justify left)
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
@@ -4433,7 +4604,7 @@
 		(dnp no)
 		(uuid "d90f39a1-8ac9-46c5-bcad-86aefa080460")
 		(property "Reference" "R21"
-			(at 127 33.02 90)
+			(at 127 35.56 90)
 			(effects
 				(font
 					(size 1 1)
@@ -4441,7 +4612,7 @@
 			)
 		)
 		(property "Value" "1k"
-			(at 127 35.56 90)
+			(at 127 40.64 90)
 			(effects
 				(font
 					(size 1 1)

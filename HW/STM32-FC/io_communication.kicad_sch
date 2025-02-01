@@ -2559,7 +2559,6 @@
 	)
 	(label "CAN2_P"
 		(at 165.1 76.2 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2570,7 +2569,6 @@
 	)
 	(label "CAN2_N"
 		(at 165.1 78.74 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2581,7 +2579,6 @@
 	)
 	(label "CAN1_P"
 		(at 165.1 35.56 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2592,7 +2589,6 @@
 	)
 	(label "CAN1_N"
 		(at 165.1 38.1 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2604,7 +2600,6 @@
 	(hierarchical_label "CAN2_RX"
 		(shape output)
 		(at 121.92 77.47 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2616,7 +2611,6 @@
 	(hierarchical_label "UART2_CTS"
 		(shape output)
 		(at 55.88 35.56 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2628,7 +2622,6 @@
 	(hierarchical_label "CAN2_STBY"
 		(shape input)
 		(at 121.92 72.39 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2640,7 +2633,6 @@
 	(hierarchical_label "CAN1_TX"
 		(shape input)
 		(at 121.92 34.29 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2652,7 +2644,6 @@
 	(hierarchical_label "UART2_RX"
 		(shape output)
 		(at 55.88 33.02 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2664,7 +2655,6 @@
 	(hierarchical_label "I2C_SDA"
 		(shape bidirectional)
 		(at 55.88 115.57 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2676,7 +2666,6 @@
 	(hierarchical_label "UART3_RX"
 		(shape output)
 		(at 55.88 73.66 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2688,7 +2677,6 @@
 	(hierarchical_label "CAN1_STBY"
 		(shape input)
 		(at 121.92 31.75 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2700,7 +2688,6 @@
 	(hierarchical_label "CAN2_TX"
 		(shape input)
 		(at 121.92 74.93 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2712,7 +2699,6 @@
 	(hierarchical_label "UART3_CTS"
 		(shape output)
 		(at 55.88 76.2 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2724,7 +2710,6 @@
 	(hierarchical_label "CAN1_RX"
 		(shape output)
 		(at 121.92 36.83 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2736,7 +2721,6 @@
 	(hierarchical_label "UART3_TX"
 		(shape input)
 		(at 55.88 71.12 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2748,7 +2732,6 @@
 	(hierarchical_label "I2C_SCL"
 		(shape input)
 		(at 55.88 113.03 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2760,7 +2743,6 @@
 	(hierarchical_label "UART2_RTS"
 		(shape input)
 		(at 55.88 38.1 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2772,7 +2754,6 @@
 	(hierarchical_label "UART3_RTS"
 		(shape input)
 		(at 55.88 78.74 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
@@ -2784,7 +2765,6 @@
 	(hierarchical_label "UART2_TX"
 		(shape input)
 		(at 55.88 30.48 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1 1)
