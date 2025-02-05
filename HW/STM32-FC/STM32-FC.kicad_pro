@@ -190,9 +190,9 @@
       ],
       "track_widths": [
         0.0,
+        0.1,
         0.15,
         0.2,
-        0.25,
         0.5,
         0.8
       ],
@@ -539,7 +539,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "",
+      "plot": "Gbr/",
       "pos_files": "",
       "specctra_dsn": "freerouting/STM32-FC.dsn",
       "step": "",
