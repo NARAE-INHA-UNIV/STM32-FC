@@ -8974,7 +8974,7 @@
 				)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "15k"
 			(at 0 1.17 90)
 			(layer "F.Fab")
 			(uuid "9e607bd7-4a72-433e-8a03-0c2ebc6b35bd")
@@ -33078,7 +33078,7 @@
 		(descr "Through hole straight pin header, 1x03, 1.27mm pitch, single row")
 		(tags "Through hole pin header THT 1x03 1.27mm single row")
 		(property "Reference" "TP2"
-			(at 0 1.695 360)
+			(at 0 1.695 0)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "82ce1db3-2896-4772-9bfc-98ab94b978d4")
@@ -33091,7 +33091,7 @@
 			)
 		)
 		(property "Value" "Test Pin"
-			(at 0 -4.235 360)
+			(at 0 -4.235 0)
 			(layer "B.Fab")
 			(uuid "b5dc024d-59a9-46fa-9e80-c2bb7637850f")
 			(effects
@@ -44791,7 +44791,7 @@
 			)
 		)
 		(fp_text user "${REFERENCE}"
-			(at 1.85 0 360)
+			(at 1.85 0 0)
 			(layer "B.Fab")
 			(uuid "dd4a969a-a50b-46e0-8c90-02bbbc05bec4")
 			(effects
