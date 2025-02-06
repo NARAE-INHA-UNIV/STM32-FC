@@ -540,7 +540,7 @@
       "idf": "",
       "netlist": "",
       "plot": "Gbr/",
-      "pos_files": "",
+      "pos_files": "CPL/",
       "specctra_dsn": "freerouting/STM32-FC.dsn",
       "step": "",
       "svg": "",
@@ -587,7 +587,7 @@
           "group_by": false,
           "label": "Footprint",
           "name": "Footprint",
-          "show": false
+          "show": true
         },
         {
           "group_by": false,

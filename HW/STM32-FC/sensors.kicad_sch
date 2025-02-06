@@ -4582,6 +4582,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 100.33 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "d0dc169d-0bf6-4453-ab5c-de0d46404509")
 		)
@@ -4741,6 +4750,15 @@
 			)
 		)
 		(property "LCSC" "C265329"
+			(at 219.71 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 219.71 68.58 0)
 			(effects
 				(font
@@ -5051,6 +5069,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 46.99 129.54 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "b69283a9-fe45-4793-aac4-e3164588c9aa")
 		)
@@ -5277,6 +5304,15 @@
 			)
 		)
 		(property "LCSC" "C25539"
+			(at 236.22 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 236.22 34.29 0)
 			(effects
 				(font
@@ -5687,7 +5723,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C1525"
+		(property "LCSC" "C1524"
 			(at 113.03 40.6462 0)
 			(effects
 				(font
@@ -5778,6 +5814,15 @@
 			)
 		)
 		(property "Sim.Pins" ""
+			(at 110.49 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 110.49 41.91 0)
 			(effects
 				(font
@@ -5947,6 +5992,15 @@
 			)
 		)
 		(property "Sim.Pins" ""
+			(at 180.34 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 180.34 69.85 0)
 			(effects
 				(font
@@ -6182,6 +6236,15 @@
 			)
 		)
 		(property "Sim.Pins" ""
+			(at 90.17 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 90.17 41.91 0)
 			(effects
 				(font
@@ -6559,6 +6622,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 96.52 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "d5f6e996-053d-4005-9659-d8b38e867d08")
 		)
@@ -6728,6 +6800,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 147.32 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "a084c7b8-40da-4675-bde9-d9f5f791e477")
 		)
@@ -6886,6 +6967,15 @@
 			)
 		)
 		(property "LCSC" "C1850418"
+			(at 64.77 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 64.77 50.8 0)
 			(effects
 				(font
@@ -7091,6 +7181,15 @@
 			)
 		)
 		(property "Sim.Pins" ""
+			(at 179.07 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 179.07 34.29 0)
 			(effects
 				(font
@@ -7443,6 +7542,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 157.48 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "22c1c6e8-77ef-4b34-ac8a-8f52471e8cd5")
 		)
@@ -7633,6 +7741,15 @@
 			)
 		)
 		(property "LCSC" "C25531"
+			(at 189.23 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 189.23 121.92 0)
 			(effects
 				(font
@@ -8073,6 +8190,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 161.29 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "7"
 			(uuid "3644783d-55de-4d31-b3c0-49281039677f")
 		)
@@ -8266,6 +8392,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 156.21 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "3cd589bc-c8a3-40ca-84a0-9f4d4af9c050")
 		)
@@ -8427,6 +8562,15 @@
 			)
 		)
 		(property "LCSC" "C5368700"
+			(at 53.34 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 53.34 115.57 0)
 			(effects
 				(font
@@ -8632,6 +8776,15 @@
 			)
 		)
 		(property "Sim.Pins" ""
+			(at 167.64 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 167.64 34.29 0)
 			(effects
 				(font
@@ -8868,6 +9021,15 @@
 			)
 		)
 		(property "LCSC" "C11702"
+			(at 236.22 44.45 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 236.22 44.45 0)
 			(effects
 				(font

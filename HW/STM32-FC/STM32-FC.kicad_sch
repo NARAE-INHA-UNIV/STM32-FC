@@ -9905,7 +9905,7 @@
 		)
 		(uuid "8a22154f-ce71-4b97-85da-be80f5eac2e3")
 	)
-	(label "TIM4_CH3"
+	(label "Buzzer"
 		(at 48.26 154.94 0)
 		(effects
 			(font
@@ -9985,7 +9985,7 @@
 		)
 		(uuid "90e14aa0-8a12-4d4b-a666-52ff8e69db87")
 	)
-	(label "TIM4_CH3"
+	(label "Buzzer"
 		(at 238.76 105.41 0)
 		(effects
 			(font
@@ -10869,6 +10869,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 259.08 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "f12304b8-2dc4-4160-9a80-295bac240394")
 		)
@@ -11040,6 +11049,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 259.08 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "6a790687-9652-4f2a-9b78-9e351a90bf39")
 		)
@@ -11200,6 +11218,15 @@
 			)
 		)
 		(property "LCSC" "C25741"
+			(at 209.55 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 209.55 147.32 0)
 			(effects
 				(font
@@ -11570,6 +11597,15 @@
 			)
 		)
 		(property "LCSC" "C1950 "
+			(at 41.91 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 41.91 168.91 0)
 			(effects
 				(font
@@ -12010,6 +12046,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 254 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(instances
 			(project ""
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7"
@@ -12239,6 +12284,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 41.91 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "0267125e-a36a-4d8b-9ba6-3b8a88ec71d0")
 		)
@@ -12407,6 +12461,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 207.01 147.32 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "c1f9ce69-23de-4b95-b426-f35b8e5d3896")
 		)
@@ -12567,6 +12630,15 @@
 			)
 		)
 		(property "LCSC" "C11702"
+			(at 264.16 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 264.16 71.12 0)
 			(effects
 				(font
@@ -12869,6 +12941,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 254 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(instances
 			(project ""
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7"
@@ -13100,6 +13181,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 29.21 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "304edc2c-8d94-4e0f-b7f0-97e9b49dea5c")
 		)
@@ -13260,6 +13350,15 @@
 			)
 		)
 		(property "LCSC" "C130723"
+			(at 264.16 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 264.16 64.77 0)
 			(effects
 				(font
@@ -13436,6 +13535,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 100.33 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "18d1c043-fa40-404d-a057-eb8d0b31783d")
 		)
@@ -13596,6 +13704,15 @@
 			)
 		)
 		(property "LCSC" "C11702"
+			(at 274.32 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 274.32 71.12 0)
 			(effects
 				(font
@@ -13772,6 +13889,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 40.64 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "b38b291f-159b-431d-8a22-fbe3e5536a30")
 		)
@@ -13932,6 +14058,15 @@
 			)
 		)
 		(property "LCSC" "C11702"
+			(at 254 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 254 71.12 0)
 			(effects
 				(font
@@ -14238,6 +14373,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 44.45 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "14ad6a01-1988-42cd-b5de-de5bc5400eae")
 		)
@@ -14473,6 +14617,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 40.64 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "91abe352-6e28-4eec-b5ae-34432da27325")
 		)
@@ -14631,6 +14784,15 @@
 			)
 		)
 		(property "LCSC" "C38941"
+			(at 250.19 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 250.19 105.41 0)
 			(effects
 				(font
@@ -14799,6 +14961,15 @@
 			)
 		)
 		(property "LCSC" "C24980"
+			(at 158.75 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 158.75 110.49 0)
 			(effects
 				(font
@@ -14979,6 +15150,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 46.99 168.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "dc222fdf-f5cc-44a2-bcab-221a2d791a2e")
 		)
@@ -15134,6 +15314,15 @@
 			)
 		)
 		(property "LCSC" "C5123689"
+			(at 196.85 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 196.85 154.94 0)
 			(effects
 				(font
@@ -15323,6 +15512,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 63.5 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "3db7bd0b-dbd5-4b76-92dc-b626f5d0e4fb")
 		)
@@ -15492,6 +15690,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 52.07 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "09cc1072-c069-45fb-87af-4e71d445ce19")
 		)
@@ -15650,6 +15857,15 @@
 			)
 		)
 		(property "LCSC" "C1985423"
+			(at 34.29 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 34.29 78.74 0)
 			(effects
 				(font
@@ -16032,6 +16248,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 254 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "b4f982d2-217d-4be3-b5f3-0b61198edb30")
 		)
@@ -16191,6 +16416,15 @@
 			)
 		)
 		(property "LCSC" "C24980"
+			(at 158.75 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 158.75 58.42 0)
 			(effects
 				(font
@@ -16370,6 +16604,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 109.22 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "2efd0396-d64d-4c61-bca2-324c787e4226")
 		)
@@ -16530,6 +16773,15 @@
 			)
 		)
 		(property "LCSC" "C24980"
+			(at 158.75 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 158.75 96.52 0)
 			(effects
 				(font
@@ -16702,6 +16954,15 @@
 			)
 		)
 		(property "Sim.Pins" ""
+			(at 74.93 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 74.93 29.21 0)
 			(effects
 				(font
@@ -16947,6 +17208,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 265.43 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "840c3ec2-e15a-4365-ba1d-70034d171c56")
 		)
@@ -17108,6 +17378,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 254 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(instances
 			(project ""
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7"
@@ -17119,7 +17398,8 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x06")
-		(at 261.62 27.94 180)
+		(at 261.62 25.4 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -17127,15 +17407,6 @@
 		(dnp no)
 		(uuid "bc31de90-9cd9-4bd7-9167-eef53da11c0d")
 		(property "Reference" "J1"
-			(at 259.08 27.94 0)
-			(effects
-				(font
-					(size 1 1)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "GH 1.25mm 6P"
 			(at 259.08 25.4 0)
 			(effects
 				(font
@@ -17144,8 +17415,17 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "JST_GH:JST_GH_BM06B-GHS-TBT_06"
-			(at 261.62 27.94 0)
+		(property "Value" "GH 1.25mm 6P"
+			(at 259.08 27.94 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "JST_GH:JST_GH_SM06B-GHS-TB_06x1.25mm_Angled"
+			(at 261.62 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17154,7 +17434,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 261.62 27.94 0)
+			(at 261.62 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17163,7 +17443,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x06, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 261.62 27.94 0)
+			(at 261.62 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17172,7 +17452,7 @@
 			)
 		)
 		(property "Availability" ""
-			(at 261.62 27.94 0)
+			(at 261.62 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17181,7 +17461,7 @@
 			)
 		)
 		(property "Check_prices" ""
-			(at 261.62 27.94 0)
+			(at 261.62 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17190,7 +17470,7 @@
 			)
 		)
 		(property "Description_1" ""
-			(at 261.62 27.94 0)
+			(at 261.62 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17199,7 +17479,7 @@
 			)
 		)
 		(property "MF" ""
-			(at 261.62 27.94 0)
+			(at 261.62 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17208,7 +17488,7 @@
 			)
 		)
 		(property "MP" ""
-			(at 261.62 27.94 0)
+			(at 261.62 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17217,7 +17497,7 @@
 			)
 		)
 		(property "Package" ""
-			(at 261.62 27.94 0)
+			(at 261.62 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17226,7 +17506,7 @@
 			)
 		)
 		(property "Price" ""
-			(at 261.62 27.94 0)
+			(at 261.62 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17235,7 +17515,7 @@
 			)
 		)
 		(property "SnapEDA_Link" ""
-			(at 261.62 27.94 0)
+			(at 261.62 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17244,7 +17524,7 @@
 			)
 		)
 		(property "Sim.Device" ""
-			(at 261.62 27.94 0)
+			(at 261.62 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17253,7 +17533,7 @@
 			)
 		)
 		(property "Sim.Pins" ""
-			(at 261.62 27.94 0)
+			(at 261.62 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17261,8 +17541,17 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C189892"
-			(at 261.62 27.94 0)
+		(property "LCSC" "C19626244 "
+			(at 261.62 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
+			(at 261.62 25.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17442,6 +17731,15 @@
 			)
 		)
 		(property "LCSC" "C11702"
+			(at 243.84 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 243.84 71.12 0)
 			(effects
 				(font
@@ -17752,6 +18050,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 274.32 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "7193e6a5-2b5f-42f8-8ab4-e42bd7cd75d7")
 		)
@@ -17978,6 +18285,15 @@
 			)
 		)
 		(property "LCSC" "C130725"
+			(at 243.84 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 243.84 64.77 0)
 			(effects
 				(font
@@ -18223,6 +18539,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 86.36 29.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "a8d3328c-13fd-4182-9735-ff01dd9f224b")
 		)
@@ -18376,6 +18701,15 @@
 			)
 		)
 		(property "Sim.Pins" ""
+			(at 254 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 254 127 0)
 			(effects
 				(font
@@ -18540,6 +18874,15 @@
 			)
 		)
 		(property "LCSC" "C28730"
+			(at 83.82 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 83.82 116.84 0)
 			(effects
 				(font
@@ -19003,6 +19346,15 @@
 			)
 		)
 		(property "LCSC" "C1545"
+			(at 27.94 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 27.94 82.55 0)
 			(effects
 				(font

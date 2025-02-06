@@ -3076,6 +3076,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 54.61 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "bfec6ba6-5faf-48ab-9d18-ce79978a998d")
 		)
@@ -3236,6 +3245,15 @@
 			)
 		)
 		(property "LCSC" "C25531"
+			(at 118.11 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 118.11 41.91 0)
 			(effects
 				(font
@@ -3544,6 +3562,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 137.16 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "2d198956-6687-48b5-a2df-07b6879750af")
 		)
@@ -3706,6 +3733,15 @@
 			)
 		)
 		(property "LCSC" "C485354"
+			(at 115.57 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 115.57 101.6 0)
 			(effects
 				(font
@@ -4487,6 +4523,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 139.7 25.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "b608ba62-8bd8-47a0-9243-ab3d4045282a")
 		)
@@ -4646,6 +4691,15 @@
 			)
 		)
 		(property "LCSC" "C72591"
+			(at 114.3 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 114.3 68.58 0)
 			(effects
 				(font
@@ -4823,6 +4877,15 @@
 				(hide yes)
 			)
 		)
+		(property "JLC" ""
+			(at 127 38.1 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "1f8ed8f1-0982-4ffc-ad30-b5c752c4ba5d")
 		)
@@ -4892,6 +4955,15 @@
 			)
 		)
 		(property "LCSC" "C161692"
+			(at 113.03 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 113.03 34.29 0)
 			(effects
 				(font
@@ -5054,6 +5126,15 @@
 			)
 		)
 		(property "LCSC" "C3327492"
+			(at 54.61 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "JLC" ""
 			(at 54.61 63.5 0)
 			(effects
 				(font

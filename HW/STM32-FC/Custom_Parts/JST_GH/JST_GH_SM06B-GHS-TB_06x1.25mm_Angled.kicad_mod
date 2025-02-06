@@ -573,4 +573,15 @@
 		(layers "F.Cu" "F.Paste" "F.Mask")
 		(uuid "b04ab594-efaa-4725-b0bb-578e3ffc5690")
 	)
+	(model "${KICAD8_3DMODEL_DIR}/Connector_JST.3dshapes/JST_GH_SM06B-GHS-TB_1x06-1MP_P1.25mm_Horizontal.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
 )
