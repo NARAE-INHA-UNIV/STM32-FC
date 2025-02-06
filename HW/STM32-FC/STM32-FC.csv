@@ -1,46 +1,48 @@
-Reference`Value`Datasheet`Footprint`Qty`DNP
-BZ1`FUET-4020`~`FUET-4020:FUET-4020`1`
-C1,C4`10pF`~`Capacitor_SMD:C_0402_1005Metric`2`
-C2,C13,C14,C17,C18,C27`10uF`~`Capacitor_SMD:C_0402_1005Metric`6`
-C3,C7,C8,C9,C10,C12,C15,C16,C19,C20,C21,C23,C28,C29,C31,C32,C33,C34`100nF`~`Capacitor_SMD:C_0402_1005Metric`18`
-C5,C6`2.2uF`~`Capacitor_SMD:C_0402_1005Metric`2`
-C11`1uF`~`Capacitor_SMD:C_0402_1005Metric`1`
-C22`0.1nF`~`Capacitor_SMD:C_0402_1005Metric`1`
-C24`2.2nF`~`Capacitor_SMD:C_0402_1005Metric`1`
-C25`10nF`~`Capacitor_SMD:C_0402_1005Metric`1`
-C26`4.7u`~`Capacitor_SMD:C_0402_1005Metric`1`
-C30`220nF`~`Capacitor_SMD:C_0402_1005Metric`1`
-D1,D2`Red`~`LED_SMD:LED_0603_1608Metric`2`
-D3,D6`B5819W`~`Diode_SMD:D_SOD-323`2`
-D4`Green`~`LED_SMD:LED_0603_1608Metric`1`
-D5`Blue`~`LED_SMD:LED_0603_1608Metric`1`
-J1,J3,J10,J11,J12`GH 1.25mm 6P`~`JST_GH:JST_GH_BM06B-GHS-TBT_06`5`
-J2`USB_C_USB2.0_14P`https://www.usb.org/sites/default/files/documents/usb_type-c.zip`Connector_USB:USB_C_Receptacle_GCT_USB4110`1`
-J4`Micro_SD_Card_Det1`https://datasheet.lcsc.com/lcsc/2110151630_XKB-Connectivity-XKTF-015-N_C381082.pdf`Connector_Card:microSD_HC_Molex_104031-0811`1`
-J5`JST ZH 1.5mm 2P`~`JST_ZH:JST_ZH_S2B-ZR-SM4A-TF_1x02-1MP_P1.50mm_Horizontal`1`
-J6`PWM_Conn_3x14``PWM_Connector:PWM_Conn_3x14`1`
-J7`ZH 1.5mm 3P`~`JST_ZH:JST_ZH_S3B-ZR-SM4A-TF_1x03-1MP_P1.50mm_Horizontal`1`
-J8`ZH 1.5mm 4P`~`JST_ZH:JST_ZH_S4B-ZR-SM4A-TF_1x04-1MP_P1.50mm_Horizontal`1`
-J9`GH 1.25mm 10P`~`JST_GH:JST_GH_BM10B-GHS-TBT_10`1`
-J13,J14,J15`GH 1.25mm 4P`~`JST_GH:JST_GH_BM04B-GHS-TBT_04`3`
-Q1,Q2`S9013`~`Package_TO_SOT_SMD:SOT-23-3`2`
-R1,R2`100k`~`Resistor_SMD:R_0402_1005Metric`2`
-R3`4k7`~`Resistor_SMD:R_0402_1005Metric`1`
-R4,R6,R7,R8,R18,R21`1k`~`Resistor_SMD:R_0402_1005Metric`6`
-R5`180`~`Resistor_SMD:R_0402_1005Metric`1`
-R9`5k1`~`Resistor_SMD:R_0402_1005Metric`1`
-R10`1k5`~`Resistor_SMD:R_0402_1005Metric`1`
-R11,R12,R13,R14,R15,R16,R17,R19,R20,R22,R23,R24,R25,R26,R27,R28,R29,R30,R31,R32`10k`~`Resistor_SMD:R_0402_1005Metric`20`
-R33,R34`120`~`Resistor_SMD:R_0402_1005Metric`2`
-SW2`SW_DIP_x03`~`Button_Switch_SMD:SW_DIP_SPSTx03_Slide_KingTek_DSHP03TJ_W5.25mm_P1.27mm_JPin`1`
-TP1,TP2,TP3`Test Pin`~`Connector_PinHeader_1.27mm:PinHeader_1x03_P1.27mm_Vertical`3`
-U1`STM32F407VETx`https://www.st.com/resource/en/datasheet/stm32f407ve.pdf`Package_QFP:LQFP-100_14x14mm_P0.5mm`1`
-U2`USBLC6-2SC6`https://www.st.com/resource/en/datasheet/usblc6-2.pdf`Package_TO_SOT_SMD:SOT-23-6`1`
-U3,U4`AMS1117-3.3`http://www.advanced-monolithic.com/pdf/ds1117.pdf`Package_TO_SOT_SMD:SOT-89-3`2`
-U5`W25X40CLSN`https://www.winbond.com/resource-files/W25X40CL_G%2020210505.pdf`W25X40CLUX:USON_LUXIG TR_WIN-L`1`
-U6`BMI323`BMI323`BMI323:BMI323_L`1`
-U7`ICM-42688-P``ICM-42688-P:IIM42352_L`1`
-U8`LIS2MDLTR``LIS2MDLTR:LIS2MDLTR`1`
-U9`LPS22HH`https://www.st.com/resource/en/datasheet/lps22hh.pdf`LPS22HH:ST_HLGA-10_2x2mm_P0.5mm_LayoutBorder3x2y`1`
-U10,U11`ATA6561-GBQW`ATA6561-GAQW`ATA6561:VDFN8_3X3_MCH-L`2`
-Y1`16MHz`~`Crystal:Crystal_SMD_Abracon_ABM8G-4Pin_3.2x2.5mm`1`
+Reference	Value	Datasheet	Qty	LCSC
+BZ1	FUET-4020	~	1	C391027
+C1,C4	10pF	~	2	C1545
+C2,C13,C14,C17,C18,C27	10uF	~	6	C40894
+C3,C7,C8,C9,C10,C12,C15,C16,C19,C20,C21,C23,C28,C29,C31,C32,C33,C34,C35	100nF	~	19	C1581
+C5,C6	2.2uF	~	2	C1950 
+C11	1uF	~	1	C1926
+C22	0.1nF	~	1	C26409
+C24	2.2nF	~	1	C1531
+C25	10nF	~	1	C1525
+C26	4.7u	~	1	C29823
+C30	220nF	~	1	C1770
+D1	White	~	1	C130725
+D2	Red	~	1	C130719
+D3,D6	B5819W	~	2	C22624
+D4	Green	~	1	C130723
+D5	Blue	~	1	C130724
+J1,J3,J10,J11,J12	GH 1.25mm 6P	~	5	C189892
+J2	USB_C_USB2.0_14P	https://www.usb.org/sites/default/files/documents/usb_type-c.zip	1	C5143397
+J4	Micro_SD_Card_Det1		1	C719027
+J5	JST ZH 1.5mm 2P	~	1	C265329
+J6	PWM_Conn_3x14		1	C3327492
+J7	ZH 1.5mm 3P	~	1	C72591
+J8	ZH 1.5mm 4P	~	1	C485354
+J9	GH 1.25mm 10P	~	1	C495732
+J13,J14,J15	GH 1.25mm 4P	~	3	C161692
+Q1,Q2	S9013	~	2	C111269
+R1,R2	100k	~	2	C25741
+R3	4k7	~	1	C25900
+R4,R6,R7,R8,R18,R21	1k	~	6	C11702
+R5	180	~	1	C38941
+R9	5k1	~	1	C25905
+R10	1k5	~	1	C25867
+R11,R12,R13,R14,R15,R16,R19,R20,R22,R23,R24,R25,R26,R27,R28,R29,R30,R31,R32	10k	~	19	C25531
+R17	15k	~	1	C25539
+R33,R34	120	~	2	 C25079
+SW2	SW_DIP_x03	~	1	C5123689
+TP1,TP2,TP3	Test Pin	~	3	C24980
+U1	STM32F407VETx	https://www.st.com/resource/en/datasheet/stm32f407ve.pdf	1	C28730
+U2	USBLC6-2SC6	https://www.st.com/resource/en/datasheet/usblc6-2.pdf	1	C7519
+U3,U4	AMS1117-3.3	http://www.advanced-monolithic.com/pdf/ds1117.pdf	2	C22472154
+U5	W25X40CLSN	https://www.winbond.com/resource-files/W25X40CL_G%2020210505.pdf	1	C19617
+U6	BMI323	BMI323	1	C5368700
+U7	ICM-42688-P		1	C1850418
+U8	LIS2MDLTR		1	C919695
+U9	LPS22HH	https://www.st.com/resource/en/datasheet/lps22hh.pdf	1	C2827824
+U10,U11	ATA6561-GBQW	ATA6561-GAQW	2	C617297
+Y1	16MHz	~	1	C1985423
