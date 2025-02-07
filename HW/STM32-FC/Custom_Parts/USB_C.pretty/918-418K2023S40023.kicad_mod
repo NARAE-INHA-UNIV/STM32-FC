@@ -178,16 +178,6 @@
 		(uuid "b16cbf50-7d8b-4789-8e64-e5f96f05ff84")
 	)
 	(fp_line
-		(start -4.97 2.33)
-		(end -6.7 2.33)
-		(stroke
-			(width 0.05)
-			(type default)
-		)
-		(layer "F.CrtYd")
-		(uuid "475bc401-2aed-45fe-9321-724eed8310f9")
-	)
-	(fp_line
 		(start -4.25 -4.76)
 		(end 4.25 -4.76)
 		(stroke
@@ -279,7 +269,7 @@
 	)
 	(fp_line
 		(start 6.7 2.33)
-		(end 4.97 2.33)
+		(end -6.7 2.33)
 		(stroke
 			(width 0.05)
 			(type default)
@@ -354,72 +344,6 @@
 				(thickness 0.15)
 			)
 		)
-	)
-	(dimension
-		(type aligned)
-		(layer "User.2")
-		(uuid "29761ad0-30a9-443f-99f6-8b995004f529")
-		(pts
-			(xy -6.2 -4.105) (xy -6.2 -2.105)
-		)
-		(height 2.75)
-		(gr_text "2.0000 mm"
-			(at -9.96 -3.105 90)
-			(layer "User.2")
-			(uuid "29761ad0-30a9-443f-99f6-8b995004f529")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.01)
-				)
-			)
-		)
-		(format
-			(prefix "")
-			(suffix "")
-			(units 3)
-			(units_format 1)
-			(precision 4)
-		)
-		(style
-			(thickness 0.01)
-			(arrow_length 1.27)
-			(text_position_mode 0)
-			(extension_height 0.58642)
-			(extension_offset 0.5) keep_text_aligned)
-	)
-	(dimension
-		(type aligned)
-		(layer "User.2")
-		(uuid "5fae0d06-fb70-472e-9b9e-3987b9e79a5e")
-		(pts
-			(xy -2.89 -2.605) (xy -2.89 3.67)
-		)
-		(height 10.12)
-		(gr_text "6.2750 mm"
-			(at -14.02 0.5325 90)
-			(layer "User.2")
-			(uuid "5fae0d06-fb70-472e-9b9e-3987b9e79a5e")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.01)
-				)
-			)
-		)
-		(format
-			(prefix "")
-			(suffix "")
-			(units 3)
-			(units_format 1)
-			(precision 4)
-		)
-		(style
-			(thickness 0.01)
-			(arrow_length 1.27)
-			(text_position_mode 0)
-			(extension_height 0.58642)
-			(extension_offset 0.5) keep_text_aligned)
 	)
 	(pad "" np_thru_hole circle
 		(at -2.89 -2.605)
