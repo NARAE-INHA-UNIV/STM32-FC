@@ -9495,7 +9495,7 @@
 		)
 		(uuid "515f5bf2-232d-4f72-a31b-1a0056da6ed4")
 	)
-	(label "LED_GREEN"
+	(label "LED_YELLOW"
 		(at 264.16 52.07 270)
 		(effects
 			(font
@@ -10535,7 +10535,7 @@
 		)
 		(uuid "e802e1e7-4244-46f9-95b9-5508f41ff082")
 	)
-	(label "LED_GREEN"
+	(label "LED_YELLOW"
 		(at 48.26 78.74 0)
 		(effects
 			(font
@@ -11596,7 +11596,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C1950 "
+		(property "LCSC" "C170151"
 			(at 41.91 168.91 0)
 			(effects
 				(font
@@ -12185,7 +12185,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C1581"
+		(property "LCSC" "C1525"
 			(at 39.37 55.8862 0)
 			(effects
 				(font
@@ -13082,7 +13082,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C40894"
+		(property "LCSC" "C77000"
 			(at 31.75 27.9462 0)
 			(effects
 				(font
@@ -13223,7 +13223,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "Green"
+		(property "Value" "Yellow"
 			(at 265.43 66.04 90)
 			(effects
 				(font
@@ -13349,7 +13349,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C130723"
+		(property "LCSC" "C130721"
 			(at 264.16 64.77 0)
 			(effects
 				(font
@@ -13436,7 +13436,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C1926"
+		(property "LCSC" "C14445"
 			(at 102.87 27.9462 0)
 			(effects
 				(font
@@ -14518,7 +14518,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C1581"
+		(property "LCSC" "C1525"
 			(at 43.18 27.9462 0)
 			(effects
 				(font
@@ -15141,7 +15141,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C1950 "
+		(property "LCSC" "C170151"
 			(at 46.99 168.91 0)
 			(effects
 				(font
@@ -15413,7 +15413,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C1581"
+		(property "LCSC" "C1525"
 			(at 66.04 27.9462 0)
 			(effects
 				(font
@@ -15591,7 +15591,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C1581"
+		(property "LCSC" "C1525"
 			(at 54.61 27.9462 0)
 			(effects
 				(font
@@ -16505,7 +16505,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C1581"
+		(property "LCSC" "C1525"
 			(at 111.76 27.9462 0)
 			(effects
 				(font
@@ -16863,7 +16863,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C1581"
+		(property "LCSC" "C1525"
 			(at 77.47 27.9462 0)
 			(effects
 				(font
@@ -17541,7 +17541,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C19626244 "
+		(property "LCSC" "C133065"
 			(at 261.62 25.4 0)
 			(effects
 				(font
@@ -18440,7 +18440,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C1581"
+		(property "LCSC" "C1525"
 			(at 88.9 27.9462 0)
 			(effects
 				(font

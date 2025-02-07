@@ -3611,7 +3611,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C1581"
+		(property "LCSC" "C1525"
 			(at 53.34 48.26 0)
 			(effects
 				(font
@@ -3788,7 +3788,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C1581"
+		(property "LCSC" "C1525"
 			(at 107.95 44.45 0)
 			(effects
 				(font
@@ -4149,7 +4149,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "W25X40CLSN"
+		(property "Value" "W25X40CLUXIG"
 			(at 84.836 50.8 0)
 			(effects
 				(font
@@ -4275,7 +4275,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C19617"
+		(property "LCSC" "C401661"
 			(at 80.01 36.83 0)
 			(effects
 				(font

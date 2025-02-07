@@ -14,4 +14,5 @@
   (lib (name "JST_ZH")(type "KiCad")(uri "${KIPRJMOD}/Custom_Parts/JST_ZH")(options "")(descr ""))
   (lib (name "LPS22HH")(type "KiCad")(uri "${KIPRJMOD}/Custom_Parts/LPS22HH.pretty")(options "")(descr ""))
   (lib (name "Hole")(type "KiCad")(uri "${KIPRJMOD}/Custom_Parts/Hole.pretty")(options "")(descr ""))
+  (lib (name "USB_C")(type "KiCad")(uri "${KIPRJMOD}/Custom_Parts/USB_C.pretty")(options "")(descr ""))
 )
