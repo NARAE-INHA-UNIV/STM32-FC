@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "Sensors")
-		(date "2025-02-05")
+		(date "2025-02-08")
 		(rev "A")
 		(company "NARAE")
 		(comment 1 "INHA Univ. Areo-modelling Club")
@@ -2818,7 +2818,7 @@
 		(uuid "46770bb0-2941-4030-8be9-9c23a2c79971")
 	)
 	(junction
-		(at 236.22 39.37)
+		(at 236.22 41.91)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4a5e00ab-3906-4855-86ce-a323b23a9222")
@@ -2955,7 +2955,7 @@
 	)
 	(wire
 		(pts
-			(xy 236.22 46.99) (xy 236.22 48.26)
+			(xy 236.22 49.53) (xy 236.22 50.8)
 		)
 		(stroke
 			(width 0)
@@ -3065,7 +3065,7 @@
 	)
 	(wire
 		(pts
-			(xy 236.22 39.37) (xy 236.22 41.91)
+			(xy 236.22 41.91) (xy 236.22 44.45)
 		)
 		(stroke
 			(width 0)
@@ -3165,7 +3165,7 @@
 	)
 	(wire
 		(pts
-			(xy 236.22 39.37) (xy 228.6 39.37)
+			(xy 236.22 41.91) (xy 228.6 41.91)
 		)
 		(stroke
 			(width 0)
@@ -3345,7 +3345,7 @@
 	)
 	(wire
 		(pts
-			(xy 236.22 36.83) (xy 236.22 39.37)
+			(xy 236.22 39.37) (xy 236.22 41.91)
 		)
 		(stroke
 			(width 0)
@@ -3755,7 +3755,7 @@
 	)
 	(wire
 		(pts
-			(xy 236.22 30.48) (xy 236.22 31.75)
+			(xy 236.22 33.02) (xy 236.22 34.29)
 		)
 		(stroke
 			(width 0)
@@ -4074,7 +4074,29 @@
 		)
 		(uuid "240975e8-81d3-4df0-b94b-f754e5fb7001")
 	)
-	(text "JST ZH 1.5mm 2P\n\nPC1 : ADC123_IN11"
+	(text "SPI3_SCK  : PB3\nSPI3_MISO : PB4\nSPI3_MOSI : PB5\n\nGYRO2_NSS : PE3"
+		(exclude_from_sim no)
+		(at 23.876 96.774 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "36862f20-e3df-4e11-84b5-4905ed83724f")
+	)
+	(text "SPI1_SCK  : PA5\nSPI1_MISO : PA6\nSPI1_MOSI : PA7\n\nBARO_NSS : PE6\nBARO_INT : PE7"
+		(exclude_from_sim no)
+		(at 126.746 96.774 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "50560440-1ae6-4d6f-af21-fa620f26209e")
+	)
+	(text "JST ZH 1.5mm 2P\n\nV_BATT : PC0 : ADC123_IN10"
 		(exclude_from_sim no)
 		(at 208.026 18.034 0)
 		(effects
@@ -4084,6 +4106,17 @@
 			(justify left top)
 		)
 		(uuid "56a31b2b-efc0-42a2-a99d-bb3f27f7ae5c")
+	)
+	(text "SPI1_SCK  : PA5\nSPI1_MISO : PA6\nSPI1_MOSI : PA7\n\nGYRO1_NSS : PE5"
+		(exclude_from_sim no)
+		(at 23.876 18.034 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "81ea2410-6ef1-40f0-bfec-e8a68d35f178")
 	)
 	(text "Accelerometer/Gyroscope2"
 		(exclude_from_sim no)
@@ -4106,6 +4139,17 @@
 			(justify left bottom)
 		)
 		(uuid "add7c5ed-2315-428b-949e-64bc5d706265")
+	)
+	(text "SPI3_SCK  : PB3\nSPI3_MISO : PB4\nSPI3_MOSI : PB5\n\nMAG_NSS : PE4"
+		(exclude_from_sim no)
+		(at 126.746 18.034 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "bcfda2bb-0d24-4d14-a246-55389098cffd")
 	)
 	(label "SS2_SPI_MOSI"
 		(at 62.23 171.45 180)
@@ -4376,7 +4420,7 @@
 	)
 	(hierarchical_label "V_BATT"
 		(shape output)
-		(at 228.6 39.37 180)
+		(at 228.6 41.91 180)
 		(effects
 			(font
 				(size 1 1)
@@ -5161,7 +5205,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small_US")
-		(at 236.22 34.29 0)
+		(at 236.22 36.83 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5169,7 +5213,7 @@
 		(dnp no)
 		(uuid "1a2f229a-622b-4ffe-ac5a-e165ca1aca9d")
 		(property "Reference" "R17"
-			(at 238.506 33.274 0)
+			(at 238.506 35.814 0)
 			(effects
 				(font
 					(size 1 1)
@@ -5178,7 +5222,7 @@
 			)
 		)
 		(property "Value" "15k"
-			(at 238.506 35.306 0)
+			(at 238.506 37.846 0)
 			(effects
 				(font
 					(size 1 1)
@@ -5187,7 +5231,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 236.22 34.29 0)
+			(at 236.22 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5196,7 +5240,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 236.22 34.29 0)
+			(at 236.22 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5205,7 +5249,7 @@
 			)
 		)
 		(property "Description" "Resistor, small US symbol"
-			(at 236.22 34.29 0)
+			(at 236.22 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5214,7 +5258,7 @@
 			)
 		)
 		(property "Availability" ""
-			(at 236.22 34.29 0)
+			(at 236.22 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5223,7 +5267,7 @@
 			)
 		)
 		(property "Check_prices" ""
-			(at 236.22 34.29 0)
+			(at 236.22 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5232,7 +5276,7 @@
 			)
 		)
 		(property "Description_1" ""
-			(at 236.22 34.29 0)
+			(at 236.22 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5241,7 +5285,7 @@
 			)
 		)
 		(property "MF" ""
-			(at 236.22 34.29 0)
+			(at 236.22 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5250,7 +5294,7 @@
 			)
 		)
 		(property "MP" ""
-			(at 236.22 34.29 0)
+			(at 236.22 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5259,7 +5303,7 @@
 			)
 		)
 		(property "Package" ""
-			(at 236.22 34.29 0)
+			(at 236.22 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5268,7 +5312,7 @@
 			)
 		)
 		(property "Price" ""
-			(at 236.22 34.29 0)
+			(at 236.22 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5277,7 +5321,7 @@
 			)
 		)
 		(property "SnapEDA_Link" ""
-			(at 236.22 34.29 0)
+			(at 236.22 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5286,7 +5330,7 @@
 			)
 		)
 		(property "Sim.Device" ""
-			(at 236.22 34.29 0)
+			(at 236.22 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5295,7 +5339,7 @@
 			)
 		)
 		(property "Sim.Pins" ""
-			(at 236.22 34.29 0)
+			(at 236.22 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5304,7 +5348,7 @@
 			)
 		)
 		(property "LCSC" "C25539"
-			(at 236.22 34.29 0)
+			(at 236.22 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5313,7 +5357,7 @@
 			)
 		)
 		(property "JLC" ""
-			(at 236.22 34.29 0)
+			(at 236.22 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6026,7 +6070,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 236.22 48.26 0)
+		(at 236.22 50.8 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6035,7 +6079,7 @@
 		(fields_autoplaced yes)
 		(uuid "395e34df-f816-4ff6-b120-042cd8f83817")
 		(property "Reference" "#PWR068"
-			(at 236.22 54.61 0)
+			(at 236.22 57.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6044,7 +6088,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 236.22 53.34 0)
+			(at 236.22 55.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6053,7 +6097,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 236.22 48.26 0)
+			(at 236.22 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6062,7 +6106,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 236.22 48.26 0)
+			(at 236.22 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6071,7 +6115,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 236.22 48.26 0)
+			(at 236.22 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7841,7 +7885,7 @@
 	)
 	(symbol
 		(lib_id "power:+BATT")
-		(at 236.22 30.48 0)
+		(at 236.22 33.02 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7850,7 +7894,7 @@
 		(fields_autoplaced yes)
 		(uuid "c752416d-972a-4438-86e4-83a79596da38")
 		(property "Reference" "#PWR067"
-			(at 236.22 34.29 0)
+			(at 236.22 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7859,7 +7903,7 @@
 			)
 		)
 		(property "Value" "+BATT"
-			(at 236.22 25.4 0)
+			(at 236.22 27.94 0)
 			(effects
 				(font
 					(size 1 1)
@@ -7867,7 +7911,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 236.22 30.48 0)
+			(at 236.22 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7876,7 +7920,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 236.22 30.48 0)
+			(at 236.22 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7885,7 +7929,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+BATT\""
-			(at 236.22 30.48 0)
+			(at 236.22 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8878,7 +8922,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small_US")
-		(at 236.22 44.45 0)
+		(at 236.22 46.99 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8886,7 +8930,7 @@
 		(dnp no)
 		(uuid "f434a41d-a8b0-4412-a16c-bf3a06b0ee6a")
 		(property "Reference" "R18"
-			(at 238.506 43.688 0)
+			(at 238.506 46.228 0)
 			(effects
 				(font
 					(size 1 1)
@@ -8895,7 +8939,7 @@
 			)
 		)
 		(property "Value" "1k"
-			(at 238.506 45.466 0)
+			(at 238.506 48.006 0)
 			(effects
 				(font
 					(size 1 1)
@@ -8904,7 +8948,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 236.22 44.45 0)
+			(at 236.22 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8913,7 +8957,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 236.22 44.45 0)
+			(at 236.22 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8922,7 +8966,7 @@
 			)
 		)
 		(property "Description" "Resistor, small US symbol"
-			(at 236.22 44.45 0)
+			(at 236.22 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8931,7 +8975,7 @@
 			)
 		)
 		(property "Availability" ""
-			(at 236.22 44.45 0)
+			(at 236.22 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8940,7 +8984,7 @@
 			)
 		)
 		(property "Check_prices" ""
-			(at 236.22 44.45 0)
+			(at 236.22 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8949,7 +8993,7 @@
 			)
 		)
 		(property "Description_1" ""
-			(at 236.22 44.45 0)
+			(at 236.22 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8958,7 +9002,7 @@
 			)
 		)
 		(property "MF" ""
-			(at 236.22 44.45 0)
+			(at 236.22 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8967,7 +9011,7 @@
 			)
 		)
 		(property "MP" ""
-			(at 236.22 44.45 0)
+			(at 236.22 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8976,7 +9020,7 @@
 			)
 		)
 		(property "Package" ""
-			(at 236.22 44.45 0)
+			(at 236.22 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8985,7 +9029,7 @@
 			)
 		)
 		(property "Price" ""
-			(at 236.22 44.45 0)
+			(at 236.22 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8994,7 +9038,7 @@
 			)
 		)
 		(property "SnapEDA_Link" ""
-			(at 236.22 44.45 0)
+			(at 236.22 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9003,7 +9047,7 @@
 			)
 		)
 		(property "Sim.Device" ""
-			(at 236.22 44.45 0)
+			(at 236.22 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9012,7 +9056,7 @@
 			)
 		)
 		(property "Sim.Pins" ""
-			(at 236.22 44.45 0)
+			(at 236.22 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9021,7 +9065,7 @@
 			)
 		)
 		(property "LCSC" "C11702"
-			(at 236.22 44.45 0)
+			(at 236.22 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9030,7 +9074,7 @@
 			)
 		)
 		(property "JLC" ""
-			(at 236.22 44.45 0)
+			(at 236.22 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)

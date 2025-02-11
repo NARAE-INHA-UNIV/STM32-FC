@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "Communication")
-		(date "2025-02-05")
+		(date "2025-02-08")
 		(rev "A")
 		(company "NARAE")
 		(comment 1 "INHA Univ. Areo-modelling Club")
@@ -2458,7 +2458,7 @@
 		)
 		(uuid "24734667-96e9-4557-a8b4-1d9c599fffdd")
 	)
-	(text "GH 1.25mm 4P\n\nPC5 : CAN2_STBY\nPB6 : CAN2_RX\nPB12 : CAN2_TX"
+	(text "GH 1.25mm 4P\n\nCAN2_STBY : PC5\nCAN2_RX : PB6\nCAN2_TX : PB12"
 		(exclude_from_sim no)
 		(at 89.916 58.674 0)
 		(effects
@@ -2469,7 +2469,7 @@
 		)
 		(uuid "30e6d746-600b-4956-a39a-bc0dfb02c96a")
 	)
-	(text "GH 1.25mm 4P\n\nPC4 : CAN1_STBY\nPD0 : CAN1_RX\nPD1 : CAN1_TX"
+	(text "GH 1.25mm 4P\n\nCAN1_STBY : PC4\nCAN1_RX : PD0\nCAN1_TX : PD1"
 		(exclude_from_sim no)
 		(at 89.916 18.034 0)
 		(effects
@@ -2535,7 +2535,7 @@
 		)
 		(uuid "8cbce46f-feb2-4ed2-b239-8414eb484724")
 	)
-	(text "GH 1.25mm 4P\n\nPA8 : I2C3_SCL\nPC9 : I2C3_SDA"
+	(text "GH 1.25mm 4P\n\nI2C_SCL : PB8 : I2C1_SCL\nI2C_SCL : PB9 : I2C1_SDA"
 		(exclude_from_sim no)
 		(at 23.876 99.314 0)
 		(effects

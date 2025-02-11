@@ -8,4 +8,5 @@
   (lib (name "BMI323")(type "KiCad")(uri "${KIPRJMOD}/Custom_Parts/BMI323/BMI323.kicad_sym")(options "")(descr ""))
   (lib (name "ICM-42688-P")(type "KiCad")(uri "${KIPRJMOD}/Custom_Parts/ICM-42688-P/ICM-42688-P.kicad_sym")(options "")(descr ""))
   (lib (name "W25X40CLUX")(type "KiCad")(uri "${KIPRJMOD}/Custom_Parts/W25X40CLUX/W25X40CLUX.kicad_sym")(options "")(descr ""))
+  (lib (name "TF-06A")(type "KiCad")(uri "${KIPRJMOD}/Custom_Parts/TF-06A/TF-06A.kicad_sym")(options "")(descr ""))
 )

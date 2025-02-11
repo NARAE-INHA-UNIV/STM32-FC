@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "USB & POWER")
-		(date "2025-02-05")
+		(date "2025-02-08")
 		(rev "A")
 		(company "NARAE")
 		(comment 1 "INHA Univ. Areo-modelling Club")
@@ -3266,7 +3266,7 @@
 		(uuid "0b52e3f5-1d12-40da-bf7e-a06e16c4f34b")
 	)
 	(junction
-		(at 222.25 43.18)
+		(at 222.25 55.88)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "209fb508-1dca-451d-9d94-406029d46139")
@@ -3314,7 +3314,7 @@
 		(uuid "b0a81ae3-582f-45ab-9516-3526b61143ef")
 	)
 	(junction
-		(at 222.25 30.48)
+		(at 222.25 43.18)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "ba88f58e-f3e3-4227-99a7-9806f136fb2f")
@@ -3369,7 +3369,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 30.48) (xy 222.25 33.02)
+			(xy 222.25 43.18) (xy 222.25 45.72)
 		)
 		(stroke
 			(width 0)
@@ -3509,7 +3509,7 @@
 	)
 	(wire
 		(pts
-			(xy 219.71 35.56) (xy 224.79 35.56)
+			(xy 219.71 48.26) (xy 224.79 48.26)
 		)
 		(stroke
 			(width 0)
@@ -3539,7 +3539,7 @@
 	)
 	(wire
 		(pts
-			(xy 224.79 40.64) (xy 222.25 40.64)
+			(xy 224.79 53.34) (xy 222.25 53.34)
 		)
 		(stroke
 			(width 0)
@@ -3549,7 +3549,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 43.18) (xy 222.25 45.72)
+			(xy 222.25 55.88) (xy 222.25 58.42)
 		)
 		(stroke
 			(width 0)
@@ -3569,7 +3569,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 40.64) (xy 222.25 43.18)
+			(xy 222.25 53.34) (xy 222.25 55.88)
 		)
 		(stroke
 			(width 0)
@@ -3659,7 +3659,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 27.94) (xy 222.25 30.48)
+			(xy 222.25 40.64) (xy 222.25 43.18)
 		)
 		(stroke
 			(width 0)
@@ -3739,7 +3739,7 @@
 	)
 	(wire
 		(pts
-			(xy 224.79 43.18) (xy 222.25 43.18)
+			(xy 224.79 55.88) (xy 222.25 55.88)
 		)
 		(stroke
 			(width 0)
@@ -3849,7 +3849,7 @@
 	)
 	(wire
 		(pts
-			(xy 224.79 33.02) (xy 222.25 33.02)
+			(xy 224.79 45.72) (xy 222.25 45.72)
 		)
 		(stroke
 			(width 0)
@@ -4049,7 +4049,7 @@
 	)
 	(wire
 		(pts
-			(xy 219.71 38.1) (xy 224.79 38.1)
+			(xy 219.71 50.8) (xy 224.79 50.8)
 		)
 		(stroke
 			(width 0)
@@ -4069,7 +4069,7 @@
 	)
 	(wire
 		(pts
-			(xy 222.25 30.48) (xy 224.79 30.48)
+			(xy 222.25 43.18) (xy 224.79 43.18)
 		)
 		(stroke
 			(width 0)
@@ -4169,7 +4169,7 @@
 	)
 	(rectangle
 		(start 194.31 12.7)
-		(end 247.65 50.8)
+		(end 247.65 76.2)
 		(stroke
 			(width 0)
 			(type dash)
@@ -4214,7 +4214,7 @@
 		)
 		(uuid "78c99658-9a34-44f9-b5be-b41df092ed5c")
 	)
-	(text "GH 1.25mm 6P\n\nPC2 : PM_CURRENT\nPC3 : PM_VOLTAGE"
+	(text "GH 1.25mm 6P\n\nPM_CURRENT : PC2 : ADC123_IN12\nPM_VOLTAGE : PC3 : ADC123_IN13"
 		(exclude_from_sim no)
 		(at 195.326 18.034 0)
 		(effects
@@ -4351,7 +4351,7 @@
 	)
 	(hierarchical_label "PM_CURRENT"
 		(shape output)
-		(at 219.71 35.56 180)
+		(at 219.71 48.26 180)
 		(effects
 			(font
 				(size 1 1)
@@ -4373,7 +4373,7 @@
 	)
 	(hierarchical_label "PM_VOLTAGE"
 		(shape output)
-		(at 219.71 38.1 180)
+		(at 219.71 50.8 180)
 		(effects
 			(font
 				(size 1 1)
@@ -4627,7 +4627,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 222.25 27.94 0)
+		(at 222.25 40.64 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4636,7 +4636,7 @@
 		(fields_autoplaced yes)
 		(uuid "044154ca-6596-4168-8c73-fbbf3c2b721d")
 		(property "Reference" "#PWR039"
-			(at 222.25 31.75 0)
+			(at 222.25 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4645,7 +4645,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 222.25 22.86 0)
+			(at 222.25 35.56 0)
 			(effects
 				(font
 					(size 1 1)
@@ -4653,7 +4653,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 222.25 27.94 0)
+			(at 222.25 40.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4662,7 +4662,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 222.25 27.94 0)
+			(at 222.25 40.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4671,7 +4671,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 222.25 27.94 0)
+			(at 222.25 40.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4936,7 +4936,7 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x06")
-		(at 229.87 35.56 0)
+		(at 229.87 48.26 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4944,7 +4944,7 @@
 		(dnp no)
 		(uuid "2a6d6721-4dae-4e47-be53-8770d7abbf35")
 		(property "Reference" "J3"
-			(at 232.41 35.56 0)
+			(at 232.41 48.26 0)
 			(effects
 				(font
 					(size 1 1)
@@ -4953,7 +4953,7 @@
 			)
 		)
 		(property "Value" "GH 1.25mm 6P"
-			(at 232.41 38.1 0)
+			(at 232.41 50.8 0)
 			(effects
 				(font
 					(size 1 1)
@@ -4962,7 +4962,7 @@
 			)
 		)
 		(property "Footprint" "JST_GH:JST_GH_SM06B-GHS-TB_06x1.25mm_Angled"
-			(at 229.87 35.56 0)
+			(at 229.87 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4971,7 +4971,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 229.87 35.56 0)
+			(at 229.87 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4980,7 +4980,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x06, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 229.87 35.56 0)
+			(at 229.87 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4989,7 +4989,7 @@
 			)
 		)
 		(property "Availability" ""
-			(at 229.87 35.56 0)
+			(at 229.87 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4998,7 +4998,7 @@
 			)
 		)
 		(property "Check_prices" ""
-			(at 229.87 35.56 0)
+			(at 229.87 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5007,7 +5007,7 @@
 			)
 		)
 		(property "Description_1" ""
-			(at 229.87 35.56 0)
+			(at 229.87 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5016,7 +5016,7 @@
 			)
 		)
 		(property "MF" ""
-			(at 229.87 35.56 0)
+			(at 229.87 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5025,7 +5025,7 @@
 			)
 		)
 		(property "MP" ""
-			(at 229.87 35.56 0)
+			(at 229.87 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5034,7 +5034,7 @@
 			)
 		)
 		(property "Package" ""
-			(at 229.87 35.56 0)
+			(at 229.87 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5043,7 +5043,7 @@
 			)
 		)
 		(property "Price" ""
-			(at 229.87 35.56 0)
+			(at 229.87 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5052,7 +5052,7 @@
 			)
 		)
 		(property "SnapEDA_Link" ""
-			(at 229.87 35.56 0)
+			(at 229.87 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5061,7 +5061,7 @@
 			)
 		)
 		(property "Sim.Device" ""
-			(at 229.87 35.56 0)
+			(at 229.87 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5070,7 +5070,7 @@
 			)
 		)
 		(property "Sim.Pins" ""
-			(at 229.87 35.56 0)
+			(at 229.87 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5079,7 +5079,7 @@
 			)
 		)
 		(property "LCSC" "C133065"
-			(at 229.87 35.56 0)
+			(at 229.87 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5088,7 +5088,7 @@
 			)
 		)
 		(property "JLC" ""
-			(at 229.87 35.56 0)
+			(at 229.87 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6935,7 +6935,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 222.25 45.72 0)
+		(at 222.25 58.42 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6944,7 +6944,7 @@
 		(fields_autoplaced yes)
 		(uuid "a9ec267b-1d8a-44ff-84a9-111f2513195e")
 		(property "Reference" "#PWR040"
-			(at 222.25 52.07 0)
+			(at 222.25 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6953,7 +6953,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 222.25 50.8 0)
+			(at 222.25 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6962,7 +6962,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 222.25 45.72 0)
+			(at 222.25 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6971,7 +6971,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 222.25 45.72 0)
+			(at 222.25 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6980,7 +6980,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 222.25 45.72 0)
+			(at 222.25 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)

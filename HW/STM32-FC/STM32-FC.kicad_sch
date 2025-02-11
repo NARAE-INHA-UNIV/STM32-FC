@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "STM32 Flight Controller")
-		(date "2025-02-05")
+		(date "2025-02-08")
 		(rev "A")
 		(company "NARAE")
 		(comment 1 "INHA Univ. Areo-modelling Club")
@@ -9061,7 +9061,7 @@
 		)
 		(uuid "cfe0f67b-f8ee-4838-9bc1-df0cf81781fa")
 	)
-	(text "PE0 : R\nPE1 : G\nPE2 : B"
+	(text "W : PWR\nR : PE0\nY : PE1\nB : PE2"
 		(exclude_from_sim no)
 		(at 237.236 45.974 0)
 		(effects
@@ -9072,7 +9072,7 @@
 		)
 		(uuid "d2bcdd7f-6afd-4f4a-af2b-33d21865cedc")
 	)
-	(text "PA13 : SWDIO\nPA14 : SWCLK"
+	(text "SWDIO : PA13\nSWCLK : PA14\nNRST  : NRST(14)"
 		(exclude_from_sim no)
 		(at 237.236 18.034 0)
 		(effects
@@ -9325,7 +9325,7 @@
 		)
 		(uuid "21816c28-43be-445c-8080-b466786d5f35")
 	)
-	(label "UART1_TX"
+	(label "SRXL2"
 		(at 229.87 36.83 180)
 		(effects
 			(font
@@ -9775,7 +9775,7 @@
 		)
 		(uuid "71e34810-ab62-47b0-9700-e456803d15fc")
 	)
-	(label "UART1_RX"
+	(label "DSM{slash}SBUS"
 		(at 229.87 34.29 180)
 		(effects
 			(font
@@ -9825,7 +9825,7 @@
 		)
 		(uuid "7b60b23d-a97f-447a-abca-8a538ec3c0e0")
 	)
-	(label "UART1_TX"
+	(label "SRXL2"
 		(at 119.38 76.2 180)
 		(effects
 			(font
@@ -9965,7 +9965,7 @@
 		)
 		(uuid "8ef9d367-254e-47f6-bdf8-18e5d22a7f4c")
 	)
-	(label "UART1_RX"
+	(label "DSM{slash}SBUS"
 		(at 119.38 78.74 180)
 		(effects
 			(font
@@ -10255,7 +10255,7 @@
 		)
 		(uuid "b6f60311-5c2b-44cc-ac7e-10274062fe82")
 	)
-	(label "TIM1_CH4"
+	(label "PPM_IN"
 		(at 229.87 44.45 180)
 		(effects
 			(font
@@ -10525,7 +10525,7 @@
 		)
 		(uuid "e6563fa1-adb3-4bc5-99e5-9fe6882faf16")
 	)
-	(label "TIM1_CH4"
+	(label "PPM_IN"
 		(at 48.26 111.76 0)
 		(effects
 			(font
