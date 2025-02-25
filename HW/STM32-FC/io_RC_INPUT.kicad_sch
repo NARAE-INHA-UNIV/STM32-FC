@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "RC_INPUT")
-		(date "2025-02-08")
+		(date "2025-02-23")
 		(rev "A")
 		(company "NARAE")
 		(comment 1 "INHA Univ. Areo-modelling Club")
@@ -2888,7 +2888,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "04ea16a9-cf0b-4239-a832-dc8b46789bdf")
-		(property "Reference" "#PWR076"
+		(property "Reference" "#PWR079"
 			(at 127 67.31 0)
 			(effects
 				(font
@@ -2938,7 +2938,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
-					(reference "#PWR076")
+					(reference "#PWR079")
 					(unit 1)
 				)
 			)
@@ -2954,7 +2954,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1d27329e-9723-437a-84fa-5ff04dfdda7c")
-		(property "Reference" "R19"
+		(property "Reference" "R20"
 			(at 53.34 102.87 0)
 			(effects
 				(font
@@ -3116,7 +3116,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
-					(reference "R19")
+					(reference "R20")
 					(unit 1)
 				)
 			)
@@ -3131,7 +3131,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2c330477-e16a-4718-95b3-ef45d06a0a44")
-		(property "Reference" "R20"
+		(property "Reference" "R21"
 			(at 119.38 41.91 0)
 			(effects
 				(font
@@ -3293,7 +3293,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
-					(reference "R20")
+					(reference "R21")
 					(unit 1)
 				)
 			)
@@ -3308,7 +3308,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2d826ca8-2d66-49b2-b086-1d68dbbfadca")
-		(property "Reference" "#PWR071"
+		(property "Reference" "#PWR072"
 			(at 39.37 83.82 0)
 			(effects
 				(font
@@ -3359,7 +3359,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
-					(reference "#PWR071")
+					(reference "#PWR072")
 					(unit 1)
 				)
 			)
@@ -3374,7 +3374,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2f791ade-1473-45c6-a607-7f4488acced2")
-		(property "Reference" "#PWR080"
+		(property "Reference" "#PWR081"
 			(at 139.7 26.67 0)
 			(effects
 				(font
@@ -3424,7 +3424,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
-					(reference "#PWR080")
+					(reference "#PWR081")
 					(unit 1)
 				)
 			)
@@ -3621,7 +3621,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "4d4cb29e-d0bc-4e31-9f1c-3e9b15cbc3f2")
-		(property "Reference" "J8"
+		(property "Reference" "J7"
 			(at 115.57 96.52 0)
 			(effects
 				(font
@@ -3787,7 +3787,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
-					(reference "J8")
+					(reference "J7")
 					(unit 1)
 				)
 			)
@@ -3803,7 +3803,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "59f6ec75-09ad-4dba-85a9-97692952d35a")
-		(property "Reference" "#PWR079"
+		(property "Reference" "#PWR078"
 			(at 123.19 115.57 0)
 			(effects
 				(font
@@ -3854,7 +3854,7 @@
 		(instances
 			(project ""
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
-					(reference "#PWR079")
+					(reference "#PWR078")
 					(unit 1)
 				)
 			)
@@ -3870,7 +3870,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "60e90564-7138-47a3-bf2a-4c2866e2da6f")
-		(property "Reference" "#PWR070"
+		(property "Reference" "#PWR071"
 			(at 39.37 81.28 0)
 			(effects
 				(font
@@ -3921,7 +3921,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
-					(reference "#PWR070")
+					(reference "#PWR071")
 					(unit 1)
 				)
 			)
@@ -3937,7 +3937,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6226b02e-256f-44b3-a397-dee29117865a")
-		(property "Reference" "#PWR075"
+		(property "Reference" "#PWR076"
 			(at 125.73 46.99 0)
 			(effects
 				(font
@@ -3989,7 +3989,7 @@
 		(instances
 			(project ""
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
-					(reference "#PWR075")
+					(reference "#PWR076")
 					(unit 1)
 				)
 			)
@@ -4005,7 +4005,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "622cd5e9-41bd-446f-b369-a71b6af46a13")
-		(property "Reference" "#PWR077"
+		(property "Reference" "#PWR080"
 			(at 129.54 59.69 0)
 			(effects
 				(font
@@ -4056,7 +4056,7 @@
 		(instances
 			(project ""
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
-					(reference "#PWR077")
+					(reference "#PWR080")
 					(unit 1)
 				)
 			)
@@ -4072,7 +4072,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7ee013aa-437a-45f0-ab2c-c3aeff91f0e5")
-		(property "Reference" "#PWR072"
+		(property "Reference" "#PWR073"
 			(at 39.37 91.44 0)
 			(effects
 				(font
@@ -4123,7 +4123,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
-					(reference "#PWR072")
+					(reference "#PWR073")
 					(unit 1)
 				)
 			)
@@ -4140,7 +4140,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9bdb394e-95a7-4cbc-9d78-8734053177de")
-		(property "Reference" "#PWR074"
+		(property "Reference" "#PWR075"
 			(at 64.77 88.9 0)
 			(effects
 				(font
@@ -4191,7 +4191,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
-					(reference "#PWR074")
+					(reference "#PWR075")
 					(unit 1)
 				)
 			)
@@ -4207,7 +4207,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a23c979a-713c-463f-a1f9-aaa5c983e136")
-		(property "Reference" "#PWR078"
+		(property "Reference" "#PWR077"
 			(at 119.38 104.14 0)
 			(effects
 				(font
@@ -4258,7 +4258,7 @@
 		(instances
 			(project ""
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
-					(reference "#PWR078")
+					(reference "#PWR077")
 					(unit 1)
 				)
 			)
@@ -4273,7 +4273,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b4a6cc76-bfa4-48c6-b121-1b7ad4339d52")
-		(property "Reference" "#PWR073"
+		(property "Reference" "#PWR074"
 			(at 54.61 104.14 0)
 			(effects
 				(font
@@ -4323,7 +4323,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
-					(reference "#PWR073")
+					(reference "#PWR074")
 					(unit 1)
 				)
 			)
@@ -4403,7 +4403,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b8b420e7-3b3a-4a94-b4ad-ce7c4350d7f6")
-		(property "Reference" "R22"
+		(property "Reference" "R23"
 			(at 136.652 26.67 0)
 			(effects
 				(font
@@ -4563,7 +4563,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
-					(reference "R22")
+					(reference "R23")
 					(unit 1)
 				)
 			)
@@ -4579,7 +4579,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "cdd72394-a363-4acd-aa97-60143e450491")
-		(property "Reference" "J7"
+		(property "Reference" "J8"
 			(at 120.65 63.5 0)
 			(effects
 				(font
@@ -4742,7 +4742,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
-					(reference "J7")
+					(reference "J8")
 					(unit 1)
 				)
 			)
@@ -4757,7 +4757,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d90f39a1-8ac9-46c5-bcad-86aefa080460")
-		(property "Reference" "R21"
+		(property "Reference" "R22"
 			(at 127 36.83 90)
 			(effects
 				(font
@@ -4917,7 +4917,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
-					(reference "R21")
+					(reference "R22")
 					(unit 1)
 				)
 			)
@@ -5019,7 +5019,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e0e59bcd-dc48-4432-92a9-c7758d7d721b")
-		(property "Reference" "#PWR081"
+		(property "Reference" "#PWR082"
 			(at 139.7 52.07 0)
 			(effects
 				(font
@@ -5070,7 +5070,7 @@
 		(instances
 			(project ""
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/77caf73d-b7f5-48a6-9de3-ef3df69ee7d9"
-					(reference "#PWR081")
+					(reference "#PWR082")
 					(unit 1)
 				)
 			)

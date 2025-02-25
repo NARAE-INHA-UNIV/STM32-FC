@@ -37,9 +37,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.0,
-          "height": 1.9,
-          "width": 1.1
+          "drill": 2.2,
+          "height": 3.0,
+          "width": 3.0
         },
         "silk_line_width": 0.15,
         "silk_text_italic": false,
@@ -142,7 +142,7 @@
         "min_via_diameter": 0.4,
         "solder_mask_clearance": 0.0,
         "solder_mask_min_width": 0.0,
-        "solder_mask_to_copper_clearance": 0.005,
+        "solder_mask_to_copper_clearance": 0.0,
         "use_height_for_length_calcs": true
       },
       "teardrop_options": [
@@ -190,9 +190,9 @@
       ],
       "track_widths": [
         0.0,
+        0.1,
         0.15,
         0.2,
-        0.25,
         0.5,
         0.8
       ],
@@ -229,7 +229,7 @@
         },
         {
           "diameter": 0.6,
-          "drill": 0.4
+          "drill": 0.3
         },
         {
           "diameter": 1.0,
@@ -629,7 +629,7 @@
           "group_by": false,
           "label": "LCSC",
           "name": "LCSC",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
@@ -701,42 +701,6 @@
           "group_by": false,
           "label": "Description",
           "name": "Description",
-          "show": false
-        },
-        {
-          "group_by": false,
-          "label": "JLC",
-          "name": "JLC",
-          "show": false
-        },
-        {
-          "group_by": false,
-          "label": "Height",
-          "name": "Height",
-          "show": false
-        },
-        {
-          "group_by": false,
-          "label": "Manufacturer_Name",
-          "name": "Manufacturer_Name",
-          "show": false
-        },
-        {
-          "group_by": false,
-          "label": "Manufacturer_Part_Number",
-          "name": "Manufacturer_Part_Number",
-          "show": false
-        },
-        {
-          "group_by": false,
-          "label": "JAK Electronics Part Number",
-          "name": "JAK Electronics Part Number",
-          "show": false
-        },
-        {
-          "group_by": false,
-          "label": "JAK Electronics Price/Stock",
-          "name": "JAK Electronics Price/Stock",
           "show": false
         }
       ],

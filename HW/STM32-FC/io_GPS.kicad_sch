@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "GPS")
-		(date "2025-02-08")
+		(date "2025-02-23")
 		(rev "A")
 		(company "NARAE")
 		(comment 1 "INHA Univ. Areo-modelling Club")
@@ -2252,7 +2252,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "294a8c91-4a6e-4433-b971-80daa0b216b7")
-		(property "Reference" "R28"
+		(property "Reference" "R29"
 			(at 73.66 82.55 0)
 			(effects
 				(font
@@ -2415,7 +2415,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/20dd612a-0830-4eda-be1e-c1591992c654"
-					(reference "R28")
+					(reference "R29")
 					(unit 1)
 				)
 			)
@@ -2432,7 +2432,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2e415273-a8cf-482c-8530-ea5e9c1e4381")
-		(property "Reference" "#PWR088"
+		(property "Reference" "#PWR089"
 			(at 82.55 106.68 0)
 			(effects
 				(font
@@ -2483,7 +2483,7 @@
 		(instances
 			(project ""
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/20dd612a-0830-4eda-be1e-c1591992c654"
-					(reference "#PWR088")
+					(reference "#PWR089")
 					(unit 1)
 				)
 			)
@@ -2499,7 +2499,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2ec0fef3-9bd2-46ab-bc8a-0ae4b8d4606f")
-		(property "Reference" "#PWR086"
+		(property "Reference" "#PWR087"
 			(at 82.55 58.42 0)
 			(effects
 				(font
@@ -2550,7 +2550,7 @@
 		(instances
 			(project ""
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/20dd612a-0830-4eda-be1e-c1591992c654"
-					(reference "#PWR086")
+					(reference "#PWR087")
 					(unit 1)
 				)
 			)
@@ -2566,7 +2566,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "357ed01f-aa54-4e29-b12b-df0cbc0fb6d3")
-		(property "Reference" "R23"
+		(property "Reference" "R24"
 			(at 65.278 24.13 0)
 			(effects
 				(font
@@ -2730,7 +2730,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/20dd612a-0830-4eda-be1e-c1591992c654"
-					(reference "R23")
+					(reference "R24")
 					(unit 1)
 				)
 			)
@@ -2746,7 +2746,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "35ede961-7f16-49fa-a78d-fd3adf86ce0c")
-		(property "Reference" "#PWR085"
+		(property "Reference" "#PWR086"
 			(at 86.36 44.45 0)
 			(effects
 				(font
@@ -2797,7 +2797,7 @@
 		(instances
 			(project ""
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/20dd612a-0830-4eda-be1e-c1591992c654"
-					(reference "#PWR085")
+					(reference "#PWR086")
 					(unit 1)
 				)
 			)
@@ -2814,7 +2814,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3d201418-8f27-4081-a76e-1ba5ce264ecd")
-		(property "Reference" "#PWR082"
+		(property "Reference" "#PWR083"
 			(at 74.93 24.13 0)
 			(effects
 				(font
@@ -2864,7 +2864,7 @@
 		(instances
 			(project ""
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/20dd612a-0830-4eda-be1e-c1591992c654"
-					(reference "#PWR082")
+					(reference "#PWR083")
 					(unit 1)
 				)
 			)
@@ -3081,7 +3081,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "85e43cc0-2646-458c-b0f0-38372ce2ecc7")
-		(property "Reference" "R24"
+		(property "Reference" "R25"
 			(at 67.564 24.13 0)
 			(effects
 				(font
@@ -3245,7 +3245,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/20dd612a-0830-4eda-be1e-c1591992c654"
-					(reference "R24")
+					(reference "R25")
 					(unit 1)
 				)
 			)
@@ -3450,7 +3450,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "99bc26a3-93cd-4dcc-bc06-61de56deb3a2")
-		(property "Reference" "#PWR087"
+		(property "Reference" "#PWR088"
 			(at 82.55 86.36 0)
 			(effects
 				(font
@@ -3500,7 +3500,7 @@
 		(instances
 			(project ""
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/20dd612a-0830-4eda-be1e-c1591992c654"
-					(reference "#PWR087")
+					(reference "#PWR088")
 					(unit 1)
 				)
 			)
@@ -3516,7 +3516,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "be87500b-f468-4c90-ae38-50bd847d718d")
-		(property "Reference" "#PWR084"
+		(property "Reference" "#PWR085"
 			(at 82.55 27.94 0)
 			(effects
 				(font
@@ -3566,7 +3566,7 @@
 		(instances
 			(project ""
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/20dd612a-0830-4eda-be1e-c1591992c654"
-					(reference "#PWR084")
+					(reference "#PWR085")
 					(unit 1)
 				)
 			)
@@ -3583,7 +3583,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "bf475d07-6732-463c-9130-25d555b3b4af")
-		(property "Reference" "#PWR083"
+		(property "Reference" "#PWR084"
 			(at 77.47 82.55 0)
 			(effects
 				(font
@@ -3633,7 +3633,7 @@
 		(instances
 			(project ""
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/20dd612a-0830-4eda-be1e-c1591992c654"
-					(reference "#PWR083")
+					(reference "#PWR084")
 					(unit 1)
 				)
 			)
@@ -3649,7 +3649,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c8d5f3b6-5637-406a-8a42-dce3f7bb0cf6")
-		(property "Reference" "R26"
+		(property "Reference" "R27"
 			(at 71.12 24.13 0)
 			(effects
 				(font
@@ -3812,7 +3812,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/20dd612a-0830-4eda-be1e-c1591992c654"
-					(reference "R26")
+					(reference "R27")
 					(unit 1)
 				)
 			)
@@ -3828,7 +3828,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f22c16aa-53f0-41c2-a702-fdaf3044f29e")
-		(property "Reference" "R27"
+		(property "Reference" "R28"
 			(at 70.104 82.55 0)
 			(effects
 				(font
@@ -3992,7 +3992,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/20dd612a-0830-4eda-be1e-c1591992c654"
-					(reference "R27")
+					(reference "R28")
 					(unit 1)
 				)
 			)
@@ -4008,7 +4008,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f98b82cc-6c04-43c8-892d-f75c5fe6d995")
-		(property "Reference" "R25"
+		(property "Reference" "R26"
 			(at 67.818 82.55 0)
 			(effects
 				(font
@@ -4172,7 +4172,7 @@
 		(instances
 			(project "STM32-FC"
 				(path "/8d4cc317-3933-4aa6-844b-8c5c635e89c7/20dd612a-0830-4eda-be1e-c1591992c654"
-					(reference "R25")
+					(reference "R26")
 					(unit 1)
 				)
 			)
