@@ -1,0 +1,14 @@
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h:1792:26:LL_USART_IsActiveFlag_RXNE	16	static
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h:1979:22:LL_USART_ClearFlag_RXNE	16	static
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h:2403:25:LL_USART_ReceiveData8	16	static
+../Core/Src/stm32f4xx_it.c:72:6:NMI_Handler	4	static
+../Core/Src/stm32f4xx_it.c:87:6:HardFault_Handler	4	static
+../Core/Src/stm32f4xx_it.c:102:6:MemManage_Handler	4	static
+../Core/Src/stm32f4xx_it.c:117:6:BusFault_Handler	4	static
+../Core/Src/stm32f4xx_it.c:132:6:UsageFault_Handler	4	static
+../Core/Src/stm32f4xx_it.c:147:6:SVC_Handler	4	static
+../Core/Src/stm32f4xx_it.c:160:6:DebugMon_Handler	4	static
+../Core/Src/stm32f4xx_it.c:173:6:PendSV_Handler	4	static
+../Core/Src/stm32f4xx_it.c:186:6:SysTick_Handler	8	static
+../Core/Src/stm32f4xx_it.c:207:6:USART2_IRQHandler	8	static
+../Core/Src/stm32f4xx_it.c:226:6:USART3_IRQHandler	4	static

@@ -28,6 +28,17 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
+#include "stm32f4xx_ll_tim.h"
+#include "stm32f4xx_ll_bus.h"
+#include "stm32f4xx_ll_cortex.h"
+#include "stm32f4xx_ll_rcc.h"
+#include "stm32f4xx_ll_system.h"
+#include "stm32f4xx_ll_utils.h"
+#include "stm32f4xx_ll_pwr.h"
+#include "stm32f4xx_ll_gpio.h"
+#include "stm32f4xx_ll_dma.h"
+
+#include "stm32f4xx_ll_exti.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -49,8 +60,6 @@ extern "C" {
 
 /* USER CODE END EM */
 
-void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
-
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
@@ -61,6 +70,8 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define LED_BLUE_Pin GPIO_PIN_2
 #define LED_BLUE_GPIO_Port GPIOE
+#define Buzzer_Pin GPIO_PIN_14
+#define Buzzer_GPIO_Port GPIOD
 #define LED_RED_Pin GPIO_PIN_0
 #define LED_RED_GPIO_Port GPIOE
 #define LED_YELLOW_Pin GPIO_PIN_1
