@@ -7,7 +7,7 @@
 - `5V_PWR`은 ESC와 서보모터 등 `SERVO OUT` 핀에 연결되어 있다.
 - 일반적으로 `5V`와 `5V_PWR`은 분리되어 있으나, 필요에 따라 스위치를 통해 연결할 수 있다. 이 경우 둘 이상의 전원이 발생하지 않도록 유의한다.
 
-![img](./img/3_1_1.jpg){: width="300px" height="300px"}
+![](./img/3_1_1.jpg)
 
 스위치 1번이 두 전원 라인을 연결하는 데 사용한다. 일반적으로 `OFF` 상태가 기본값이다. 
 
@@ -28,7 +28,7 @@ USB 선을 통해 공급할 수 있는 전력의 한계가 있으므로, 별도�
 
 별도의 배터리가 필요 없어 개발 과정에서 유용하지만, 비행할 수 없으므로 후술할 방법도 익혀야한다.
 
-![img](./img/3_2_1.jpg){: width="300px" height="300px"}
+![](./img/3_2_1.jpg)
 
 ## 2. 픽스호크의 파워모듈을 통한 공급 (권장)
 
@@ -42,10 +42,10 @@ USB 선을 통해 공급할 수 있는 전력의 한계가 있으므로, 별도�
 
 파워 모듈은 보드의 `POWER` 커넥터에 연결한다.
 
-![img](./img/3_3_1.jpg){: width="300px" height="300px"}
+![](./img/3_3_1.jpg){: width="300px" height="300px"}
 
 
-![img](./img/3_3_2.jpg){: width="300px" height="300px"}
+![](./img/3_3_2.jpg){: width="300px" height="300px"}
 
 ## 3. ESC를 통한 공급
 
@@ -62,5 +62,5 @@ BEC가 내장된 ESC로부터 전원을 공급받는 방법으로, 가장 간단
 
 PWM 단자 중 왼쪽 두 개는 `RCIN`과 `RSSI` 이므로 사용하면 안된다. `AUX`과 `MAIN`의 `SERVO OUT`에 연결하여 사용한다.
 
-![img](./img/3_4_1.jpg){: width="300px" height="300px"}
-![img](./img/3_4_2.jpg){: width="300px" height="300px"}
+![](./img/3_4_1.jpg){: width="300px" height="300px"}
+![](./img/3_4_2.jpg){: width="300px" height="300px"}
