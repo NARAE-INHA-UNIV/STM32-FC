@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "usbd_cdc_if.h"
+// #include "usbd_cdc_if.h"
 #include "FC_Buzzer.h"
 #include "ICM42688.h"
 /* USER CODE END Includes */
@@ -31,11 +31,18 @@
 /* USER CODE BEGIN PTD */
 int _write(int file, char *p, int len)
 {
+	/*
 	for(int i=0; i<len; i++)
 	{
+
 		LL_USART_TransmitData8(USART2, *(p+i));
 		HAL_Delay(1);
 	}
+	*/
+
+	// 송신 성공할때까지 시도
+	while(USBD_BUSY == CDC_Transmit_FS((uint8_t *)p, len)){}
+
 	return len;
 }
 
@@ -103,12 +110,12 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_USB_DEVICE_Init();
   MX_GPIO_Init();
   MX_TIM4_Init();
   MX_USART2_UART_Init();
   MX_USART3_UART_Init();
   MX_SPI1_Init();
+  MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
 
   LL_TIM_EnableCounter(TIM4);
@@ -164,8 +171,8 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 25;
-  RCC_OscInitStruct.PLL.PLLN = 336;
+  RCC_OscInitStruct.PLL.PLLM = 8;
+  RCC_OscInitStruct.PLL.PLLN = 168;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 7;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
@@ -266,7 +273,7 @@ static void MX_TIM4_Init(void)
   /* USER CODE BEGIN TIM4_Init 1 */
 
   /* USER CODE END TIM4_Init 1 */
-  TIM_InitStruct.Prescaler = LL_TIM_IC_FILTER_FDIV2_N8-LL_TIM_IC_FILTER_FDIV1_N2;
+  TIM_InitStruct.Prescaler = 4;
   TIM_InitStruct.CounterMode = LL_TIM_COUNTERMODE_UP;
   TIM_InitStruct.Autoreload = 64220-LL_TIM_IC_FILTER_FDIV1_N2;
   TIM_InitStruct.ClockDivision = LL_TIM_CLOCKDIVISION_DIV1;
@@ -422,8 +429,8 @@ static void MX_USART3_UART_Init(void)
 static void MX_GPIO_Init(void)
 {
   LL_GPIO_InitTypeDef GPIO_InitStruct = {0};
-/* USER CODE BEGIN MX_GPIO_Init_1 */
-/* USER CODE END MX_GPIO_Init_1 */
+  /* USER CODE BEGIN MX_GPIO_Init_1 */
+  /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
   LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOE);
@@ -442,8 +449,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
   LL_GPIO_Init(GPIOE, &GPIO_InitStruct);
 
-/* USER CODE BEGIN MX_GPIO_Init_2 */
-/* USER CODE END MX_GPIO_Init_2 */
+  /* USER CODE BEGIN MX_GPIO_Init_2 */
+  /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
