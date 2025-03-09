@@ -126,9 +126,7 @@ int SRXL2_doHandshake(void)
 			0x12, 0x34, 0x56, 0x78, // UID (32-bit)
 			0x00, 0x00
 	};
-	uint16_t crc = calculate_crc(handshake_packet, 0x21);
-	handshake_packet[12] = (uint8_t)(crc >> 8);
-	handshake_packet[13] = (uint8_t)(crc & 0xFF);
+	uint16_t crc = calculate_crc(handshake_packet, sizeof(handshake_packet));
 
 	return SRXL2_Transmit(handshake_packet, sizeof(handshake_packet));
 }
@@ -154,9 +152,7 @@ int SRXL2_doBind(void)
     };
 
     // CRC 계산
-    uint16_t crc = calculate_crc(bind_packet, 19);
-    bind_packet[19] = (uint8_t)(crc >> 8);
-    bind_packet[20] = (uint8_t)(crc & 0xFF);
+    uint16_t crc = calculate_crc(bind_packet, sizeof(bind_packet));
 
 	return SRXL2_Transmit(bind_packet, sizeof(bind_packet));
 }
@@ -188,6 +184,10 @@ uint16_t calculate_crc(uint8_t *data, uint8_t length)
                 crc = (crc << 1);
         }
     }
+
+    data[length -2] = (uint8_t)(crc >> 8);
+    data[length -1] = (uint8_t)(crc & 0xFF);
+
     return crc;
 }
 

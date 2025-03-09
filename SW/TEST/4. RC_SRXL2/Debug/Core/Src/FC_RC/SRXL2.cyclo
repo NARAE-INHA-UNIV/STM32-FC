@@ -7,6 +7,6 @@
 ../Core/Src/FC_RC/SRXL2.c:50:5:SRXL2_readByte	7
 ../Core/Src/FC_RC/SRXL2.c:89:5:SRXL2_GetData	4
 ../Core/Src/FC_RC/SRXL2.c:115:5:SRXL2_doHandshake	1
-../Core/Src/FC_RC/SRXL2.c:140:5:SRXL2_doBind	1
-../Core/Src/FC_RC/SRXL2.c:164:5:SRXL2_Transmit	4
-../Core/Src/FC_RC/SRXL2.c:179:10:calculate_crc	4
+../Core/Src/FC_RC/SRXL2.c:138:5:SRXL2_doBind	1
+../Core/Src/FC_RC/SRXL2.c:160:5:SRXL2_Transmit	4
+../Core/Src/FC_RC/SRXL2.c:175:10:calculate_crc	4
