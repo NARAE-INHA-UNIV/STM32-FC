@@ -22,6 +22,7 @@
 #include "stm32f4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <FC_Basic/RingBuffer.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -41,6 +42,9 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
+// SRXL2
+extern RingFifo_t SRXL2_RingFifo;
+extern uint8_t SRXL2_flag;
 
 // Telm1
 uint8_t uart2_rx_flag = 0;
@@ -207,6 +211,29 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
+  * @brief This function handles USART1 global interrupt.
+  */
+void USART1_IRQHandler(void)
+{
+  /* USER CODE BEGIN USART1_IRQn 0 */
+
+	if(LL_USART_IsActiveFlag_RXNE(USART1))
+	{
+		LL_USART_ClearFlag_RXNE(USART1);
+		uint8_t uart1_rx_data = LL_USART_ReceiveData8(USART1);
+		SRXL2_flag = 0b11;
+		LL_TIM_SetCounter(TIM14, 0);
+
+		RB_write(&SRXL2_RingFifo, uart1_rx_data);
+	}
+
+  /* USER CODE END USART1_IRQn 0 */
+  /* USER CODE BEGIN USART1_IRQn 1 */
+
+  /* USER CODE END USART1_IRQn 1 */
+}
+
+/**
   * @brief This function handles USART2 global interrupt.
   */
 void USART2_IRQHandler(void)
@@ -226,22 +253,33 @@ void USART2_IRQHandler(void)
 }
 
 /**
-  * @brief This function handles USART3 global interrupt.
+  * @brief This function handles TIM8 trigger and commutation interrupts and TIM14 global interrupt.
   */
-void USART3_IRQHandler(void)
+void TIM8_TRG_COM_TIM14_IRQHandler(void)
 {
-  /* USER CODE BEGIN USART3_IRQn 0 */
-	if(LL_USART_IsActiveFlag_RXNE(USART3))
+  /* USER CODE BEGIN TIM8_TRG_COM_TIM14_IRQn 0 */
+	if(LL_TIM_IsActiveFlag_UPDATE(TIM14))
 	{
-		LL_USART_ClearFlag_RXNE(USART3);
-		uart3_rx_data = LL_USART_ReceiveData8(USART3);
-		uart3_rx_flag = 1;
+		LL_TIM_ClearFlag_UPDATE(TIM14);
+		SRXL2_flag &= 0b01;
 	}
+  /* USER CODE END TIM8_TRG_COM_TIM14_IRQn 0 */
+  /* USER CODE BEGIN TIM8_TRG_COM_TIM14_IRQn 1 */
 
-  /* USER CODE END USART3_IRQn 0 */
-  /* USER CODE BEGIN USART3_IRQn 1 */
+  /* USER CODE END TIM8_TRG_COM_TIM14_IRQn 1 */
+}
 
-  /* USER CODE END USART3_IRQn 1 */
+/**
+  * @brief This function handles UART5 global interrupt.
+  */
+void UART5_IRQHandler(void)
+{
+  /* USER CODE BEGIN UART5_IRQn 0 */
+
+  /* USER CODE END UART5_IRQn 0 */
+  /* USER CODE BEGIN UART5_IRQn 1 */
+
+  /* USER CODE END UART5_IRQn 1 */
 }
 
 /**

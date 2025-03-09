@@ -78,6 +78,8 @@ void Error_Handler(void);
 #define Telm2_RX_GPIO_Port GPIOD
 #define Buzzer_Pin LL_GPIO_PIN_14
 #define Buzzer_GPIO_Port GPIOD
+#define RC_SRXL2_Pin LL_GPIO_PIN_9
+#define RC_SRXL2_GPIO_Port GPIOA
 #define Telm1_TX_Pin LL_GPIO_PIN_5
 #define Telm1_TX_GPIO_Port GPIOD
 #define Telm1_RX_Pin LL_GPIO_PIN_6

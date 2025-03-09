@@ -22,9 +22,11 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-// #include "usbd_cdc_if.h"
-#include "FC_Buzzer.h"
-#include "ICM42688.h"
+#include "usbd_cdc_if.h"
+#include <FC_Basic/driver_Buzzer.h>
+#include <FC_Gyro/driver_ICM42688.h>
+
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -34,15 +36,11 @@ int _write(int file, char *p, int len)
 	/*
 	for(int i=0; i<len; i++)
 	{
-
 		LL_USART_TransmitData8(USART2, *(p+i));
 		HAL_Delay(1);
 	}
 	*/
-
-	// 송신 성공할때까지 시도
-	while(USBD_BUSY == CDC_Transmit_FS((uint8_t *)p, len)){}
-
+	while(USBD_BUSY == CDC_Transmit_FS((uint8_t*)p, len)) {}
 	return len;
 }
 
@@ -61,8 +59,15 @@ int _write(int file, char *p, int len)
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+// SRXL2
+extern uint8_t uart1_rx_flag;
+extern uint8_t uart1_rx_data;
+
+// Telm1
 extern uint8_t uart2_rx_flag;
 extern uint8_t uart2_rx_data;
+
+// Telm2
 extern uint8_t uart3_rx_flag;
 extern uint8_t uart3_rx_data;
 /* USER CODE END PV */
@@ -70,6 +75,7 @@ extern uint8_t uart3_rx_data;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_USART1_UART_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_USART3_UART_Init(void);
@@ -111,17 +117,19 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_USART1_UART_Init();
+  MX_USB_DEVICE_Init();
   MX_TIM4_Init();
   MX_USART2_UART_Init();
   MX_USART3_UART_Init();
   MX_SPI1_Init();
-  MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
 
   LL_TIM_EnableCounter(TIM4);
   BuzzerPlayInit();
 
   // interrupt when finished receiving
+  LL_USART_EnableIT_RXNE(USART1);
   LL_USART_EnableIT_RXNE(USART2);
   LL_USART_EnableIT_RXNE(USART3);
 
@@ -133,12 +141,17 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if(uart2_rx_flag == 1)
+	  /*
+	  if(uart1_rx_flag == 1)
 	  {
-		  uart2_rx_flag = 0;
-		  LL_USART_TransmitData8(USART2, uart2_rx_data);
+		  uart1_rx_flag = 0;
+		  CDC_Transmit_FS(uart1_rx_data, 1);
+		  // LL_USART_TransmitData8(USART2, uart1_rx_data);
+		  // LL_USART_TransmitData8(USART2, uart2_rx_data);
 	  }
+	  */
 	  ICM42688_Get6AxisRawData();
+
 	  printf("%d %d %d\n\r", ICM42688.gyro_x_raw, ICM42688.gyro_y_raw, ICM42688.gyro_z_raw);
 	  HAL_Delay(100);
 	  // printf("%d %d %d\n\r", ICM42688.acc_x_raw, ICM42688.acc_y_raw, ICM42688.acc_z_raw);
@@ -304,6 +317,59 @@ static void MX_TIM4_Init(void)
   GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
   GPIO_InitStruct.Alternate = LL_GPIO_AF_2;
   LL_GPIO_Init(Buzzer_GPIO_Port, &GPIO_InitStruct);
+
+}
+
+/**
+  * @brief USART1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART1_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART1_Init 0 */
+
+  /* USER CODE END USART1_Init 0 */
+
+  LL_USART_InitTypeDef USART_InitStruct = {0};
+
+  LL_GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+  /* Peripheral clock enable */
+  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_USART1);
+
+  LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA);
+  /**USART1 GPIO Configuration
+  PA9   ------> USART1_TX
+  */
+  GPIO_InitStruct.Pin = RC_SRXL2_Pin;
+  GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
+  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_VERY_HIGH;
+  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_OPENDRAIN;
+  GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
+  GPIO_InitStruct.Alternate = LL_GPIO_AF_7;
+  LL_GPIO_Init(RC_SRXL2_GPIO_Port, &GPIO_InitStruct);
+
+  /* USART1 interrupt Init */
+  NVIC_SetPriority(USART1_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),0, 0));
+  NVIC_EnableIRQ(USART1_IRQn);
+
+  /* USER CODE BEGIN USART1_Init 1 */
+
+  /* USER CODE END USART1_Init 1 */
+  USART_InitStruct.BaudRate = 115200;
+  USART_InitStruct.DataWidth = LL_USART_DATAWIDTH_8B;
+  USART_InitStruct.StopBits = LL_USART_STOPBITS_1;
+  USART_InitStruct.Parity = LL_USART_PARITY_NONE;
+  USART_InitStruct.TransferDirection = LL_USART_DIRECTION_TX_RX;
+  USART_InitStruct.OverSampling = LL_USART_OVERSAMPLING_16;
+  LL_USART_Init(USART1, &USART_InitStruct);
+  LL_USART_Enable(USART1);
+  LL_USART_ConfigHalfDuplexMode(USART1);
+  /* USER CODE BEGIN USART1_Init 2 */
+
+  /* USER CODE END USART1_Init 2 */
 
 }
 

@@ -1,0 +1,12 @@
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h:1814:26:LL_USART_IsActiveFlag_TXE	16	static
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h:2426:22:LL_USART_TransmitData8	16	static
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h:881:22:LL_GPIO_SetOutputPin	16	static
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h:910:22:LL_GPIO_ResetOutputPin	16	static
+../Core/Src/FC_RC/SRXL2.c:11:5:SRXL2_Initialization	8	static
+../Core/Src/FC_RC/SRXL2.c:18:5:SRXL2_Connect	8	static
+../Core/Src/FC_RC/SRXL2.c:50:5:SRXL2_readByte	24	static
+../Core/Src/FC_RC/SRXL2.c:89:5:SRXL2_GetData	8	static
+../Core/Src/FC_RC/SRXL2.c:115:5:SRXL2_doHandshake	24	static
+../Core/Src/FC_RC/SRXL2.c:140:5:SRXL2_doBind	40	static
+../Core/Src/FC_RC/SRXL2.c:164:5:SRXL2_Transmit	24	static
+../Core/Src/FC_RC/SRXL2.c:179:10:calculate_crc	24	static

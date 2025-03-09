@@ -72,12 +72,24 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define LED_BLUE_Pin LL_GPIO_PIN_2
 #define LED_BLUE_GPIO_Port GPIOE
+#define LED_DEBUG_Pin LL_GPIO_PIN_1
+#define LED_DEBUG_GPIO_Port GPIOC
 #define Telm2_TX_Pin LL_GPIO_PIN_8
 #define Telm2_TX_GPIO_Port GPIOD
 #define Telm2_RX_Pin LL_GPIO_PIN_9
 #define Telm2_RX_GPIO_Port GPIOD
 #define Buzzer_Pin LL_GPIO_PIN_14
 #define Buzzer_GPIO_Port GPIOD
+#define RC_SRXL2_Pin LL_GPIO_PIN_9
+#define RC_SRXL2_GPIO_Port GPIOA
+#define GPS1_TX_Pin LL_GPIO_PIN_10
+#define GPS1_TX_GPIO_Port GPIOC
+#define GPS2_RX_Pin LL_GPIO_PIN_11
+#define GPS2_RX_GPIO_Port GPIOC
+#define GPS2_TX_Pin LL_GPIO_PIN_12
+#define GPS2_TX_GPIO_Port GPIOC
+#define GPS2_RXD2_Pin LL_GPIO_PIN_2
+#define GPS2_RXD2_GPIO_Port GPIOD
 #define Telm1_TX_Pin LL_GPIO_PIN_5
 #define Telm1_TX_GPIO_Port GPIOD
 #define Telm1_RX_Pin LL_GPIO_PIN_6

@@ -1,0 +1,7 @@
+../Core/Src/FC_RC/RingBuffer.c:21:1:RB_init	2
+../Core/Src/FC_RC/RingBuffer.c:38:1:RB_clear	1
+../Core/Src/FC_RC/RingBuffer.c:46:1:RB_write	2
+../Core/Src/FC_RC/RingBuffer.c:56:1:RB_read	1
+../Core/Src/FC_RC/RingBuffer.c:66:1:RB_isempty	1
+../Core/Src/FC_RC/RingBuffer.c:72:1:RB_isfull	1
+../Core/Src/FC_RC/RingBuffer.c:78:1:RB_count	1

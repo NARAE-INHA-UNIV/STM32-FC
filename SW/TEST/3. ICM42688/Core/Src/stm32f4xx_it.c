@@ -41,6 +41,9 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
+// SRXL2
+uint8_t uart1_rx_flag = 0;
+uint8_t uart1_rx_data = 0;
 
 // Telm1
 uint8_t uart2_rx_flag = 0;
@@ -205,6 +208,26 @@ void SysTick_Handler(void)
 /* For the available peripheral interrupt handler names,                      */
 /* please refer to the startup file (startup_stm32f4xx.s).                    */
 /******************************************************************************/
+
+/**
+  * @brief This function handles USART1 global interrupt.
+  */
+void USART1_IRQHandler(void)
+{
+  /* USER CODE BEGIN USART1_IRQn 0 */
+
+	if(LL_USART_IsActiveFlag_RXNE(USART1))
+	{
+		LL_USART_ClearFlag_RXNE(USART1);
+		uart1_rx_data = LL_USART_ReceiveData8(USART1);
+		uart1_rx_flag = 1;
+	}
+
+  /* USER CODE END USART1_IRQn 0 */
+  /* USER CODE BEGIN USART1_IRQn 1 */
+
+  /* USER CODE END USART1_IRQn 1 */
+}
 
 /**
   * @brief This function handles USART2 global interrupt.
