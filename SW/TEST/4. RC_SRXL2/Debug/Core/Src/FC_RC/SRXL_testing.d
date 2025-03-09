@@ -1,4 +1,4 @@
-Core/Src/FC_RC/SRXL2.o: ../Core/Src/FC_RC/SRXL2.c \
+Core/Src/FC_RC/SRXL_testing.o: ../Core/Src/FC_RC/SRXL_testing.c \
  ../Core/Inc/FC_RC/SRXL2.h ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \

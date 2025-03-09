@@ -158,13 +158,13 @@ int ICM42688_Initialization(void)
 	
 	ICM42688_GPIO_SPI_Initialization();
 	
-	printf("Checking ICM42688...\n\r");
+	// printf("Checking ICM42688...\n\r");
 	
 	who_am_i = ICM42688_Readbyte(WHO_AM_I); 
 
 	if(who_am_i == 0x47)
 	{
-		printf("ICM42688 who_am_i = 0x%02x...OK\n\r", who_am_i);
+		// printf("ICM42688 who_am_i = 0x%02x...OK\n\r", who_am_i);
 	}
 	// recheck
 	else if(who_am_i != 0x47)
@@ -172,7 +172,7 @@ int ICM42688_Initialization(void)
 		who_am_i = ICM42688_Readbyte(WHO_AM_I); // check again WHO_AM_I (0x75)
 
 		if (who_am_i != 0x12){
-			printf( "ICM42688 Not OK: 0x%02x Should be 0x%02x\n\r", who_am_i, 0x12);
+			// printf( "ICM42688 Not OK: 0x%02x Should be 0x%02x\n\r", who_am_i, 0x12);
 			return 1; //ERROR
 		}
 	}

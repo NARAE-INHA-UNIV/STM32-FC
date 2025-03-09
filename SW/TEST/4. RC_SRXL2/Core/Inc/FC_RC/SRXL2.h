@@ -9,55 +9,34 @@
 #ifndef INC_FC_RC_SRXL2_H_
 #define INC_FC_RC_SRXL2_H_
 
-#include <FC_RC/spm_srxl.h>
-#include <FC_RC/driver_SRXL2.h>
-#include <FC_Basic/RingBuffer.h>
 #include <main.h>
+#include <FC_Basic/RingBuffer.h>
+
+#include <FC_RC/spm_srxl.h>
+#include <FC_RC/SRXL2_type.h>
+#include <FC_RC/driver_SRXL2.h>
 
 #define SRXL2_RING_BUFFER_SIZE 128
 
-RingFifo_t SRXL2_RingFifo;
 
-/* 0bnm
- * n : 수신 후 4ms  대기 플래그
- * m : 수신 후 확인 플래그
- */
-uint8_t SRXL2_flag;
-uint8_t SRXL2_data[SRXL_MAX_BUFFER_SIZE];
+extern RingFifo_t SRXL2_RingFifo;
+extern uint8_t SRXL2_flag;
+extern uint8_t SRXL2_data[SRXL_MAX_BUFFER_SIZE];
 
-
-// INDEX
-#define SRXL2_INDEX_PACKET_TYPE 1
-#define SRXL2_INDEX_LENGTH 2
+extern SRXL2_Packet packet;
+// extern SRXL2_Handshake_Data rx_handshake_data;
 
 
-typedef struct {
-	uint8_t SRXL2_ID;
-	uint8_t PacketType;
-	uint8_t Length;
-	uint8_t *Data;
-	uint16_t crc;
-} SRXL2_Packet;
+// Functions
+int SRXL2_readByte(SRXL2_Packet *rx);
+int	SRXL2_parseHandshakeData(SRXL2_Packet *rx);
+int SRXL2_parseControlData(SRXL2_Packet *rx);
 
-SRXL2_Packet packet;
-
-typedef struct {
-	uint8_t SrcID;
-	uint8_t DestID;
-	uint8_t Priority;
-	uint8_t BaudRate;
-	uint8_t Info;
-	uint32_t UID;
-} SRXL2_Handshake_Data;
-
-SRXL2_Handshake_Data handshakeRx;
-
-
-
-uint16_t calculate_crc(uint8_t *data, uint8_t length);
-int SRXL2_readByte(void);
 int SRXL2_doHandshake(void);
 int SRXL2_doBind(void);
+
 int SRXL2_Transmit(uint8_t *data, uint8_t len);
+uint16_t calculate_crc(const uint8_t *data, uint8_t length);
+uint16_t insert_crc(uint8_t *data, uint8_t length);
 
 #endif /* INC_RC_SRXL2_H_ */

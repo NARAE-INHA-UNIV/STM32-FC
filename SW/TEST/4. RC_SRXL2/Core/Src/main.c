@@ -139,6 +139,7 @@ int main(void)
   LL_TIM_EnableCounter(TIM14);
 
   SRXL2_Initialization();
+  // Servo OUT 초기화
   BuzzerPlayInit();
 
   // interrupt when finished receiving
@@ -146,8 +147,9 @@ int main(void)
   LL_USART_EnableIT_RXNE(USART2);
   LL_USART_EnableIT_RXNE(USART3);
 
-  // ICM42688_Initialization();
+  // 필수 기기 점검
   SRXL2_Connect();
+  ICM42688_Initialization();
   BuzzerPlayOneCycle();
 
   /* USER CODE END 2 */
@@ -156,16 +158,15 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  // SRXL2_GetData();
-	  // ICM42688_Get6AxisRawData();
+	  SRXL2_GetData();
+	  ICM42688_Get6AxisRawData();
+
+	  //SRXL2_SendTelemetryData();
 
 	  // printf("%d %d %d\n\r", ICM42688.gyro_x_raw, ICM42688.gyro_y_raw, ICM42688.gyro_z_raw);
 	  // printf("%d %d %d\n\r", ICM42688.acc_x_raw, ICM42688.acc_y_raw, ICM42688.acc_z_raw);
 
-	  SRXL2_GetData();
-	  // SRXL2_doHandshake();
 
-	  HAL_Delay(1);
 
     /* USER CODE END WHILE */
 
@@ -356,9 +357,9 @@ static void MX_TIM14_Init(void)
   /* USER CODE BEGIN TIM14_Init 1 */
 
   /* USER CODE END TIM14_Init 1 */
-  TIM_InitStruct.Prescaler = 15;
+  TIM_InitStruct.Prescaler = 83;
   TIM_InitStruct.CounterMode = LL_TIM_COUNTERMODE_UP;
-  TIM_InitStruct.Autoreload = 8000-LL_TIM_IC_FILTER_FDIV1_N2;
+  TIM_InitStruct.Autoreload = 3500-LL_TIM_IC_FILTER_FDIV1_N2;
   TIM_InitStruct.ClockDivision = LL_TIM_CLOCKDIVISION_DIV1;
   LL_TIM_Init(TIM14, &TIM_InitStruct);
   LL_TIM_DisableARRPreload(TIM14);

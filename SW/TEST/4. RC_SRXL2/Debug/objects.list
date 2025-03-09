@@ -2,6 +2,7 @@
 "./Core/Src/FC_Basic/RingBuffer.o"
 "./Core/Src/FC_Gyro/ICM42688.o"
 "./Core/Src/FC_RC/SRXL2.o"
+"./Core/Src/FC_RC/SRXL_testing.o"
 "./Core/Src/main.o"
 "./Core/Src/stm32f4xx_hal_msp.o"
 "./Core/Src/stm32f4xx_it.o"

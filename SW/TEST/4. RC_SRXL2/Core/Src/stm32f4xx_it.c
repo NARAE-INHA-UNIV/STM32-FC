@@ -222,6 +222,7 @@ void USART1_IRQHandler(void)
 		LL_USART_ClearFlag_RXNE(USART1);
 		uint8_t uart1_rx_data = LL_USART_ReceiveData8(USART1);
 		SRXL2_flag = 0b11;
+
 		LL_TIM_SetCounter(TIM14, 0);
 
 		RB_write(&SRXL2_RingFifo, uart1_rx_data);
@@ -243,6 +244,7 @@ void USART2_IRQHandler(void)
 	if(LL_USART_IsActiveFlag_RXNE(USART2))
 	{
 		LL_USART_ClearFlag_RXNE(USART2);
+
 		uart2_rx_data = LL_USART_ReceiveData8(USART2);
 		uart2_rx_flag = 1;
 	}
@@ -260,8 +262,19 @@ void TIM8_TRG_COM_TIM14_IRQHandler(void)
   /* USER CODE BEGIN TIM8_TRG_COM_TIM14_IRQn 0 */
 	if(LL_TIM_IsActiveFlag_UPDATE(TIM14))
 	{
+
 		LL_TIM_ClearFlag_UPDATE(TIM14);
-		SRXL2_flag &= 0b01;
+
+		// 수신 인터럽트 이후 0
+		if(SRXL2_flag>>1){
+			SRXL2_flag &= 0b01;
+
+			LL_TIM_SetCounter(TIM14, 0);
+		}
+		else{
+		// 플래그 초기화 이후 3ms 후
+			SRXL2_flag |= 0b10;
+		}
 	}
   /* USER CODE END TIM8_TRG_COM_TIM14_IRQn 0 */
   /* USER CODE BEGIN TIM8_TRG_COM_TIM14_IRQn 1 */

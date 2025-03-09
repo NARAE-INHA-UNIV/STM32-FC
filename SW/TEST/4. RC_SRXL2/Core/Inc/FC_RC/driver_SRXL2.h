@@ -12,5 +12,6 @@
 int SRXL2_Initialization(void);
 int SRXL2_Connect(void);
 int SRXL2_GetData();
+int SRXL2_SendTelemetryData(void);
 
 #endif /* INC_FC_RC_DRIVER_SRXL2_H_ */

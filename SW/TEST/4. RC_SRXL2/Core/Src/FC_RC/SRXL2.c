@@ -6,48 +6,104 @@
  *      Email : leecurrent04@inha.edu
  */
 
+
+/* Includes ------------------------------------------------------------------*/
 #include <FC_RC/SRXL2.h>
 
+
+/* Variables -----------------------------------------------------------------*/
+RingFifo_t SRXL2_RingFifo;
+
+/*
+ * 0bmn
+ * m - 0: 안정 상태
+ *     1: 인터럽트 발생 또는 안정 상태 이후 3ms 대기
+ * n - 0: 수신 인터럽트 처리
+ *   - 1: 수신 인터럽트 발생
+ */
+uint8_t SRXL2_flag;
+
+uint8_t SRXL2_data[SRXL_MAX_BUFFER_SIZE];
+SRXL2_Packet packet;
+
+
+/* driver_SRXL2.h ------------------------------------------------------------*/
+/*
+ * 수신 데이터를 받기 위한 링버퍼 설정
+ */
 int SRXL2_Initialization(void){
 	while(RB_init(&SRXL2_RingFifo, SRXL2_RING_BUFFER_SIZE));
 
 	return 0;
 }
 
-// ReadByte and Hand Shake
+/*
+ * 수신기와 연결하기 위한 Handshake 절차 수행
+ * 텔레메트리 장치 포함 범용적 설계 필요
+ */
 int SRXL2_Connect(void){
+	SRXL2_Handshake_Packet *rx_handshake;
+	while(1)
+	{
+		SRXL2_GetData();
+		if(packet.header.pType == SRXL_HANDSHAKE_ID)
+		{
+
+			rx_handshake = (SRXL2_Handshake_Packet *) SRXL2_data;
+			if((rx_handshake->data.SrcID>>4) == 0x1 && (rx_handshake->data.DestID>>4) == 0x3)
+			{
+				break;
+			}
+		}
+	}
+
+	while(SRXL2_doHandshake());
 	/*
-	while(1)
-	{
-		SRXL2_GetData();
-		if(packet.PacketType == SRXL_HANDSHAKE_ID)
-		{
-			if((handshakeRx.SrcID>>4) == 0x1&&(handshakeRx.DestID>>4) == 0x3)
-			{
-				if(0==SRXL2_doHandshake()){
-					break;
-				}
-			}
-		}
-	}
-	*/
-	while(1)
-	{
-		SRXL2_GetData();
-		if(packet.PacketType == SRXL_HANDSHAKE_ID)
-		{
-			if((handshakeRx.SrcID>>4) == 0x1&&(handshakeRx.DestID>>4) == 0x3)
-			{
-				if(0==SRXL2_doBind()){
-					break;
-				}
-			}
-		}
-	}
+	 * Handshake만 제대로 하면 Bind 없이 Control Packet 보내는듯.
+	 * 데이터시트에 의하면 Handshake 과정에 다른 패킷이 전송되면 바로 Control 패킷 보내도록 함
+	 */
+	// while(SRXL2_doBind());
+
 	return 0;
 }
 
-int SRXL2_readByte(void){
+
+/*
+ * 수신 데이터 로딩
+ */
+int SRXL2_GetData(){
+	while(SRXL2_readByte(&packet))
+	{
+		if(calculate_crc(SRXL2_data, packet.header.len) == packet.crc){
+			break;
+		}
+	}
+
+	switch(packet.header.pType){
+	case SRXL_HANDSHAKE_ID :
+		break;
+	}
+}
+
+
+
+/* SRXL2.h -------------------------------------------------------------------*/
+/*
+ * 수신 인터럽트 IRQ 2
+ * - IRQ1에서 수신 데이터 링버퍼에 저장
+ * - IRQ2 해당 함수에서 링버퍼 데이터 로딩 및 SRXL2_data에 저장
+ * @parm SRXL2_Packet *rx header 및 crc 기록
+ * @retval 0 : 수신 완료
+ * @retval -1 : 수신 인터럽트 없음
+ * @retval -2 : 링버퍼 오류
+ * @retval -3 : 기타 오류
+ * 			  : 링버퍼 크기 초과
+ */
+int SRXL2_readByte(SRXL2_Packet *rx){
+	enum INDEX_PACKET {
+			pType = 1,
+			len = 2
+	};
 
 	if((SRXL2_flag&0b01) != 1)
 	{
@@ -59,81 +115,74 @@ int SRXL2_readByte(void){
 	}
 
 	SRXL2_flag &= 0b10;
-	//LL_GPIO_ResetOutputPin(LED_DEBUG_GPIO_Port, LED_DEBUG_Pin);
 
 	for(uint8_t cnt = 0; cnt < SRXL2_RING_BUFFER_SIZE; cnt++){
 
-		// Ring Buffer에서 array로 가져옴
 		SRXL2_data[cnt] = RB_read(&SRXL2_RingFifo);
 
-		// PACKET이 시작함.
 		if(SRXL2_data[cnt]==0xA6){
 			cnt = 0;
 			SRXL2_data[0]=0xA6;
 		}
-		if(cnt>SRXL2_INDEX_LENGTH && SRXL2_data[SRXL2_INDEX_LENGTH] == cnt){
-			packet.SRXL2_ID = SPEKTRUM_SRXL_ID;
-			packet.PacketType = SRXL2_data[SRXL2_INDEX_PACKET_TYPE];
-			packet.Length = SRXL2_data[SRXL2_INDEX_LENGTH];
-			packet.Data = SRXL2_data;
-			packet.crc = ((uint16_t)SRXL2_data[packet.Length -2] << 8 | SRXL2_data[packet.Length -1]);
+
+		if(cnt>len && SRXL2_data[len] == cnt){
+			rx->header.speckrum_id = SPEKTRUM_SRXL_ID;
+			rx->header.pType = SRXL2_data[pType];
+			rx->header.len = SRXL2_data[len];
+
+			rx->Data = SRXL2_data;
+			rx->crc = ((uint16_t)SRXL2_data[rx->header.len -2] << 8 | SRXL2_data[rx->header.len -1]);
 
 			// DEBUG
-			// CDC_Transmit_FS(SRXL2_data, packet.Length);
+			CDC_Transmit_FS(SRXL2_data, rx->header.len);
 			return 0;
 		}
 	}
 	return -3;
 }
 
-int SRXL2_GetData(){
-	while(SRXL2_readByte())
-	{
-		if(calculate_crc(SRXL2_data, packet.Length) == packet.crc){
-			break;
-		}
-	}
-
-	switch(packet.PacketType){
-	case SRXL_HANDSHAKE_ID :
-		handshakeRx.SrcID = packet.Data[3];
-		handshakeRx.DestID = packet.Data[4];
-		handshakeRx.Priority = packet.Data[5];
-		handshakeRx.BaudRate = packet.Data[6];
-		handshakeRx.Info = packet.Data[7];
-		handshakeRx.UID = packet.Data[8]<<32
-				| packet.Data[9]<<16
-				| packet.Data[10]<<8
-				| packet.Data[11];
-	}
-}
 
 /*
- * 0 :
- * -1 : error
+ * 장치간 Handshake 동작 수행
+ * Bus내 연결된 장치 정보 알림
+ *
+ * 텔레메트리 장치 포함 범용적 설계 필요
+ *
+ * @parm void -> SRXL2_Handshake_Packet * 수정 필요
+ * @retval 0 : 송신 완료
+ * @retval -1 : 송신 실패
  */
 int SRXL2_doHandshake(void)
 {
+	SRXL2_Handshake_Packet *rx_handshake;
+	rx_handshake = (SRXL2_Handshake_Packet *) SRXL2_data;
+
 	uint8_t handshake_packet[14] ={
 			SPEKTRUM_SRXL_ID,
 			SRXL_HANDSHAKE_ID,
 			0x0e,
-			0x30,					//src id
-			handshakeRx.SrcID,		// desc id
-			handshakeRx.Priority,
-			SRXL_BAUD_115200,		// Baud
-			0x01,					// Info
-			0x12, 0x34, 0x56, 0x78, // UID (32-bit)
+			0x30,							//src id
+			rx_handshake->data.SrcID,		// desc id
+			rx_handshake->data.Priority,	// desc id
+			SRXL_BAUD_115200,				// Baud
+			0x01,							// Info
+			0x12, 0x34, 0x56, 0x78, 		// UID (32-bit)
 			0x00, 0x00
 	};
-	uint16_t crc = calculate_crc(handshake_packet, sizeof(handshake_packet));
+	insert_crc(handshake_packet, sizeof(handshake_packet));
 
 	return SRXL2_Transmit(handshake_packet, sizeof(handshake_packet));
 }
 
+
 /*
- * 0 :
- * -1 : error
+ * 수신기와 Bind 동작 수행
+ *
+ * 기타 Bind 동작 수행 등 범용적 설계 필요
+ *
+ * @parm void -> SRXL2_Bind_Packet * 수정 필요
+ * @retval 0 : 송신 완료
+ * @retval -1 : 송신 실패
  */
 int SRXL2_doBind(void)
 {
@@ -150,16 +199,24 @@ int SRXL2_doBind(void)
         0x12, 0x34, 0x56, 0x78,  // UID (32-bit)
         0x00, 0x00   // CRC 자리 (계산 후 입력)
     };
-
-    // CRC 계산
-    uint16_t crc = calculate_crc(bind_packet, sizeof(bind_packet));
+	insert_crc(bind_packet, sizeof(bind_packet));
 
 	return SRXL2_Transmit(bind_packet, sizeof(bind_packet));
 }
 
+/*
+ * 데이터 송신
+ *
+ * 디버깅을 위해 PC1 (RSSI)에 GPIO 연결함
+ *
+ * @parm uint8_t* data : data address
+ * @parm uint8_t len : sizeof(data)
+ * @retval 0 : 송신 완료
+ * @retval -1 : 송신 실패
+ */
 int SRXL2_Transmit(uint8_t *data, uint8_t len)
 {
-	if(SRXL2_flag!=0) return -1;
+	if(SRXL2_flag>>1!= 0) return -1;
 
 	LL_GPIO_SetOutputPin(LED_DEBUG_GPIO_Port, LED_DEBUG_Pin);
 	for(int i=0; i<len; i++){
@@ -172,10 +229,17 @@ int SRXL2_Transmit(uint8_t *data, uint8_t len)
 	return 0;
 }
 
-uint16_t calculate_crc(uint8_t *data, uint8_t length)
+
+/*
+ * crc 계산
+ * @parm const uint8_t* data : data address
+ * @parm uint8_t len : sizeof(data)
+ * @retval uint16_t crc
+ */
+uint16_t calculate_crc(const uint8_t *data, uint8_t len)
 {
     uint16_t crc = 0x0000;
-    for (uint8_t i = 0; i < length-2; i++) {
+    for (uint8_t i = 0; i < len-2; i++) {
         crc ^= ((uint16_t)data[i] << 8);
         for (uint8_t j = 0; j < 8; j++) {
             if (crc & 0x8000)
@@ -185,80 +249,23 @@ uint16_t calculate_crc(uint8_t *data, uint8_t length)
         }
     }
 
-    data[length -2] = (uint8_t)(crc >> 8);
-    data[length -1] = (uint8_t)(crc & 0xFF);
 
     return crc;
 }
 
+
 /*
-	LL_GPIO_SetOutputPin(LED_BLUE_GPIO_Port, LED_BLUE_Pin);
-
-	data[cnt] = RB_read(&SRXL2_RingFifo);
-
-	// printf("%02X ", data[cnt]);
-
-	if(cnt == data[3])
-	{
-		if(cnn == 0 && data[5] == 0x30)
-		{
-			//send_bind_request(&huart6);
-			cnn = 1;
-		}
-
-		uint16_t channelMask = (data[10] << 8) | data[9];
-
-		if(channelMask & 1)
-		{
-			n = 0;
-
-			ch[1] = ((data[14] << 8) | data[13]);
-			ch[4] = ((data[16] << 8) | data[15]);
-
-			n = 1;
-		}
-		else if(n == 1)
-		{
-			ch[2] = ((data[14] << 8) | data[13]);
-			ch[3] = ((data[16] << 8) | data[15]);
-			ch[5] = ((data[18] << 8) | data[17]);
-			ch[6] = ((data[20] << 8) | data[19]);
-
-			n = 0;
-		}
-
-		cnt = 0;
-	}
-	cnt++;
-
-	return 0;
-}
-
-
-void send_bind_request(UART_HandleTypeDef *huart)
+ * crc 삽입
+ * @parm uint8_t* data : data address
+ * @parm uint8_t len : sizeof(data)
+ * @retval uint16_t crc
+ */
+uint16_t insert_crc(uint8_t *data, uint8_t len)
 {
-    uint8_t bind_packet[21] =
-    {
-        0xA6, 0x41, 21,  // Header
-        0xEB,            // Request: Enter Bind Mode
-        0x30,            // DeviceID (Receiver)
-        0xA2,            // Type: DSMX 22ms
-        0x01,            // Options: Telemetry 활성화
-        0x12, 0x34, 0x56, 0x78, 0x9A, 0xBC, 0xDE, 0xF0,  // GUID (64-bit)
-        0x12, 0x34, 0x56, 0x78,  // UID (32-bit)
-        0x00, 0x00   // CRC 자리 (계산 후 입력)
-    };
+    uint16_t crc = calculate_crc(data, len);
 
-    // CRC 계산
-    uint16_t crc = calculate_crc(bind_packet, 19);
-    bind_packet[19] = (crc >> 8) & 0xFF;  // CRC_H
-    bind_packet[20] = crc & 0xFF;         // CRC_L
+    data[len -2] = (uint8_t)(crc >> 8);
+    data[len -1] = (uint8_t)(crc & 0xFF);
 
-    // UART로 패킷 전송
-	  HAL_HalfDuplex_EnableTransmitter(&huart6);
-	  HAL_UART_Transmit(&huart6, bind_packet, 21, 1);
-//	  printf("BINDING");
-	  HAL_HalfDuplex_EnableReceiver(&huart6);
+    return crc;
 }
-
-*/
