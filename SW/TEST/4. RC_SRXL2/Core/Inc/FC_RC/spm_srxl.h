@@ -34,12 +34,8 @@ extern "C"
 #endif
 
 
+
 //      7.1 General Overview
-#define SPEKTRUM_SRXL_ID        (0xA6)
-#define SRXL_MAX_BUFFER_SIZE    (80)
-#define SRXL_MAX_DEVICES        (16)
-
-
 // Supported SRXL device types (upper nibble of device ID)
 typedef enum
 {

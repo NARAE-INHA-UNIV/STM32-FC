@@ -158,8 +158,14 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  SRXL2_GetData();
+	  if(SRXL2_GetData() != 0)
+	  {
+		  // Do fail safe
+	  }
 	  ICM42688_Get6AxisRawData();
+
+	  // SRXL2_reqSignalQuality();
+	  // HAL_Delay(100);
 
 	  //SRXL2_SendTelemetryData();
 

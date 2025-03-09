@@ -9,6 +9,53 @@
 
 #include <FC_RC/SRXL2.h>
 
+
+/*
+ * 장치간 Handshake 동작 수행
+ * Bus내 연결된 장치 정보 알림
+ *
+ * @parm SRXL2_Handshake_Packet *packet
+ * @retval 0 : 송신 완료
+ * @retval -1 : 송신 실패
+ */
+SRXL2_SignalQuality_Data SRXL2_reqSignalQuality()
+{
+	SRXL2_SignalQuality_Data *rx_data;
+	SRXL2_SignalQuality_Data data;
+
+	uint8_t tx_packet[10] ={
+			SPEKTRUM_SRXL_ID,
+			SRXL_RSSI_ID,
+			0x0a,
+			SRXL_RSSI_REQ_REQUEST,
+			0x12, 0x34, 0x56, 0x78, 		// Antenna A,B,L,R
+			0x00, 0x00						// CRC.
+	};
+
+	insert_crc(tx_packet, sizeof(tx_packet));
+
+	while(SRXL2_Transmit(tx_packet, sizeof(tx_packet)));
+	for(uint8_t i=0; i<10; i++)
+	{
+
+		SRXL2_GetData();
+		if(packet.header.pType == SRXL_RSSI_REQ_SEND)
+		{
+			rx_data = &((SRXL2_SignalQuality_Packet*)SRXL2_data)->data;
+			data.Request = rx_data->Request;
+			data.AntennaA = rx_data->AntennaA;
+			data.AntennaB = rx_data->AntennaB;
+			data.AntennaL = rx_data->AntennaL;
+			data.AntennaR = rx_data->AntennaR;
+
+			break;
+		}
+
+	}
+	return data;
+}
+
+
 /*
  * (@ In Progress)
  * Control 패킷에서 ReplyID가 0x00 = 아무 장치도 응답 요구를 안함.

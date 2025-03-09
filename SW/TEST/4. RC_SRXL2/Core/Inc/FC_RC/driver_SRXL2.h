@@ -9,9 +9,16 @@
 #ifndef INC_FC_RC_DRIVER_SRXL2_H_
 #define INC_FC_RC_DRIVER_SRXL2_H_
 
+#include <FC_RC/SRXL2_type.h>
+
 int SRXL2_Initialization(void);
 int SRXL2_Connect(void);
-int SRXL2_GetData();
+
+int SRXL2_GetData(void);
+SRXL2_SignalQuality_Data SRXL2_reqSignalQuality(void);
+
+
+// In Progress!
 int SRXL2_SendTelemetryData(void);
 
 #endif /* INC_FC_RC_DRIVER_SRXL2_H_ */

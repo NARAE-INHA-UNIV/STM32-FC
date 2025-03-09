@@ -11,6 +11,7 @@
 
 #include "main.h"
 
+// 컴파일러가 패딩하는 것을 방지
 typedef struct __attribute__((packed)){
 	uint8_t speckrum_id;
 	uint8_t pType;
@@ -44,8 +45,24 @@ typedef struct __attribute__((packed)){
 //      7.3 Bind Info Packet
 
 
+//      7.5 Signal Quality Packet
+typedef struct __attribute__((packed)){
+	uint8_t Request;
+	int8_t AntennaA;
+	int8_t AntennaB;
+	int8_t AntennaL;
+	int8_t AntennaR;
+} SRXL2_SignalQuality_Data;
+
+typedef struct __attribute__((packed)){
+	SRXL2_Header header;
+	SRXL2_SignalQuality_Data data;
+	uint16_t crc;
+} SRXL2_SignalQuality_Packet;
+
+
 //      7.7 Control Data Packet
-typedef struct {
+typedef struct __attribute__((packed)){
 	uint8_t Command;
 	uint8_t ReplyID;
 	int8_t rssi;
@@ -53,8 +70,5 @@ typedef struct {
 	uint32_t channlMask;
 } SRXL2_Control_Data;
 
-
-extern SRXL2_Packet packet;
-// extern SRXL2_Handshake_Data rx_handshake_data;
 
 #endif /* INC_FC_RC_SRXL2_TYPE_H_ */
