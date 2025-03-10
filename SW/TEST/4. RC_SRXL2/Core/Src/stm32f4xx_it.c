@@ -23,6 +23,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <FC_Basic/RingBuffer.h>
+#include <FC_RC/RadioControl.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -42,9 +43,13 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-// SRXL2
-extern RingFifo_t SRXL2_RingFifo;
-extern uint8_t SRXL2_flag;
+/*
+ * FC_RC/RadioControl.h
+ * USART1
+ */
+extern RingFifo_t RC_rxRingFifo;
+extern RC_Receive_Flag RC_rxFlag;
+
 
 // Telm1
 uint8_t uart2_rx_flag = 0;
@@ -221,11 +226,14 @@ void USART1_IRQHandler(void)
 	{
 		LL_USART_ClearFlag_RXNE(USART1);
 		uint8_t uart1_rx_data = LL_USART_ReceiveData8(USART1);
-		SRXL2_flag = 0b11;
 
+		RC_rxFlag.half_using = 1;
+		RC_rxFlag.uart = 1;
+
+		LL_TIM_EnableCounter(TIM14);
 		LL_TIM_SetCounter(TIM14, 0);
 
-		RB_write(&SRXL2_RingFifo, uart1_rx_data);
+		RB_write(&RC_rxRingFifo, uart1_rx_data);
 	}
 
   /* USER CODE END USART1_IRQn 0 */
@@ -265,15 +273,14 @@ void TIM8_TRG_COM_TIM14_IRQHandler(void)
 
 		LL_TIM_ClearFlag_UPDATE(TIM14);
 
-		// 수신 인터럽트 이후 0
-		if(SRXL2_flag>>1){
-			SRXL2_flag &= 0b01;
-
+		if(RC_rxFlag.half_using == 1 && RC_rxFlag.half_tx == 0){
+			RC_rxFlag.half_using = 0;
 			LL_TIM_SetCounter(TIM14, 0);
 		}
 		else{
-		// 플래그 초기화 이후 3ms 후
-			SRXL2_flag |= 0b10;
+			RC_rxFlag.half_using = 1;
+			RC_rxFlag.half_tx = 0;
+			LL_TIM_DisableCounter(TIM14);
 		}
 	}
   /* USER CODE END TIM8_TRG_COM_TIM14_IRQn 0 */

@@ -74,6 +74,10 @@ void Error_Handler(void);
 #define LED_BLUE_GPIO_Port GPIOE
 #define LED_DEBUG_Pin LL_GPIO_PIN_1
 #define LED_DEBUG_GPIO_Port GPIOC
+#define LED_DEBUG3_Pin LL_GPIO_PIN_11
+#define LED_DEBUG3_GPIO_Port GPIOE
+#define LED_DEBUG2_Pin LL_GPIO_PIN_13
+#define LED_DEBUG2_GPIO_Port GPIOE
 #define Telm2_TX_Pin LL_GPIO_PIN_8
 #define Telm2_TX_GPIO_Port GPIOD
 #define Telm2_RX_Pin LL_GPIO_PIN_9

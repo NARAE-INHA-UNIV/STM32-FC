@@ -23,9 +23,13 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "usbd_cdc_if.h"
+
 #include <FC_Basic/driver_Buzzer.h>
-#include <FC_Gyro/driver_ICM42688.h>
+
+#include <FC_RC/RadioControl.h>
 #include <FC_RC/driver_SRXL2.h>
+
+#include <FC_Gyro/driver_ICM42688.h>
 
 
 /* USER CODE END Includes */
@@ -65,7 +69,6 @@ UART_HandleTypeDef huart4;
 
 /* USER CODE BEGIN PV */
 // SRXL2
-extern uint8_t SRXL2_rx_flag;
 
 // Telm1
 extern uint8_t uart2_rx_flag;
@@ -167,7 +170,6 @@ int main(void)
 	  // SRXL2_reqSignalQuality();
 	  // HAL_Delay(100);
 
-	  //SRXL2_SendTelemetryData();
 
 	  // printf("%d %d %d\n\r", ICM42688.gyro_x_raw, ICM42688.gyro_y_raw, ICM42688.gyro_z_raw);
 	  // printf("%d %d %d\n\r", ICM42688.acc_x_raw, ICM42688.acc_y_raw, ICM42688.acc_z_raw);
@@ -365,7 +367,7 @@ static void MX_TIM14_Init(void)
   /* USER CODE END TIM14_Init 1 */
   TIM_InitStruct.Prescaler = 83;
   TIM_InitStruct.CounterMode = LL_TIM_COUNTERMODE_UP;
-  TIM_InitStruct.Autoreload = 3500-LL_TIM_IC_FILTER_FDIV1_N2;
+  TIM_InitStruct.Autoreload = 1000-LL_TIM_IC_FILTER_FDIV1_N2;
   TIM_InitStruct.ClockDivision = LL_TIM_CLOCKDIVISION_DIV1;
   LL_TIM_Init(TIM14, &TIM_InitStruct);
   LL_TIM_DisableARRPreload(TIM14);
@@ -661,13 +663,15 @@ static void MX_GPIO_Init(void)
   LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOD);
 
   /**/
-  LL_GPIO_ResetOutputPin(GPIOE, LED_BLUE_Pin|LL_GPIO_PIN_5|LED_RED_Pin|LED_YELLOW_Pin);
+  LL_GPIO_ResetOutputPin(GPIOE, LED_BLUE_Pin|LL_GPIO_PIN_5|LED_DEBUG3_Pin|LED_DEBUG2_Pin
+                          |LED_RED_Pin|LED_YELLOW_Pin);
 
   /**/
   LL_GPIO_ResetOutputPin(LED_DEBUG_GPIO_Port, LED_DEBUG_Pin);
 
   /**/
-  GPIO_InitStruct.Pin = LED_BLUE_Pin|LL_GPIO_PIN_5|LED_RED_Pin|LED_YELLOW_Pin;
+  GPIO_InitStruct.Pin = LED_BLUE_Pin|LL_GPIO_PIN_5|LED_DEBUG3_Pin|LED_DEBUG2_Pin
+                          |LED_RED_Pin|LED_YELLOW_Pin;
   GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
   GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
   GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;

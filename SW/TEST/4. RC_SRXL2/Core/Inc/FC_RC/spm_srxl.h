@@ -36,22 +36,6 @@ extern "C"
 
 
 //      7.1 General Overview
-// Supported SRXL device types (upper nibble of device ID)
-typedef enum
-{
-    SrxlDevType_None                = 0,
-    SrxlDevType_RemoteReceiver      = 1,
-    SrxlDevType_Receiver            = 2,
-    SrxlDevType_FlightController    = 3,
-    SrxlDevType_ESC                 = 4,
-    SrxlDevType_SRXLServo1          = 6,
-    SrxlDevType_SRXLServo2          = 7,
-    SrxlDevType_VTX                 = 8,
-    SrxlDevType_ExtRF               = 9,
-    SrxlDevType_RemoteId            = 10,
-    SrxlDevType_Sensor              = 11,
-    SrxlDevType_Broadcast           = 15
-} SrxlDevType;
 
 
 //      7.2 Handshake Packet

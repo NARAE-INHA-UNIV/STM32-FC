@@ -13,6 +13,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include <main.h>
 #include <FC_Basic/RingBuffer.h>
+#include <FC_RC/RadioControl.h>
 
 #include <FC_RC/spm_srxl.h>
 #include <FC_RC/SRXL2_type.h>
@@ -25,13 +26,14 @@
 #define SRXL_MAX_DEVICES        (16)
 #define SRXL2_RING_BUFFER_SIZE	(128)
 
+#define SRXL_FC_DEVICE_ID		(0x30)
+
 
 /* Variables -----------------------------------------------------------------*/
-extern RingFifo_t SRXL2_RingFifo;
-extern uint8_t SRXL2_flag;
 extern uint8_t SRXL2_data[SRXL_MAX_BUFFER_SIZE];
-
 extern SRXL2_Packet packet;
+
+extern SRXL2_Handshake_Data receiver_info;
 
 
 /* Functions -----------------------------------------------------------------*/
@@ -42,7 +44,7 @@ int SRXL2_parseControlData(void);
 int SRXL2_doHandshake(SRXL2_Handshake_Packet *packet);
 int SRXL2_doBind(void);
 
-int SRXL2_Transmit(uint8_t *data, uint8_t len);
+// int SRXL2_Transmit(uint8_t *data, uint8_t len);
 uint16_t calculate_crc(const uint8_t *data, uint8_t len);
 uint16_t insert_crc(uint8_t *data, uint8_t len);
 

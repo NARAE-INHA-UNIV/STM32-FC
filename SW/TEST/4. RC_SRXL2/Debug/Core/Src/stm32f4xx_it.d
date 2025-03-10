@@ -40,7 +40,8 @@ Core/Src/stm32f4xx_it.o: ../Core/Src/stm32f4xx_it.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_utils.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_pwr.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h \
- ../Core/Inc/stm32f4xx_it.h ../Core/Inc/FC_Basic/RingBuffer.h
+ ../Core/Inc/stm32f4xx_it.h ../Core/Inc/FC_Basic/RingBuffer.h \
+ ../Core/Inc/FC_RC/RadioControl.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -85,3 +86,4 @@ Core/Src/stm32f4xx_it.o: ../Core/Src/stm32f4xx_it.c ../Core/Inc/main.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:
 ../Core/Inc/stm32f4xx_it.h:
 ../Core/Inc/FC_Basic/RingBuffer.h:
+../Core/Inc/FC_RC/RadioControl.h:

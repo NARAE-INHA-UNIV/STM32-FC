@@ -34,7 +34,7 @@ SRXL2_SignalQuality_Data SRXL2_reqSignalQuality()
 
 	insert_crc(tx_packet, sizeof(tx_packet));
 
-	while(SRXL2_Transmit(tx_packet, sizeof(tx_packet)));
+	while(RC_halfDuplex_Transmit(tx_packet, sizeof(tx_packet)));
 	for(uint8_t i=0; i<10; i++)
 	{
 
@@ -58,31 +58,45 @@ SRXL2_SignalQuality_Data SRXL2_reqSignalQuality()
 
 /*
  * (@ In Progress)
- * Control 패킷에서 ReplyID가 0x00 = 아무 장치도 응답 요구를 안함.
- * HandShake에서 장치 등록을 해줘야하는 것으로 추정
+ * 수신기에서 Control 패킷에 ReplyID를 전송함.
+ * ReplyID가 Handshake에서 등록한 ID와 같다면 데이터 전송
+ * 통신 규칙에 따라 응답 요구 후 바로 답해야 함.
+ * 그러나 위 규칙이 지켜지지 않음.
  *  0 : 전송 성공
  * -1 : 전송 실패
  */
 int SRXL2_SendTelemetryData(void)
 {
-    uint8_t telm_packet[22] =
-    {
+	SRXL2_Control_Packet* rx_packet;
+	rx_packet = (SRXL2_Control_Packet *)SRXL2_data;
+
+	if(rx_packet->ReplyID != SRXL_FC_DEVICE_ID)
+	{
+		return -1;
+	}
+
+	LL_GPIO_SetOutputPin(LED_DEBUG2_GPIO_Port, LED_DEBUG2_Pin);
+	uint8_t telm_packet[22] =
+	{
 		SPEKTRUM_SRXL_ID,
 		SRXL_TELEM_ID,
 		22,
-        0x30,			// DeviceID (Receiver)
-		0x50,			// source id
-		0x30,			// secondary id
-        0x00, 0x00,		// int16 field1
-        0x00, 0x00,		// int16 field2
-        0x00, 0x00,		// int16 field3
-		0xB0, 0x00,		// uint16 field1
-		0xB0, 0x00,		// uint16 field2
-		0xB0, 0x00,		// uint16 field3
-		0xB0, 0x00,		// uint16 field4
-        0x00, 0x00   // CRC 자리 (계산 후 입력)
-    };
-    insert_crc(telm_packet, sizeof(telm_packet));
+		receiver_info.SrcID,	// DeviceID (Receiver)
+		0x50,					// source id
+		0x30,					// secondary id
+		0x00, 0x00,				// int16 field1
+		0x00, 0xa0,				// int16 field2
+		0x00, 0x00,				// int16 field3
+		0x00, 0xa0,				// uint16 field1
+		0x00, 0x00,				// uint16 field2
+		0x00, 0x00,				// uint16 field3
+		0x00, 0x00,				// uint16 field4
+		0x00, 0x00   			// CRC 자리 (계산 후 입력)
+	};
+	insert_crc(telm_packet, sizeof(telm_packet));
 
-	return SRXL2_Transmit(telm_packet, sizeof(telm_packet));
+
+	RC_halfDuplex_Transmit(telm_packet, sizeof(telm_packet));
+	LL_GPIO_ResetOutputPin(LED_DEBUG2_GPIO_Port, LED_DEBUG2_Pin);
+	return 0;
 }

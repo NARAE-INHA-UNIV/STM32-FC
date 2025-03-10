@@ -63,12 +63,19 @@ typedef struct __attribute__((packed)){
 
 //      7.7 Control Data Packet
 typedef struct __attribute__((packed)){
-	uint8_t Command;
-	uint8_t ReplyID;
 	int8_t rssi;
 	uint16_t frameLosses;
-	uint32_t channlMask;
-} SRXL2_Control_Data;
+	uint32_t mask;
+	uint16_t values[32];
+} SRXL2_Channel_Data;
+
+typedef struct __attribute__((packed)){
+	SRXL2_Header header;
+	uint8_t Command;
+	uint8_t ReplyID;
+	SRXL2_Channel_Data data;
+	uint16_t crc;
+} SRXL2_Control_Packet;
 
 
 #endif /* INC_FC_RC_SRXL2_TYPE_H_ */

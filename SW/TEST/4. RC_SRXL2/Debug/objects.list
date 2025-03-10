@@ -1,6 +1,7 @@
 "./Core/Src/FC_Basic/Buzzer.o"
 "./Core/Src/FC_Basic/RingBuffer.o"
 "./Core/Src/FC_Gyro/ICM42688.o"
+"./Core/Src/FC_RC/RadioControl.o"
 "./Core/Src/FC_RC/SRXL2.o"
 "./Core/Src/FC_RC/SRXL_testing.o"
 "./Core/Src/main.o"
