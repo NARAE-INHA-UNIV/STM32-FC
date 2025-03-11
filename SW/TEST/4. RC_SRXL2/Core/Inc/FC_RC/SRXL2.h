@@ -29,10 +29,12 @@
 #define SRXL_FC_DEVICE_ID		(0x30)
 
 
+
 /* Variables -----------------------------------------------------------------*/
 extern uint8_t SRXL2_data[SRXL_MAX_BUFFER_SIZE];
-extern SRXL2_Packet packet;
+extern uint16_t SRXL2_Channel[SRXL_MAX_CHANNEL];
 
+extern SRXL2_Packet packet;
 extern SRXL2_Handshake_Data receiver_info;
 
 

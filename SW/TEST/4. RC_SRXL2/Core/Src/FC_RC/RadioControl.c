@@ -24,6 +24,8 @@ RingFifo_t RC_rxRingFifo;
  * @parm uint8_t uart 		: UART1 수신 인터럽트 (1bit)
  */
 RC_Receive_Flag RC_rxFlag;
+uint16_t* RC_Channel;
+uint8_t RC_ChannelNum;
 
 
 /* Functions -----------------------------------------------------------------*/

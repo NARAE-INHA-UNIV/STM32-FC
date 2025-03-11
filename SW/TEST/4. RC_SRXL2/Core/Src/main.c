@@ -165,6 +165,8 @@ int main(void)
 	  {
 		  // Do fail safe
 	  }
+	  printf("%05d %05d %05d %05d\n\r", RC_Channel[0], RC_Channel[1], RC_Channel[2], RC_Channel[3] );
+
 	  ICM42688_Get6AxisRawData();
 
 	  // SRXL2_reqSignalQuality();

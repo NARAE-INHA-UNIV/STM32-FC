@@ -11,6 +11,8 @@
 
 #include "main.h"
 
+#define SRXL_MAX_CHANNEL 		(32)
+
 // 컴파일러가 패딩하는 것을 방지
 typedef struct __attribute__((packed)){
 	uint8_t speckrum_id;
@@ -66,14 +68,34 @@ typedef struct __attribute__((packed)){
 	int8_t rssi;
 	uint16_t frameLosses;
 	uint32_t mask;
-	uint16_t values[32];
+	uint16_t values[SRXL_MAX_CHANNEL];
 } SRXL2_Channel_Data;
+
+typedef struct __attribute__((packed)){
+	int8_t rssiMin;
+	uint16_t holds;
+	uint32_t mask;
+	uint16_t values[SRXL_MAX_CHANNEL];
+} SRXL2_Channel_Failsafe;
+
+typedef struct __attribute__((packed)){
+	uint8_t band;
+	uint8_t channel;
+	uint8_t pit;
+	uint8_t power;
+	uint32_t powerDec;
+	uint8_t region;
+} SRXL2_Channel_VTX;
 
 typedef struct __attribute__((packed)){
 	SRXL2_Header header;
 	uint8_t Command;
 	uint8_t ReplyID;
-	SRXL2_Channel_Data data;
+	union {
+		SRXL2_Channel_Data data;
+		SRXL2_Channel_Failsafe failsafe;
+		SRXL2_Channel_VTX vtx;
+	};
 	uint16_t crc;
 } SRXL2_Control_Packet;
 

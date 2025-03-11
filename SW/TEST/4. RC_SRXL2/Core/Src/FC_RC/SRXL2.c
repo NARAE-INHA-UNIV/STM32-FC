@@ -12,37 +12,46 @@
 
 
 /* Variables -----------------------------------------------------------------*/
-uint8_t SRXL2_data[SRXL_MAX_BUFFER_SIZE];
+uint8_t SRXL2_data[SRXL_MAX_BUFFER_SIZE];	// packet 저장
+uint16_t SRXL2_Channel[SRXL_MAX_CHANNEL];	// RC Control Channel
+
 SRXL2_Packet packet;
 SRXL2_Handshake_Data receiver_info;
 
 
 /* driver_SRXL2.h ------------------------------------------------------------*/
 /*
- * 수신 데이터를 받기 위한 링버퍼 설정
+ * @brief 수신 데이터를 받기 위한 링버퍼 설정
  */
 int SRXL2_Initialization(void){
 	while(RB_init(&RC_rxRingFifo, SRXL2_RING_BUFFER_SIZE));
+
+	RC_Channel = SRXL2_Channel;
+	RC_ChannelNum = SRXL_MAX_CHANNEL;
 
 	return 0;
 }
 
 
 /*
- * 수신기와 연결하기 위한 Handshake 절차 수행
- * 텔레메트리 장치 포함 범용적 설계 필요
- *
- * + Handshake만 제대로 하면 Bind 없이 Control Packet 보내는듯.
- * 데이터시트에 의하면 Handshake 과정에 다른 패킷이 전송되면 바로 Control 패킷 보내도록 함
+ * @brief 수신기와 연결
+ * @detail 수신기와 연결하기 위한 Handshake 절차 수행
  */
 int SRXL2_Connect(void){
+	SRXL2_Header *header = &packet.header;
 	SRXL2_Handshake_Data* rx_handshake;
 
 	while(1)
 	{
-		SRXL2_GetData();
-		if(packet.header.pType == SRXL_HANDSHAKE_ID)
+		if(SRXL2_readByte() != 0) continue;
+		if(calculate_crc(SRXL2_data, header->len) != packet.crc) continue;
+
+		//if(packet.header.pType == SRXL_HANDSHAKE_ID)
+		switch(packet.header.pType)
 		{
+		case SRXL_CTRL_ID:
+			return 2;
+		case SRXL_HANDSHAKE_ID:
 			rx_handshake = &(((SRXL2_Handshake_Packet *) SRXL2_data)->data);
 
 			// 수신기의 ID를 가져옴
@@ -53,7 +62,12 @@ int SRXL2_Connect(void){
 				receiver_info.UID = rx_handshake->UID;
 				break;
 			}
+			break;
+		default:
+			continue;
 		}
+
+		break;
 	}
 
 	uint8_t tx_packet_fc[14] ={
@@ -92,7 +106,8 @@ int SRXL2_GetData(){
 	case SRXL_HANDSHAKE_ID :
 		break;
 	case SRXL_CTRL_ID :
-		SRXL2_SendTelemetryData();
+		SRXL2_parseControlData();
+		// SRXL2_SendTelemetryData();
 		break;
 	}
 	return 0;
@@ -102,9 +117,9 @@ int SRXL2_GetData(){
 
 /* SRXL2.h -------------------------------------------------------------------*/
 /*
- * 수신 인터럽트 IRQ 2
- * - IRQ1에서 수신 데이터 링버퍼에 저장
- * - IRQ2 해당 함수에서 링버퍼 데이터 로딩 및 SRXL2_data에 저장
+ * @brief 수신 인터럽트 IRQ 2
+ * @detail IRQ1에서 수신 데이터 링버퍼에 저장.
+ * 		   IRQ2 해당 함수에서 링버퍼 데이터 로딩 및 SRXL2_data에 저장
  * @retval 0 : 수신 완료
  * @retval -1 : 수신 인터럽트 없음
  * @retval -2 : 링버퍼 오류
@@ -159,17 +174,40 @@ int SRXL2_readByte(void){
 
 
 /*
- * ControlData 정보 파싱 및 RC_Channel[]에 전달
+ * @brief ControlData 파싱
+ * @detail ControlData 파싱 후 RC_Channel[]에 전달
  */
 int SRXL2_parseControlData(void)
 {
+	SRXL2_Control_Packet *rx = (SRXL2_Control_Packet*)SRXL2_data;
+
+	// if(rx->Command == SRXL_CTRL_CMD_VTX)
+	// if(rx->Command == SRXL_CTRL_CMD_FWDPGM)
+
+	uint8_t channelCnt = 0;
+	for(int i=0; i<SRXL_MAX_CHANNEL; i++)
+	{
+		if((rx->data.mask>>i)&0x01)
+		{
+			RC_Channel[i] = rx->data.values[channelCnt];
+		}
+	}
+
+	// rssi, frameLoss, Fail-safe 기능 등 구현
+	switch(rx->Command){
+	case SRXL_CTRL_CMD_CHANNEL:
+		break;
+	case SRXL_CTRL_CMD_CHANNEL_FS:
+		break;
+	}
+
 	return 0;
 }
 
 
 /*
- * 장치간 Handshake 동작 수행
- * Bus내 연결된 장치 정보 알림
+ * @brief 장치간 Handshake 동작 수행
+ * 		  Bus내 연결된 장치 정보 알림
  *
  * @parm SRXL2_Handshake_Packet *packet
  * @retval 0 : 송신 완료

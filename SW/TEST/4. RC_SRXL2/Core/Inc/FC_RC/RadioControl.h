@@ -26,6 +26,8 @@ typedef struct {
 } RC_Receive_Flag;
 
 extern RC_Receive_Flag RC_rxFlag;
+extern uint16_t* RC_Channel;
+extern uint8_t RC_ChannelNum;
 
 
 /* Functions -----------------------------------------------------------------*/
