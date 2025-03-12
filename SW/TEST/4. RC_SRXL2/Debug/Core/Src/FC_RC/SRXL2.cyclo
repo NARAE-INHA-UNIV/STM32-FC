@@ -3,7 +3,7 @@
 ../Core/Src/FC_RC/SRXL2.c:96:5:SRXL2_GetData	5
 ../Core/Src/FC_RC/SRXL2.c:129:5:SRXL2_readByte	7
 ../Core/Src/FC_RC/SRXL2.c:180:5:SRXL2_parseControlData	4
-../Core/Src/FC_RC/SRXL2.c:217:5:SRXL2_doHandshake	5
-../Core/Src/FC_RC/SRXL2.c:253:5:SRXL2_doBind	1
-../Core/Src/FC_RC/SRXL2.c:280:10:calculate_crc	4
-../Core/Src/FC_RC/SRXL2.c:303:10:insert_crc	1
+../Core/Src/FC_RC/SRXL2.c:218:5:SRXL2_doHandshake	5
+../Core/Src/FC_RC/SRXL2.c:254:5:SRXL2_doBind	1
+../Core/Src/FC_RC/SRXL2.c:281:10:calculate_crc	4
+../Core/Src/FC_RC/SRXL2.c:304:10:insert_crc	1

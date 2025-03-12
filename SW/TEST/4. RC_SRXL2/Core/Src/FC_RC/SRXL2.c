@@ -190,6 +190,7 @@ int SRXL2_parseControlData(void)
 		if((rx->data.mask>>i)&0x01)
 		{
 			RC_Channel[i] = rx->data.values[channelCnt];
+			channelCnt++;
 		}
 	}
 
