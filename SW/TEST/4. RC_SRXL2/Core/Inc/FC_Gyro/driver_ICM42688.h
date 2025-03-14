@@ -15,7 +15,7 @@
  * @brief ICM42688 structure definition.
  */
 
-typedef struct _ICM42688{
+typedef struct __attribute__((packed)){
 	short temperature_raw;
 	short acc_x_raw;
 	short acc_y_raw;
@@ -30,13 +30,13 @@ typedef struct _ICM42688{
 	float gyro_x;
 	float gyro_y;
 	float gyro_z;
-}Struct_ICM42688;
+} GYRO_ICM42688;
 
 /**
  * @brief ICM42688 structure definition.
  */
 
-extern Struct_ICM42688 ICM42688;
+extern GYRO_ICM42688 ICM42688;
 extern int32_t gyro_x_offset, gyro_y_offset, gyro_z_offset;
 
 /**

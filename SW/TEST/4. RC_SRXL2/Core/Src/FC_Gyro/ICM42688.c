@@ -25,7 +25,7 @@
 #include <FC_Gyro/ICM42688.h>
 #include <FC_Gyro/driver_ICM42688.h>
 
-Struct_ICM42688 ICM42688;
+GYRO_ICM42688 ICM42688;
 int32_t gyro_x_offset, gyro_y_offset, gyro_z_offset; // To remove offset
 
 

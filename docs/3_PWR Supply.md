@@ -42,10 +42,9 @@ USB 선을 통해 공급할 수 있는 전력의 한계가 있으므로, 별도�
 
 파워 모듈은 보드의 `POWER` 커넥터에 연결한다.
 
-![](./img/3_3_1.jpg){: width="300px" height="300px"}
+![](./img/3_3_1.jpg)
 
-
-![](./img/3_3_2.jpg){: width="300px" height="300px"}
+![](./img/3_3_2.jpg)
 
 ## 3. ESC를 통한 공급
 
@@ -62,5 +61,5 @@ BEC가 내장된 ESC로부터 전원을 공급받는 방법으로, 가장 간단
 
 PWM 단자 중 왼쪽 두 개는 `RCIN`과 `RSSI` 이므로 사용하면 안된다. `AUX`과 `MAIN`의 `SERVO OUT`에 연결하여 사용한다.
 
-![](./img/3_4_1.jpg){: width="300px" height="300px"}
-![](./img/3_4_2.jpg){: width="300px" height="300px"}
+![](./img/3_4_1.jpg)
+![](./img/3_4_2.jpg)

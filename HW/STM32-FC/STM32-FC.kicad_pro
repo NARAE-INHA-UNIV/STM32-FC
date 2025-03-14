@@ -539,10 +539,10 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "",
+      "plot": "../../../../Downloads/anti-vibration-platform-for-pixhawk-and-apm-1.snapshot.2/PCB/",
       "pos_files": "",
       "specctra_dsn": "freerouting/STM32-FC.dsn",
-      "step": "",
+      "step": "STM32-FC.step",
       "svg": "",
       "vrml": ""
     },
@@ -701,6 +701,42 @@
           "group_by": false,
           "label": "Description",
           "name": "Description",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "JLC",
+          "name": "JLC",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Height",
+          "name": "Height",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Manufacturer_Name",
+          "name": "Manufacturer_Name",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Manufacturer_Part_Number",
+          "name": "Manufacturer_Part_Number",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "JAK Electronics Part Number",
+          "name": "JAK Electronics Part Number",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "JAK Electronics Price/Stock",
+          "name": "JAK Electronics Price/Stock",
           "show": false
         }
       ],

@@ -13,10 +13,11 @@
 
 /* Variables -----------------------------------------------------------------*/
 uint8_t SRXL2_data[SRXL_MAX_BUFFER_SIZE];	// packet 저장
-uint16_t SRXL2_Channel[SRXL_MAX_CHANNEL];	// RC Control Channel
 
 SRXL2_Packet packet;
 SRXL2_Handshake_Data receiver_info;
+
+uint8_t SRXL_FC_DEVICE_ID = 0x30;
 
 
 /* driver_SRXL2.h ------------------------------------------------------------*/
@@ -25,9 +26,6 @@ SRXL2_Handshake_Data receiver_info;
  */
 int SRXL2_Initialization(void){
 	while(RB_init(&RC_rxRingFifo, SRXL2_RING_BUFFER_SIZE));
-
-	RC_Channel = SRXL2_Channel;
-	RC_ChannelNum = SRXL_MAX_CHANNEL;
 
 	return 0;
 }
@@ -39,27 +37,27 @@ int SRXL2_Initialization(void){
  */
 int SRXL2_Connect(void){
 	SRXL2_Header *header = &packet.header;
-	SRXL2_Handshake_Data* rx_handshake;
+	SRXL2_Handshake_Data* rx;
+	SRXL2_Handshake_Packet tx_packet;
 
 	while(1)
 	{
 		if(SRXL2_readByte() != 0) continue;
 		if(calculate_crc(SRXL2_data, header->len) != packet.crc) continue;
 
-		//if(packet.header.pType == SRXL_HANDSHAKE_ID)
 		switch(packet.header.pType)
 		{
 		case SRXL_CTRL_ID:
 			return 2;
 		case SRXL_HANDSHAKE_ID:
-			rx_handshake = &(((SRXL2_Handshake_Packet *) SRXL2_data)->data);
+			rx = &(((SRXL2_Handshake_Packet *) SRXL2_data)->data);
 
 			// 수신기의 ID를 가져옴
-			if((rx_handshake->SrcID)>>4 == 0x1)
+			if((rx->SrcID)>>4 == 0x1)
 			{
-				receiver_info.SrcID = rx_handshake->SrcID;
-				receiver_info.Info = rx_handshake->Info;
-				receiver_info.UID = rx_handshake->UID;
+				receiver_info.SrcID = rx->SrcID;
+				receiver_info.Info = rx->Info;
+				receiver_info.UID = rx->UID;
 				break;
 			}
 			break;
@@ -70,21 +68,20 @@ int SRXL2_Connect(void){
 		break;
 	}
 
-	uint8_t tx_packet_fc[14] ={
-			SPEKTRUM_SRXL_ID,
-			SRXL_HANDSHAKE_ID,
-			0x0e,
-			SRXL_FC_DEVICE_ID,				// 장치 ID. 0x30 : FC master로 설정
-			receiver_info.SrcID,			// 타겟 ID. 수신기
-			0x60,							// 우선 순위(높을 수록 응답 요구 빈도 증가. max=100)
-			SRXL_BAUD_115200,				// Baud
-			0x01,							// Info
-			0x12, 0x34, 0x56, 0x78, 		// UID (32-bit).
-			0x00, 0x00						// CRC. SRXL2_doHandshake에서 자동 생성함.
-	};
+	tx_packet.header.speckrum_id = SPEKTRUM_SRXL_ID;
+	tx_packet.header.pType = SRXL_HANDSHAKE_ID;
+	tx_packet.header.len = sizeof(SRXL2_Handshake_Packet);
 
-	while(SRXL2_doHandshake((SRXL2_Handshake_Packet *)tx_packet_fc));
-	// while(SRXL2_doBind());
+	tx_packet.data.SrcID = SRXL_FC_DEVICE_ID;
+	tx_packet.data.DestID = receiver_info.SrcID;
+	tx_packet.data.Priority = 0x60;
+	tx_packet.data.BaudRate = SRXL_BAUD_115200;
+	tx_packet.data.Info = 0x01;
+	tx_packet.data.UID = 0x12345678;
+
+	tx_packet.crc = 0x0000;
+
+	while(SRXL2_doHandshake(&tx_packet));
 
 	return 0;
 }
@@ -106,7 +103,7 @@ int SRXL2_GetData(){
 	case SRXL_HANDSHAKE_ID :
 		break;
 	case SRXL_CTRL_ID :
-		SRXL2_parseControlData();
+		SRXL2_parseControlData((SRXL2_Control_Packet*)SRXL2_data);
 		// SRXL2_SendTelemetryData();
 		break;
 	}
@@ -147,39 +144,47 @@ int SRXL2_readByte(void){
 
 	RC_rxFlag.uart = 0;
 
+	/*
+	 * SRXL2_data의 인덱스를 초과하는 문제가 발생하지 않도록 유의
+	 */
 	for(uint8_t cnt = 0; cnt < SRXL2_RING_BUFFER_SIZE; cnt++){
+		uint8_t value = RB_read(&RC_rxRingFifo);
 
-		SRXL2_data[cnt] = RB_read(&RC_rxRingFifo);
-
-		if(SRXL2_data[cnt] == SPEKTRUM_SRXL_ID){
-			cnt = 0;
+		if(value == SPEKTRUM_SRXL_ID){
 			SRXL2_data[0] = SPEKTRUM_SRXL_ID;
-		}
-
-		if(cnt>len && SRXL2_data[len] == cnt){
-			header->speckrum_id = SPEKTRUM_SRXL_ID;
-			header->pType = SRXL2_data[pType];
-			header->len = SRXL2_data[len];
-
-			rx->Data = SRXL2_data;
-			rx->crc = ((uint16_t)SRXL2_data[header->len -2] << 8 | SRXL2_data[header->len -1]);
-
-			// DEBUG
-			// CDC_Transmit_FS(SRXL2_data, header->len);
-			return 0;
+			break;
 		}
 	}
-	return -3;
+
+	for(uint8_t cnt = 1; cnt < SRXL_MAX_BUFFER_SIZE; cnt++){
+		SRXL2_data[cnt] = RB_read(&RC_rxRingFifo);
+		if(cnt>len && SRXL2_data[len] == cnt){
+			// DEBUG
+			// CDC_Transmit_FS(SRXL2_data, header->len);
+			break;
+		}
+	}
+
+	header->speckrum_id = SPEKTRUM_SRXL_ID;
+	header->pType = SRXL2_data[pType];
+	header->len = SRXL2_data[len];
+
+	rx->Data = SRXL2_data;
+	rx->crc = ((uint16_t)SRXL2_data[header->len -2] << 8 | SRXL2_data[header->len -1]);
+	return 0;
 }
 
 
 /*
  * @brief ControlData 파싱
- * @detail ControlData 파싱 후 RC_Channel[]에 전달
+ * @detail packet에서 ControlData 파싱 수행.
+ *		   data 정규화 수행.
+ *		   data 범위 조정(1000us~2000us), 반전, 트림, Dead-zone 적용.
+ * 		   RC_Channel[]에 저장
+ * @parm SRXL_Control_Pack *rx : (SRXL2_Control_Packet*)packet
  */
-int SRXL2_parseControlData(void)
+int SRXL2_parseControlData(SRXL2_Control_Packet *rx)
 {
-	SRXL2_Control_Packet *rx = (SRXL2_Control_Packet*)SRXL2_data;
 
 	// if(rx->Command == SRXL_CTRL_CMD_VTX)
 	// if(rx->Command == SRXL_CTRL_CMD_FWDPGM)
@@ -189,10 +194,35 @@ int SRXL2_parseControlData(void)
 	{
 		if((rx->data.mask>>i)&0x01)
 		{
-			RC_Channel[i] = rx->data.values[channelCnt];
+			uint16_t value = rx->data.values[channelCnt];
 			channelCnt++;
+
+			// RC 값 필터링 코드 작성
+			value = value<SRXL_CTRL_VALUE_MIN?SRXL_CTRL_VALUE_MIN:value;
+			value = value>SRXL_CTRL_VALUE_MAX?SRXL_CTRL_VALUE_MAX:value;
+
+			// Reverse 처리
+			if((PARM_rc.reversedMask>>i)&0x01)
+			{
+				RC_Channel[i] = map(value,
+						SRXL_CTRL_VALUE_MIN, SRXL_CTRL_VALUE_MAX,
+						PARM_rc.CHANNEL[i].MAX, PARM_rc.CHANNEL[i].MIN) + PARM_rc.CHANNEL[i].TRIM;
+			}
+			else{
+				RC_Channel[i] = map(value,
+						SRXL_CTRL_VALUE_MIN, SRXL_CTRL_VALUE_MAX,
+						PARM_rc.CHANNEL[i].MIN, PARM_rc.CHANNEL[i].MAX) + PARM_rc.CHANNEL[i].TRIM;
+			}
+
+			// Dead-zone 처리
+			if(RC_Channel[i]>(1500-PARM_rc.CHANNEL[i].DZ) && RC_Channel[i]<(1500+PARM_rc.CHANNEL[i].DZ)){
+				RC_Channel[i] = 1500;
+			}
 		}
 	}
+	RC_ChannelMask = rx->data.mask;
+
+	printf("%05d ", rx->data.values[0]);
 
 	// rssi, frameLoss, Fail-safe 기능 등 구현
 	switch(rx->Command){
@@ -217,7 +247,7 @@ int SRXL2_parseControlData(void)
  */
 int SRXL2_doHandshake(SRXL2_Handshake_Packet *tx_packet)
 {
-	SRXL2_Handshake_Data* rx_handshake;
+	SRXL2_Handshake_Data* rx;
 	SRXL2_Handshake_Data* data = &tx_packet->data;
 
 	uint8_t len = tx_packet->header.len;
@@ -228,9 +258,9 @@ int SRXL2_doHandshake(SRXL2_Handshake_Packet *tx_packet)
 		SRXL2_GetData();
 		if(packet.header.pType == SRXL_HANDSHAKE_ID)
 		{
-			rx_handshake = &(((SRXL2_Handshake_Packet *) SRXL2_data)->data);
+			rx = &(((SRXL2_Handshake_Packet *) SRXL2_data)->data);
 
-			if(rx_handshake->SrcID == data->DestID && rx_handshake->DestID == data->SrcID)
+			if(rx->SrcID == data->DestID && rx->DestID == data->SrcID)
 			{
 				break;
 			}
@@ -243,32 +273,19 @@ int SRXL2_doHandshake(SRXL2_Handshake_Packet *tx_packet)
 
 
 /*
- * 수신기와 Bind 동작 수행
- *
- * 기타 Bind 동작 수행 등 범용적 설계 필요
- *
- * @parm void -> SRXL2_Bind_Packet * 수정 필요
+ * @brief 수신기와 Bind 동작 수행
+ * @parm SRXL2_Bind_Packet * tx_packet
  * @retval 0 : 송신 완료
  * @retval -1 : 송신 실패
  */
-int SRXL2_doBind(void)
+int SRXL2_doBind(SRXL2_Bind_Packet* tx_packet)
 {
-	uint8_t bind_packet[21] =
-	{
-		SPEKTRUM_SRXL_ID,
-		SRXL_BIND_ID,
-		21,
-		0xEB,            // Request: Enter Bind Mode
-		0x30,            // DeviceID (Receiver)
-		0xA2,            // Type: DSMX 22ms
-		0x01,            // Options: Telemetry 활성화
-		0x12, 0x34, 0x56, 0x78, 0x9A, 0xBC, 0xDE, 0xF0,  // GUID (64-bit)
-		0x12, 0x34, 0x56, 0x78,  // UID (32-bit)
-		0x00, 0x00   // CRC 자리 (계산 후 입력)
-	};
-	insert_crc(bind_packet, sizeof(bind_packet));
+	uint8_t len = tx_packet->header.len;
+	if(sizeof(*tx_packet) != len) return -2;
 
-	return RC_halfDuplex_Transmit(bind_packet, sizeof(bind_packet));
+	insert_crc(tx_packet, len);
+
+	return RC_halfDuplex_Transmit(tx_packet, len);
 }
 
 

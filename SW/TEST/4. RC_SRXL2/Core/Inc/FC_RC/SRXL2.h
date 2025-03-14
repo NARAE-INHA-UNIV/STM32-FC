@@ -26,25 +26,26 @@
 #define SRXL_MAX_DEVICES        (16)
 #define SRXL2_RING_BUFFER_SIZE	(128)
 
-#define SRXL_FC_DEVICE_ID		(0x30)
 
+#define SRXL_CTRL_VALUE_MIN 	(10912)
+#define SRXL_CTRL_VALUE_MAX 	(54612)
 
 
 /* Variables -----------------------------------------------------------------*/
 extern uint8_t SRXL2_data[SRXL_MAX_BUFFER_SIZE];
-extern uint16_t SRXL2_Channel[SRXL_MAX_CHANNEL];
 
 extern SRXL2_Packet packet;
 extern SRXL2_Handshake_Data receiver_info;
+extern uint8_t SRXL_FC_DEVICE_ID;
 
 
 /* Functions -----------------------------------------------------------------*/
 int SRXL2_readByte(void);
 // int	SRXL2_parseHandshakeData(SRXL2_Packet *rx);
-int SRXL2_parseControlData(void);
+int SRXL2_parseControlData(SRXL2_Control_Packet *rx);
 
-int SRXL2_doHandshake(SRXL2_Handshake_Packet *packet);
-int SRXL2_doBind(void);
+int SRXL2_doHandshake(SRXL2_Handshake_Packet *tx_packet);
+int SRXL2_doBind(SRXL2_Bind_Packet* tx_packet);
 
 // int SRXL2_Transmit(uint8_t *data, uint8_t len);
 uint16_t calculate_crc(const uint8_t *data, uint8_t len);

@@ -16,6 +16,10 @@
 #include <FC_Basic/RingBuffer.h>
 
 
+/* Macro ---------------------------------------------------------------------*/
+#define RC_CHANNEL_MAX (32)
+
+
 /* Variables -----------------------------------------------------------------*/
 extern RingFifo_t RC_rxRingFifo;
 
@@ -26,11 +30,38 @@ typedef struct {
 } RC_Receive_Flag;
 
 extern RC_Receive_Flag RC_rxFlag;
-extern uint16_t* RC_Channel;
-extern uint8_t RC_ChannelNum;
+
+typedef struct __attribute__((packed)){
+	uint16_t PROTOCOLS;
+	float FS_TIMEOUT;
+	uint32_t reversedMask;
+
+	struct __attribute__((packed)){
+		uint16_t MIN;
+		uint16_t MAX;
+		uint16_t TRIM;
+		uint8_t DZ;
+		uint16_t OPTION;
+	} CHANNEL[RC_CHANNEL_MAX];
+
+	struct __attribute__((packed)){
+		uint8_t THR;
+		uint8_t ROL;
+		uint8_t PIT;
+		uint8_t YAW;
+	} MAP;
+} PARM_RC;
+
+extern PARM_RC PARM_rc;
+
+extern uint16_t RC_Channel[RC_CHANNEL_MAX];
+extern uint32_t RC_ChannelMask;
+
+// extern uint16_t* RC_Channel;
 
 
 /* Functions -----------------------------------------------------------------*/
 int RC_halfDuplex_Transmit(uint8_t *data, uint8_t len);
+uint16_t map(uint16_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max);
 
 #endif /* INC_FC_RC_RADIOCONTROL_H_ */

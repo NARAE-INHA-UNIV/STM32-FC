@@ -2,4 +2,5 @@
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h:2426:22:LL_USART_TransmitData8	1
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h:881:22:LL_GPIO_SetOutputPin	1
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h:910:22:LL_GPIO_ResetOutputPin	1
-../Core/Src/FC_RC/RadioControl.c:42:5:RC_halfDuplex_Transmit	4
+../Core/Src/FC_RC/RadioControl.c:43:5:RC_halfDuplex_Transmit	4
+../Core/Src/FC_RC/RadioControl.c:72:10:map	1

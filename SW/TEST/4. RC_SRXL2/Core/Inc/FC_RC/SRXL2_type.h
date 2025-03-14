@@ -20,11 +20,6 @@ typedef struct __attribute__((packed)){
 	uint8_t len;
 } SRXL2_Header;
 
-typedef struct __attribute__((packed)){
-	SRXL2_Header header;
-	uint8_t *Data;
-	uint16_t crc;
-} SRXL2_Packet;
 
 
 //      7.2 Handshake Packet
@@ -45,6 +40,20 @@ typedef struct __attribute__((packed)){
 
 
 //      7.3 Bind Info Packet
+typedef struct __attribute__((packed)){
+	uint8_t Request;
+	uint8_t DeviceID;
+	uint8_t Type;
+	uint8_t option;
+	uint64_t GUID;
+	uint32_t UID;
+} SRXL2_Bind_Data;
+
+typedef struct __attribute__((packed)){
+	SRXL2_Header header;
+	SRXL2_Bind_Data data;
+	uint16_t crc;
+}SRXL2_Bind_Packet;
 
 
 //      7.5 Signal Quality Packet
@@ -98,6 +107,19 @@ typedef struct __attribute__((packed)){
 	};
 	uint16_t crc;
 } SRXL2_Control_Packet;
+
+
+// Common
+typedef struct __attribute__((packed)){
+	SRXL2_Header header;
+	union {
+		uint8_t *Data;
+		SRXL2_Handshake_Data HandS;
+		SRXL2_Bind_Data Bind;
+		SRXL2_SignalQuality_Data SigQ;
+	};
+	uint16_t crc;
+} SRXL2_Packet;
 
 
 #endif /* INC_FC_RC_SRXL2_TYPE_H_ */

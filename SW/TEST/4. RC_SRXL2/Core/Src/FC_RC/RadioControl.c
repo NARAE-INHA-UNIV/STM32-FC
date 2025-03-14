@@ -24,8 +24,9 @@ RingFifo_t RC_rxRingFifo;
  * @parm uint8_t uart 		: UART1 수신 인터럽트 (1bit)
  */
 RC_Receive_Flag RC_rxFlag;
-uint16_t* RC_Channel;
-uint8_t RC_ChannelNum;
+
+uint16_t RC_Channel[RC_CHANNEL_MAX];
+uint32_t RC_ChannelMask;
 
 
 /* Functions -----------------------------------------------------------------*/
@@ -58,3 +59,16 @@ int RC_halfDuplex_Transmit(uint8_t *data, uint8_t len)
 	return 0;
 }
 
+
+/*
+ * @brief 입력 값의 범위를 바꾸는 mapping 함수
+ * @parm uint16_t x : input
+ * @parm uint16_t in_min : x의 최솟값
+ * @parm uint16_t in_max : x의 최댓값
+ * @parm uint16_t out_min : x의 최솟값
+ * @parm uint16_t out_max : x의 최댓값
+ * @retVal uint16_t : 변환 값
+ */
+uint16_t map(uint16_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max) {
+    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}

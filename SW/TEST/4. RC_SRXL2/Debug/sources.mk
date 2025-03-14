@@ -22,6 +22,7 @@ C_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+Core/Inc/FC_RC \
 Core/Src/FC_Basic \
 Core/Src/FC_Gyro \
 Core/Src/FC_RC \
