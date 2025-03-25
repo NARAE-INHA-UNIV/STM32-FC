@@ -6496,7 +6496,7 @@
 	)
 	(wire
 		(pts
-			(xy 139.7 121.92) (xy 149.86 121.92)
+			(xy 139.7 127) (xy 149.86 127)
 		)
 		(stroke
 			(width 0)
@@ -6573,6 +6573,16 @@
 			(type default)
 		)
 		(uuid "4014f15d-2fd6-4759-90dc-ab2769ec18aa")
+	)
+	(wire
+		(pts
+			(xy 139.7 121.92) (xy 149.86 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "41c8ca0e-ddda-435f-8ccb-2e7a34046310")
 	)
 	(wire
 		(pts
@@ -6873,6 +6883,16 @@
 			(type default)
 		)
 		(uuid "62f20c0b-d233-4180-9abd-1d3410a0a435")
+	)
+	(wire
+		(pts
+			(xy 139.7 124.46) (xy 149.86 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "63765052-76d8-4b89-abd8-a193308b2c8b")
 	)
 	(wire
 		(pts
@@ -9259,6 +9279,16 @@
 		)
 		(uuid "5198c0f3-d0dd-4348-9e95-c59b8840f345")
 	)
+	(label "GYRO1_INT"
+		(at 149.86 121.92 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right bottom)
+		)
+		(uuid "51af6b23-859c-4f99-9d6a-aeae99a37b00")
+	)
 	(label "PM_CURRENT"
 		(at 149.86 29.21 180)
 		(effects
@@ -9779,6 +9809,16 @@
 		)
 		(uuid "966a6936-cc39-4508-8fb8-8a618534faa3")
 	)
+	(label "GYRO2_INT"
+		(at 149.86 124.46 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right bottom)
+		)
+		(uuid "99517ace-6e9e-4bd3-97d4-d820a8994415")
+	)
 	(label "FLASH_NSS"
 		(at 149.86 63.5 180)
 		(effects
@@ -10050,7 +10090,7 @@
 		(uuid "bcd93a58-e846-4217-bde2-e4d65a02b8b0")
 	)
 	(label "BARO_INT"
-		(at 149.86 121.92 180)
+		(at 149.86 127 180)
 		(effects
 			(font
 				(size 1 1)
@@ -18999,7 +19039,7 @@
 			(uuid "8681b911-0ae0-4913-a885-10bc30cdf8b6")
 		)
 		(pin "BARO_INT" output
-			(at 139.7 121.92 0)
+			(at 139.7 127 0)
 			(effects
 				(font
 					(size 1 1)
@@ -19007,6 +19047,26 @@
 				(justify right)
 			)
 			(uuid "0f5c0cdd-c6e6-43cb-8f21-b5f7cc9898a1")
+		)
+		(pin "GYRO2_INT" output
+			(at 139.7 124.46 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify right)
+			)
+			(uuid "e953e355-d512-4799-b968-709ab7ae8cb5")
+		)
+		(pin "GYRO1_INT" output
+			(at 139.7 121.92 0)
+			(effects
+				(font
+					(size 1 1)
+				)
+				(justify right)
+			)
+			(uuid "6b55cf50-1543-4ff6-a14c-98e19437f1ad")
 		)
 		(instances
 			(project "STM32-FC"

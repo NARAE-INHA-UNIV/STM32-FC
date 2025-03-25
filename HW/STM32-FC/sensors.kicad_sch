@@ -4358,6 +4358,28 @@
 		)
 		(uuid "2bbff2c7-9bfb-4e9f-9c36-bb7e044302ff")
 	)
+	(hierarchical_label "GYRO1_INT"
+		(shape output)
+		(at 44.45 44.45 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "3c7d88c0-3a56-40a6-9c3f-85f4a66ea152")
+	)
+	(hierarchical_label "GYRO2_INT"
+		(shape output)
+		(at 53.34 123.19 180)
+		(effects
+			(font
+				(size 1 1)
+			)
+			(justify right)
+		)
+		(uuid "4dd1c48f-aacf-41b1-8b58-6f21079edcb3")
+	)
 	(hierarchical_label "SS_SPI_MISO"
 		(shape output)
 		(at 50.8 161.29 180)

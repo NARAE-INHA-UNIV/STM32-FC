@@ -166,22 +166,19 @@ int main(void)
 		  // Do fail safe
 	  }
 
-	  printf("%04d %04d %04d %04d\n\r",
-			  RC_Channel[PARM_rc.MAP.THR],
-			  RC_Channel[PARM_rc.MAP.PIT],
-			  RC_Channel[PARM_rc.MAP.ROL],
-			  RC_Channel[PARM_rc.MAP.YAW]
-						 );
+//	  printf("%04d %04d %04d %04d\n\r",
+//			  RC_channel.value[PARM_rc.MAP.THR],
+//			  RC_channel.value[PARM_rc.MAP.PIT],
+//			  RC_channel.value[PARM_rc.MAP.ROL],
+//			  RC_channel.value[PARM_rc.MAP.YAW]
+//						 );
 
 	  ICM42688_Get6AxisRawData();
 
 	  // SRXL2_reqSignalQuality();
 	  // HAL_Delay(100);
 
-
-	  // printf("%d %d %d\n\r", ICM42688.gyro_x_raw, ICM42688.gyro_y_raw, ICM42688.gyro_z_raw);
-	  // printf("%d %d %d\n\r", ICM42688.acc_x_raw, ICM42688.acc_y_raw, ICM42688.acc_z_raw);
-
+	  //Log_Send();
 
 
     /* USER CODE END WHILE */

@@ -45,7 +45,7 @@ int SRXL2_Connect(void){
 		if(SRXL2_readByte() != 0) continue;
 		if(calculate_crc(SRXL2_data, header->len) != packet.crc) continue;
 
-		switch(packet.header.pType)
+		switch(header->pType)
 		{
 		case SRXL_CTRL_ID:
 			return 2;
@@ -92,12 +92,16 @@ int SRXL2_Connect(void){
  */
 int SRXL2_GetData(){
 	SRXL2_Header *header = &packet.header;
-	while(SRXL2_readByte())
-	{
-		if(calculate_crc(SRXL2_data, header->len) == packet.crc){
-			break;
-		}
+	do{
+		if(SRXL2_readByte() !=0) continue;
 	}
+	while(calculate_crc(SRXL2_data, header->len) != packet.crc);
+
+//	while(SRXL2_readByte()){
+//		if(calculate_crc(SRXL2_data, header->len) == packet.crc){
+//			break;
+//		}
+//	}
 
 	switch(header->pType){
 	case SRXL_HANDSHAKE_ID :
@@ -120,13 +124,12 @@ int SRXL2_GetData(){
  * @retval 0 : 수신 완료
  * @retval -1 : 수신 인터럽트 없음
  * @retval -2 : 링버퍼 오류
- * @retval -3 : 기타 오류
- * 			  : 링버퍼 크기 초과
+ * @retval -3 : CRC 불일치
  */
 int SRXL2_readByte(void){
-	// 단축어..
 	SRXL2_Packet *rx = &packet;
 	SRXL2_Header *header = &rx->header;
+
 	enum INDEX_PACKET {
 			pType = 1,
 			len = 2
@@ -141,7 +144,7 @@ int SRXL2_readByte(void){
 		return -2;
 	}
 
-
+	// flag clear
 	RC_rxFlag.uart = 0;
 
 	/*
@@ -158,9 +161,9 @@ int SRXL2_readByte(void){
 
 	for(uint8_t cnt = 1; cnt < SRXL_MAX_BUFFER_SIZE; cnt++){
 		SRXL2_data[cnt] = RB_read(&RC_rxRingFifo);
-		if(cnt>len && SRXL2_data[len] == cnt){
-			// DEBUG
-			// CDC_Transmit_FS(SRXL2_data, header->len);
+
+		if(cnt>len && SRXL2_data[len] == cnt+1){
+//		if(cnt>len && SRXL2_data[len] == cnt){
 			break;
 		}
 	}
@@ -171,6 +174,11 @@ int SRXL2_readByte(void){
 
 	rx->Data = SRXL2_data;
 	rx->crc = ((uint16_t)SRXL2_data[header->len -2] << 8 | SRXL2_data[header->len -1]);
+
+//	if(calculate_crc(SRXL2_data, header->len) != packet.crc){
+//		return -3;
+//	}
+
 	return 0;
 }
 
@@ -185,6 +193,8 @@ int SRXL2_readByte(void){
  */
 int SRXL2_parseControlData(SRXL2_Control_Packet *rx)
 {
+	PARM_RC *parm = &PARM_rc;
+	RC_Channel *rc = &RC_channel;
 
 	// if(rx->Command == SRXL_CTRL_CMD_VTX)
 	// if(rx->Command == SRXL_CTRL_CMD_FWDPGM)
@@ -202,27 +212,25 @@ int SRXL2_parseControlData(SRXL2_Control_Packet *rx)
 			value = value>SRXL_CTRL_VALUE_MAX?SRXL_CTRL_VALUE_MAX:value;
 
 			// Reverse 처리
-			if((PARM_rc.reversedMask>>i)&0x01)
+			if((parm->reversedMask>>i)&0x01)
 			{
-				RC_Channel[i] = map(value,
+				rc->value[i] = map(value,
 						SRXL_CTRL_VALUE_MIN, SRXL_CTRL_VALUE_MAX,
-						PARM_rc.CHANNEL[i].MAX, PARM_rc.CHANNEL[i].MIN) + PARM_rc.CHANNEL[i].TRIM;
+						parm->CHANNEL[i].MAX, parm->CHANNEL[i].MIN) + parm->CHANNEL[i].TRIM;
 			}
 			else{
-				RC_Channel[i] = map(value,
+				rc->value[i] = map(value,
 						SRXL_CTRL_VALUE_MIN, SRXL_CTRL_VALUE_MAX,
-						PARM_rc.CHANNEL[i].MIN, PARM_rc.CHANNEL[i].MAX) + PARM_rc.CHANNEL[i].TRIM;
+						parm->CHANNEL[i].MIN, parm->CHANNEL[i].MAX) + parm->CHANNEL[i].TRIM;
 			}
 
 			// Dead-zone 처리
-			if(RC_Channel[i]>(1500-PARM_rc.CHANNEL[i].DZ) && RC_Channel[i]<(1500+PARM_rc.CHANNEL[i].DZ)){
-				RC_Channel[i] = 1500;
+			if(rc->value[i]>(1500-parm->CHANNEL[i].DZ) && rc->value[i]<(1500+parm->CHANNEL[i].DZ)){
+				rc->value[i] = 1500;
 			}
 		}
 	}
-	RC_ChannelMask = rx->data.mask;
-
-	printf("%05d ", rx->data.values[0]);
+	rc->mask = rx->data.mask;
 
 	// rssi, frameLoss, Fail-safe 기능 등 구현
 	switch(rx->Command){
@@ -267,8 +275,8 @@ int SRXL2_doHandshake(SRXL2_Handshake_Packet *tx_packet)
 		}
 	}
 
-	insert_crc(tx_packet, len);
-	return RC_halfDuplex_Transmit(tx_packet, len);
+	insert_crc((uint8_t*)tx_packet, len);
+	return RC_halfDuplex_Transmit((uint8_t*)tx_packet, len);
 }
 
 
@@ -283,9 +291,9 @@ int SRXL2_doBind(SRXL2_Bind_Packet* tx_packet)
 	uint8_t len = tx_packet->header.len;
 	if(sizeof(*tx_packet) != len) return -2;
 
-	insert_crc(tx_packet, len);
+	insert_crc((uint8_t*)tx_packet, len);
 
-	return RC_halfDuplex_Transmit(tx_packet, len);
+	return RC_halfDuplex_Transmit((uint8_t*)tx_packet, len);
 }
 
 

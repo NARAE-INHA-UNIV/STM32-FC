@@ -16,10 +16,11 @@ RM := rm -rf
 -include Drivers/STM32F4xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/FC_RC/subdir.mk
+-include Core/Src/FC_Parameters/subdir.mk
+-include Core/Src/FC_Log/subdir.mk
 -include Core/Src/FC_Gyro/subdir.mk
 -include Core/Src/FC_Basic/subdir.mk
 -include Core/Src/subdir.mk
--include Core/Inc/FC_RC/subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)

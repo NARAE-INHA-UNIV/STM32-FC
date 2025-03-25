@@ -47,7 +47,6 @@ int SRXL2_parseControlData(SRXL2_Control_Packet *rx);
 int SRXL2_doHandshake(SRXL2_Handshake_Packet *tx_packet);
 int SRXL2_doBind(SRXL2_Bind_Packet* tx_packet);
 
-// int SRXL2_Transmit(uint8_t *data, uint8_t len);
 uint16_t calculate_crc(const uint8_t *data, uint8_t len);
 uint16_t insert_crc(uint8_t *data, uint8_t len);
 

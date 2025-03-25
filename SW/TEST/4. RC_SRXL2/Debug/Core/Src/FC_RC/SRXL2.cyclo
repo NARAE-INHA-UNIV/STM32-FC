@@ -1,9 +1,9 @@
 ../Core/Src/FC_RC/SRXL2.c:27:5:SRXL2_Initialization	2
 ../Core/Src/FC_RC/SRXL2.c:38:5:SRXL2_Connect	7
-../Core/Src/FC_RC/SRXL2.c:93:5:SRXL2_GetData	5
-../Core/Src/FC_RC/SRXL2.c:126:5:SRXL2_readByte	8
-../Core/Src/FC_RC/SRXL2.c:186:5:SRXL2_parseControlData	7
-../Core/Src/FC_RC/SRXL2.c:248:5:SRXL2_doHandshake	5
-../Core/Src/FC_RC/SRXL2.c:281:5:SRXL2_doBind	2
-../Core/Src/FC_RC/SRXL2.c:298:10:calculate_crc	4
-../Core/Src/FC_RC/SRXL2.c:321:10:insert_crc	1
+../Core/Src/FC_RC/SRXL2.c:93:5:SRXL2_GetData	4
+../Core/Src/FC_RC/SRXL2.c:129:5:SRXL2_readByte	8
+../Core/Src/FC_RC/SRXL2.c:194:5:SRXL2_parseControlData	7
+../Core/Src/FC_RC/SRXL2.c:256:5:SRXL2_doHandshake	5
+../Core/Src/FC_RC/SRXL2.c:289:5:SRXL2_doBind	2
+../Core/Src/FC_RC/SRXL2.c:306:10:calculate_crc	4
+../Core/Src/FC_RC/SRXL2.c:329:10:insert_crc	1

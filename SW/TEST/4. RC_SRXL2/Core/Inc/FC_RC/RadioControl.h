@@ -31,6 +31,7 @@ typedef struct {
 
 extern RC_Receive_Flag RC_rxFlag;
 
+
 typedef struct __attribute__((packed)){
 	uint16_t PROTOCOLS;
 	float FS_TIMEOUT;
@@ -54,10 +55,14 @@ typedef struct __attribute__((packed)){
 
 extern PARM_RC PARM_rc;
 
-extern uint16_t RC_Channel[RC_CHANNEL_MAX];
-extern uint32_t RC_ChannelMask;
 
-// extern uint16_t* RC_Channel;
+typedef struct __attribute__((packed)){
+	uint8_t rssi;
+	uint32_t mask;
+	uint16_t value[RC_CHANNEL_MAX];
+} RC_Channel;
+
+extern RC_Channel RC_channel;
 
 
 /* Functions -----------------------------------------------------------------*/

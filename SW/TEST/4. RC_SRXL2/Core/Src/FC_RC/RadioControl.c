@@ -25,8 +25,7 @@ RingFifo_t RC_rxRingFifo;
  */
 RC_Receive_Flag RC_rxFlag;
 
-uint16_t RC_Channel[RC_CHANNEL_MAX];
-uint32_t RC_ChannelMask;
+RC_Channel RC_channel;
 
 
 /* Functions -----------------------------------------------------------------*/

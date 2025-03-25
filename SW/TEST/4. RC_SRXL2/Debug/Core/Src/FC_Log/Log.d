@@ -1,4 +1,4 @@
-Core/Src/config_PARM.o: ../Core/Src/config_PARM.c \
+Core/Src/FC_Log/Log.o: ../Core/Src/FC_Log/Log.c ../Core/Inc/FC_Log/Log.h \
  ../Core/Inc/FC_RC/RadioControl.h ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
@@ -40,9 +40,8 @@ Core/Src/config_PARM.o: ../Core/Src/config_PARM.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_utils.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_pwr.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h \
- ../Core/Inc/FC_Basic/RingBuffer.h ../Core/Inc/FC_RC/SRXL2.h \
- ../Core/Inc/FC_RC/spm_srxl.h ../Core/Inc/FC_RC/SRXL2_type.h \
- ../Core/Inc/FC_RC/driver_SRXL2.h
+ ../Core/Inc/FC_Basic/RingBuffer.h ../Core/Inc/FC_Gyro/driver_ICM42688.h
+../Core/Inc/FC_Log/Log.h:
 ../Core/Inc/FC_RC/RadioControl.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -86,7 +85,4 @@ Core/Src/config_PARM.o: ../Core/Src/config_PARM.c \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_pwr.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:
 ../Core/Inc/FC_Basic/RingBuffer.h:
-../Core/Inc/FC_RC/SRXL2.h:
-../Core/Inc/FC_RC/spm_srxl.h:
-../Core/Inc/FC_RC/SRXL2_type.h:
-../Core/Inc/FC_RC/driver_SRXL2.h:
+../Core/Inc/FC_Gyro/driver_ICM42688.h:
