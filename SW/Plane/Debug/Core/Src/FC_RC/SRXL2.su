@@ -1,0 +1,10 @@
+../Core/Src/FC_RC/SRXL2.c:28:5:SRXL2_Initialization	8	static
+../Core/Src/FC_RC/SRXL2.c:39:5:SRXL2_Connect	32	static
+../Core/Src/FC_RC/SRXL2.c:94:5:SRXL2_GetData	16	static
+../Core/Src/FC_RC/SRXL2.c:126:5:SRXL2_readByte	32	static
+../Core/Src/FC_RC/SRXL2.c:191:5:SRXL2_parseControlData	56	static
+../Core/Src/FC_RC/SRXL2.c:268:5:SRXL2_doHandshake	32	static
+../Core/Src/FC_RC/SRXL2.c:303:5:SRXL2_doBind	24	static
+../Core/Src/FC_RC/SRXL2.c:320:10:calculate_crc	24	static
+../Core/Src/FC_RC/SRXL2.c:343:10:insert_crc	24	static
+../Core/Src/FC_RC/SRXL2.c:359:9:countSetBits	16	static

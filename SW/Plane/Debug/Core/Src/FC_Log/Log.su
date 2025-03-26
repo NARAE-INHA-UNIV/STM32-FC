@@ -1,0 +1,2 @@
+../Core/Src/FC_Log/Log.c:17:5:Log_Send	16	static
+../Core/Src/FC_Log/Log.c:38:5:Log_transmit	24	static
