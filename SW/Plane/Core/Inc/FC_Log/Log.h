@@ -11,20 +11,14 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <FC_RC/RadioControl.h>
-#include <FC_Gyro/driver_ICM42688.h>
+#include <GCS_MAVLink/GCS_Common.h>
+
 
 /* Variables -----------------------------------------------------------------*/
-/*
- * SYSTEM_TIME (2)
- * The system time is the time of the master clock, typically the computer clock of the main onboard computer.
- */
-typedef struct __attribute__((packed)){
-	uint64_t time_unix_usec;	// Timestamp (UNIX epoch time). (us)
-	uint32_t time_boot_ms;		// Timestamp (time since system boot). (ms)
-} SYSTEM_TIME;
-
 extern SYSTEM_TIME system_time;
+extern SERVO_OUTPUT_RAW servo_output_raw;
+extern RC_CHANNELS RC_channels;
+
 
 /* Functions -----------------------------------------------------------------*/
 int Log_Send();

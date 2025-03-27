@@ -42,9 +42,9 @@ Core/Src/FC_RC/SRXL2.o: ../Core/Src/FC_RC/SRXL2.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_pwr.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h \
  ../Core/Inc/FC_Basic/RingBuffer.h ../Core/Inc/FC_RC/RadioControl.h \
- ../Core/Inc/FC_RC/spm_srxl.h ../Core/Inc/FC_RC/SRXL2_type.h \
- ../Core/Inc/FC_RC/driver_SRXL2.h ../Core/Inc/FC_Log/Log.h \
- ../Core/Inc/FC_Gyro/driver_ICM42688.h
+ ../Core/Inc/GCS_MAVLink/GCS_Common.h ../Core/Inc/FC_RC/spm_srxl.h \
+ ../Core/Inc/FC_RC/SRXL2_type.h ../Core/Inc/FC_RC/driver_SRXL2.h \
+ ../Core/Inc/FC_Log/Log.h
 ../Core/Inc/FC_RC/SRXL2.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -90,8 +90,8 @@ Core/Src/FC_RC/SRXL2.o: ../Core/Src/FC_RC/SRXL2.c \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:
 ../Core/Inc/FC_Basic/RingBuffer.h:
 ../Core/Inc/FC_RC/RadioControl.h:
+../Core/Inc/GCS_MAVLink/GCS_Common.h:
 ../Core/Inc/FC_RC/spm_srxl.h:
 ../Core/Inc/FC_RC/SRXL2_type.h:
 ../Core/Inc/FC_RC/driver_SRXL2.h:
 ../Core/Inc/FC_Log/Log.h:
-../Core/Inc/FC_Gyro/driver_ICM42688.h:

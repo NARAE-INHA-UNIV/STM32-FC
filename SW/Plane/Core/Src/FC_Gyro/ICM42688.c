@@ -25,7 +25,6 @@
 #include <FC_Gyro/ICM42688.h>
 #include <FC_Gyro/driver_ICM42688.h>
 
-GYRO_ICM42688 ICM42688;
 int32_t gyro_x_offset, gyro_y_offset, gyro_z_offset; // To remove offset
 
 
@@ -208,17 +207,25 @@ int ICM42688_Initialization(void)
 
 void ICM42688_Get6AxisRawData()
 {
-	unsigned char data[14];
+	uint8_t data[14];
 
 	ICM42688_Readbytes(ACCEL_DATA_X1, 14, data);
 	
-	ICM42688.temperature_raw = (data[0] << 8) | data[1];
-	ICM42688.acc_x_raw = (data[2] << 8) | data[3];
-	ICM42688.acc_y_raw = (data[4] << 8) | data[5];
-	ICM42688.acc_z_raw = ((data[6] << 8) | data[7]);
-	ICM42688.gyro_x_raw = ((data[8] << 8) | data[9]);
-	ICM42688.gyro_y_raw = ((data[10] << 8) | data[11]);
-	ICM42688.gyro_z_raw = ((data[12] << 8) | data[13]);
+//	ICM42688.temperature_raw = (data[0] << 8) | data[1];
+//	ICM42688.acc_x_raw = (data[2] << 8) | data[3];
+//	ICM42688.acc_y_raw = (data[4] << 8) | data[5];
+//	ICM42688.acc_z_raw = ((data[6] << 8) | data[7]);
+//	ICM42688.gyro_x_raw = ((data[8] << 8) | data[9]);
+//	ICM42688.gyro_y_raw = ((data[10] << 8) | data[11]);
+//	ICM42688.gyro_z_raw = ((data[12] << 8) | data[13]);
+
+	raw_imu.temperature = (data[0] << 8) | data[1];
+	raw_imu.xacc = (data[2] << 8) | data[3];
+	raw_imu.yacc = (data[4] << 8) | data[5];
+	raw_imu.zacc = ((data[6] << 8) | data[7]);
+	raw_imu.xgyro = ((data[8] << 8) | data[9]);
+	raw_imu.ygyro = ((data[10] << 8) | data[11]);
+	raw_imu.zgyro = ((data[12] << 8) | data[13]);
 }
 /*
 

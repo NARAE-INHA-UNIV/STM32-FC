@@ -13,6 +13,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <main.h>
+#include <GCS_MAVLink/GCS_Common.h>
 #include <FC_Basic/RingBuffer.h>
 
 
@@ -22,6 +23,7 @@
 
 /* Variables -----------------------------------------------------------------*/
 extern RingFifo_t RC_rxRingFifo;
+extern RC_CHANNELS RC_channels;
 
 typedef struct {
 	uint8_t half_tx : 1;	/** 0 : 송신 아님, 1 : 송신 맞음 **/
@@ -56,21 +58,7 @@ typedef struct __attribute__((packed)){
 extern PARM_RC PARM_rc;
 
 
-/*
- * RC_CHANNELS (65)
- * The PPM values of the RC channels received.
- * The standard PPM modulation is as follows: 1000 microseconds: 0%, 2000 microseconds: 100%.
- * A value of UINT16_MAX implies the channel is unused.
- * Individual receivers/transmitters might violate this specification.
- */
-typedef struct __attribute__((packed)){
-	uint32_t time_boot_ms;	// Timestamp (time since system boot).
-	uint8_t chancount;		// Total number of RC channels being received. This can be larger than 18, indicating that more channels are available but not given in this message. This value should be 0 when no RC channels are available.
-	uint16_t value[18];		// RC channel value.
-	uint8_t rssi;			// Receive signal strength indicator in device-dependent units/scale. Values: [0-254], UINT8_MAX: invalid/unknown.
-} RC_CHANNELS;
 
-extern RC_CHANNELS RC_channels;
 
 
 /* Functions -----------------------------------------------------------------*/

@@ -25,8 +25,10 @@ SUBDIRS := \
 Core/Src/FC_Basic \
 Core/Src/FC_Gyro \
 Core/Src/FC_Log \
-Core/Src/FC_Parameters \
+Core/Src/FC_Param \
 Core/Src/FC_RC \
+Core/Src/FC_Servo \
+Core/Src/GCS_MAVLink \
 Core/Src \
 Core/Startup \
 Drivers/STM32F4xx_HAL_Driver/Src \

@@ -9,9 +9,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <FC_Log/Log.h>
+#include <GCS_MAVLink/GCS_Common.h>
 
-
-SYSTEM_TIME system_time;
 
 /* Functions -----------------------------------------------------------------*/
 int Log_Send()
@@ -24,7 +23,9 @@ int Log_Send()
 	previous_time = system_time.time_boot_ms;
 
 	while(1 == CDC_Transmit_FS(&code, sizeof(code))) {}
-	while(1 == CDC_Transmit_FS(&RC_channels, sizeof(RC_CHANNELS))) {}
+
+	Log_transmit(&servo_output_raw, sizeof(servo_output_raw));
+	// Log_transmit(&RC_channels, sizeof(RC_channels));
 	// while(1 == CDC_Transmit_FS(&RC_channels, sizeof(RC_CHANNELS))) {}
 	return 0;
 }
@@ -40,7 +41,6 @@ int Log_transmit(uint8_t* p, uint8_t len)
 {
 	uint16_t crc = calculate_crc(p, len);
 
-	while(1 == CDC_Transmit_FS(&len, sizeof(uint8_t))) {}
 	while(1 == CDC_Transmit_FS(p, len)) {}
 	while(1 == CDC_Transmit_FS((uint8_t*)&crc, sizeof(uint16_t))) {}
 	return len;

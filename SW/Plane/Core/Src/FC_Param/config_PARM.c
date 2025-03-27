@@ -15,12 +15,10 @@
 
 #include <FC_RC/RadioControl.h>
 #include <FC_RC/SRXL2.h>
+#include <FC_Param/Param.h>
 
-typedef struct __attribute__((packed)){
-	PARM_RC PARM_rc;
-	SRXL2_Handshake_Data SRXL2_Connect_Data;
-}PARM_ALL;
-
+extern SERVO parm_servo;
+extern SERVO_CH parm_servo_ch[32];
 
 enum RC_PARM_PROTOCOL{
 	All 	 = 0,
@@ -43,6 +41,8 @@ enum RC_PARM_PROTOCOL{
 };
 
 int PARM_load(void){
+	SERVO* servo = &parm_servo;
+	SERVO_CH* servo_ch = parm_servo_ch;
 	PARM_rc.PROTOCOLS = (0x1<<SRXL2);
 	PARM_rc.FS_TIMEOUT = 1.0;
 	PARM_rc.reversedMask = 0x00;
@@ -59,4 +59,20 @@ int PARM_load(void){
 	PARM_rc.MAP.ROL = 1;
 	PARM_rc.MAP.PIT = 2;
 	PARM_rc.MAP.YAW = 3;
+
+	servo->AUTO_TRIM = 0;
+	servo->DSHOT_ESC = 0;
+	servo->DSHOT_RATE = 0;
+	servo->RATE = 50;
+	servo->GPIO_MASK = 0xFF;
+	servo->RC_FS_MSK = 0xFF;
+	servo->_32_ENABLE = 0;
+
+	for(int i=0; i<32; i++){
+		servo_ch[i].FUNCTION = 0;
+		servo_ch[i].MAX = 2000;
+		servo_ch[i].MIN = 1000;
+		servo_ch[i].TRIM = 1500;
+		servo_ch[i].REVERSED = 0;
+	}
 }

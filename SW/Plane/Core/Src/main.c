@@ -25,12 +25,15 @@
 #include "usbd_cdc_if.h"
 
 #include <FC_Basic/driver_Buzzer.h>
+
+#include <FC_Gyro/driver_ICM42688.h>
+
 #include <FC_Log/Log.h>
 
 #include <FC_RC/RadioControl.h>
 #include <FC_RC/driver_SRXL2.h>
 
-#include <FC_Gyro/driver_ICM42688.h>
+#include <FC_Servo/driver_Servo.h>
 
 
 /* USER CODE END Includes */
@@ -152,7 +155,7 @@ int main(void)
   PARM_load();
 
   SRXL2_Initialization();
-  // Servo OUT 초기화
+  SERVO_Initialization();
   BuzzerPlayInit();
 
   // interrupt when finished receiving
@@ -164,6 +167,7 @@ int main(void)
   SRXL2_Connect();
   ICM42688_Initialization();
   BuzzerPlayOneCycle();
+  SERVO_doArm();
 
   /* USER CODE END 2 */
 
@@ -176,17 +180,11 @@ int main(void)
 		  // Do fail safe
 	  }
 
-//	  printf("%04d %04d %04d %04d\n\r",
-//			  RC_channel.value[PARM_rc.MAP.THR],
-//			  RC_channel.value[PARM_rc.MAP.PIT],
-//			  RC_channel.value[PARM_rc.MAP.ROL],
-//			  RC_channel.value[PARM_rc.MAP.YAW]
-//						 );
-
 	  ICM42688_Get6AxisRawData();
 
 	  // SRXL2_reqSignalQuality();
 
+	  SERVO_control();
 	  Log_Send();
 
 

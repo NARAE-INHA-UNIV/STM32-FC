@@ -25,7 +25,6 @@ RingFifo_t RC_rxRingFifo;
  */
 RC_Receive_Flag RC_rxFlag;
 
-RC_CHANNELS RC_channels;
 
 
 /* Functions -----------------------------------------------------------------*/

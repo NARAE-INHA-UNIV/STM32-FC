@@ -35,6 +35,9 @@ int SRXL2_Initialization(void){
 /*
  * @brief 수신기와 연결
  * @detail 수신기와 연결하기 위한 Handshake 절차 수행
+ * @parm none
+ * @retval 0 : 연결 완료
+ * @retval 2 : 이미 연결됨
  */
 int SRXL2_Connect(void){
 	SRXL2_Header *header = &packet.header;
