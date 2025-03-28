@@ -13,7 +13,7 @@
 ../Core/Src/stm32f4xx_it.c:188:6:PendSV_Handler	1
 ../Core/Src/stm32f4xx_it.c:201:6:SysTick_Handler	1
 ../Core/Src/stm32f4xx_it.c:222:6:USART1_IRQHandler	2
-../Core/Src/stm32f4xx_it.c:249:6:USART2_IRQHandler	2
-../Core/Src/stm32f4xx_it.c:269:6:TIM8_UP_TIM13_IRQHandler	2
-../Core/Src/stm32f4xx_it.c:287:6:UART5_IRQHandler	1
-../Core/Src/stm32f4xx_it.c:300:6:OTG_FS_IRQHandler	1
+../Core/Src/stm32f4xx_it.c:246:6:USART2_IRQHandler	2
+../Core/Src/stm32f4xx_it.c:266:6:TIM8_UP_TIM13_IRQHandler	2
+../Core/Src/stm32f4xx_it.c:284:6:UART5_IRQHandler	1
+../Core/Src/stm32f4xx_it.c:297:6:OTG_FS_IRQHandler	1

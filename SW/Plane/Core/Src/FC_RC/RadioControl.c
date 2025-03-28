@@ -53,9 +53,11 @@ int RC_GetData(void)
  */
 int RC_reviceIRQ2(const uint8_t data)
 {
+	// Half-Duplex에서 송신한 패킷을 무시
 	if(RC_rxFlag.half_tx == 1) return 1;
 
 	if(SRXL2_readByteIRQ2(data) == 0){
+		// 모든 바이트를 읽었는지 검사
 		RC_rxFlag.uart = 1;
 		RC_rxFlag.half_using = 0;
 	}
@@ -74,7 +76,6 @@ int RC_reviceIRQ2(const uint8_t data)
  */
 int RC_halfDuplex_Transmit(uint8_t *data, uint8_t len)
 {
-	LL_GPIO_SetOutputPin(GPS1_SW_LED_GPIO_Port, GPS1_SW_LED_Pin);
 	if(RC_rxFlag.half_using == 1) return -1;
 
 	RC_rxFlag.half_using = 1;
@@ -84,7 +85,8 @@ int RC_halfDuplex_Transmit(uint8_t *data, uint8_t len)
 		while(!LL_USART_IsActiveFlag_TXE(USART1));
 		LL_USART_TransmitData8(USART1, data[i]);
 	}
-	LL_GPIO_ResetOutputPin(GPS1_SW_LED_GPIO_Port, GPS1_SW_LED_Pin);
+
+	RC_rxFlag.half_tx = 0;
 	return 0;
 }
 

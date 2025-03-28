@@ -60,8 +60,6 @@ SRXL2_SignalQuality_Data SRXL2_reqSignalQuality()
  * (@ In Progress)
  * 수신기에서 Control 패킷에 ReplyID를 전송함.
  * ReplyID가 Handshake에서 등록한 ID와 같다면 데이터 전송
- * 통신 규칙에 따라 응답 요구 후 바로 답해야 함.
- * 그러나 위 규칙이 지켜지지 않음.
  *  0 : 전송 성공
  * -1 : 전송 실패
  */
@@ -75,6 +73,7 @@ int SRXL2_SendTelemetryData(void)
 		return -1;
 	}
 
+	// User Def 1
 	uint8_t telm_packet[22] =
 	{
 		SPEKTRUM_SRXL_ID,
@@ -94,7 +93,5 @@ int SRXL2_SendTelemetryData(void)
 	};
 	insert_crc(telm_packet, sizeof(telm_packet));
 
-
-	RC_halfDuplex_Transmit(telm_packet, sizeof(telm_packet));
-	return 0;
+	return RC_halfDuplex_Transmit(telm_packet, sizeof(telm_packet));
 }

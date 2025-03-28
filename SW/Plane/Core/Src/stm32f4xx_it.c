@@ -230,10 +230,7 @@ void USART1_IRQHandler(void)
 
 		RC_rxFlag.half_using = 1;
 
-		//LL_TIM_EnableCounter(TIM14);
-		//LL_TIM_SetCounter(TIM14, 0);
-
-		// RB_write(&RC_rxRingFifo, uart1_rx_data);
+		// IRQ2 수행
 		RC_reviceIRQ2(uart1_rx_data);
 	}
 

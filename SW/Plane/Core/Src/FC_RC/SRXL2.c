@@ -91,8 +91,8 @@ int SRXL2_GetData(){
 	case SRXL_HANDSHAKE_ID :
 		break;
 	case SRXL_CTRL_ID :
-		SRXL2_parseControlData((SRXL2_Control_Packet*)RC_Buffer);
 		// SRXL2_SendTelemetryData();
+		SRXL2_parseControlData((SRXL2_Control_Packet*)RC_Buffer);
 		break;
 	}
 	return 0;
@@ -199,15 +199,13 @@ int SRXL2_doHandshake(SRXL2_Handshake_Packet *tx_packet)
 	while(1)
 	{
 		if(SRXL2_isReceived()!=0) continue;
+		if(packet.header.pType != SRXL_HANDSHAKE_ID) continue;
 
-		if(packet.header.pType == SRXL_HANDSHAKE_ID)
+		rx = &(((SRXL2_Handshake_Packet *) RC_Buffer)->data);
+
+		if(rx->SrcID == data->DestID && rx->DestID == data->SrcID)
 		{
-			rx = &(((SRXL2_Handshake_Packet *) RC_Buffer)->data);
-
-			if(rx->SrcID == data->DestID && rx->DestID == data->SrcID)
-			{
-				break;
-			}
+			break;
 		}
 	}
 
@@ -254,29 +252,29 @@ int SRXL2_readByteIRQ2(const uint8_t data)
 	switch(cnt)
 	{
 	case 0:
-		if(data == 0xA6){
+		if(data == SPEKTRUM_SRXL_ID){
 			RC_Buffer[cnt] = data;
 			cnt++;
 		}
 		break;
 	case 1:
 		switch(data){
-		case 0x21:
+		case SRXL_HANDSHAKE_ID:
 			maxLen = 14;
 			break;
-		case 0x41:
+		case SRXL_BIND_ID:
 			maxLen = 21;
 			break;
-		case 0x50:
+		case SRXL_PARAM_ID:
 			maxLen = 14;
 			break;
-		case 0x55:
+		case SRXL_RSSI_ID:
 			maxLen = 10;
 			break;
-		case 0x80:
+		case SRXL_TELEM_ID:
 			maxLen = 22;
 			break;
-		case 0xCD:
+		case SRXL_CTRL_ID:
 			maxLen = 80;
 			break;
 		default :
