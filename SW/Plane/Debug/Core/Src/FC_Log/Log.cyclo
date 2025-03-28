@@ -1,2 +1,2 @@
-../Core/Src/FC_Log/Log.c:16:5:Log_Send	3
-../Core/Src/FC_Log/Log.c:40:5:Log_transmit	3
+../Core/Src/FC_Log/Log.c:16:5:Log_Send	2
+../Core/Src/FC_Log/Log.c:40:5:Log_transmit	1

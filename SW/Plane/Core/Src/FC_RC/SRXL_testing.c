@@ -41,7 +41,7 @@ SRXL2_SignalQuality_Data SRXL2_reqSignalQuality()
 		SRXL2_GetData();
 		if(packet.header.pType == SRXL_RSSI_REQ_SEND)
 		{
-			rx_data = &((SRXL2_SignalQuality_Packet*)SRXL2_data)->data;
+			rx_data = &((SRXL2_SignalQuality_Packet*)RC_Buffer)->data;
 			data.Request = rx_data->Request;
 			data.AntennaA = rx_data->AntennaA;
 			data.AntennaB = rx_data->AntennaB;
@@ -68,7 +68,7 @@ SRXL2_SignalQuality_Data SRXL2_reqSignalQuality()
 int SRXL2_SendTelemetryData(void)
 {
 	SRXL2_Control_Packet* rx_packet;
-	rx_packet = (SRXL2_Control_Packet *)SRXL2_data;
+	rx_packet = (SRXL2_Control_Packet *)RC_Buffer;
 
 	if(rx_packet->ReplyID != SRXL_FC_DEVICE_ID)
 	{

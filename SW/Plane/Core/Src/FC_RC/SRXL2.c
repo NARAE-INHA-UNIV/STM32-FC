@@ -13,25 +13,14 @@
 
 
 /* Variables -----------------------------------------------------------------*/
-uint8_t SRXL2_data[SRXL_MAX_BUFFER_SIZE];	// packet 저장
-
 SRXL2_Packet packet;
 SRXL2_Handshake_Data receiver_info;
 
-uint8_t SRXL_FC_DEVICE_ID = 0x30;
+const uint8_t SRXL_FC_DEVICE_ID = 0x30;
 
 
-/* driver_SRXL2.h ------------------------------------------------------------*/
-/*
- * @brief 수신 데이터를 받기 위한 링버퍼 설정
- */
-int SRXL2_Initialization(void){
-	while(RB_init(&RC_rxRingFifo, SRXL2_RING_BUFFER_SIZE));
 
-	return 0;
-}
-
-
+/* Functions -----------------------------------------------------------------*/
 /*
  * @brief 수신기와 연결
  * @detail 수신기와 연결하기 위한 Handshake 절차 수행
@@ -46,15 +35,14 @@ int SRXL2_Connect(void){
 
 	while(1)
 	{
-		if(SRXL2_readByte() != 0) continue;
-		if(calculate_crc(SRXL2_data, header->len) != packet.crc) continue;
+		if(SRXL2_isReceived()!=0) continue;
 
 		switch(header->pType)
 		{
 		case SRXL_CTRL_ID:
 			return 2;
 		case SRXL_HANDSHAKE_ID:
-			rx = &(((SRXL2_Handshake_Packet *) SRXL2_data)->data);
+			rx = &(((SRXL2_Handshake_Packet *) RC_Buffer)->data);
 
 			// 수신기의 ID를 가져옴
 			if((rx->SrcID)>>4 == 0x1)
@@ -96,89 +84,17 @@ int SRXL2_Connect(void){
  */
 int SRXL2_GetData(){
 	SRXL2_Header *header = &packet.header;
-	do{
-		if(SRXL2_readByte() !=0) continue;
-	}
-	while(calculate_crc(SRXL2_data, header->len) != packet.crc);
 
-//	while(SRXL2_readByte()){}
+	if(SRXL2_isReceived()!=0) return -1;
 
 	switch(header->pType){
 	case SRXL_HANDSHAKE_ID :
 		break;
 	case SRXL_CTRL_ID :
-		SRXL2_parseControlData((SRXL2_Control_Packet*)SRXL2_data);
+		SRXL2_parseControlData((SRXL2_Control_Packet*)RC_Buffer);
 		// SRXL2_SendTelemetryData();
 		break;
 	}
-	return 0;
-}
-
-
-
-/* SRXL2.h -------------------------------------------------------------------*/
-/*
- * @brief 수신 인터럽트 IRQ 2
- * @detail IRQ1에서 수신 데이터 링버퍼에 저장.
- * 		   IRQ2 해당 함수에서 링버퍼 데이터 로딩 및 SRXL2_data에 저장
- * @retval 0 : 수신 완료
- * @retval -1 : 수신 인터럽트 없음
- * @retval -2 : 링버퍼 오류
- * @retval -3 : CRC 불일치
- */
-int SRXL2_readByte(void){
-	SRXL2_Packet *rx = &packet;
-	SRXL2_Header *header = &rx->header;
-
-	enum INDEX_PACKET {
-			pType = 1,
-			len = 2
-	};
-
-	if(RC_rxFlag.uart == 0)
-	{
-		return -1;
-	}
-	if(RB_isempty(&RC_rxRingFifo))
-	{
-		return -2;
-	}
-
-	// flag clear
-	RC_rxFlag.uart = 0;
-
-	/*
-	 * SRXL2_data의 인덱스를 초과하는 문제가 발생하지 않도록 유의
-	 */
-	for(uint8_t cnt = 0; cnt < SRXL2_RING_BUFFER_SIZE; cnt++){
-		uint8_t value = RB_read(&RC_rxRingFifo);
-
-		if(value == SPEKTRUM_SRXL_ID){
-			SRXL2_data[0] = SPEKTRUM_SRXL_ID;
-			break;
-		}
-	}
-
-	for(uint8_t cnt = 1; cnt < SRXL_MAX_BUFFER_SIZE; cnt++){
-		SRXL2_data[cnt] = RB_read(&RC_rxRingFifo);
-
-		if(cnt>len && SRXL2_data[len] == cnt+1){
-//		if(cnt>len && SRXL2_data[len] == cnt){
-			break;
-		}
-	}
-
-	header->speckrum_id = SPEKTRUM_SRXL_ID;
-	header->pType = SRXL2_data[pType];
-	header->len = SRXL2_data[len];
-
-	rx->Data = SRXL2_data;
-	rx->crc = ((uint16_t)SRXL2_data[header->len -2] << 8 | SRXL2_data[header->len -1]);
-
-//	if(calculate_crc(SRXL2_data, header->len) != rx->crc){
-//		return -3;
-//	}
-
 	return 0;
 }
 
@@ -282,12 +198,11 @@ int SRXL2_doHandshake(SRXL2_Handshake_Packet *tx_packet)
 
 	while(1)
 	{
-//		if(SRXL2_readByte()) continue;
+		if(SRXL2_isReceived()!=0) continue;
 
-		SRXL2_GetData();
 		if(packet.header.pType == SRXL_HANDSHAKE_ID)
 		{
-			rx = &(((SRXL2_Handshake_Packet *) SRXL2_data)->data);
+			rx = &(((SRXL2_Handshake_Packet *) RC_Buffer)->data);
 
 			if(rx->SrcID == data->DestID && rx->DestID == data->SrcID)
 			{
@@ -318,6 +233,118 @@ int SRXL2_doBind(SRXL2_Bind_Packet* tx_packet)
 }
 
 
+/* Functions 2 ---------------------------------------------------------------*/
+/*
+ * @brief 수신 인터럽트 IRQ 2
+ * @detail UART IRQ1에서 호출됨
+ * 		   RC_Buffer에 저장
+ * @retval 0 : 패킷 전체 수신 완료
+ * @retval 1 : 1byte 수신 완료
+ * @retval -1 : 헤더 에러
+ * @retval -2 : 버퍼 설정 안됨
+ */
+int SRXL2_readByteIRQ2(const uint8_t data)
+{
+	static uint8_t cnt = 0;
+	static uint8_t maxLen = 0;
+
+	if(RC_isBufferInit()!=0) return -2;
+	if(cnt>=SRXL_MAX_BUFFER_SIZE) return -2;
+
+	switch(cnt)
+	{
+	case 0:
+		if(data == 0xA6){
+			RC_Buffer[cnt] = data;
+			cnt++;
+		}
+		break;
+	case 1:
+		switch(data){
+		case 0x21:
+			maxLen = 14;
+			break;
+		case 0x41:
+			maxLen = 21;
+			break;
+		case 0x50:
+			maxLen = 14;
+			break;
+		case 0x55:
+			maxLen = 10;
+			break;
+		case 0x80:
+			maxLen = 22;
+			break;
+		case 0xCD:
+			maxLen = 80;
+			break;
+		default :
+			cnt = 0;
+			return -1;
+		}
+		RC_Buffer[cnt] = data;
+		cnt++;
+		break;
+	default :
+		RC_Buffer[cnt] = data;
+
+		/*
+		 * Control Packet은 사이즈가 가변적임
+		 * 3번째 바이트가 패킷의 크기를 결정함
+		 */
+		if(maxLen == 80) maxLen = RC_Buffer[cnt];
+
+		if(cnt == maxLen-1){
+			cnt=0;
+			return 0;
+		}
+		else{
+			cnt++;
+		}
+		break;
+	}
+	return 1;
+}
+
+
+/*
+ * @brief 수신이 있는 지 확인
+ * @detail IRQ2가 실행되었는지 확인
+ * @retval 0 : 수신 완료
+ * @retval -1 : 수신 인터럽트 없음
+ * @retval -2 : CRC 불일치
+ */
+int SRXL2_isReceived(void){
+	SRXL2_Packet *rx = &packet;
+	SRXL2_Header *header = &rx->header;
+
+	if(RC_rxFlag.uart == 0)
+	{
+		return -1;
+	}
+
+	// flag clear
+	RC_rxFlag.uart = 0;
+
+	header->speckrum_id = SPEKTRUM_SRXL_ID;
+	header->pType = RC_Buffer[1];
+	header->len = RC_Buffer[2];
+
+	rx->Data = RC_Buffer;
+	rx->crc = ((uint16_t)RC_Buffer[header->len -2] << 8 | RC_Buffer[header->len -1]);
+
+	if(calculate_crc(RC_Buffer, header->len) != rx->crc){
+		return -2;
+	}
+
+	return 0;
+}
+
+
+
+
+/* Functions 3 ---------------------------------------------------------------*/
 /*
  * crc 계산
  * @parm const uint8_t* data : data address

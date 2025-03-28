@@ -25,6 +25,8 @@ Core/Src/FC_RC/RadioControl.o: ../Core/Src/FC_RC/RadioControl.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h \
@@ -41,7 +43,9 @@ Core/Src/FC_RC/RadioControl.o: ../Core/Src/FC_RC/RadioControl.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_utils.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_pwr.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h \
- ../Core/Inc/GCS_MAVLink/GCS_Common.h ../Core/Inc/FC_Basic/RingBuffer.h
+ ../Core/Inc/FC_RC/driver_RC.h ../Core/Inc/FC_RC/SRXL2.h \
+ ../Core/Inc/FC_Basic/RingBuffer.h ../Core/Inc/FC_RC/spm_srxl.h \
+ ../Core/Inc/FC_RC/SRXL2_type.h ../Core/Inc/GCS_MAVLink/GCS_Common.h
 ../Core/Inc/FC_RC/RadioControl.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -69,6 +73,8 @@ Core/Src/FC_RC/RadioControl.o: ../Core/Src/FC_RC/RadioControl.c \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h:
@@ -85,5 +91,9 @@ Core/Src/FC_RC/RadioControl.o: ../Core/Src/FC_RC/RadioControl.c \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_utils.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_pwr.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:
-../Core/Inc/GCS_MAVLink/GCS_Common.h:
+../Core/Inc/FC_RC/driver_RC.h:
+../Core/Inc/FC_RC/SRXL2.h:
 ../Core/Inc/FC_Basic/RingBuffer.h:
+../Core/Inc/FC_RC/spm_srxl.h:
+../Core/Inc/FC_RC/SRXL2_type.h:
+../Core/Inc/GCS_MAVLink/GCS_Common.h:

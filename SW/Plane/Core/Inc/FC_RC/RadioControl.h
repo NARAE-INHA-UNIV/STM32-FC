@@ -13,8 +13,11 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <main.h>
+#include <FC_RC/driver_RC.h>
+#include <FC_RC/SRXL2.h>
+
 #include <GCS_MAVLink/GCS_Common.h>
-#include <FC_Basic/RingBuffer.h>
+
 
 
 /* Macro ---------------------------------------------------------------------*/
@@ -22,8 +25,8 @@
 
 
 /* Variables -----------------------------------------------------------------*/
-extern RingFifo_t RC_rxRingFifo;
 extern RC_CHANNELS RC_channels;
+extern uint8_t* RC_Buffer;
 
 typedef struct {
 	uint8_t half_tx : 1;	/** 0 : 송신 아님, 1 : 송신 맞음 **/
@@ -62,7 +65,11 @@ extern PARM_RC PARM_rc;
 
 
 /* Functions -----------------------------------------------------------------*/
+int RC_reviceIRQ2(const uint8_t data);
 int RC_halfDuplex_Transmit(uint8_t *data, uint8_t len);
+
+int RC_isBufferInit(void);
+
 uint16_t map(uint16_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max);
 
 #endif /* INC_FC_RC_RADIOCONTROL_H_ */

@@ -75,4 +75,5 @@ int PARM_load(void){
 		servo_ch[i].TRIM = 1500;
 		servo_ch[i].REVERSED = 0;
 	}
+	return 0;
 }

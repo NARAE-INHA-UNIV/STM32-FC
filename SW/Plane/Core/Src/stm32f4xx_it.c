@@ -49,7 +49,6 @@
  * FC_RC/RadioControl.h
  * USART1
  */
-extern RingFifo_t RC_rxRingFifo;
 extern RC_Receive_Flag RC_rxFlag;
 
 
@@ -230,12 +229,12 @@ void USART1_IRQHandler(void)
 		uint8_t uart1_rx_data = LL_USART_ReceiveData8(USART1);
 
 		RC_rxFlag.half_using = 1;
-		RC_rxFlag.uart = 1;
 
-		LL_TIM_EnableCounter(TIM14);
-		LL_TIM_SetCounter(TIM14, 0);
+		//LL_TIM_EnableCounter(TIM14);
+		//LL_TIM_SetCounter(TIM14, 0);
 
-		RB_write(&RC_rxRingFifo, uart1_rx_data);
+		// RB_write(&RC_rxRingFifo, uart1_rx_data);
+		RC_reviceIRQ2(uart1_rx_data);
 	}
 
   /* USER CODE END USART1_IRQn 0 */
@@ -280,33 +279,6 @@ void TIM8_UP_TIM13_IRQHandler(void)
   /* USER CODE BEGIN TIM8_UP_TIM13_IRQn 1 */
 
   /* USER CODE END TIM8_UP_TIM13_IRQn 1 */
-}
-
-/**
-  * @brief This function handles TIM8 trigger and commutation interrupts and TIM14 global interrupt.
-  */
-void TIM8_TRG_COM_TIM14_IRQHandler(void)
-{
-  /* USER CODE BEGIN TIM8_TRG_COM_TIM14_IRQn 0 */
-	if(LL_TIM_IsActiveFlag_UPDATE(TIM14))
-	{
-
-		LL_TIM_ClearFlag_UPDATE(TIM14);
-
-		if(RC_rxFlag.half_using == 1 && RC_rxFlag.half_tx == 0){
-			RC_rxFlag.half_using = 0;
-			LL_TIM_SetCounter(TIM14, 0);
-		}
-		else{
-			RC_rxFlag.half_using = 1;
-			RC_rxFlag.half_tx = 0;
-			LL_TIM_DisableCounter(TIM14);
-		}
-	}
-  /* USER CODE END TIM8_TRG_COM_TIM14_IRQn 0 */
-  /* USER CODE BEGIN TIM8_TRG_COM_TIM14_IRQn 1 */
-
-  /* USER CODE END TIM8_TRG_COM_TIM14_IRQn 1 */
 }
 
 /**
