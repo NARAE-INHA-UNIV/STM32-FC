@@ -1,6 +1,5 @@
 Core/Src/FC_Log/Log.o: ../Core/Src/FC_Log/Log.c ../Core/Inc/FC_Log/Log.h \
- ../Core/Inc/GCS_MAVLink/GCS_Common.h ../Core/Inc/main.h \
- ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
+ ../Core/Inc/main.h ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
@@ -41,9 +40,9 @@ Core/Src/FC_Log/Log.o: ../Core/Src/FC_Log/Log.c ../Core/Inc/FC_Log/Log.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_utils.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_pwr.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h \
+ ../Core/Inc/GCS_MAVLink/GCS_Common.h \
  ../Core/Inc/GCS_MAVLink/MAVLink_MSG.h
 ../Core/Inc/FC_Log/Log.h:
-../Core/Inc/GCS_MAVLink/GCS_Common.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -86,4 +85,5 @@ Core/Src/FC_Log/Log.o: ../Core/Src/FC_Log/Log.c ../Core/Inc/FC_Log/Log.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_utils.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_pwr.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:
+../Core/Inc/GCS_MAVLink/GCS_Common.h:
 ../Core/Inc/GCS_MAVLink/MAVLink_MSG.h:

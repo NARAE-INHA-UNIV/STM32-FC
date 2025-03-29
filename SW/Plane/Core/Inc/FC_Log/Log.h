@@ -11,6 +11,10 @@
 
 
 /* Includes ------------------------------------------------------------------*/
+#include <main.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include <GCS_MAVLink/GCS_Common.h>
 
 

@@ -15,18 +15,14 @@
 /* Functions -----------------------------------------------------------------*/
 int Log_Send()
 {
-	const uint8_t code = 0xFD;
 	static uint32_t previous_time = 0;
 
 	// 4Hz 단위로 전송
 	if(!(system_time.time_boot_ms - previous_time > 250)) return -1;
 	previous_time = system_time.time_boot_ms;
 
-	CDC_Transmit_FS((uint8_t*)&code, sizeof(code));
-
 	Log_transmit((uint8_t*)&RC_channels, sizeof(RC_channels));
 	// Log_transmit((uint8_t *)&servo_output_raw, sizeof(servo_output_raw));
-	// while(1 == CDC_Transmit_FS(&RC_channels, sizeof(RC_CHANNELS))) {}
 	return 0;
 }
 
@@ -39,10 +35,28 @@ int Log_Send()
 extern uint16_t calculate_crc(const uint8_t *data, uint8_t len);
 int Log_transmit(uint8_t* p, uint8_t len)
 {
-	uint16_t crc = calculate_crc(p, len);
+    const uint8_t code = 0xFD;
 
-	CDC_Transmit_FS(p, len);
-	CDC_Transmit_FS((uint8_t*)&crc, sizeof(uint16_t));
-	return len;
+    uint8_t packetLen = len+sizeof(uint8_t)*3;
+    uint8_t* packet = malloc(packetLen);
+
+    memcpy(packet, &code, sizeof(uint8_t));
+    memcpy(packet + sizeof(uint8_t), p, len);
+
+    uint16_t crc = calculate_crc(packet, packetLen);
+
+    memcpy(packet + sizeof(uint8_t) + len, &crc, sizeof(uint16_t));
+
+	CDC_Transmit_FS(packet, packetLen);
+
+	for(int i=0; i<packetLen; i++)
+	{
+		while(!LL_USART_IsActiveFlag_TXE(USART2)){}
+		LL_USART_TransmitData8(USART2, packet[i]);
+	}
+
+    free(packet);
+
+	return packetLen;
 }
 
