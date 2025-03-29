@@ -69,6 +69,7 @@ int RC_reviceIRQ2(const uint8_t data);
 int RC_isBufferInit(void);
 
 int RC_checkThrottle(void);
+int RC_enterESCcalibration();
 int RC_setFailsafe(uint16_t protocol);
 
 int RC_halfDuplex_Transmit(uint8_t *data, uint8_t len);

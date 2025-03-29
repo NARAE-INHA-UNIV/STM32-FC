@@ -9,3 +9,4 @@
 ../Core/Src/FC_Servo/Servo.c:154:6:calculateServoOutput	3
 ../Core/Src/FC_Servo/Servo.c:177:6:controlPWM	11
 ../Core/Src/FC_Servo/Servo.c:220:6:SERVO_setFailsafe	1
+../Core/Src/FC_Servo/Servo.c:230:6:SERVO_doCalibrate	2

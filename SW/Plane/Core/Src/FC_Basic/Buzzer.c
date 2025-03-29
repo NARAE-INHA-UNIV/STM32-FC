@@ -65,3 +65,23 @@ void BuzzerDisableThrottleHigh(void)
 	return;
 }
 
+
+int BuzzerToggleThrottleHigh(uint16_t delayTime)
+{
+	static uint32_t previous_time = 0;
+	static uint8_t state = 0;
+	if(!(system_time.time_boot_ms - previous_time > delayTime)) return -1;
+	previous_time = system_time.time_boot_ms;
+
+	if(state)
+	{
+		LL_TIM_CC_DisableChannel(TIM4, LL_TIM_CHANNEL_CH3);
+		return 0;
+	}
+	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH3);
+	TIM4->ARR = 21;
+	TIM4->CCR3 = TIM4->ARR/2;
+	TIM4->PSC = 2000;
+
+	return 1;
+}

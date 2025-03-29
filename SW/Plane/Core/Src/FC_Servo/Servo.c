@@ -33,7 +33,7 @@ const uint8_t SERVO_TIMER_MAP[SERVO_CHANNEL_MAX] = {
  */
 void SERVO_Initialization(void)
 {
-	PARAM_SERVO* servo = &paramServo;
+	// PARAM_SERVO* servo = &paramServo;
 
 	LL_TIM_EnableCounter(TIM1);
 	LL_TIM_EnableCounter(TIM3);
@@ -223,5 +223,32 @@ void SERVO_setFailsafe(void)
 	TIM3->CCR1 = 1500;
 	TIM3->CCR2 = 1500;
 	TIM4->CCR4 = 1500;
+	return;
+}
+
+
+void SERVO_doCalibrate(uint8_t mode)
+{
+	if(mode)
+	{
+		configurePWM(50);
+
+		LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH2);
+		LL_TIM_CC_EnableChannel(TIM3, LL_TIM_CHANNEL_CH1);
+		LL_TIM_CC_EnableChannel(TIM3, LL_TIM_CHANNEL_CH2);
+		LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH4);
+
+		TIM4->CCR2 = 2000;
+		TIM3->CCR1 = 2000;
+		TIM3->CCR2 = 2000;
+		TIM4->CCR4 = 2000;
+	}
+	else
+	{
+		TIM4->CCR2 = 1000;
+		TIM3->CCR1 = 1000;
+		TIM3->CCR2 = 1000;
+		TIM4->CCR4 = 1000;
+	}
 	return;
 }

@@ -54,6 +54,9 @@ int RC_Initialization(void)
 
 	while(RC_checkThrottle()){
 		BuzzerEnableThrottleHigh();
+
+		// ESC Calibration
+		if(RC_enterESCcalibration()==0) break;
 	}
 
 	BuzzerDisableThrottleHigh();
@@ -162,6 +165,28 @@ int RC_checkThrottle(void)
 	return 0;
 }
 
+
+int RC_enterESCcalibration()
+{
+	static uint32_t previous_time = 0;
+
+	// 4Hz 단위로 전송
+	if(!(system_time.time_boot_ms - previous_time > 5000)) return 1;
+	previous_time = system_time.time_boot_ms;
+	BuzzerDisableThrottleHigh();
+
+	while(1)
+	{
+		while(SRXL2_getControlData()){}
+		if(RC_channels.value[paramRcMap.THR] > 1050){
+			SERVO_doCalibrate(1);
+			continue;
+		}
+		SERVO_doCalibrate(0);
+		break;
+	}
+	return 0;
+}
 
 /*
  * @brief Failsafe 모드로 진입

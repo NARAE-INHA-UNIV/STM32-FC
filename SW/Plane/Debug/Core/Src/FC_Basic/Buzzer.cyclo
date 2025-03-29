@@ -5,3 +5,4 @@
 ../Core/Src/FC_Basic/Buzzer.c:42:6:BuzzerPlayOneCycle	2
 ../Core/Src/FC_Basic/Buzzer.c:52:6:BuzzerEnableThrottleHigh	1
 ../Core/Src/FC_Basic/Buzzer.c:62:6:BuzzerDisableThrottleHigh	1
+../Core/Src/FC_Basic/Buzzer.c:69:5:BuzzerToggleThrottleHigh	3

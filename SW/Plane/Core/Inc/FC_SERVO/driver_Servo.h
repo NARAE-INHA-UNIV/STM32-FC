@@ -25,6 +25,7 @@ void SERVO_doDisarm(void);
 void SERVO_control(void);
 
 void SERVO_setFailsafe(void);
+void SERVO_doCalibrate(uint8_t mode);
 
 
 #endif /* INC_FC_SERVO_DRIVER_SERVO_H_ */
