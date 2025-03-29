@@ -11,7 +11,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <FC_RC/RadioControl.h>
-#include <stdlib.h>
+
 
 /* Variables -----------------------------------------------------------------*/
 /*
@@ -31,15 +31,55 @@ uint8_t* RC_Buffer = 0;
  */
 int RC_Initialization(void)
 {
-	RC_Buffer = malloc(SRXL_MAX_BUFFER_SIZE*sizeof(uint8_t));
+	LL_GPIO_SetOutputPin(LED_RED_GPIO_Port, LED_RED_Pin);
 
-	SRXL2_Connect();
+	for(int i=0; i<8*sizeof(paramRc.PROTOCOLS); i++)
+	{
+		if(!(paramRc.PROTOCOLS&(0x1<<i))) continue;
+
+		switch(i){
+		case SRXL2:
+			RC_Buffer = malloc(SRXL_MAX_BUFFER_SIZE*sizeof(uint8_t));
+			SRXL2_connect();
+			break;
+		}
+
+		/*
+		 * Enable multiple receiver support
+		 */
+		if(paramRc.OPTIONS&(0x1<<10)) continue;
+		else break;
+	}
+
+
+	while(RC_checkThrottle()){
+		BuzzerEnableThrottleHigh();
+	}
+
+	BuzzerDisableThrottleHigh();
+	LL_GPIO_ResetOutputPin(LED_RED_GPIO_Port, LED_RED_Pin);
+
 	return 0;
 }
 
 int RC_GetData(void)
 {
-	SRXL2_GetData();
+	for(int i=0; i<8*sizeof(paramRc.PROTOCOLS); i++)
+	{
+		if(!(paramRc.PROTOCOLS&(0x1<<i))) continue;
+
+		switch(i){
+		case SRXL2:
+			SRXL2_getControlData();
+			break;
+		}
+
+		/*
+		 * Enable multiple receiver support
+		 */
+		if(paramRc.OPTIONS&(0x1<<10)) continue;
+		else break;
+	}
 	return 0;
 }
 
@@ -90,6 +130,35 @@ int RC_halfDuplex_Transmit(uint8_t *data, uint8_t len)
 	return 0;
 }
 
+
+/*
+ * @brief 쓰로틀 체크
+ *
+ * @parm None
+ * @retval 0 : 쓰로틀 정상
+ * @retval -1 : 쓰로틀 비정상
+ */
+int RC_checkThrottle(void)
+{
+	for(int i=0; i<8*sizeof(paramRc.PROTOCOLS); i++)
+	{
+		if(!(paramRc.PROTOCOLS&(0x1<<i))) continue;
+
+		switch(i){
+		case SRXL2:
+			 while(SRXL2_getControlData()){}
+			if(RC_channels.value[paramRcMap.THR]>1050) return -1;
+			break;
+		}
+
+		/*
+		 * Enable multiple receiver support
+		 */
+		if(paramRc.OPTIONS&(0x1<<10)) continue;
+		else break;
+	}
+	return 0;
+}
 
 /*
  * @brief Buffer가 설정 되었는지 확인

@@ -8,8 +8,7 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <FC_RC/SRXL2.h>
-#include <FC_Log/Log.h>
+#include <FC_RC/Protocol/SRXL2.h>
 
 
 /* Variables -----------------------------------------------------------------*/
@@ -19,8 +18,11 @@ SRXL2_Handshake_Data receiver_info;
 const uint8_t SRXL_FC_DEVICE_ID = 0x30;
 
 
+/* Functions 1 ---------------------------------------------------------------*/
+/*
+ * RadioControl.c 에서 호출하는 함수
+ */
 
-/* Functions -----------------------------------------------------------------*/
 /*
  * @brief 수신기와 연결
  * @detail 수신기와 연결하기 위한 Handshake 절차 수행
@@ -28,9 +30,10 @@ const uint8_t SRXL_FC_DEVICE_ID = 0x30;
  * @retval 0 : 연결 완료
  * @retval 2 : 이미 연결됨
  */
-int SRXL2_Connect(void){
+int SRXL2_connect(void){
 	SRXL2_Header *header = &packet.header;
 	SRXL2_Handshake_Data* rx;
+
 	SRXL2_Handshake_Packet tx_packet;
 
 	while(1)
@@ -40,6 +43,7 @@ int SRXL2_Connect(void){
 		switch(header->pType)
 		{
 		case SRXL_CTRL_ID:
+			//Bind 정보 요청 또는 unbind 후 재 연결하도록 작성
 			return 2;
 		case SRXL_HANDSHAKE_ID:
 			rx = &(((SRXL2_Handshake_Packet *) RC_Buffer)->data);
@@ -80,21 +84,33 @@ int SRXL2_Connect(void){
 
 
 /*
- * 수신 데이터 로딩
+ * @brief 조종 데이터 로딩
+ * @detail RC_GetData()에서 실행됨
+ * @retval 0 : 정상 수신
+ * @retval -1 : 수신 버퍼 없음
+ * @retval -2 : 조종 데이터가 아님
  */
-int SRXL2_GetData(){
-	SRXL2_Header *header = &packet.header;
+int SRXL2_getControlData(void){
+	SRXL2_Header* header = &packet.header;
+	SRXL2_Control_Packet* rx = (SRXL2_Control_Packet*)RC_Buffer;
 
 	if(SRXL2_isReceived()!=0) return -1;
+	if(header->pType != SRXL_CTRL_ID) return -2;
 
-	switch(header->pType){
-	case SRXL_HANDSHAKE_ID :
-		break;
-	case SRXL_CTRL_ID :
+	// rssi, frameLoss, Fail-safe 기능 등 구현
+	switch(rx->Command){
+	case SRXL_CTRL_CMD_CHANNEL:
 		// SRXL2_SendTelemetryData();
 		SRXL2_parseControlData((SRXL2_Control_Packet*)RC_Buffer);
 		break;
+	case SRXL_CTRL_CMD_CHANNEL_FS:
+		break;
+	case SRXL_CTRL_CMD_VTX:
+		break;
+	case SRXL_CTRL_CMD_FWDPGM:
+		break;
 	}
+
 	return 0;
 }
 
@@ -109,12 +125,9 @@ int SRXL2_GetData(){
  */
 int SRXL2_parseControlData(SRXL2_Control_Packet *rx)
 {
-	PARM_RC *parm = &PARM_rc;
-	RC_CHANNELS *rc = &RC_channels;
-
-
-	// if(rx->Command == SRXL_CTRL_CMD_VTX)
-	// if(rx->Command == SRXL_CTRL_CMD_FWDPGM)
+	PARAM_RC* param = &paramRc;
+	PARAM_RC_CH* paramCh = paramRcCH;
+	RC_CHANNELS* rc = &RC_channels;
 
 	uint8_t channelCnt = 0;
 	static uint32_t channelMask = 0;
@@ -124,7 +137,7 @@ int SRXL2_parseControlData(SRXL2_Control_Packet *rx)
 	for(int i=0; i<SRXL_MAX_CHANNEL; i++)
 	{
 		if(!((rx->data.mask>>i)&0x01)) continue;
-		if(i>=18) break;
+		if(i>=RC_CHANNEL_MAX) break;
 
 		uint16_t value = rx->data.values[channelCnt];
 		channelCnt++;
@@ -134,45 +147,39 @@ int SRXL2_parseControlData(SRXL2_Control_Packet *rx)
 		value = value>SRXL_CTRL_VALUE_MAX?SRXL_CTRL_VALUE_MAX:value;
 
 		// Reverse 처리
-		if((parm->reversedMask>>i)&0x01)
+		if((param->reversedMask>>i)&0x01)
 		{
 			rc->value[i] = map(value,
 					SRXL_CTRL_VALUE_MIN, SRXL_CTRL_VALUE_MAX,
-					parm->CHANNEL[i].MAX, parm->CHANNEL[i].MIN) + parm->CHANNEL[i].TRIM;
+					paramCh[i].MAX, paramCh[i].MIN) + paramCh[i].TRIM;
 		}
 		else{
 			rc->value[i] = map(value,
 					SRXL_CTRL_VALUE_MIN, SRXL_CTRL_VALUE_MAX,
-					parm->CHANNEL[i].MIN, parm->CHANNEL[i].MAX) + parm->CHANNEL[i].TRIM;
+					paramCh[i].MIN, paramCh[i].MAX) + paramCh[i].TRIM;
 		}
 
 		// Dead-zone 처리
-		if(rc->value[i]>(1500-parm->CHANNEL[i].DZ) && rc->value[i]<(1500+parm->CHANNEL[i].DZ)){
+		if(rc->value[i]>(1500-paramCh[i].DZ) && rc->value[i]<(1500+paramCh[i].DZ)){
 			rc->value[i] = 1500;
 		}
 	}
-
-	channelMask |= rx->data.mask;
-	rc->chancount = countSetBits(channelMask);
-	rc->time_boot_ms = system_time.time_boot_ms;
 
 	if(system_time.time_boot_ms - previousTime > 2000){
 		previousTime = system_time.time_boot_ms;
 		channelMask = 0;
 	}
 
-	// rssi, frameLoss, Fail-safe 기능 등 구현
-	switch(rx->Command){
-	case SRXL_CTRL_CMD_CHANNEL:
-		/*
-		 * SRXL2에서 rssi가 양수면 %값, 음수면 dBm 값임.
-		 * MAVLink는 %값을 0-254 범위로 표현함
-		 */
-		if((rx->data.rssi&0x80)) break;
+	channelMask |= rx->data.mask;
+	rc->chancount = countSetBits(channelMask);
+	rc->time_boot_ms = system_time.time_boot_ms;
+
+	/*
+	 * SRXL2에서 rssi가 양수면 %값, 음수면 dBm 값임.
+	 * MAVLink는 %값을 0-254 범위로 표현함
+	 */
+	if(!(rx->data.rssi&0x80)){
 		rc->rssi = map(rx->data.rssi, 0, 100, 0, 254);
-		break;
-	case SRXL_CTRL_CMD_CHANNEL_FS:
-		break;
 	}
 
 	return 0;
@@ -210,23 +217,6 @@ int SRXL2_doHandshake(SRXL2_Handshake_Packet *tx_packet)
 	}
 
 	insert_crc((uint8_t*)tx_packet, len);
-	return RC_halfDuplex_Transmit((uint8_t*)tx_packet, len);
-}
-
-
-/*
- * @brief 수신기와 Bind 동작 수행
- * @parm SRXL2_Bind_Packet * tx_packet
- * @retval 0 : 송신 완료
- * @retval -1 : 송신 실패
- */
-int SRXL2_doBind(SRXL2_Bind_Packet* tx_packet)
-{
-	uint8_t len = tx_packet->header.len;
-	if(sizeof(*tx_packet) != len) return -2;
-
-	insert_crc((uint8_t*)tx_packet, len);
-
 	return RC_halfDuplex_Transmit((uint8_t*)tx_packet, len);
 }
 

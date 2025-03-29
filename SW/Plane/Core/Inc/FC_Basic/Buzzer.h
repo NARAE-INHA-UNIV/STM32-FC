@@ -9,10 +9,20 @@
 #ifndef INC_FC_BASIC_BUZZER_H_
 #define INC_FC_BASIC_BUZZER_H_
 
+
+/* Includes ------------------------------------------------------------------*/
+#include <main.h>
+
+#include <GCS_MAVLink/GCS_Common.h>
+
 #include <FC_Basic/driver_Buzzer.h>
 
+
+/* Macro ---------------------------------------------------------------------*/
 #define APB1_CLOCKS 84000000L
 
+
+/* Variables -----------------------------------------------------------------*/
 const double tones[] = { 261.6256, 293.6648, 329.6276, 349.2282, 391.9954, 440, 493.8833, 523.2511 };
 
 typedef enum {
@@ -25,5 +35,10 @@ typedef enum {
     SI,
     DO_HIGH
 } Note;
+
+
+/* Functions -----------------------------------------------------------------*/
+void BuzzerPlayNote(Note note, uint16_t time);
+
 
 #endif /* INC_FC_BUZZER_H_ */

@@ -22,10 +22,10 @@ int Log_Send()
 	if(!(system_time.time_boot_ms - previous_time > 250)) return -1;
 	previous_time = system_time.time_boot_ms;
 
-	CDC_Transmit_FS(&code, sizeof(code));
+	CDC_Transmit_FS((uint8_t*)&code, sizeof(code));
 
-	Log_transmit((uint8_t *)&servo_output_raw, sizeof(servo_output_raw));
-	// Log_transmit(&RC_channels, sizeof(RC_channels));
+	Log_transmit((uint8_t*)&RC_channels, sizeof(RC_channels));
+	// Log_transmit((uint8_t *)&servo_output_raw, sizeof(servo_output_raw));
 	// while(1 == CDC_Transmit_FS(&RC_channels, sizeof(RC_CHANNELS))) {}
 	return 0;
 }

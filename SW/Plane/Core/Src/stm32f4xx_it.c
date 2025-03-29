@@ -22,7 +22,8 @@
 #include "stm32f4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <FC_Log/Log.h>
+#include <FC_Param/Param.h>
+#include <GCS_MAVLink/GCS_Common.h>
 
 #include <FC_Basic/RingBuffer.h>
 #include <FC_RC/RadioControl.h>
@@ -276,6 +277,24 @@ void TIM8_UP_TIM13_IRQHandler(void)
   /* USER CODE BEGIN TIM8_UP_TIM13_IRQn 1 */
 
   /* USER CODE END TIM8_UP_TIM13_IRQn 1 */
+}
+
+/**
+  * @brief This function handles TIM8 trigger and commutation interrupts and TIM14 global interrupt.
+  */
+void TIM8_TRG_COM_TIM14_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM8_TRG_COM_TIM14_IRQn 0 */
+	if(LL_TIM_IsActiveFlag_UPDATE(TIM14))
+	{
+		LL_TIM_ClearFlag_UPDATE(TIM14);
+		system_time.time_unix_usec++;
+	}
+
+  /* USER CODE END TIM8_TRG_COM_TIM14_IRQn 0 */
+  /* USER CODE BEGIN TIM8_TRG_COM_TIM14_IRQn 1 */
+
+  /* USER CODE END TIM8_TRG_COM_TIM14_IRQn 1 */
 }
 
 /**

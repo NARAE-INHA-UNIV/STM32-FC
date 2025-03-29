@@ -17,6 +17,7 @@ RM := rm -rf
 -include Core/Startup/subdir.mk
 -include Core/Src/GCS_MAVLink/subdir.mk
 -include Core/Src/FC_Servo/subdir.mk
+-include Core/Src/FC_RC/Protocol/subdir.mk
 -include Core/Src/FC_RC/subdir.mk
 -include Core/Src/FC_Param/subdir.mk
 -include Core/Src/FC_Log/subdir.mk

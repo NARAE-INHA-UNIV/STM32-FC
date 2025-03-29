@@ -26,6 +26,7 @@ Core/Src/FC_Basic \
 Core/Src/FC_Gyro \
 Core/Src/FC_Log \
 Core/Src/FC_Param \
+Core/Src/FC_RC/Protocol \
 Core/Src/FC_RC \
 Core/Src/FC_Servo \
 Core/Src/GCS_MAVLink \

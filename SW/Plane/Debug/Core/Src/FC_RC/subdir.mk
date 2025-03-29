@@ -5,19 +5,13 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Core/Src/FC_RC/RadioControl.c \
-../Core/Src/FC_RC/SRXL2.c \
-../Core/Src/FC_RC/SRXL_testing.c 
+../Core/Src/FC_RC/RadioControl.c 
 
 OBJS += \
-./Core/Src/FC_RC/RadioControl.o \
-./Core/Src/FC_RC/SRXL2.o \
-./Core/Src/FC_RC/SRXL_testing.o 
+./Core/Src/FC_RC/RadioControl.o 
 
 C_DEPS += \
-./Core/Src/FC_RC/RadioControl.d \
-./Core/Src/FC_RC/SRXL2.d \
-./Core/Src/FC_RC/SRXL_testing.d 
+./Core/Src/FC_RC/RadioControl.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -27,7 +21,7 @@ Core/Src/FC_RC/%.o Core/Src/FC_RC/%.su Core/Src/FC_RC/%.cyclo: ../Core/Src/FC_RC
 clean: clean-Core-2f-Src-2f-FC_RC
 
 clean-Core-2f-Src-2f-FC_RC:
-	-$(RM) ./Core/Src/FC_RC/RadioControl.cyclo ./Core/Src/FC_RC/RadioControl.d ./Core/Src/FC_RC/RadioControl.o ./Core/Src/FC_RC/RadioControl.su ./Core/Src/FC_RC/SRXL2.cyclo ./Core/Src/FC_RC/SRXL2.d ./Core/Src/FC_RC/SRXL2.o ./Core/Src/FC_RC/SRXL2.su ./Core/Src/FC_RC/SRXL_testing.cyclo ./Core/Src/FC_RC/SRXL_testing.d ./Core/Src/FC_RC/SRXL_testing.o ./Core/Src/FC_RC/SRXL_testing.su
+	-$(RM) ./Core/Src/FC_RC/RadioControl.cyclo ./Core/Src/FC_RC/RadioControl.d ./Core/Src/FC_RC/RadioControl.o ./Core/Src/FC_RC/RadioControl.su
 
 .PHONY: clean-Core-2f-Src-2f-FC_RC
 

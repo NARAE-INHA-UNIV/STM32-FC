@@ -13,19 +13,22 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <main.h>
-#include <FC_RC/driver_RC.h>
-#include <FC_RC/SRXL2.h>
+#include <stdlib.h>
 
+#include <FC_Param/Param.h>
 #include <GCS_MAVLink/GCS_Common.h>
 
+#include <FC_Basic/driver_Buzzer.h>
+
+#include <FC_RC/driver_RC.h>
+#include <FC_RC/Protocol/SRXL2.h>
 
 
 /* Macro ---------------------------------------------------------------------*/
-#define RC_CHANNEL_MAX (32)
+#define RC_CHANNEL_MAX (18)
 
 
 /* Variables -----------------------------------------------------------------*/
-extern RC_CHANNELS RC_channels;
 extern uint8_t* RC_Buffer;
 
 typedef struct {
@@ -37,36 +40,33 @@ typedef struct {
 extern RC_Receive_Flag RC_rxFlag;
 
 
-typedef struct __attribute__((packed)){
-	uint16_t PROTOCOLS;
-	float FS_TIMEOUT;
-	uint32_t reversedMask;
-
-	struct __attribute__((packed)){
-		uint16_t MIN;
-		uint16_t MAX;
-		uint16_t TRIM;
-		uint8_t DZ;
-		uint16_t OPTION;
-	} CHANNEL[RC_CHANNEL_MAX];
-
-	struct __attribute__((packed)){
-		uint8_t THR;
-		uint8_t ROL;
-		uint8_t PIT;
-		uint8_t YAW;
-	} MAP;
-} PARM_RC;
-
-extern PARM_RC PARM_rc;
-
-
+enum RC_PARM_PROTOCOL{
+	All 	 = 0,
+	PPM 	 = 1,
+	IBUS 	 = 2,
+	SBUS 	 = 3,
+	SBUS_NI  = 4,
+	DSM 	 = 5,
+	SUMD 	 = 6,
+	SRXL 	 = 7,
+	SRXL2 	 = 8,
+	CRSF 	 = 9 ,
+	ST24 	 = 10,
+	FPORT	 = 11,
+	FPORT2 	 = 12,
+	FastSBUS = 13,
+	DroneCAN = 14,
+	Ghost	 = 15,
+	MAVRadio = 16,
+};
 
 
 
 /* Functions -----------------------------------------------------------------*/
 int RC_reviceIRQ2(const uint8_t data);
 int RC_halfDuplex_Transmit(uint8_t *data, uint8_t len);
+
+int RC_checkThrottle(void);
 
 int RC_isBufferInit(void);
 

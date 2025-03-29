@@ -7,10 +7,29 @@
  *      Email : leecurrent04@inha.edu
  */
 
-#include <FC_RC/SRXL2.h>
+#include <FC_RC/Protocol/SRXL2.h>
 
 
 /*
+ * (@ Work In Progress)
+ * @brief 수신기와 Bind 동작 수행
+ * @parm SRXL2_Bind_Packet * tx_packet
+ * @retval 0 : 송신 완료
+ * @retval -1 : 송신 실패
+ */
+int SRXL2_doBind(SRXL2_Bind_Packet* tx_packet)
+{
+	uint8_t len = tx_packet->header.len;
+	if(sizeof(*tx_packet) != len) return -2;
+
+	insert_crc((uint8_t*)tx_packet, len);
+
+	return RC_halfDuplex_Transmit((uint8_t*)tx_packet, len);
+}
+
+
+/*
+ * (@ Work In Progress)
  * 장치간 Handshake 동작 수행
  * Bus내 연결된 장치 정보 알림
  *
@@ -38,7 +57,8 @@ SRXL2_SignalQuality_Data SRXL2_reqSignalQuality()
 	for(uint8_t i=0; i<10; i++)
 	{
 
-		SRXL2_GetData();
+		if(SRXL2_isReceived()!=0) continue;
+		// SRXL2_GetData();
 		if(packet.header.pType == SRXL_RSSI_REQ_SEND)
 		{
 			rx_data = &((SRXL2_SignalQuality_Packet*)RC_Buffer)->data;
@@ -57,6 +77,7 @@ SRXL2_SignalQuality_Data SRXL2_reqSignalQuality()
 
 
 /*
+ * (@ Work In Progress)
  * (@ In Progress)
  * 수신기에서 Control 패킷에 ReplyID를 전송함.
  * ReplyID가 Handshake에서 등록한 ID와 같다면 데이터 전송
@@ -72,6 +93,7 @@ int SRXL2_SendTelemetryData(void)
 	{
 		return -1;
 	}
+
 
 	// User Def 1
 	uint8_t telm_packet[22] =

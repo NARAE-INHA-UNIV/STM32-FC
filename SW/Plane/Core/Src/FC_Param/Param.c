@@ -2,6 +2,8 @@
  * Param.c
  *
  *  Created on: Mar 27, 2025
+ *      Author: leecurrent04
+ *      Email : leecurrent04@inha.edu
  */
 
 
@@ -10,8 +12,11 @@
 
 
 /* Variables -----------------------------------------------------------------*/
-SERVO parm_servo;
-SERVO_CH parm_servo_ch[NUM_SERVO_CHANNELS];
+PARAM_SERVO paramServo;
+PARAM_SERVO_CH paramServoCH[SERVO_CHANNEL_MAX];
+PARAM_RC paramRc;
+PARAM_RC_CH paramRcCH[RC_CHANNEL_MAX];
+PARAM_RC_MAP paramRcMap;
 
 
 /* Functions -----------------------------------------------------------------*/

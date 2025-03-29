@@ -13,29 +13,18 @@
 /* Includes ------------------------------------------------------------------*/
 #include <main.h>
 
+#include <FC_Param/Param_type.h>
+
+#include <FC_RC/RadioControl.h>
+#include <FC_Servo/Servo.h>
+
 
 /* Variables -----------------------------------------------------------------*/
-typedef struct __attribute__((packed)){
-	uint8_t AUTO_TRIM : 1;
-	uint16_t RATE;
-	uint8_t DSHOT_RATE : 3;
-	uint8_t DSHOT_ESC : 3;
-	uint32_t GPIO_MASK;
-	uint16_t RC_FS_MSK;
-	uint8_t _32_ENABLE :1;
-} SERVO;
-
-
-typedef struct __attribute__((packed)){
-	uint16_t MIN;
-	uint16_t MAX;
-	uint16_t TRIM;
-	uint8_t REVERSED : 1;
-	int16_t FUNCTION;
-} SERVO_CH;
-
-#define NUM_SERVO_CHANNELS 12
-
+extern PARAM_SERVO paramServo;
+extern PARAM_SERVO_CH paramServoCH[];
+extern PARAM_RC paramRc;
+extern PARAM_RC_CH paramRcCH[];
+extern PARAM_RC_MAP paramRcMap;
 
 /* Functions -----------------------------------------------------------------*/
 

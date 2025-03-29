@@ -1,8 +1,11 @@
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h:1814:26:LL_USART_IsActiveFlag_TXE	16	static
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h:2426:22:LL_USART_TransmitData8	16	static
-../Core/Src/FC_RC/RadioControl.c:32:5:RC_Initialization	8	static
-../Core/Src/FC_RC/RadioControl.c:40:5:RC_GetData	8	static
-../Core/Src/FC_RC/RadioControl.c:54:5:RC_reviceIRQ2	16	static
-../Core/Src/FC_RC/RadioControl.c:77:5:RC_halfDuplex_Transmit	24	static
-../Core/Src/FC_RC/RadioControl.c:101:5:RC_isBufferInit	4	static
-../Core/Src/FC_RC/RadioControl.c:116:10:map	16	static
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h:881:22:LL_GPIO_SetOutputPin	16	static
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h:910:22:LL_GPIO_ResetOutputPin	16	static
+../Core/Src/FC_RC/RadioControl.c:32:5:RC_Initialization	16	static
+../Core/Src/FC_RC/RadioControl.c:65:5:RC_GetData	16	static
+../Core/Src/FC_RC/RadioControl.c:94:5:RC_reviceIRQ2	16	static
+../Core/Src/FC_RC/RadioControl.c:117:5:RC_halfDuplex_Transmit	24	static
+../Core/Src/FC_RC/RadioControl.c:141:5:RC_checkThrottle	16	static
+../Core/Src/FC_RC/RadioControl.c:170:5:RC_isBufferInit	4	static
+../Core/Src/FC_RC/RadioControl.c:185:10:map	16	static

@@ -10,13 +10,20 @@
 #include "main.h"
 
 
-void BuzzerPlayNote(Note note){
+void BuzzerPlayNote(Note note, uint16_t time)
+{
+	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH3);
+	TIM4->PSC = 4;
 	TIM4->ARR = APB1_CLOCKS/TIM4->PSC/tones[note];
 	TIM4->CCR3 = TIM4->ARR/2;
+
+	HAL_Delay(time);
+	LL_TIM_CC_DisableChannel(TIM4, LL_TIM_CHANNEL_CH3);
 	return;
 }
 
-void BuzzerPlayInit(void){
+void BuzzerPlayInit(void)
+{
 	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH3);
 	TIM4->ARR = 21;
 	TIM4->CCR3 = TIM4->ARR/2;
@@ -32,14 +39,28 @@ void BuzzerPlayInit(void){
 	return;
 }
 
-void BuzzerPlayOneCycle(void){
-	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH3);
-	TIM4->PSC = 4;
-
+void BuzzerPlayOneCycle(void)
+{
 	for (int i=0; i<8; i++){
-		BuzzerPlayNote(i);
-		HAL_Delay(150);
+		BuzzerPlayNote(i, 150);
 	}
+	return;
+}
+
+
+/* Functions (RC Alarm) ------------------------------------------------------*/
+void BuzzerEnableThrottleHigh(void)
+{
+	LL_TIM_CC_EnableChannel(TIM4, LL_TIM_CHANNEL_CH3);
+	TIM4->ARR = 21;
+	TIM4->CCR3 = TIM4->ARR/2;
+	TIM4->PSC = 2000;
+
+	return;
+}
+
+void BuzzerDisableThrottleHigh(void)
+{
 	LL_TIM_CC_DisableChannel(TIM4, LL_TIM_CHANNEL_CH3);
 	return;
 }

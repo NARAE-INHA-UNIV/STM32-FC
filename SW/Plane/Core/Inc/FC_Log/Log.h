@@ -15,9 +15,6 @@
 
 
 /* Variables -----------------------------------------------------------------*/
-extern SYSTEM_TIME system_time;
-extern SERVO_OUTPUT_RAW servo_output_raw;
-extern RC_CHANNELS RC_channels;
 
 
 /* Functions -----------------------------------------------------------------*/

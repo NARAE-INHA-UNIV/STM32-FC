@@ -12,9 +12,12 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <main.h>
+
+#include <FC_Param/Param.h>
+#include <GCS_MAVLink/GCS_Common.h>
+
 #include <FC_Servo/driver_Servo.h>
 
-#include <GCS_MAVLink/GCS_Common.h>
 
 
 /* Macro ---------------------------------------------------------------------*/

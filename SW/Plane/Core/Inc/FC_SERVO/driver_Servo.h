@@ -15,8 +15,6 @@
 
 
 /* Variables -----------------------------------------------------------------*/
-extern SERVO parm_servo;
-extern SERVO_CH parm_servo_ch[NUM_SERVO_CHANNELS];
 
 
 /* Functions -----------------------------------------------------------------*/

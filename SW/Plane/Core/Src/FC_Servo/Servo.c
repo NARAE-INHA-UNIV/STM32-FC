@@ -33,7 +33,7 @@ const uint8_t SERVO_TIMER_MAP[SERVO_CHANNEL_MAX] = {
  */
 void SERVO_Initialization(void)
 {
-	SERVO* servo = &parm_servo;
+	PARAM_SERVO* servo = &paramServo;
 
 	LL_TIM_EnableCounter(TIM1);
 	LL_TIM_EnableCounter(TIM3);
@@ -75,10 +75,10 @@ uint8_t configurePWM(uint16_t hz)
 
 void SERVO_doArm(void)
 {
-	SERVO* servo = &parm_servo;
+	PARAM_SERVO* servo = &paramServo;
 	configurePWM(servo->RATE);
 
-	for(uint8_t i=0; i<NUM_SERVO_CHANNELS; i++)
+	for(uint8_t i=0; i<SERVO_CHANNEL_MAX; i++)
 	{
 		if(!(servo->GPIO_MASK&0x1<<i)) continue;
 
@@ -153,11 +153,11 @@ void SERVO_control(void)
  */
 void calculateServoOutput(void)
 {
-	SERVO* servo = &parm_servo;
+	PARAM_SERVO* servo = &paramServo;
 
 	servo_output_raw.time_usec = system_time.time_boot_ms;
 
-	for(uint8_t i=0; i<NUM_SERVO_CHANNELS; i++)
+	for(uint8_t i=0; i<SERVO_CHANNEL_MAX; i++)
 	{
 		if(!(servo->GPIO_MASK&0x1<<i)) continue;
 
@@ -176,9 +176,9 @@ void calculateServoOutput(void)
  */
 void controlPWM(void)
 {
-	SERVO* servo = &parm_servo;
+	PARAM_SERVO* servo = &paramServo;
 
-	for(uint8_t i=0; i<NUM_SERVO_CHANNELS; i++)
+	for(uint8_t i=0; i<SERVO_CHANNEL_MAX; i++)
 	{
 		if(!(servo->GPIO_MASK&0x1<<i)) continue;
 
