@@ -1,4 +1,5 @@
-Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
+Core/Src/FC_Failsafe/Failsafe.o: ../Core/Src/FC_Failsafe/Failsafe.c \
+ ../Core/Inc/FC_Failsafe/Failsafe.h ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -40,23 +41,14 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_utils.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_pwr.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h \
- ../USB_DEVICE/App/usb_device.h \
- ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
- ../USB_DEVICE/Target/usbd_conf.h ../USB_DEVICE/App/usbd_cdc_if.h \
- ../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h \
- ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
- ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
- ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h \
- ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h \
- ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h \
+ ../Core/Inc/FC_RC/driver_RC.h ../Core/Inc/FC_Servo/driver_Servo.h \
  ../Core/Inc/FC_Param/Param.h ../Core/Inc/FC_Param/Param_type.h \
  ../Core/Inc/FC_RC/RadioControl.h ../Core/Inc/GCS_MAVLink/GCS_Common.h \
  ../Core/Inc/GCS_MAVLink/MAVLink_MSG.h \
- ../Core/Inc/FC_Basic/driver_Buzzer.h ../Core/Inc/FC_Servo/driver_Servo.h \
- ../Core/Inc/FC_Failsafe/Failsafe.h ../Core/Inc/FC_RC/driver_RC.h \
- ../Core/Inc/FC_RC/Protocol/SRXL2.h ../Core/Inc/FC_RC/Protocol/spm_srxl.h \
- ../Core/Inc/FC_RC/Protocol/SRXL2_type.h ../Core/Inc/FC_Servo/Servo.h \
- ../Core/Inc/FC_Gyro/driver_ICM42688.h ../Core/Inc/FC_Log/Log.h
+ ../Core/Inc/FC_Basic/driver_Buzzer.h ../Core/Inc/FC_RC/Protocol/SRXL2.h \
+ ../Core/Inc/FC_RC/Protocol/spm_srxl.h \
+ ../Core/Inc/FC_RC/Protocol/SRXL2_type.h ../Core/Inc/FC_Servo/Servo.h
+../Core/Inc/FC_Failsafe/Failsafe.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -99,28 +91,15 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_utils.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_pwr.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:
-../USB_DEVICE/App/usb_device.h:
-../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
-../USB_DEVICE/Target/usbd_conf.h:
-../USB_DEVICE/App/usbd_cdc_if.h:
-../Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Inc/usbd_cdc.h:
-../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
-../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
-../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_core.h:
-../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ioreq.h:
-../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_ctlreq.h:
+../Core/Inc/FC_RC/driver_RC.h:
+../Core/Inc/FC_Servo/driver_Servo.h:
 ../Core/Inc/FC_Param/Param.h:
 ../Core/Inc/FC_Param/Param_type.h:
 ../Core/Inc/FC_RC/RadioControl.h:
 ../Core/Inc/GCS_MAVLink/GCS_Common.h:
 ../Core/Inc/GCS_MAVLink/MAVLink_MSG.h:
 ../Core/Inc/FC_Basic/driver_Buzzer.h:
-../Core/Inc/FC_Servo/driver_Servo.h:
-../Core/Inc/FC_Failsafe/Failsafe.h:
-../Core/Inc/FC_RC/driver_RC.h:
 ../Core/Inc/FC_RC/Protocol/SRXL2.h:
 ../Core/Inc/FC_RC/Protocol/spm_srxl.h:
 ../Core/Inc/FC_RC/Protocol/SRXL2_type.h:
 ../Core/Inc/FC_Servo/Servo.h:
-../Core/Inc/FC_Gyro/driver_ICM42688.h:
-../Core/Inc/FC_Log/Log.h:

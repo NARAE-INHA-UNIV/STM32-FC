@@ -1,5 +1,6 @@
 "./Core/Src/FC_Basic/Buzzer.o"
 "./Core/Src/FC_Basic/RingBuffer.o"
+"./Core/Src/FC_Failsafe/Failsafe.o"
 "./Core/Src/FC_Gyro/ICM42688.o"
 "./Core/Src/FC_Log/Log.o"
 "./Core/Src/FC_Param/Param.o"

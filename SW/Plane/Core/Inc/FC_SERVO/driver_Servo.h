@@ -24,6 +24,7 @@ void SERVO_doArm(void);
 void SERVO_doDisarm(void);
 void SERVO_control(void);
 
+void SERVO_setFailsafe(void);
 
 
 #endif /* INC_FC_SERVO_DRIVER_SERVO_H_ */

@@ -23,6 +23,7 @@ C_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 Core/Src/FC_Basic \
+Core/Src/FC_Failsafe \
 Core/Src/FC_Gyro \
 Core/Src/FC_Log \
 Core/Src/FC_Param \

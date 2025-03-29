@@ -89,6 +89,7 @@ int SRXL2_connect(void){
  * @retval 0 : 정상 수신
  * @retval -1 : 수신 버퍼 없음
  * @retval -2 : 조종 데이터가 아님
+ * @retval 0xf2 : FailSafe
  */
 int SRXL2_getControlData(void){
 	SRXL2_Header* header = &packet.header;
@@ -98,12 +99,14 @@ int SRXL2_getControlData(void){
 	if(header->pType != SRXL_CTRL_ID) return -2;
 
 	// rssi, frameLoss, Fail-safe 기능 등 구현
+
 	switch(rx->Command){
 	case SRXL_CTRL_CMD_CHANNEL:
 		// SRXL2_SendTelemetryData();
 		SRXL2_parseControlData((SRXL2_Control_Packet*)RC_Buffer);
 		break;
 	case SRXL_CTRL_CMD_CHANNEL_FS:
+		return RC_setFailsafe(0x1<<8);
 		break;
 	case SRXL_CTRL_CMD_VTX:
 		break;

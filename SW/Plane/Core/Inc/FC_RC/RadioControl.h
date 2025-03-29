@@ -19,6 +19,8 @@
 #include <GCS_MAVLink/GCS_Common.h>
 
 #include <FC_Basic/driver_Buzzer.h>
+#include <FC_Servo/driver_Servo.h>
+#include <FC_Failsafe/Failsafe.h>
 
 #include <FC_RC/driver_RC.h>
 #include <FC_RC/Protocol/SRXL2.h>
@@ -64,11 +66,12 @@ enum RC_PARM_PROTOCOL{
 
 /* Functions -----------------------------------------------------------------*/
 int RC_reviceIRQ2(const uint8_t data);
-int RC_halfDuplex_Transmit(uint8_t *data, uint8_t len);
+int RC_isBufferInit(void);
 
 int RC_checkThrottle(void);
+int RC_setFailsafe(uint16_t protocol);
 
-int RC_isBufferInit(void);
+int RC_halfDuplex_Transmit(uint8_t *data, uint8_t len);
 
 uint16_t map(uint16_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max);
 

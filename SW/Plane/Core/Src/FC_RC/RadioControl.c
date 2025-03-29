@@ -62,15 +62,25 @@ int RC_Initialization(void)
 	return 0;
 }
 
+/*
+ * @brief 조종 데이터 로딩
+ * @detail 프로토콜에 따라 다르게 동작
+ * @retval 0 : 정상 수신
+ * @retval -1 : 수신 버퍼 없음
+ * @retval -2 : 조종 데이터가 아님
+ * @retval 0xf2 : FailSafe
+ */
 int RC_GetData(void)
 {
+	int retVal = 0;
+
 	for(int i=0; i<8*sizeof(paramRc.PROTOCOLS); i++)
 	{
 		if(!(paramRc.PROTOCOLS&(0x1<<i))) continue;
 
 		switch(i){
 		case SRXL2:
-			SRXL2_getControlData();
+			retVal = SRXL2_getControlData();
 			break;
 		}
 
@@ -80,6 +90,10 @@ int RC_GetData(void)
 		if(paramRc.OPTIONS&(0x1<<10)) continue;
 		else break;
 	}
+
+	if(retVal == -1 || retVal ==-2) return retVal;
+	if(retVal!=0xf2) fsFlag = 0;
+
 	return 0;
 }
 
@@ -107,26 +121,14 @@ int RC_reviceIRQ2(const uint8_t data)
 
 
 /*
- * @brief RC 데이터 송신 (Half-Duplex)
+ * @brief Buffer가 설정 되었는지 확인
  *
- * @parm uint8_t* data : data address
- * @parm uint8_t len : sizeof(data)
- * @retval 0 : 송신 완료.
- * @retval -1 : 송신 실패.
+ * @parm None
+ * @retval 0 : 설정됨
+ * @retval -1 : 설정되지 않음
  */
-int RC_halfDuplex_Transmit(uint8_t *data, uint8_t len)
-{
-	if(RC_rxFlag.half_using == 1) return -1;
-
-	RC_rxFlag.half_using = 1;
-	RC_rxFlag.half_tx = 1;
-
-	for(int i=0; i<len; i++){
-		while(!LL_USART_IsActiveFlag_TXE(USART1));
-		LL_USART_TransmitData8(USART1, data[i]);
-	}
-
-	RC_rxFlag.half_tx = 0;
+int RC_isBufferInit(void){
+	if(RC_Buffer == 0) return -1;
 	return 0;
 }
 
@@ -160,15 +162,46 @@ int RC_checkThrottle(void)
 	return 0;
 }
 
+
 /*
- * @brief Buffer가 설정 되었는지 확인
+ * @brief Failsafe 모드로 진입
  *
- * @parm None
- * @retval 0 : 설정됨
- * @retval -1 : 설정되지 않음
+ * @retval 0 : Failsafe 해제됨
  */
-int RC_isBufferInit(void){
-	if(RC_Buffer == 0) return -1;
+int RC_setFailsafe(uint16_t protocol)
+{
+	if(paramRc.OPTIONS&(0x1<<10)){
+		// 수신기 하나에서 FS 임을 알림
+		return 0;
+	}
+
+	fsFlag = 1;
+
+	return 0xf2;
+}
+
+
+/*
+ * @brief RC 데이터 송신 (Half-Duplex)
+ *
+ * @parm uint8_t* data : data address
+ * @parm uint8_t len : sizeof(data)
+ * @retval 0 : 송신 완료.
+ * @retval -1 : 송신 실패.
+ */
+int RC_halfDuplex_Transmit(uint8_t *data, uint8_t len)
+{
+	if(RC_rxFlag.half_using == 1) return -1;
+
+	RC_rxFlag.half_using = 1;
+	RC_rxFlag.half_tx = 1;
+
+	for(int i=0; i<len; i++){
+		while(!LL_USART_IsActiveFlag_TXE(USART1));
+		LL_USART_TransmitData8(USART1, data[i]);
+	}
+
+	RC_rxFlag.half_tx = 0;
 	return 0;
 }
 

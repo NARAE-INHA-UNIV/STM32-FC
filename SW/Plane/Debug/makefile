@@ -22,6 +22,7 @@ RM := rm -rf
 -include Core/Src/FC_Param/subdir.mk
 -include Core/Src/FC_Log/subdir.mk
 -include Core/Src/FC_Gyro/subdir.mk
+-include Core/Src/FC_Failsafe/subdir.mk
 -include Core/Src/FC_Basic/subdir.mk
 -include Core/Src/subdir.mk
 -include objects.mk

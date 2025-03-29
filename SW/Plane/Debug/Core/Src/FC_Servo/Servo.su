@@ -8,3 +8,4 @@
 ../Core/Src/FC_Servo/Servo.c:139:6:SERVO_control	8	static
 ../Core/Src/FC_Servo/Servo.c:154:6:calculateServoOutput	16	static
 ../Core/Src/FC_Servo/Servo.c:177:6:controlPWM	24	static
+../Core/Src/FC_Servo/Servo.c:220:6:SERVO_setFailsafe	4	static

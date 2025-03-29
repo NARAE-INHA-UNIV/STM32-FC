@@ -215,3 +215,13 @@ void controlPWM(void)
 
 	return;
 }
+
+
+void SERVO_setFailsafe(void)
+{
+	TIM4->CCR2 = 1000;
+	TIM3->CCR1 = 1500;
+	TIM3->CCR2 = 1500;
+	TIM4->CCR4 = 1500;
+	return;
+}

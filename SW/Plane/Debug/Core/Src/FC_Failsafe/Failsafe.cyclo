@@ -1,0 +1,2 @@
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h:881:22:LL_GPIO_SetOutputPin	1
+../Core/Src/FC_Failsafe/Failsafe.c:13:6:FS_mannualMode	1

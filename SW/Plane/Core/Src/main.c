@@ -175,13 +175,17 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  if(RC_GetData() != 0)
-	  {
-	  }
+	  RC_GetData();
 
 	  ICM42688_Get6AxisRawData();
 
-	  SERVO_control();
+	  if(fsFlag == 1){
+		  FS_mannualMode();
+	  }
+	  else{
+		  LL_GPIO_ResetOutputPin(LED_RED_GPIO_Port, LED_RED_Pin);
+		  SERVO_control();
+	  }
 
 	  Log_Send();
 
