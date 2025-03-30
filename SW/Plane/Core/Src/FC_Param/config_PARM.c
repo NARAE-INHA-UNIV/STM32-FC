@@ -23,6 +23,7 @@ int PARM_load(void){
 
 	paramRc.OPTIONS = 0;
 	paramRc.OVERRIDE_TIME = 0.0;
+//	paramRc.PROTOCOLS = (0x00);
 	paramRc.PROTOCOLS = (0x1<<SRXL2);
 	paramRc.FS_TIMEOUT = 1.0;
 	paramRc.reversedMask = 0x00;

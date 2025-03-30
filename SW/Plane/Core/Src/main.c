@@ -730,8 +730,7 @@ static void MX_TIM14_Init(void)
   TIM_InitStruct.ClockDivision = LL_TIM_CLOCKDIVISION_DIV1;
   LL_TIM_Init(TIM14, &TIM_InitStruct);
   LL_TIM_DisableARRPreload(TIM14);
-  LL_TIM_OC_EnablePreload(TIM14, LL_TIM_CHANNEL_CH1);
-  TIM_OC_InitStruct.OCMode = LL_TIM_OCMODE_PWM1;
+  TIM_OC_InitStruct.OCMode = LL_TIM_OCMODE_FROZEN;
   TIM_OC_InitStruct.OCState = LL_TIM_OCSTATE_DISABLE;
   TIM_OC_InitStruct.OCNState = LL_TIM_OCSTATE_DISABLE;
   TIM_OC_InitStruct.CompareValue = 0;
@@ -739,6 +738,7 @@ static void MX_TIM14_Init(void)
   LL_TIM_OC_Init(TIM14, LL_TIM_CHANNEL_CH1, &TIM_OC_InitStruct);
   LL_TIM_OC_DisableFast(TIM14, LL_TIM_CHANNEL_CH1);
   /* USER CODE BEGIN TIM14_Init 2 */
+  LL_TIM_EnableIT_UPDATE(TIM14);
 
   /* USER CODE END TIM14_Init 2 */
 

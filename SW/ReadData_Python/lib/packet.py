@@ -1,9 +1,11 @@
-
 class packet:
-    data = [0 for i in range(0,120)]
-    srxl_id = 0xA6
-    ptype = 0
+    data = [0 for i in range(0, 255)]
     length = 0
+
+    def checkCRC(self):
+        rxCRC = self.data[self.length-2]|self.data[self.length-1]<<8
+        retval = calulate_crc(self.data, self.length)
+        return retval == rxCRC
 
 def calulate_crc(data, length):
     crc = 0x0000

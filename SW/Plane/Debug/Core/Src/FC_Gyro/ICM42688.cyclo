@@ -15,4 +15,4 @@
 ../Core/Src/FC_Gyro/ICM42688.c:130:6:ICM42688_Writebyte	1
 ../Core/Src/FC_Gyro/ICM42688.c:138:6:ICM42688_Writebytes	2
 ../Core/Src/FC_Gyro/ICM42688.c:151:5:ICM42688_Initialization	4
-../Core/Src/FC_Gyro/ICM42688.c:208:6:ICM42688_Get6AxisRawData	1
+../Core/Src/FC_Gyro/ICM42688.c:207:6:ICM42688_Get6AxisRawData	1
