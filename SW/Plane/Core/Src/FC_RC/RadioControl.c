@@ -51,7 +51,6 @@ int RC_Initialization(void)
 		else break;
 	}
 
-
 	while(RC_checkThrottle()){
 		BuzzerEnableThrottleHigh();
 
@@ -145,40 +144,33 @@ int RC_isBufferInit(void){
  */
 int RC_checkThrottle(void)
 {
-	for(int i=0; i<8*sizeof(paramRc.PROTOCOLS); i++)
-	{
-		if(!(paramRc.PROTOCOLS&(0x1<<i))) continue;
+	while(RC_GetData()){}
+	if(RC_channels.value[paramRcMap.THR]>1050) return -1;
 
-		switch(i){
-		case SRXL2:
-			 while(SRXL2_getControlData()){}
-			if(RC_channels.value[paramRcMap.THR]>1050) return -1;
-			break;
-		}
-
-		/*
-		 * Enable multiple receiver support
-		 */
-		if(paramRc.OPTIONS&(0x1<<10)) continue;
-		else break;
-	}
 	return 0;
 }
 
 
+/*
+ * @brief ESC 캘리브레이션 진입
+ * @detail 쓰로틀이 High인 상황이 5초 이상 지속될때 진입
+ *
+ * @parm None
+ * @retval 1 : 5초가 지속되지 않았음.
+ * @retval 0 : 캘리브레이션 수행됨
+ */
 int RC_enterESCcalibration()
 {
 	static uint32_t previous_time = 0;
 
-	// 4Hz 단위로 전송
 	if(!(system_time.time_boot_ms - previous_time > 5000)) return 1;
 	previous_time = system_time.time_boot_ms;
 	BuzzerDisableThrottleHigh();
 
 	while(1)
 	{
-		while(SRXL2_getControlData()){}
-		if(RC_channels.value[paramRcMap.THR] > 1050){
+		while(RC_GetData()){}
+		if(RC_channels.value[paramRcMap.THR] > 1800){
 			SERVO_doCalibrate(1);
 			continue;
 		}

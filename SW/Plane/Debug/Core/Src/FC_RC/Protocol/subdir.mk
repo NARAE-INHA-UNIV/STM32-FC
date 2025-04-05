@@ -5,14 +5,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Core/Src/FC_RC/Protocol/PPM.c \
 ../Core/Src/FC_RC/Protocol/SRXL2.c \
 ../Core/Src/FC_RC/Protocol/SRXL_testing.c 
 
 OBJS += \
+./Core/Src/FC_RC/Protocol/PPM.o \
 ./Core/Src/FC_RC/Protocol/SRXL2.o \
 ./Core/Src/FC_RC/Protocol/SRXL_testing.o 
 
 C_DEPS += \
+./Core/Src/FC_RC/Protocol/PPM.d \
 ./Core/Src/FC_RC/Protocol/SRXL2.d \
 ./Core/Src/FC_RC/Protocol/SRXL_testing.d 
 
@@ -24,7 +27,7 @@ Core/Src/FC_RC/Protocol/%.o Core/Src/FC_RC/Protocol/%.su Core/Src/FC_RC/Protocol
 clean: clean-Core-2f-Src-2f-FC_RC-2f-Protocol
 
 clean-Core-2f-Src-2f-FC_RC-2f-Protocol:
-	-$(RM) ./Core/Src/FC_RC/Protocol/SRXL2.cyclo ./Core/Src/FC_RC/Protocol/SRXL2.d ./Core/Src/FC_RC/Protocol/SRXL2.o ./Core/Src/FC_RC/Protocol/SRXL2.su ./Core/Src/FC_RC/Protocol/SRXL_testing.cyclo ./Core/Src/FC_RC/Protocol/SRXL_testing.d ./Core/Src/FC_RC/Protocol/SRXL_testing.o ./Core/Src/FC_RC/Protocol/SRXL_testing.su
+	-$(RM) ./Core/Src/FC_RC/Protocol/PPM.cyclo ./Core/Src/FC_RC/Protocol/PPM.d ./Core/Src/FC_RC/Protocol/PPM.o ./Core/Src/FC_RC/Protocol/PPM.su ./Core/Src/FC_RC/Protocol/SRXL2.cyclo ./Core/Src/FC_RC/Protocol/SRXL2.d ./Core/Src/FC_RC/Protocol/SRXL2.o ./Core/Src/FC_RC/Protocol/SRXL2.su ./Core/Src/FC_RC/Protocol/SRXL_testing.cyclo ./Core/Src/FC_RC/Protocol/SRXL_testing.d ./Core/Src/FC_RC/Protocol/SRXL_testing.o ./Core/Src/FC_RC/Protocol/SRXL_testing.su
 
 .PHONY: clean-Core-2f-Src-2f-FC_RC-2f-Protocol
 

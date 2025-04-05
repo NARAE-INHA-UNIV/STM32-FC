@@ -5,6 +5,7 @@
 "./Core/Src/FC_Log/Log.o"
 "./Core/Src/FC_Param/Param.o"
 "./Core/Src/FC_Param/config_PARM.o"
+"./Core/Src/FC_RC/Protocol/PPM.o"
 "./Core/Src/FC_RC/Protocol/SRXL2.o"
 "./Core/Src/FC_RC/Protocol/SRXL_testing.o"
 "./Core/Src/FC_RC/RadioControl.o"

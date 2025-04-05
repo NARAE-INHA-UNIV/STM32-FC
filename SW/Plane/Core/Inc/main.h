@@ -93,6 +93,8 @@ void Error_Handler(void);
 #define MAIN_CH11_GPIO_Port GPIOE
 #define MAIN_CH12_Pin LL_GPIO_PIN_13
 #define MAIN_CH12_GPIO_Port GPIOE
+#define PPM_IN_Pin LL_GPIO_PIN_14
+#define PPM_IN_GPIO_Port GPIOE
 #define Telm2_TX_Pin LL_GPIO_PIN_8
 #define Telm2_TX_GPIO_Port GPIOD
 #define Telm2_RX_Pin LL_GPIO_PIN_9
