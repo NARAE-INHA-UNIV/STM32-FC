@@ -43,8 +43,6 @@ int PPM_init(void)
  */
 int PPM_readData(uint16_t data)
 {
-	LL_GPIO_SetOutputPin(GPS1_SW_LED_GPIO_Port, GPS1_SW_LED_Pin);
-
 	static uint16_t previous = 0;
     static uint8_t cnt = 0;
 	uint16_t rx = system_time.time_unix_usec - previous;
@@ -55,10 +53,8 @@ int PPM_readData(uint16_t data)
 	if(rx>2200 || rx<800) return 1;
 
 	((uint16_t*)RC_Buffer)[cnt] = rx;
-//	RC_channels.value[cnt] = rx;
     cnt++;
 
-	LL_GPIO_ResetOutputPin(GPS1_SW_LED_GPIO_Port, GPS1_SW_LED_Pin);
 	return 0;
 }
 

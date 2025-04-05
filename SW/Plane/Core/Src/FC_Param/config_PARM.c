@@ -23,9 +23,9 @@ int PARM_load(void){
 
 	paramRc.OPTIONS = 0;
 	paramRc.OVERRIDE_TIME = 0.0;
-//	paramRc.PROTOCOLS = (0x00);
-//	paramRc.PROTOCOLS = (0x1<<SRXL2);
-	paramRc.PROTOCOLS = (0x1<<PPM);
+//	paramRc.PROTOCOLS = (0x00);			// 수신기 없이 테스트
+//	paramRc.PROTOCOLS = (0x1<<SRXL2);	// SRXL2
+	paramRc.PROTOCOLS = (0x1<<PPM);		// PPM (FS-iA6B)
 	paramRc.FS_TIMEOUT = 1.0;
 	paramRc.reversedMask = 0x00;
 
@@ -38,11 +38,11 @@ int PARM_load(void){
 		paramRcCH[i].OPTION = 0;
 	}
 
-//	paramRcMap.THR = 0;
+//	paramRcMap.THR = 0;		// SRXL2 값
 //	paramRcMap.ROL = 1;
 //	paramRcMap.PIT = 2;
 //	paramRcMap.YAW = 3;
-	paramRcMap.THR = 2;
+	paramRcMap.THR = 2;		// FS-iA6B용 값들
 	paramRcMap.ROL = 3;
 	paramRcMap.PIT = 1;
 	paramRcMap.YAW = 0;
