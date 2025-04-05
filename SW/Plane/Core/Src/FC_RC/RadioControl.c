@@ -38,6 +38,10 @@ int RC_Initialization(void)
 		if(!(paramRc.PROTOCOLS&(0x1<<i))) continue;
 
 		switch(i){
+		case PPM:
+			RC_Buffer = malloc(PPM_MAX_BUFFER_SIZE*sizeof(uint16_t));
+			PPM_init();
+			break;
 		case SRXL2:
 			RC_Buffer = malloc(SRXL_MAX_BUFFER_SIZE*sizeof(uint8_t));
 			SRXL2_connect();
@@ -81,6 +85,9 @@ int RC_GetData(void)
 		if(!(paramRc.PROTOCOLS&(0x1<<i))) continue;
 
 		switch(i){
+		case PPM:
+			retVal = PPM_getControlData();
+			break;
 		case SRXL2:
 			retVal = SRXL2_getControlData();
 			break;
@@ -107,16 +114,37 @@ int RC_GetData(void)
  *
  * 모든 수신 패킷을 처리하면 RC_rxFlag를 1로 처리함.
  */
-int RC_reviceIRQ2(const uint8_t data)
+int RC_receiveIRQ2(const uint16_t data)
 {
-	// Half-Duplex에서 송신한 패킷을 무시
-	if(RC_rxFlag.half_tx == 1) return 1;
 
-	if(SRXL2_readByteIRQ2(data) == 0){
-		// 모든 바이트를 읽었는지 검사
-		RC_rxFlag.uart = 1;
-		RC_rxFlag.half_using = 0;
+	for(int i=0; i<8*sizeof(paramRc.PROTOCOLS); i++)
+	{
+		if(!(paramRc.PROTOCOLS&(0x1<<i))) continue;
+
+		switch(i){
+		case PPM:
+			PPM_readData(data);
+			break;
+		case SRXL2:
+			// Half-Duplex에서 송신한 패킷을 무시
+			if(RC_rxFlag.half_tx == 1) return 1;
+
+			// 모든 바이트를 읽었는지 검사
+			if(SRXL2_readByteIRQ2(data) == 0){
+				RC_rxFlag.uart = 1;
+				RC_rxFlag.half_using = 0;
+			}
+			break;
+		}
+
+		/*
+		 * Enable multiple receiver support
+		 */
+		if(paramRc.OPTIONS&(0x1<<10)) continue;
+		else break;
 	}
+
+
 
 	return 0;
 }

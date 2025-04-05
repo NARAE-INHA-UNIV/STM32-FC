@@ -3,10 +3,10 @@
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h:3010:22:LL_TIM_DisableAllOutputs	1
 ../Core/Src/FC_Servo/Servo.c:34:6:SERVO_Initialization	1
 ../Core/Src/FC_Servo/Servo.c:56:9:configurePWM	3
-../Core/Src/FC_Servo/Servo.c:76:6:SERVO_doArm	11
-../Core/Src/FC_Servo/Servo.c:123:6:SERVO_doDisarm	1
-../Core/Src/FC_Servo/Servo.c:139:6:SERVO_control	1
-../Core/Src/FC_Servo/Servo.c:154:6:calculateServoOutput	3
-../Core/Src/FC_Servo/Servo.c:177:6:controlPWM	11
-../Core/Src/FC_Servo/Servo.c:220:6:SERVO_setFailsafe	1
-../Core/Src/FC_Servo/Servo.c:230:6:SERVO_doCalibrate	2
+../Core/Src/FC_Servo/Servo.c:77:6:SERVO_doArm	11
+../Core/Src/FC_Servo/Servo.c:124:6:SERVO_doDisarm	1
+../Core/Src/FC_Servo/Servo.c:140:6:SERVO_control	1
+../Core/Src/FC_Servo/Servo.c:155:6:calculateServoOutput	3
+../Core/Src/FC_Servo/Servo.c:178:6:controlPWM	11
+../Core/Src/FC_Servo/Servo.c:221:6:SERVO_setFailsafe	1
+../Core/Src/FC_Servo/Servo.c:231:6:SERVO_doCalibrate	2

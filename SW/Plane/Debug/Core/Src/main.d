@@ -55,8 +55,9 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/FC_Basic/driver_Buzzer.h ../Core/Inc/FC_Servo/driver_Servo.h \
  ../Core/Inc/FC_Failsafe/Failsafe.h ../Core/Inc/FC_RC/driver_RC.h \
  ../Core/Inc/FC_RC/Protocol/SRXL2.h ../Core/Inc/FC_RC/Protocol/spm_srxl.h \
- ../Core/Inc/FC_RC/Protocol/SRXL2_type.h ../Core/Inc/FC_Servo/Servo.h \
- ../Core/Inc/FC_Gyro/driver_ICM42688.h ../Core/Inc/FC_Log/Log.h
+ ../Core/Inc/FC_RC/Protocol/SRXL2_type.h ../Core/Inc/FC_RC/Protocol/PPM.h \
+ ../Core/Inc/FC_Servo/Servo.h ../Core/Inc/FC_Gyro/driver_ICM42688.h \
+ ../Core/Inc/FC_Log/Log.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -121,6 +122,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/FC_RC/Protocol/SRXL2.h:
 ../Core/Inc/FC_RC/Protocol/spm_srxl.h:
 ../Core/Inc/FC_RC/Protocol/SRXL2_type.h:
+../Core/Inc/FC_RC/Protocol/PPM.h:
 ../Core/Inc/FC_Servo/Servo.h:
 ../Core/Inc/FC_Gyro/driver_ICM42688.h:
 ../Core/Inc/FC_Log/Log.h:

@@ -21,9 +21,14 @@
 
 
 /* Macro ---------------------------------------------------------------------*/
-/* Variables -----------------------------------------------------------------*/
-/* Functions 1 ---------------------------------------------------------------*/
+#define PPM_MAX_CHANNEL 8
+#define PPM_MAX_BUFFER_SIZE PPM_MAX_CHANNEL
 
+
+/* Functions 1 ---------------------------------------------------------------*/
+int PPM_init(void);
+int PPM_readData(uint16_t data);
+int PPM_getControlData(void);
 
 
 #endif /* INC_FC_RC_PROTOCOL_PPM_H_ */

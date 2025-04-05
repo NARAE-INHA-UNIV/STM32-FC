@@ -24,7 +24,8 @@ int PARM_load(void){
 	paramRc.OPTIONS = 0;
 	paramRc.OVERRIDE_TIME = 0.0;
 //	paramRc.PROTOCOLS = (0x00);
-	paramRc.PROTOCOLS = (0x1<<SRXL2);
+//	paramRc.PROTOCOLS = (0x1<<SRXL2);
+	paramRc.PROTOCOLS = (0x1<<PPM);
 	paramRc.FS_TIMEOUT = 1.0;
 	paramRc.reversedMask = 0x00;
 
@@ -37,10 +38,14 @@ int PARM_load(void){
 		paramRcCH[i].OPTION = 0;
 	}
 
-	paramRcMap.THR = 0;
-	paramRcMap.ROL = 1;
-	paramRcMap.PIT = 2;
-	paramRcMap.YAW = 3;
+//	paramRcMap.THR = 0;
+//	paramRcMap.ROL = 1;
+//	paramRcMap.PIT = 2;
+//	paramRcMap.YAW = 3;
+	paramRcMap.THR = 2;
+	paramRcMap.ROL = 3;
+	paramRcMap.PIT = 1;
+	paramRcMap.YAW = 0;
 
 	servo->AUTO_TRIM = 0;
 	servo->DSHOT_ESC = 0;

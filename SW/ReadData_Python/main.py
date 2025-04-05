@@ -15,9 +15,9 @@ while True:
         cnt = 0;
 
         if(rx.length>0 and rx.checkCRC()):
-            #msg = RC_CHANNELS(rx)
+            msg = RC_CHANNELS(rx)
             #msg = SERVO_OUTPUT_RAW(rx)
-            msg = RAW_IMU(rx)
+            #msg = RAW_IMU(rx)
             msg.print();
 
     rx.data[cnt] = byte2int(data.hex())

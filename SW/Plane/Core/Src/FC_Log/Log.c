@@ -21,9 +21,9 @@ int Log_Send()
 	if(!(system_time.time_boot_ms - previous_time > 250)) return -1;
 	previous_time = system_time.time_boot_ms;
 
-	Log_transmit((uint8_t*)&raw_imu, sizeof(raw_imu));
+//	Log_transmit((uint8_t*)&raw_imu, sizeof(raw_imu));
 //	Log_transmit((uint8_t *)&servo_output_raw, sizeof(servo_output_raw));
-//	Log_transmit((uint8_t*)&RC_channels, sizeof(RC_channels));
+	Log_transmit((uint8_t*)&RC_channels, sizeof(RC_channels));
 	return 0;
 }
 

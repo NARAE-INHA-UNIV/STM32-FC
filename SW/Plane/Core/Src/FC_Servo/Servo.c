@@ -57,16 +57,17 @@ uint8_t configurePWM(uint16_t hz)
 {
 	if(hz>490 || hz<50) return 1;
 
+	// PPM 입력이 활성화 되어 있으면 50Hz 고정하도록
 	TIM1->ARR = 1000000/hz-1;
 	TIM1->PSC = 84-1;
 
-	TIM3->ARR = 20000;
+	TIM3->ARR = 1000000/hz-1;
 	TIM3->PSC = 84-1;
 
-	TIM4->ARR = 20000;
+	TIM4->ARR = 1000000/hz-1;
 	TIM4->PSC = 84-1;
 
-	TIM5->ARR = 20000;
+	TIM5->ARR = 1000000/hz-1;
 	TIM5->PSC = 84-1;
 
 	return 0;

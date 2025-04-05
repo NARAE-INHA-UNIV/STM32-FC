@@ -24,6 +24,7 @@
 
 #include <FC_RC/driver_RC.h>
 #include <FC_RC/Protocol/SRXL2.h>
+#include <FC_RC/Protocol/PPM.h>
 
 
 /* Macro ---------------------------------------------------------------------*/
@@ -65,7 +66,7 @@ enum RC_PARM_PROTOCOL{
 
 
 /* Functions -----------------------------------------------------------------*/
-int RC_reviceIRQ2(const uint8_t data);
+int RC_receiveIRQ2(const uint16_t data);
 int RC_isBufferInit(void);
 
 int RC_checkThrottle(void);
