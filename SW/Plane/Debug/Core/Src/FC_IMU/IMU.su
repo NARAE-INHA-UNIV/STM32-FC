@@ -1,0 +1,4 @@
+../Core/Src/FC_IMU/IMU.c:22:5:IMU_Initialization	8	static
+../Core/Src/FC_IMU/IMU.c:35:14:IMU_GetData	8	static
+../Core/Src/FC_IMU/IMU.c:52:6:KalmanFilter	4	static
+../Core/Src/FC_IMU/IMU.c:58:6:ComplementaryFilter	4	static

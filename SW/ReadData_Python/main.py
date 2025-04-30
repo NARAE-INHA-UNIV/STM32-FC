@@ -7,7 +7,8 @@ ser = serial.Serial('COM23', 57600)
 
 rx = packet()
 cnt = 0
-imu = RAW_IMU()
+#imu = MAVLink(MSG_NUM.RAW_IMU)
+imu = MAVLink(MSG_NUM.SCALED_IMU)
 
 while True: 
     data = ser.read()  # 1바이트씩 읽기
@@ -17,10 +18,8 @@ while True:
         cnt = 0;
 
         if(rx.length>0 and rx.checkCRC()):
-            #msg = RC_CHANNELS(rx)
-            #msg = SERVO_OUTPUT_RAW(rx)
             imu.update(rx)
-            imu.print();
+            imu.display();
 
     rx.data[cnt] = byte2int(data.hex())
     cnt = cnt +1

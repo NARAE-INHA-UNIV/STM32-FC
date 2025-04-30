@@ -1,30 +1,32 @@
 /*
- * Log.h
+ * FC_IMU/driver_IMU.h
  *
- *  Created on: Mar 23, 2025
+ *  Created on: May 1, 2025
  *      Author: leecurrent04
  *      Email : leecurrent04@inha.edu
  */
 
-#ifndef INC_FC_LOG_LOG_H_
-#define INC_FC_LOG_LOG_H_
+#ifndef INC_FC_IMU_IMU_H_
+#define INC_FC_IMU_IMU_H_
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <main.h>
-#include <stdlib.h>
-#include <string.h>
-
+#include "main.h"
 #include <GCS_MAVLink/GCS_Common.h>
+
+#include <FC_IMU/driver_IMU.h>
+
+#include <FC_IMU/ICM42688P/driver.h>
 
 
 /* Variables -----------------------------------------------------------------*/
-extern const uint8_t code;
+extern SCALED_IMU scaled_imu;
+extern RAW_IMU raw_imu;
 
 
 /* Functions -----------------------------------------------------------------*/
-int Log_Send();
-int Log_transmit(uint8_t* p, uint8_t len);
+void KalmanFilter(void);
+void ComplementaryFilter(void);
 
 
-#endif /* INC_FC_LOG_LOG_H_ */
+#endif /* INC_FC_IMU_IMU_H_ */

@@ -1,6 +1,5 @@
-Core/Src/FC_IMU/driver_IMU.o: ../Core/Src/FC_IMU/driver_IMU.c \
- ../Core/Inc/FC_IMU/driver_IMU.h ../Core/Inc/main.h \
- ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
+Core/Src/FC_IMU/IMU.o: ../Core/Src/FC_IMU/IMU.c ../Core/Inc/FC_IMU/IMU.h \
+ ../Core/Inc/main.h ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
@@ -42,9 +41,9 @@ Core/Src/FC_IMU/driver_IMU.o: ../Core/Src/FC_IMU/driver_IMU.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_pwr.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h \
  ../Core/Inc/GCS_MAVLink/GCS_Common.h \
- ../Core/Inc/GCS_MAVLink/MAVLink_MSG.h \
- ../Core/Inc/FC_Gyro/driver_ICM42688.h
-../Core/Inc/FC_IMU/driver_IMU.h:
+ ../Core/Inc/GCS_MAVLink/MAVLink_MSG.h ../Core/Inc/FC_IMU/driver_IMU.h \
+ ../Core/Inc/FC_IMU/ICM42688P/driver.h
+../Core/Inc/FC_IMU/IMU.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -89,4 +88,5 @@ Core/Src/FC_IMU/driver_IMU.o: ../Core/Src/FC_IMU/driver_IMU.c \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h:
 ../Core/Inc/GCS_MAVLink/GCS_Common.h:
 ../Core/Inc/GCS_MAVLink/MAVLink_MSG.h:
-../Core/Inc/FC_Gyro/driver_ICM42688.h:
+../Core/Inc/FC_IMU/driver_IMU.h:
+../Core/Inc/FC_IMU/ICM42688P/driver.h:

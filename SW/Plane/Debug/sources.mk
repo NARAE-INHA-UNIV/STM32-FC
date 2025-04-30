@@ -24,7 +24,7 @@ C_DEPS :=
 SUBDIRS := \
 Core/Src/FC_Basic \
 Core/Src/FC_Failsafe \
-Core/Src/FC_Gyro \
+Core/Src/FC_IMU/ICM42688P \
 Core/Src/FC_IMU \
 Core/Src/FC_Log \
 Core/Src/FC_Param \

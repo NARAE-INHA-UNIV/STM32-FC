@@ -22,8 +22,8 @@
  * @brief ICM42688 structure definition.
  */
 
-#include <FC_Gyro/ICM42688.h>
-#include <FC_Gyro/driver_ICM42688.h>
+#include <FC_IMU/ICM42688P/driver.h>
+#include <FC_IMU/ICM42688P/ICM42688.h>
 
 int32_t gyro_x_offset, gyro_y_offset, gyro_z_offset; // To remove offset
 
@@ -88,17 +88,16 @@ int ICM42688_Initialization(void)
 
 int ICM42688_GetData(void)
 {
-	ICM42688_Get6AxisRawData();
+	Get6AxisRawData();
 
-	// 각속도 변환 여기서
-	ICM42688_raw2dps();
+	ConvertGyroRaw2Dps();
 
 	return 0;
 }
 
 
 /* Functions 2 ---------------------------------------------------------------*/
-void ICM42688_Get6AxisRawData()
+void Get6AxisRawData()
 {
 	uint8_t data[14];
 
@@ -118,12 +117,61 @@ void ICM42688_Get6AxisRawData()
 
 
 /*
- * Raw to Degree/s (mrad/s)
+ * @brief GYRO RAW를 mdps로 변환
+ * @detail SCALED_IMU에 저장.
+ * 			m degree/s
+ * @parm none
+ * @retval none
  */
-void ICM42688_raw2dps(void)
+void ConvertGyroRaw2Dps(void)
 {
-	// (ADC max value : 2^15-1) / (dps) 곱해서 구함
-	// scaled_imu.xgyro = raw_imu * 16.4;
+	uint8_t gyro_reg_val = ICM42688_Readbyte(GYRO_CONFIG0);
+	uint8_t gyro_fs_sel = (gyro_reg_val >> 5) & 0x07;
+
+	float sensitivity;
+
+	switch (gyro_fs_sel)
+	{
+	case 0: sensitivity = 16.4f; break;       // ±2000 dps
+	case 1: sensitivity = 32.8f; break;       // ±1000 dps
+	case 2: sensitivity = 65.5f; break;       // ±500 dps
+	case 3: sensitivity = 131.0f; break;      // ±250 dps
+	case 4: sensitivity = 262.0f; break;      // ±125 dps
+	case 5: sensitivity = 524.3f; break;      // ±62.5 dps
+	case 6: sensitivity = 1048.6f; break;     // ±31.25 dps
+	case 7: sensitivity = 2097.2f; break;     // ±15.625 dps
+	default: sensitivity = 16.4f; break;      // fallback: ±2000 dps
+	}
+
+	scaled_imu.time_boot_ms = system_time.time_boot_ms;
+	scaled_imu.xgyro = raw_imu.xgyro / sensitivity;
+	scaled_imu.ygyro = raw_imu.ygyro / sensitivity;
+	scaled_imu.zgyro = raw_imu.zgyro / sensitivity;
+
+	return;
+}
+
+
+void ConvertAccRaw2G(void)
+{
+	uint8_t acc_reg_val = ICM42688_Readbyte(ACCEL_CONFIG0);
+	uint8_t acc_fs_sel = (acc_reg_val >> 5) & 0x07;
+
+	float sensitivity;
+
+	switch (acc_fs_sel)
+	{
+	case 0: sensitivity = 2048.0f; break;    // ±16g
+	case 1: sensitivity = 4096.0f; break;    // ±8g
+	case 2: sensitivity = 8192.0f; break;    // ±4g
+	case 3: sensitivity = 16384.0f; break;   // ±2g
+	default: sensitivity = 2048.0f; break;   // fallback: ±16g
+	}
+
+	scaled_imu.xacc = raw_imu.xacc / sensitivity;
+	scaled_imu.yacc = raw_imu.yacc / sensitivity;
+	scaled_imu.zacc = raw_imu.zacc / sensitivity;
+
 	return;
 }
 
