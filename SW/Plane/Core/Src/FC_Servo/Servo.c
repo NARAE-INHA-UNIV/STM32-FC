@@ -163,6 +163,7 @@ void calculateServoOutput(void)
 		if(!(servo->GPIO_MASK&0x1<<i)) continue;
 
 		servo_output_raw.servo_raw[i] = RC_channels.value[i];
+		// servo_output_raw.servo_raw[i] = scaled_imu + RC_channels 를 기반으로 요리조리 계산해서 결정.
 	}
 
 	return;

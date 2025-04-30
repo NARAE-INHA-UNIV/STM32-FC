@@ -29,7 +29,7 @@
 
 #include <FC_Basic/driver_Buzzer.h>
 
-#include <FC_Gyro/driver_ICM42688.h>
+#include <FC_IMU/driver_IMU.h>
 
 #include <FC_Log/Log.h>
 #include <FC_RC/driver_RC.h>
@@ -165,7 +165,7 @@ int main(void)
 
   // 필수 기기 점검
   RC_Initialization();
-  ICM42688_Initialization();
+  IMU_Initialization();
   BuzzerPlayOneCycle();
   SERVO_doArm();
 
@@ -177,7 +177,7 @@ int main(void)
   {
 	  RC_GetData();
 
-	  ICM42688_Get6AxisRawData();
+	  IMU_GetData();
 
 	  if(fsFlag == 1){
 		  FS_mannualMode();

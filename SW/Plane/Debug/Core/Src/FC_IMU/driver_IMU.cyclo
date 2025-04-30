@@ -1,0 +1,2 @@
+../Core/Src/FC_IMU/driver_IMU.c:16:5:IMU_Initialization	1
+../Core/Src/FC_IMU/driver_IMU.c:23:6:IMU_GetData	1

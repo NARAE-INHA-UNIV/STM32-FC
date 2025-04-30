@@ -28,6 +28,107 @@
 int32_t gyro_x_offset, gyro_y_offset, gyro_z_offset; // To remove offset
 
 
+/* Functions 1 ---------------------------------------------------------------*/
+int ICM42688_Initialization(void)
+{
+
+	uint8_t who_am_i = 0;
+	int16_t accel_raw_data[3] = {0};  // To remove offset
+	int16_t gyro_raw_data[3] = {0};   // To remove offset
+
+	ICM42688_GPIO_SPI_Initialization();
+
+	// printf("Checking ICM42688...\n\r");
+
+	who_am_i = ICM42688_Readbyte(WHO_AM_I);
+
+	if(who_am_i == 0x47)
+	{
+		// printf("ICM42688 who_am_i = 0x%02x...OK\n\r", who_am_i);
+	}
+	// recheck
+	else if(who_am_i != 0x47)
+	{
+		who_am_i = ICM42688_Readbyte(WHO_AM_I); // check again WHO_AM_I (0x75)
+
+		if (who_am_i != 0x12){
+			// printf( "ICM42688 Not OK: 0x%02x Should be 0x%02x\n\r", who_am_i, 0x12);
+			return 1; //ERROR
+		}
+	}
+
+	// PWR_MGMT0
+	ICM42688_Writebyte(PWR_MGMT0, 0x0F); // Temp on, ACC, GYRO LPF Mode
+	HAL_Delay(50);
+
+
+	// GYRO_CONFIG0
+	ICM42688_Writebyte(GYRO_CONFIG0, 0x06); // Gyro sensitivity 2000 dps, 1kHz
+	HAL_Delay(50);
+	ICM42688_Writebyte(GYRO_CONFIG1, 0x00); // Gyro temp DLPF 4kHz, UI Filter 1st, 	DEC2_M2 reserved
+	HAL_Delay(50);
+
+	ICM42688_Writebyte(ACCEL_CONFIG0, 0x06); // Acc sensitivity 16g, 1kHz
+	HAL_Delay(50);
+	ICM42688_Writebyte(ACCEL_CONFIG1, 0x00); // Acc UI Filter 1st, 	DEC2_M2 reserved
+	HAL_Delay(50);
+
+	ICM42688_Writebyte(GYRO_ACCEL_CONFIG0, 0x11); // LPF default max(400Hz,ODR)/4
+	HAL_Delay(50);
+
+	// Enable Interrupts when data is ready
+//	ICM42688_Writebyte(INT_ENABLE, 0x01); // Enable DRDY Interrupt
+//	HAL_Delay(50);
+
+
+	// Remove Gyro X offset
+	return 0; //OK
+}
+
+
+int ICM42688_GetData(void)
+{
+	ICM42688_Get6AxisRawData();
+
+	// 각속도 변환 여기서
+	ICM42688_raw2dps();
+
+	return 0;
+}
+
+
+/* Functions 2 ---------------------------------------------------------------*/
+void ICM42688_Get6AxisRawData()
+{
+	uint8_t data[14];
+
+	ICM42688_Readbytes(TEMP_DATA1, 14, data);
+
+	raw_imu.time_usec = system_time.time_unix_usec;
+	raw_imu.temperature = (data[0] << 8) | data[1];
+	raw_imu.xacc = (data[2] << 8) | data[3];
+	raw_imu.yacc = (data[4] << 8) | data[5];
+	raw_imu.zacc = ((data[6] << 8) | data[7]);
+	raw_imu.xgyro = ((data[8] << 8) | data[9]);
+	raw_imu.ygyro = ((data[10] << 8) | data[11]);
+	raw_imu.zgyro = ((data[12] << 8) | data[13]);
+
+	return;
+}
+
+
+/*
+ * Raw to Degree/s (mrad/s)
+ */
+void ICM42688_raw2dps(void)
+{
+	// (ADC max value : 2^15-1) / (dps) 곱해서 구함
+	// scaled_imu.xgyro = raw_imu * 16.4;
+	return;
+}
+
+
+/* Functions 3 ---------------------------------------------------------------*/
 void ICM42688_GPIO_SPI_Initialization(void)
 {
 	LL_SPI_InitTypeDef SPI_InitStruct = {0};
@@ -148,79 +249,6 @@ void ICM42688_Writebytes(unsigned char reg_addr, unsigned char len, unsigned cha
 }
 
 
-int ICM42688_Initialization(void)
-{
-
-	uint8_t who_am_i = 0;
-	int16_t accel_raw_data[3] = {0};  // To remove offset
-	int16_t gyro_raw_data[3] = {0};   // To remove offset
-	
-	ICM42688_GPIO_SPI_Initialization();
-	
-	// printf("Checking ICM42688...\n\r");
-	
-	who_am_i = ICM42688_Readbyte(WHO_AM_I); 
-
-	if(who_am_i == 0x47)
-	{
-		// printf("ICM42688 who_am_i = 0x%02x...OK\n\r", who_am_i);
-	}
-	// recheck
-	else if(who_am_i != 0x47)
-	{
-		who_am_i = ICM42688_Readbyte(WHO_AM_I); // check again WHO_AM_I (0x75)
-
-		if (who_am_i != 0x12){
-			// printf( "ICM42688 Not OK: 0x%02x Should be 0x%02x\n\r", who_am_i, 0x12);
-			return 1; //ERROR
-		}
-	}
-	
-	// PWR_MGMT0
-	ICM42688_Writebyte(PWR_MGMT0, 0x0F); // Temp on, ACC, GYRO LPF Mode
-	HAL_Delay(50);
-
-	
-	// GYRO_CONFIG0
-	ICM42688_Writebyte(GYRO_CONFIG0, 0x06); // Gyro sensitivity 2000 dps, 1kHz
-	HAL_Delay(50);
-	ICM42688_Writebyte(GYRO_CONFIG1, 0x00); // Gyro temp DLPF 4kHz, UI Filter 1st, 	DEC2_M2 reserved
-	HAL_Delay(50);
-
-	ICM42688_Writebyte(ACCEL_CONFIG0, 0x06); // Acc sensitivity 16g, 1kHz
-	HAL_Delay(50);
-	ICM42688_Writebyte(ACCEL_CONFIG1, 0x00); // Acc UI Filter 1st, 	DEC2_M2 reserved
-	HAL_Delay(50);
-
-	ICM42688_Writebyte(GYRO_ACCEL_CONFIG0, 0x11); // LPF default max(400Hz,ODR)/4
-	HAL_Delay(50);
-
-	// Enable Interrupts when data is ready
-//	ICM42688_Writebyte(INT_ENABLE, 0x01); // Enable DRDY Interrupt
-//	HAL_Delay(50);
-	
-	
-	// Remove Gyro X offset
-	return 0; //OK
-}
-
-void ICM42688_Get6AxisRawData()
-{
-	uint8_t data[14];
-
-	ICM42688_Readbytes(TEMP_DATA1, 14, data);
-	
-	raw_imu.time_usec = system_time.time_unix_usec;
-	raw_imu.temperature = (data[0] << 8) | data[1];
-	raw_imu.xacc = (data[2] << 8) | data[3];
-	raw_imu.yacc = (data[4] << 8) | data[5];
-	raw_imu.zacc = ((data[6] << 8) | data[7]);
-	raw_imu.xgyro = ((data[8] << 8) | data[9]);
-	raw_imu.ygyro = ((data[10] << 8) | data[11]);
-	raw_imu.zgyro = ((data[12] << 8) | data[13]);
-
-	return;
-}
 /*
 
 void ICM42688_Get3AxisGyroRawData(short* gyro)

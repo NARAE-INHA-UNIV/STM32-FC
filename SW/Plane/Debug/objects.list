@@ -2,6 +2,7 @@
 "./Core/Src/FC_Basic/RingBuffer.o"
 "./Core/Src/FC_Failsafe/Failsafe.o"
 "./Core/Src/FC_Gyro/ICM42688.o"
+"./Core/Src/FC_IMU/driver_IMU.o"
 "./Core/Src/FC_Log/Log.o"
 "./Core/Src/FC_Param/Param.o"
 "./Core/Src/FC_Param/config_PARM.o"

@@ -17,15 +17,22 @@
 
 /* Variables -----------------------------------------------------------------*/
 extern RAW_IMU raw_imu;
+extern SCALED_IMU scaled_imu;
+
 extern int32_t gyro_x_offset, gyro_y_offset, gyro_z_offset;
 
 
-/* Functions -----------------------------------------------------------------*/
+/* Functions 1 ---------------------------------------------------------------*/
 int ICM42688_Initialization(void);
+int ICM42688_GetData(void);
+
+
+/* Functions 2 ---------------------------------------------------------------*/
 void ICM42688_Get6AxisRawData(void);
-void ICM42688_Get3AxisGyroRawData(short* gyro);
-void ICM42688_Get3AxisAccRawData(short* accel);
-int ICM42688_DataReady(void);
+void ICM42688_raw2dps(void);
+//void ICM42688_Get3AxisGyroRawData(short* gyro);
+//void ICM42688_Get3AxisAccRawData(short* accel);
+//int ICM42688_DataReady(void);
 
 
 #endif /* INC_SEN_ICM42688_DRIVER_H_ */

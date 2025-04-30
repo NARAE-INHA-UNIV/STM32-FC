@@ -13,6 +13,7 @@
 
 /* Variables -----------------------------------------------------------------*/
 SYSTEM_TIME system_time;
+SCALED_IMU scaled_imu;
 RAW_IMU raw_imu;
 SERVO_OUTPUT_RAW servo_output_raw;
 RC_CHANNELS RC_channels;

@@ -1,4 +1,4 @@
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h:1814:26:LL_USART_IsActiveFlag_TXE	16	static
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usart.h:2426:22:LL_USART_TransmitData8	16	static
 ../Core/Src/FC_Log/Log.c:16:5:Log_Send	8	static
-../Core/Src/FC_Log/Log.c:37:5:Log_transmit	32	static
+../Core/Src/FC_Log/Log.c:38:5:Log_transmit	32	static

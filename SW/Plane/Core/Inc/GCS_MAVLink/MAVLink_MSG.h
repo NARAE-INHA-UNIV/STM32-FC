@@ -21,6 +21,25 @@ typedef struct __attribute__((packed)){
 
 
 /*
+ * SCALED_IMU (26)
+ * The RAW IMU readings for the usual 9DOF sensor setup. This message should contain the scaled values to the described units
+ */
+typedef struct __attribute__((packed)){
+	uint32_t time_boot_ms;
+	int16_t xacc;
+	int16_t yacc;			// Y acceleration (raw)
+	int16_t zacc;			// Z acceleration (raw)
+	int16_t xgyro;			// Angular speed around X axis (raw)
+	int16_t ygyro;			// Angular speed around Y axis (raw)
+	int16_t zgyro;			// Angular speed around Z axis (raw)
+	int16_t xmag;			// X Magnetic field (raw)
+	int16_t ymag;			// Y Magnetic field (raw)
+	int16_t zmag;			// Z Magnetic field (raw)
+	int16_t temperature;	// Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 (0.01C).
+} SCALED_IMU;
+
+
+/*
  * RAW_IMU (27)
  * The RAW IMU readings for a 9DOF sensor, which is identified by the id (default IMU1).
  * This message should always contain the true raw values without any scaling to allow data capture and system debugging.

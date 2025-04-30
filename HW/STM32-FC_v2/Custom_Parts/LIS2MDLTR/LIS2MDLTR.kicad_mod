@@ -1,0 +1,214 @@
+(footprint "LIS2MDLTR"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "LGA-12")
+	(tags "Integrated Circuit")
+	(property "Reference" "IC**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(uuid "92f71195-4225-41e2-b853-dee0f1c5d6b4")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Value" "LGA-12"
+		(at 0 -2.1 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "0879f3ee-7a47-4630-8df4-0d9c3afbac10")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "db52faf1-230a-4663-9cf9-40f9e115b3ca")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "c8079167-81c7-4b17-883b-e288e873ad55")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(clearance 0.1)
+	(attr smd)
+	(fp_rect
+		(start -1.1 -1.1)
+		(end 1.1 1.1)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "e00bf721-d3ce-4369-9f78-0a0a13b47588")
+	)
+	(fp_circle
+		(center -1.368 -1.25)
+		(end -1.368 -1.225)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "c24aa6fa-1cc7-4773-8ec9-848b4aa175f8")
+	)
+	(fp_line
+		(start -1 -1)
+		(end 1 -1)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "40bc1331-f00d-44b2-b505-be06b7910411")
+	)
+	(fp_line
+		(start -1 1)
+		(end -1 -1)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "6bb5a6dd-356c-4f49-92d0-1e83edb0b7fb")
+	)
+	(fp_line
+		(start 1 -1)
+		(end 1 1)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "843f3769-e057-4277-b10e-05a926fcd8c1")
+	)
+	(fp_line
+		(start 1 1)
+		(end -1 1)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "8dd96979-c8ec-4b7d-a059-ab8efc30d9d5")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 4 0)
+		(layer "F.Fab")
+		(uuid "693e768e-970b-40a2-9dee-c88ee43844cd")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -0.8 -0.75 90)
+		(size 0.4 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "8e4a6232-0d54-4028-aacf-a1db9a4308c5")
+	)
+	(pad "2" smd rect
+		(at -0.8 -0.25 90)
+		(size 0.4 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "1a436dfd-2205-459b-b55d-ce6e3406c785")
+	)
+	(pad "3" smd rect
+		(at -0.8 0.25 90)
+		(size 0.4 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "0598b818-7932-444f-b686-11ab35cf09e5")
+	)
+	(pad "4" smd rect
+		(at -0.8 0.75 90)
+		(size 0.4 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "a8322cf9-89c8-4294-864d-2ff3e30f74c1")
+	)
+	(pad "5" smd rect
+		(at -0.25 0.75 90)
+		(size 0.4 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "f7f0b344-0873-451f-8aa9-5e34f8a1ba73")
+	)
+	(pad "6" smd rect
+		(at 0.25 0.75 90)
+		(size 0.4 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "e6c80c14-2919-41cb-974e-abaee11405dd")
+	)
+	(pad "7" smd rect
+		(at 0.8 0.75 90)
+		(size 0.4 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "959d3a8a-519a-4393-998f-46d93dd378ed")
+	)
+	(pad "8" smd rect
+		(at 0.8 0.25 90)
+		(size 0.4 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "9da7e76d-a180-4983-afcc-afb892e87d6d")
+	)
+	(pad "9" smd rect
+		(at 0.8 -0.25 90)
+		(size 0.4 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "164d5c41-bacd-4731-a611-ba16c3e93e28")
+	)
+	(pad "10" smd rect
+		(at 0.8 -0.75 90)
+		(size 0.4 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "b2038860-4c22-48e2-8ba2-44c1c838fc4c")
+	)
+	(pad "11" smd rect
+		(at 0.25 -0.75 90)
+		(size 0.4 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "18c38238-c432-403c-a2bd-0469ee566f56")
+	)
+	(pad "12" smd rect
+		(at -0.25 -0.75 90)
+		(size 0.4 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "ed7ad9f4-aa81-4c55-88fd-103131ebdf47")
+	)
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/Custom_Parts/LIS2MDLTR/LIS2MDLTR.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 -180)
+		)
+	)
+)

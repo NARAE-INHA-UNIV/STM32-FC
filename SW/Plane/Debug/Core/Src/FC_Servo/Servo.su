@@ -7,6 +7,6 @@
 ../Core/Src/FC_Servo/Servo.c:124:6:SERVO_doDisarm	8	static
 ../Core/Src/FC_Servo/Servo.c:140:6:SERVO_control	8	static
 ../Core/Src/FC_Servo/Servo.c:155:6:calculateServoOutput	16	static
-../Core/Src/FC_Servo/Servo.c:178:6:controlPWM	24	static
-../Core/Src/FC_Servo/Servo.c:221:6:SERVO_setFailsafe	4	static
-../Core/Src/FC_Servo/Servo.c:231:6:SERVO_doCalibrate	16	static
+../Core/Src/FC_Servo/Servo.c:179:6:controlPWM	24	static
+../Core/Src/FC_Servo/Servo.c:222:6:SERVO_setFailsafe	4	static
+../Core/Src/FC_Servo/Servo.c:232:6:SERVO_doCalibrate	16	static
