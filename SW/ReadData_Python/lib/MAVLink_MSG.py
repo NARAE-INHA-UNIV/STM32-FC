@@ -1,3 +1,5 @@
+import serial
+
 from .MSG.SCALED_IMU import *
 from .MSG.RAW_IMU import *
 from .MSG.RC_CHANNELS import *
@@ -12,6 +14,7 @@ class MSG_NUM:
 def MAVLink(msgNum:MSG_NUM):
     msg = None
 
+
     match(msgNum):
         case MSG_NUM.SCALED_IMU:
             msg = SCALED_IMU()
@@ -21,5 +24,6 @@ def MAVLink(msgNum:MSG_NUM):
             msg = SERVO_OUTPUT_RAW()
         case MSG_NUM.RC_CHANNELS:
             msg = RC_CHANNELS()
-    
+
+     
     return msg

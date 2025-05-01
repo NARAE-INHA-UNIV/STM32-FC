@@ -7,13 +7,14 @@ ser = serial.Serial('COM23', 57600)
 
 rx = packet()
 cnt = 0
-#imu = MAVLink(MSG_NUM.RAW_IMU)
 imu = MAVLink(MSG_NUM.SCALED_IMU)
+ser.write(b'\xFD\x01\x75\xBC')
+#ser.write(b'\xFD\x00\x65\x9D')
 
 while True: 
     data = ser.read()  # 1바이트씩 읽기
 
-    if data == b'\xFD':  # 0xA6이 나오면
+    if data == b'\xFD':  # 0xFD이 나오면
         rx.length = cnt
         cnt = 0;
 

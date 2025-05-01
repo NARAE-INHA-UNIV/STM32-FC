@@ -14,7 +14,7 @@
 
 /* Variables -----------------------------------------------------------------*/
 const uint8_t code = 0xFD;
-
+uint16_t logType = 0;
 
 /* Functions -----------------------------------------------------------------*/
 int Log_Send()
@@ -25,10 +25,23 @@ int Log_Send()
 	if(!(system_time.time_boot_ms - previous_time > 100)) return -1;
 	previous_time = system_time.time_boot_ms;
 
-	Log_transmit((uint8_t*)&scaled_imu, sizeof(scaled_imu));
-//	Log_transmit((uint8_t*)&raw_imu, sizeof(raw_imu));
-//	Log_transmit((uint8_t *)&servo_output_raw, sizeof(servo_output_raw));
-//	Log_transmit((uint8_t*)&RC_channels, sizeof(RC_channels));
+	switch(logType)
+	{
+	case 1:
+		Log_transmit((uint8_t*)&scaled_imu, sizeof(scaled_imu));
+		break;
+	case 2:
+		Log_transmit((uint8_t*)&raw_imu, sizeof(raw_imu));
+		break;
+	case 3:
+		Log_transmit((uint8_t*)&servo_output_raw, sizeof(servo_output_raw));
+		break;
+	case 4:
+		Log_transmit((uint8_t*)&RC_channels, sizeof(RC_channels));
+		break;
+	default:
+		break;
+	}
 	return 0;
 }
 
@@ -72,7 +85,10 @@ void USB_CDC_RxHandler(uint8_t* Buf, uint32_t Len)
 	if(Len<3 || Len > 255) return;
 	if(Buf[0] != code) return;
 
-	// calculate_crc(&Buf[0], (uint8_t)Len)
+	uint16_t crc = ((uint16_t)Buf[Len -2] << 8 | Buf[Len -1]);
+	if(crc != calculate_crc(&Buf[0], (uint8_t)Len)) return;
+
+	logType = Buf[1];
 
 	return;
 }
