@@ -1,4 +1,4 @@
-from ..MAVLink_MSG import *
+from ..MAVLink import *
 from ..packet import *
 import struct
 

@@ -1,16 +1,18 @@
-from ..MAVLink_MSG import *
-from ..packet import *
+from ..MAVLink import *
 import struct
 
-class SCALED_IMU:
-    def __init__(self):
+class SCALED_IMU(MAVLink):
+    def __init__(self, port, baudrate=115200):
+        super().__init__(port, baudrate)
+        super().select(MSG_NUM.SCALED_IMU)
+
         self.xdeg:float = 0;
         self.ydeg:float = 0;
         self.zdeg:float = 0;
         self.time_previous:float = 0;
-        pass
 
-    def update(self, rx:packet):
+
+    def update(self):
         # 데이터 포맷: (각 항목의 바이트 크기에 맞게 포맷 지정)
         # 'I' = 4바이트 (uint32_t), 
         # 'h' = 2바이트 signed short (int16_t), 
@@ -18,7 +20,7 @@ class SCALED_IMU:
         fmt = '<Ihhhhhhhhhh'  # 작은 엔디안 순서로 24바이트 데이터를 처리
         
         # struct.unpack을 사용해 데이터를 한 번에 풀어냄
-        unpacked_data = struct.unpack(fmt, bytes(rx.data[1:rx.length-2]))
+        unpacked_data = struct.unpack(fmt, bytes(self.rx.data[1:self.rx.length-2]))
 
         # unpack된 데이터를 멤버 변수에 할당
         self.time_boot_ms = unpacked_data[0]  # uint32_t (Timestamp)
@@ -35,7 +37,9 @@ class SCALED_IMU:
 
 
     def dps2deg(self):
+        # ms -> s
         self.time:float = self.time_boot_ms / 1.0e3
+
         self.time_diff:float = self.time - self.time_previous
         self.time_previous = self.time
 
@@ -47,8 +51,10 @@ class SCALED_IMU:
     def display(self):
         self.dps2deg()
 
-        print("%0.2f %0.2f: %0.2f %0.2f %0.2f"%(
+        print("%0.2f %0.2f: (%3.2f %3.2f %3.2f) (%1.2f %1.2f %1.2f)"%(
             self.time, self.time_diff,
-            self.xdeg, self.ydeg, self.zdeg
+            self.xgyro, self.ygyro, self.zgyro,
+            #self.xdeg, self.ydeg, self.zdeg,
+            self.xacc/1000, self.yacc/1000, self.zacc/1000
             )
             )

@@ -27,16 +27,16 @@ int Log_Send()
 
 	switch(logType)
 	{
-	case 1:
+	case 26:
 		Log_transmit((uint8_t*)&scaled_imu, sizeof(scaled_imu));
 		break;
-	case 2:
+	case 27:
 		Log_transmit((uint8_t*)&raw_imu, sizeof(raw_imu));
 		break;
-	case 3:
+	case 36:
 		Log_transmit((uint8_t*)&servo_output_raw, sizeof(servo_output_raw));
 		break;
-	case 4:
+	case 65:
 		Log_transmit((uint8_t*)&RC_channels, sizeof(RC_channels));
 		break;
 	default:

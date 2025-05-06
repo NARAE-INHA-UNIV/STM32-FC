@@ -63,12 +63,12 @@ int ICM42688_Initialization(void)
 
 
 	// GYRO_CONFIG0
-	ICM42688_Writebyte(GYRO_CONFIG0, 0x06); // Gyro sensitivity 2000 dps, 1kHz
+	ICM42688_Writebyte(GYRO_CONFIG0, 0x26); // Gyro sensitivity 1000 dps, 1kHz
 	HAL_Delay(50);
 	ICM42688_Writebyte(GYRO_CONFIG1, 0x00); // Gyro temp DLPF 4kHz, UI Filter 1st, 	DEC2_M2 reserved
 	HAL_Delay(50);
 
-	ICM42688_Writebyte(ACCEL_CONFIG0, 0x06); // Acc sensitivity 16g, 1kHz
+	ICM42688_Writebyte(ACCEL_CONFIG0, 0x46); // Acc sensitivity 4g, 1kHz
 	HAL_Delay(50);
 	ICM42688_Writebyte(ACCEL_CONFIG1, 0x00); // Acc UI Filter 1st, 	DEC2_M2 reserved
 	HAL_Delay(50);
@@ -91,6 +91,7 @@ int ICM42688_GetData(void)
 	Get6AxisRawData();
 
 	ConvertGyroRaw2Dps();
+	ConvertAccRaw2G();
 
 	return 0;
 }
@@ -144,9 +145,11 @@ void ConvertGyroRaw2Dps(void)
 	}
 
 	scaled_imu.time_boot_ms = system_time.time_boot_ms;
-	scaled_imu.xgyro = raw_imu.xgyro / sensitivity;
-	scaled_imu.ygyro = raw_imu.ygyro / sensitivity;
-	scaled_imu.zgyro = raw_imu.zgyro / sensitivity;
+
+	// m degree
+	scaled_imu.xgyro = (float)raw_imu.xgyro / sensitivity * 1000;
+	scaled_imu.ygyro = (float)raw_imu.ygyro / sensitivity * 1000;
+	scaled_imu.zgyro = (float)raw_imu.zgyro / sensitivity * 1000;
 
 	return;
 }
@@ -168,9 +171,10 @@ void ConvertAccRaw2G(void)
 	default: sensitivity = 2048.0f; break;   // fallback: ±16g
 	}
 
-	scaled_imu.xacc = raw_imu.xacc / sensitivity;
-	scaled_imu.yacc = raw_imu.yacc / sensitivity;
-	scaled_imu.zacc = raw_imu.zacc / sensitivity;
+	// mG
+	scaled_imu.xacc = (float)raw_imu.xacc / sensitivity * 1000;
+	scaled_imu.yacc = (float)raw_imu.yacc / sensitivity * 1000;
+	scaled_imu.zacc = (float)raw_imu.zacc / sensitivity * 1000;
 
 	return;
 }
