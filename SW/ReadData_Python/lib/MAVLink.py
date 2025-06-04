@@ -10,7 +10,7 @@ class MSG_NUM:
 class MAVLink:
     rx:packet = None
     ser:serial = None
-    cnt:int = 0
+    __cnt:int = 0
 
     def __init__(self, port, baudrate=115200):
         self.rx = packet()
@@ -18,7 +18,7 @@ class MAVLink:
 
     def connect(self, port, baudrate=115200):
         self.ser = serial.Serial(port, baudrate)
-        self.cnt = 0
+        self.__cnt = 0
         print("[%s %d] Connected!"%(port, baudrate))
         return 0
 
@@ -46,14 +46,14 @@ class MAVLink:
         rx_byte = self.ser.read()  # 1바이트씩 읽기
 
         if rx_byte == b'\xFD':  # 0xFD이 나오면
-            self.rx.length = self.cnt
-            self.cnt = 0;
+            self.rx.length = self.__cnt
+            self.__cnt = 0;
 
             if(self.rx.length>0 and self.rx.checkCRC()):
                 return 0
 
-        self.rx.data[self.cnt] = byte2int(rx_byte.hex())
-        self.cnt = self.cnt +1
+        self.rx.data[self.__cnt] = byte2int(rx_byte.hex())
+        self.__cnt = self.__cnt +1
 
         return 1
 
@@ -62,4 +62,4 @@ class MAVLink:
         if(self.getByte() == 0):
             self.update()
             self.display()
-        return 0
+        return 

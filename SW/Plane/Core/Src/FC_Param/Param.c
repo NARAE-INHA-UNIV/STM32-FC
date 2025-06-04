@@ -12,11 +12,7 @@
 
 
 /* Variables -----------------------------------------------------------------*/
-PARAM_SERVO paramServo;
-PARAM_SERVO_CH paramServoCH[SERVO_CHANNEL_MAX];
-PARAM_RC paramRc;
-PARAM_RC_CH paramRcCH[RC_CHANNEL_MAX];
-PARAM_RC_MAP paramRcMap;
+PARAM param;
 
 
 /* Functions -----------------------------------------------------------------*/

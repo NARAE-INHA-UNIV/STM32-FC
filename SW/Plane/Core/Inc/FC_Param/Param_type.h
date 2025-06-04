@@ -14,19 +14,13 @@
 #include <FC_Param/Param.h>
 
 
+/* Macro ---------------------------------------------------------------------*/
+#define RC_CHANNEL_MAX (18)
+#define SERVO_CHANNEL_MAX (12)
+
+
 /* Typedef -------------------------------------------------------------------*/
-
 /* SERVO ---------------------------------------------------------------------*/
-typedef struct __attribute__((packed)){
-	uint8_t AUTO_TRIM : 1;
-	uint16_t RATE;
-	uint8_t DSHOT_RATE : 3;
-	uint8_t DSHOT_ESC : 3;
-	uint32_t GPIO_MASK;
-	uint16_t RC_FS_MSK;
-	uint8_t _32_ENABLE :1;
-} PARAM_SERVO;
-
 typedef struct __attribute__((packed)){
 	uint16_t MIN;
 	uint16_t MAX;
@@ -35,16 +29,19 @@ typedef struct __attribute__((packed)){
 	int16_t FUNCTION;
 } PARAM_SERVO_CH;
 
+typedef struct __attribute__((packed)){
+	uint8_t AUTO_TRIM : 1;
+	uint16_t RATE;
+	uint8_t DSHOT_RATE : 3;
+	uint8_t DSHOT_ESC : 3;
+	uint32_t GPIO_MASK;
+	uint16_t RC_FS_MSK;
+	uint8_t _32_ENABLE :1;
+	PARAM_SERVO_CH channel[SERVO_CHANNEL_MAX];
+} PARAM_SERVO;
+
 
 /* RC ------------------------------------------------------------------------*/
-typedef struct __attribute__((packed)){
-	float OVERRIDE_TIME;
-	uint16_t OPTIONS;
-	uint16_t PROTOCOLS;
-	float FS_TIMEOUT;
-	uint32_t reversedMask;
-} PARAM_RC;
-
 typedef struct __attribute__((packed)){
 	uint16_t MIN;
 	uint16_t MAX;
@@ -59,6 +56,16 @@ typedef struct __attribute__((packed)){
 	uint8_t PIT;
 	uint8_t YAW;
 } PARAM_RC_MAP;
+
+typedef struct __attribute__((packed)){
+	float OVERRIDE_TIME;
+	uint16_t OPTIONS;
+	uint16_t PROTOCOLS;
+	float FS_TIMEOUT;
+	uint32_t reversedMask;
+	PARAM_RC_CH channel[RC_CHANNEL_MAX];
+	PARAM_RC_MAP map;
+} PARAM_RC;
 
 
 #endif /* INC_FC_PARAM_PARAM_TYPE_H_ */

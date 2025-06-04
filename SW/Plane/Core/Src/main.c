@@ -155,7 +155,6 @@ int main(void)
 
   PARM_load();
 
-  SERVO_Initialization();
   BuzzerPlayInit();
 
   // interrupt when finished receiving
@@ -164,6 +163,7 @@ int main(void)
   LL_USART_EnableIT_RXNE(USART3);
 
   // 필수 기기 점검
+  SERVO_Initialization();
   RC_Initialization();
   IMU_Initialization();
   BuzzerPlayOneCycle();
@@ -188,7 +188,6 @@ int main(void)
 	  }
 
 	  Log_Send();
-
 
     /* USER CODE END WHILE */
 
@@ -380,8 +379,8 @@ static void MX_TIM1_Init(void)
   LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_TIM1);
 
   /* TIM1 interrupt Init */
-  NVIC_SetPriority(TIM1_CC_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),0, 0));
-  NVIC_EnableIRQ(TIM1_CC_IRQn);
+  NVIC_SetPriority(TIM1_UP_TIM10_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),3, 0));
+  NVIC_EnableIRQ(TIM1_UP_TIM10_IRQn);
 
   /* USER CODE BEGIN TIM1_Init 1 */
 
@@ -394,7 +393,8 @@ static void MX_TIM1_Init(void)
   LL_TIM_Init(TIM1, &TIM_InitStruct);
   LL_TIM_DisableARRPreload(TIM1);
   LL_TIM_SetClockSource(TIM1, LL_TIM_CLOCKSOURCE_INTERNAL);
-  TIM_OC_InitStruct.OCMode = LL_TIM_OCMODE_FROZEN;
+  LL_TIM_OC_EnablePreload(TIM1, LL_TIM_CHANNEL_CH2);
+  TIM_OC_InitStruct.OCMode = LL_TIM_OCMODE_PWM1;
   TIM_OC_InitStruct.OCState = LL_TIM_OCSTATE_DISABLE;
   TIM_OC_InitStruct.OCNState = LL_TIM_OCSTATE_DISABLE;
   TIM_OC_InitStruct.CompareValue = 0;
@@ -404,6 +404,7 @@ static void MX_TIM1_Init(void)
   TIM_OC_InitStruct.OCNIdleState = LL_TIM_OCIDLESTATE_LOW;
   LL_TIM_OC_Init(TIM1, LL_TIM_CHANNEL_CH2, &TIM_OC_InitStruct);
   LL_TIM_OC_DisableFast(TIM1, LL_TIM_CHANNEL_CH2);
+  LL_TIM_OC_EnablePreload(TIM1, LL_TIM_CHANNEL_CH3);
   LL_TIM_OC_Init(TIM1, LL_TIM_CHANNEL_CH3, &TIM_OC_InitStruct);
   LL_TIM_OC_DisableFast(TIM1, LL_TIM_CHANNEL_CH3);
   LL_TIM_SetTriggerOutput(TIM1, LL_TIM_TRGO_RESET);
@@ -417,6 +418,7 @@ static void MX_TIM1_Init(void)
   TIM_BDTRInitStruct.AutomaticOutput = LL_TIM_AUTOMATICOUTPUT_DISABLE;
   LL_TIM_BDTR_Init(TIM1, &TIM_BDTRInitStruct);
   /* USER CODE BEGIN TIM1_Init 2 */
+  LL_TIM_EnableIT_UPDATE(TIM1);
 
   /* USER CODE END TIM1_Init 2 */
   LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOE);
@@ -606,6 +608,10 @@ static void MX_TIM5_Init(void)
   /* Peripheral clock enable */
   LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_TIM5);
 
+  /* TIM5 interrupt Init */
+  NVIC_SetPriority(TIM5_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),3, 0));
+  NVIC_EnableIRQ(TIM5_IRQn);
+
   /* USER CODE BEGIN TIM5_Init 1 */
 
   /* USER CODE END TIM5_Init 1 */
@@ -620,7 +626,7 @@ static void MX_TIM5_Init(void)
   TIM_OC_InitStruct.OCMode = LL_TIM_OCMODE_PWM1;
   TIM_OC_InitStruct.OCState = LL_TIM_OCSTATE_DISABLE;
   TIM_OC_InitStruct.OCNState = LL_TIM_OCSTATE_DISABLE;
-  TIM_OC_InitStruct.CompareValue = 0;
+  TIM_OC_InitStruct.CompareValue = 1000-LL_TIM_IC_FILTER_FDIV1_N2;
   TIM_OC_InitStruct.OCPolarity = LL_TIM_OCPOLARITY_HIGH;
   LL_TIM_OC_Init(TIM5, LL_TIM_CHANNEL_CH1, &TIM_OC_InitStruct);
   LL_TIM_OC_DisableFast(TIM5, LL_TIM_CHANNEL_CH1);
@@ -636,6 +642,7 @@ static void MX_TIM5_Init(void)
   LL_TIM_SetTriggerOutput(TIM5, LL_TIM_TRGO_RESET);
   LL_TIM_DisableMasterSlaveMode(TIM5);
   /* USER CODE BEGIN TIM5_Init 2 */
+  LL_TIM_EnableIT_UPDATE(TIM5);
 
   /* USER CODE END TIM5_Init 2 */
   LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA);
@@ -674,7 +681,7 @@ static void MX_TIM13_Init(void)
   LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_TIM13);
 
   /* TIM13 interrupt Init */
-  NVIC_SetPriority(TIM8_UP_TIM13_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),0, 0));
+  NVIC_SetPriority(TIM8_UP_TIM13_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),4, 0));
   NVIC_EnableIRQ(TIM8_UP_TIM13_IRQn);
 
   /* USER CODE BEGIN TIM13_Init 1 */
@@ -695,9 +702,6 @@ static void MX_TIM13_Init(void)
   LL_TIM_OC_DisableFast(TIM13, LL_TIM_CHANNEL_CH1);
   /* USER CODE BEGIN TIM13_Init 2 */
   LL_TIM_EnableIT_UPDATE(TIM13);
-
-//  TIM13->ARR = 42000;
-//  TIM13->PSC = 2;
 
   /* USER CODE END TIM13_Init 2 */
 
@@ -722,7 +726,7 @@ static void MX_TIM14_Init(void)
   LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_TIM14);
 
   /* TIM14 interrupt Init */
-  NVIC_SetPriority(TIM8_TRG_COM_TIM14_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),0, 0));
+  NVIC_SetPriority(TIM8_TRG_COM_TIM14_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),4, 0));
   NVIC_EnableIRQ(TIM8_TRG_COM_TIM14_IRQn);
 
   /* USER CODE BEGIN TIM14_Init 1 */
@@ -841,7 +845,7 @@ static void MX_UART5_Init(void)
   LL_GPIO_Init(GPS2_RXD2_GPIO_Port, &GPIO_InitStruct);
 
   /* UART5 interrupt Init */
-  NVIC_SetPriority(UART5_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),0, 0));
+  NVIC_SetPriority(UART5_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),2, 0));
   NVIC_EnableIRQ(UART5_IRQn);
 
   /* USER CODE BEGIN UART5_Init 1 */
@@ -951,7 +955,7 @@ static void MX_USART2_UART_Init(void)
   LL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
   /* USART2 interrupt Init */
-  NVIC_SetPriority(USART2_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),0, 0));
+  NVIC_SetPriority(USART2_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),2, 0));
   NVIC_EnableIRQ(USART2_IRQn);
 
   /* USER CODE BEGIN USART2_Init 1 */
@@ -1006,6 +1010,10 @@ static void MX_USART3_UART_Init(void)
   GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
   GPIO_InitStruct.Alternate = LL_GPIO_AF_7;
   LL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+  /* USART3 interrupt Init */
+  NVIC_SetPriority(USART3_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),2, 0));
+  NVIC_EnableIRQ(USART3_IRQn);
 
   /* USER CODE BEGIN USART3_Init 1 */
 

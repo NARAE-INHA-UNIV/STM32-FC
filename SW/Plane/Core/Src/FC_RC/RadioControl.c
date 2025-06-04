@@ -25,17 +25,20 @@ RC_Receive_Flag RC_rxFlag;
 uint8_t* RC_Buffer = 0;
 
 
-/* Functions -----------------------------------------------------------------*/
+/* Functions (driver) --------------------------------------------------------*/
 /*
  * @brief RC 초기 설정
+ * @detail RC 종류에 따라 메모리 설정
+ * 			쓰로틀 체크 및 ESC 캘리브레이션 수행
  */
 int RC_Initialization(void)
 {
 	LL_GPIO_SetOutputPin(LED_RED_GPIO_Port, LED_RED_Pin);
 
-	for(int i=0; i<8*sizeof(paramRc.PROTOCOLS); i++)
+	// 메모리 설정
+	for(int i=0; i<8*sizeof(param.rc.PROTOCOLS); i++)
 	{
-		if(!(paramRc.PROTOCOLS&(0x1<<i))) continue;
+		if(!(param.rc.PROTOCOLS&(0x1<<i))) continue;
 
 		switch(i){
 		case PPM:
@@ -51,18 +54,30 @@ int RC_Initialization(void)
 		/*
 		 * Enable multiple receiver support
 		 */
-		if(paramRc.OPTIONS&(0x1<<10)) continue;
+		if(param.rc.OPTIONS&(0x1<<10)) continue;
 		else break;
 	}
 
-	while(RC_checkThrottle()){
+	// 쓰로틀 체크 & ESC 캘리브레이션
+	uint32_t previous_time = system_time.time_boot_ms;
+	while(1){
+		uint8_t flag_cali =  system_time.time_boot_ms - previous_time > 5000;
+		uint8_t retVal = RC_checkThrottle();
+
+		// 쓰로틀이 low 인 경우나 신호가 없는 경우
+		if(0 == retVal && 0 == flag_cali) break;
+		else if(-2 == retVal) return retVal;
+
 		BuzzerEnableThrottleHigh();
 
+		// calibration 조건(5s 동안 High)를 만족하지 못하면 while
+		if(0 == flag_cali) continue;
+
 		// ESC Calibration
+		BuzzerDisableThrottleHigh();
 		if(RC_enterESCcalibration()==0) break;
 	}
 
-	BuzzerDisableThrottleHigh();
 	LL_GPIO_ResetOutputPin(LED_RED_GPIO_Port, LED_RED_Pin);
 
 	return 0;
@@ -74,15 +89,15 @@ int RC_Initialization(void)
  * @retval 0 : 정상 수신
  * @retval -1 : 수신 버퍼 없음
  * @retval -2 : 조종 데이터가 아님
- * @retval 0xf2 : FailSafe
  */
 int RC_GetData(void)
 {
 	int retVal = 0;
 
-	for(int i=0; i<8*sizeof(paramRc.PROTOCOLS); i++)
+	for(int i=0; i<8*sizeof(param.rc.PROTOCOLS); i++)
 	{
-		if(!(paramRc.PROTOCOLS&(0x1<<i))) continue;
+		// 모든 프로토콜에 대해 확인하되, 파마리터에서 설정된 것만 받아옴
+		if(!(param.rc.PROTOCOLS&(0x1<<i))) continue;
 
 		switch(i){
 		case PPM:
@@ -96,7 +111,7 @@ int RC_GetData(void)
 		/*
 		 * Enable multiple receiver support
 		 */
-		if(paramRc.OPTIONS&(0x1<<10)) continue;
+		if(param.rc.OPTIONS&(0x1<<10)) continue;
 		else break;
 	}
 
@@ -106,20 +121,42 @@ int RC_GetData(void)
 	return 0;
 }
 
+
+/*
+ * @brief 쓰로틀 체크
+ *
+ * @parm None
+ * @retval 0 : 쓰로틀 정상
+ * @retval -1 : 쓰로틀 비정상
+ * @retval -2 : RC 신호 없음
+ */
+int RC_checkThrottle(void)
+{
+	uint8_t num = 0;
+	while(RC_GetData()){
+		if(num++ > 1000) return -2;
+	}
+
+	if(RC_channels.value[param.rc.map.THR]>1050) return -1;
+
+	return 0;
+}
+
+
+/* Functions -----------------------------------------------------------------*/
 /*
  * @brief 수신 인터럽트 IRQ2
- *
+ * @detail (half_duplex) 모든 수신 패킷을 처리하면 RC_rxFlag를 1로 처리함.
  * @parm uint8_t data : packet 1byte
  * @retval 0 : IRQ2 처리 완료
- *
- * 모든 수신 패킷을 처리하면 RC_rxFlag를 1로 처리함.
+ * @retval 1 : (half_duplex) 송신 패킷임
  */
 int RC_receiveIRQ2(const uint16_t data)
 {
 
-	for(int i=0; i<8*sizeof(paramRc.PROTOCOLS); i++)
+	for(int i=0; i<8*sizeof(param.rc.PROTOCOLS); i++)
 	{
-		if(!(paramRc.PROTOCOLS&(0x1<<i))) continue;
+		if(!(param.rc.PROTOCOLS&(0x1<<i))) continue;
 
 		switch(i){
 		case PPM:
@@ -140,11 +177,9 @@ int RC_receiveIRQ2(const uint16_t data)
 		/*
 		 * Enable multiple receiver support
 		 */
-		if(paramRc.OPTIONS&(0x1<<10)) continue;
+		if(param.rc.OPTIONS&(0x1<<10)) continue;
 		else break;
 	}
-
-
 
 	return 0;
 }
@@ -164,41 +199,22 @@ int RC_isBufferInit(void){
 
 
 /*
- * @brief 쓰로틀 체크
- *
- * @parm None
- * @retval 0 : 쓰로틀 정상
- * @retval -1 : 쓰로틀 비정상
- */
-int RC_checkThrottle(void)
-{
-	while(RC_GetData()){}
-	if(RC_channels.value[paramRcMap.THR]>1050) return -1;
-
-	return 0;
-}
-
-
-/*
  * @brief ESC 캘리브레이션 진입
  * @detail 쓰로틀이 High인 상황이 5초 이상 지속될때 진입
  *
  * @parm None
- * @retval 1 : 5초가 지속되지 않았음.
- * @retval 0 : 캘리브레이션 수행됨
+ * @retval -2 : 조종기 이상
  */
 int RC_enterESCcalibration()
 {
-	static uint32_t previous_time = 0;
-
-	if(!(system_time.time_boot_ms - previous_time > 5000)) return 1;
-	previous_time = system_time.time_boot_ms;
-	BuzzerDisableThrottleHigh();
-
 	while(1)
 	{
-		while(RC_GetData()){}
-		if(RC_channels.value[paramRcMap.THR] > 1800){
+		uint8_t num = 0;
+		while(RC_GetData()){
+			if(num++ > 1000) return -2;
+		}
+
+		if(RC_channels.value[param.rc.map.THR] > 1800){
 			SERVO_doCalibrate(1);
 			continue;
 		}
@@ -215,8 +231,9 @@ int RC_enterESCcalibration()
  */
 int RC_setFailsafe(uint16_t protocol)
 {
-	if(paramRc.OPTIONS&(0x1<<10)){
-		// 수신기 하나에서 FS 임을 알림
+	// 만약 수신기가 여러 개인 경우, fs를 발동하지 않음.
+	if(param.rc.OPTIONS&(0x1<<10)){
+		// (추가) 수신기 하나에서 FS 임을 알림
 		return 0;
 	}
 

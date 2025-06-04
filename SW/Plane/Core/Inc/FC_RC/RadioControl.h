@@ -15,20 +15,16 @@
 #include <main.h>
 #include <stdlib.h>
 
+#include <FC_RC/driver_RC.h>
+#include <FC_RC/Protocol/SRXL2.h>
+#include <FC_RC/Protocol/PPM.h>
+
 #include <FC_Param/Param.h>
 #include <GCS_MAVLink/GCS_Common.h>
 
 #include <FC_Basic/driver_Buzzer.h>
 #include <FC_Servo/driver_Servo.h>
 #include <FC_Failsafe/Failsafe.h>
-
-#include <FC_RC/driver_RC.h>
-#include <FC_RC/Protocol/SRXL2.h>
-#include <FC_RC/Protocol/PPM.h>
-
-
-/* Macro ---------------------------------------------------------------------*/
-#define RC_CHANNEL_MAX (18)
 
 
 /* Variables -----------------------------------------------------------------*/
@@ -69,7 +65,6 @@ enum RC_PARM_PROTOCOL{
 int RC_receiveIRQ2(const uint16_t data);
 int RC_isBufferInit(void);
 
-int RC_checkThrottle(void);
 int RC_enterESCcalibration();
 int RC_setFailsafe(uint16_t protocol);
 

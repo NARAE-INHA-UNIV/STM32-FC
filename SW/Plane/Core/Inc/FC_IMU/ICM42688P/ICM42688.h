@@ -37,6 +37,24 @@ extern SCALED_IMU scaled_imu;
 extern int32_t gyro_x_offset, gyro_y_offset, gyro_z_offset;
 
 
+/* Functions 2 ---------------------------------------------------------------*/
+void Get6AxisRawData(void);
+void ConvertGyroRaw2Dps(void);
+void ConvertAccRaw2G(void);
+//void ICM42688_Get3AxisGyroRawData(short* gyro);
+//void ICM42688_Get3AxisAccRawData(short* accel);
+//int ICM42688_DataReady(void);
+
+
+/* Functions 3 ---------------------------------------------------------------*/
+uint8_t ICM42688_Readbyte(uint8_t reg_addr);
+void ICM42688_Readbytes(unsigned char reg_addr, unsigned char len, unsigned char* data);
+void ICM42688_Writebyte(uint8_t reg_addr, uint8_t val);
+void ICM42688_Writebytes(unsigned char reg_addr, unsigned char len, unsigned char* data);
+void ICM42688_GPIO_SPI_Initialization(void);
+unsigned char SPI1_SendByte(unsigned char data);
+
+
 /* Macros --------------------------------------------------------------------*/
 /*
 ICM-42688 SPI Operational Features
@@ -77,21 +95,5 @@ and indicates the Read (1) or Write (0) operation. The following 7 bits contain 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-/* Functions 1 ---------------------------------------------------------------*/
-void Get6AxisRawData(void);
-void ConvertGyroRaw2Dps(void);
-void ConvertAccRaw2G(void);
-//void ICM42688_Get3AxisGyroRawData(short* gyro);
-//void ICM42688_Get3AxisAccRawData(short* accel);
-//int ICM42688_DataReady(void);
-
-
-/* Functions 2 ---------------------------------------------------------------*/
-void ICM42688_GPIO_SPI_Initialization(void);
-unsigned char SPI1_SendByte(unsigned char data);
-uint8_t ICM42688_Readbyte(uint8_t reg_addr);
-void ICM42688_Readbytes(unsigned char reg_addr, unsigned char len, unsigned char* data);
-void ICM42688_Writebyte(uint8_t reg_addr, uint8_t val);
-void ICM42688_Writebytes(unsigned char reg_addr, unsigned char len, unsigned char* data);
 
 #endif

@@ -1,6 +1,13 @@
+/*
+ * ICM42688.c
+ *
+ *  Created on: May 1, 2025
+ *      Author: leecurrent04
+ *      Email : leecurrent04@inha.edu
+ */
 /**
 
- * ICM42688.c
+ * ICM20602.c
  * @author ChrisP @ M-HIVE
 
  * This library source code has been created for STM32F4. Only supports SPI.
@@ -29,38 +36,30 @@ int32_t gyro_x_offset, gyro_y_offset, gyro_z_offset; // To remove offset
 
 
 /* Functions 1 ---------------------------------------------------------------*/
+/*
+ * @brief 초기 설정
+ * @detail SPI 연결 수행, 감도 설정, offset 제거
+ * @retval 0 : 완료
+ * @retval 1 : 센서 없음
+ */
 int ICM42688_Initialization(void)
 {
-
 	uint8_t who_am_i = 0;
 	int16_t accel_raw_data[3] = {0};  // To remove offset
 	int16_t gyro_raw_data[3] = {0};   // To remove offset
 
 	ICM42688_GPIO_SPI_Initialization();
 
-	// printf("Checking ICM42688...\n\r");
-
+	// Check
 	who_am_i = ICM42688_Readbyte(WHO_AM_I);
-
-	if(who_am_i == 0x47)
+	if(who_am_i != 0x47)
 	{
-		// printf("ICM42688 who_am_i = 0x%02x...OK\n\r", who_am_i);
-	}
-	// recheck
-	else if(who_am_i != 0x47)
-	{
-		who_am_i = ICM42688_Readbyte(WHO_AM_I); // check again WHO_AM_I (0x75)
-
-		if (who_am_i != 0x12){
-			// printf( "ICM42688 Not OK: 0x%02x Should be 0x%02x\n\r", who_am_i, 0x12);
-			return 1; //ERROR
-		}
+		return 1;
 	}
 
 	// PWR_MGMT0
 	ICM42688_Writebyte(PWR_MGMT0, 0x0F); // Temp on, ACC, GYRO LPF Mode
 	HAL_Delay(50);
-
 
 	// GYRO_CONFIG0
 	ICM42688_Writebyte(GYRO_CONFIG0, 0x26); // Gyro sensitivity 1000 dps, 1kHz
@@ -86,6 +85,11 @@ int ICM42688_Initialization(void)
 }
 
 
+/*
+ * @brief 데이터 로드
+ * @detail 자이로, 가속도 및 온도 데이터 로딩, 물리량 변환
+ * @retval 0 : 완료
+ */
 int ICM42688_GetData(void)
 {
 	Get6AxisRawData();
@@ -98,6 +102,10 @@ int ICM42688_GetData(void)
 
 
 /* Functions 2 ---------------------------------------------------------------*/
+/*
+ * @brief 6축 데이터를 레지스터 레벨에서 로딩
+ * @retval None
+ */
 void Get6AxisRawData()
 {
 	uint8_t data[14];
@@ -155,6 +163,13 @@ void ConvertGyroRaw2Dps(void)
 }
 
 
+/*
+ * @brief Acc RAW를 mG로 변환
+ * @detail SCALED_IMU에 저장.
+ * 			mG (Gauss)
+ * @parm none
+ * @retval none
+ */
 void ConvertAccRaw2G(void)
 {
 	uint8_t acc_reg_val = ICM42688_Readbyte(ACCEL_CONFIG0);

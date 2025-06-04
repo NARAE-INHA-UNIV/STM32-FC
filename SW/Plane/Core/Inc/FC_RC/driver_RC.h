@@ -13,6 +13,7 @@
 /* Functions -----------------------------------------------------------------*/
 int RC_Initialization(void);
 int RC_GetData(void);
+int RC_checkThrottle(void);
 
 
 #endif /* INC_FC_RC_DRIVER_RC_H_ */

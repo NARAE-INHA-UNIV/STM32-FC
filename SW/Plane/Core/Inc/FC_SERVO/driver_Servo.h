@@ -18,7 +18,7 @@
 
 
 /* Functions -----------------------------------------------------------------*/
-void SERVO_Initialization(void);
+int SERVO_Initialization(void);
 
 void SERVO_doArm(void);
 void SERVO_doDisarm(void);

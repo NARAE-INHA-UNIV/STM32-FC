@@ -68,8 +68,7 @@ int PPM_readData(uint16_t data)
  */
 int PPM_getControlData(void)
 {
-	PARAM_RC* param = &paramRc;
-	PARAM_RC_CH* paramCh = paramRcCH;
+	PARAM_RC_CH* paramCh = (PARAM_RC_CH*)&param.rc.channel[0];
 	RC_CHANNELS* rc = &RC_channels;
 
 	if(RC_isBufferInit() != 0) return -1;
@@ -77,7 +76,7 @@ int PPM_getControlData(void)
 	for(int i=0; i<PPM_MAX_CHANNEL; i++){
 		// Reverse 처리
 		uint16_t value = ((uint16_t*)RC_Buffer)[i];
-		if((param->reversedMask>>i)&0x01)
+		if((param.rc.reversedMask>>i)&0x01)
 		{
 			rc->value[i] = map(value,
 					1000, 2000,

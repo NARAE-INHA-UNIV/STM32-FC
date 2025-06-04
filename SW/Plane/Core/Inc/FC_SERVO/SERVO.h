@@ -18,12 +18,6 @@
 
 #include <FC_Servo/driver_Servo.h>
 
-
-
-/* Macro ---------------------------------------------------------------------*/
-#define SERVO_CHANNEL_MAX (12)
-
-
 /* Variables -----------------------------------------------------------------*/
 extern SYSTEM_TIME system_time;
 extern SERVO_OUTPUT_RAW servo_output_raw;
@@ -33,10 +27,15 @@ extern const uint8_t SERVO_TIMER_MAP[];
 
 
 /* Functions -----------------------------------------------------------------*/
+int doArm2Channel(uint8_t ch, uint8_t state);
+int doArm2Channels(uint8_t *pCh, uint8_t len, uint8_t state);
 uint8_t configurePWM(uint16_t hz);
-void calculateServoOutput(void);
-void controlPWM(void);
 
+void calculateServoOutput(void);
+
+void setPWM(void);
+int setPWM2Channel(uint8_t ch, uint16_t value);
+int setPWM2Channels(uint8_t *pCh, uint8_t len, uint16_t value);
 
 
 

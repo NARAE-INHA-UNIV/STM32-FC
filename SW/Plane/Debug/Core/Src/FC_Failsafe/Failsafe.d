@@ -43,12 +43,12 @@ Core/Src/FC_Failsafe/Failsafe.o: ../Core/Src/FC_Failsafe/Failsafe.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_dma.h \
  ../Core/Inc/FC_RC/driver_RC.h ../Core/Inc/FC_Servo/driver_Servo.h \
  ../Core/Inc/FC_Param/Param.h ../Core/Inc/FC_Param/Param_type.h \
- ../Core/Inc/FC_RC/RadioControl.h ../Core/Inc/GCS_MAVLink/GCS_Common.h \
+ ../Core/Inc/FC_RC/RadioControl.h ../Core/Inc/FC_RC/Protocol/SRXL2.h \
+ ../Core/Inc/GCS_MAVLink/GCS_Common.h \
  ../Core/Inc/GCS_MAVLink/MAVLink_MSG.h \
- ../Core/Inc/FC_Basic/driver_Buzzer.h ../Core/Inc/FC_RC/Protocol/SRXL2.h \
  ../Core/Inc/FC_RC/Protocol/spm_srxl.h \
  ../Core/Inc/FC_RC/Protocol/SRXL2_type.h ../Core/Inc/FC_RC/Protocol/PPM.h \
- ../Core/Inc/FC_Servo/Servo.h
+ ../Core/Inc/FC_Basic/driver_Buzzer.h ../Core/Inc/FC_Servo/Servo.h
 ../Core/Inc/FC_Failsafe/Failsafe.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -97,11 +97,11 @@ Core/Src/FC_Failsafe/Failsafe.o: ../Core/Src/FC_Failsafe/Failsafe.c \
 ../Core/Inc/FC_Param/Param.h:
 ../Core/Inc/FC_Param/Param_type.h:
 ../Core/Inc/FC_RC/RadioControl.h:
+../Core/Inc/FC_RC/Protocol/SRXL2.h:
 ../Core/Inc/GCS_MAVLink/GCS_Common.h:
 ../Core/Inc/GCS_MAVLink/MAVLink_MSG.h:
-../Core/Inc/FC_Basic/driver_Buzzer.h:
-../Core/Inc/FC_RC/Protocol/SRXL2.h:
 ../Core/Inc/FC_RC/Protocol/spm_srxl.h:
 ../Core/Inc/FC_RC/Protocol/SRXL2_type.h:
 ../Core/Inc/FC_RC/Protocol/PPM.h:
+../Core/Inc/FC_Basic/driver_Buzzer.h:
 ../Core/Inc/FC_Servo/Servo.h:

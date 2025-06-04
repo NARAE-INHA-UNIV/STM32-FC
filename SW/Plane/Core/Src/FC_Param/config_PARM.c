@@ -18,49 +18,45 @@
 
 
 int PARM_load(void){
-	PARAM_SERVO* servo = &paramServo;
-	PARAM_SERVO_CH* servo_ch = paramServoCH;
-
-	paramRc.OPTIONS = 0;
-	paramRc.OVERRIDE_TIME = 0.0;
-	paramRc.PROTOCOLS = (0x00);			// 수신기 없이 테스트
-//	paramRc.PROTOCOLS = (0x1<<SRXL2);	// SRXL2
-//	paramRc.PROTOCOLS = (0x1<<PPM);		// PPM (FS-iA6B)
-	paramRc.FS_TIMEOUT = 1.0;
-	paramRc.reversedMask = 0x00;
+	param.rc.OPTIONS = 0;
+	param.rc.OVERRIDE_TIME = 0.0;
+//	param.rc.PROTOCOLS = (0x00);			// 수신기 없이 테스트
+	param.rc.PROTOCOLS = (0x1<<SRXL2);	// SRXL2
+//	param.rc.PROTOCOLS = (0x1<<PPM);		// PPM (FS-iA6B)
+	param.rc.FS_TIMEOUT = 1.0;
+	param.rc.reversedMask = 0x00;
 
 	for(int i=0; i<RC_CHANNEL_MAX; i++)
 	{
-		paramRcCH[i].MIN = 1000;
-		paramRcCH[i].MAX = 2000;
-		paramRcCH[i].TRIM = 0;
-		paramRcCH[i].DZ = 0;
-		paramRcCH[i].OPTION = 0;
+		param.rc.channel[i].MIN = 1000;
+		param.rc.channel[i].MAX = 2000;
+		param.rc.channel[i].TRIM = 0;
+		param.rc.channel[i].DZ = 0;
+		param.rc.channel[i].OPTION = 0;
 	}
+	param.rc.map.THR = 0;		// SRXL2 값
+	param.rc.map.ROL = 1;
+	param.rc.map.PIT = 2;
+	param.rc.map.YAW = 3;
+//	param.rc.map.THR = 2;		// FS-iA6B용 값들
+//	param.rc.map.ROL = 3;
+//	param.rc.map.PIT = 1;
+//	param.rc.map.YAW = 0;
 
-//	paramRcMap.THR = 0;		// SRXL2 값
-//	paramRcMap.ROL = 1;
-//	paramRcMap.PIT = 2;
-//	paramRcMap.YAW = 3;
-	paramRcMap.THR = 2;		// FS-iA6B용 값들
-	paramRcMap.ROL = 3;
-	paramRcMap.PIT = 1;
-	paramRcMap.YAW = 0;
-
-	servo->AUTO_TRIM = 0;
-	servo->DSHOT_ESC = 0;
-	servo->DSHOT_RATE = 0;
-	servo->RATE = 50;
-	servo->GPIO_MASK = 0xFF;
-	servo->RC_FS_MSK = 0xFF;
-	servo->_32_ENABLE = 0;
+	param.servo.AUTO_TRIM = 0;
+	param.servo.DSHOT_ESC = 0;
+	param.servo.DSHOT_RATE = 0;
+	param.servo.RATE = 50;
+	param.servo.GPIO_MASK = 0x0FFF;
+	param.servo.RC_FS_MSK = 0xFF;
+	param.servo._32_ENABLE = 0;
 
 	for(int i=0; i<SERVO_CHANNEL_MAX; i++){
-		servo_ch[i].FUNCTION = 0;
-		servo_ch[i].MAX = 2000;
-		servo_ch[i].MIN = 1000;
-		servo_ch[i].TRIM = 1500;
-		servo_ch[i].REVERSED = 0;
+		param.servo.channel[i].FUNCTION = 0;
+		param.servo.channel[i].MAX = 2000;
+		param.servo.channel[i].MIN = 1000;
+		param.servo.channel[i].TRIM = 1500;
+		param.servo.channel[i].REVERSED = 0;
 	}
 	return 0;
 }

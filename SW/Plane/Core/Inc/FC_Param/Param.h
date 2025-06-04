@@ -20,11 +20,12 @@
 
 
 /* Variables -----------------------------------------------------------------*/
-extern PARAM_SERVO paramServo;
-extern PARAM_SERVO_CH paramServoCH[];
-extern PARAM_RC paramRc;
-extern PARAM_RC_CH paramRcCH[];
-extern PARAM_RC_MAP paramRcMap;
+typedef struct __attribute__((packed)){
+	PARAM_SERVO servo;
+	PARAM_RC rc;
+} PARAM;
+
+extern PARAM param;
 
 /* Functions -----------------------------------------------------------------*/
 

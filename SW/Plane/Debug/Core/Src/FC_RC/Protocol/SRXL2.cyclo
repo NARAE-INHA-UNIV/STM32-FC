@@ -1,9 +1,9 @@
 ../Core/Src/FC_RC/Protocol/SRXL2.c:33:5:SRXL2_connect	6
 ../Core/Src/FC_RC/Protocol/SRXL2.c:94:5:SRXL2_getControlData	5
 ../Core/Src/FC_RC/Protocol/SRXL2.c:129:5:SRXL2_parseControlData	9
-../Core/Src/FC_RC/Protocol/SRXL2.c:201:5:SRXL2_doHandshake	6
-../Core/Src/FC_RC/Protocol/SRXL2.c:237:5:SRXL2_readByteIRQ2	18
-../Core/Src/FC_RC/Protocol/SRXL2.c:309:5:SRXL2_isReceived	3
-../Core/Src/FC_RC/Protocol/SRXL2.c:345:10:calculate_crc	4
-../Core/Src/FC_RC/Protocol/SRXL2.c:368:10:insert_crc	1
-../Core/Src/FC_RC/Protocol/SRXL2.c:384:9:countSetBits	1
+../Core/Src/FC_RC/Protocol/SRXL2.c:200:5:SRXL2_doHandshake	6
+../Core/Src/FC_RC/Protocol/SRXL2.c:236:5:SRXL2_readByteIRQ2	18
+../Core/Src/FC_RC/Protocol/SRXL2.c:308:5:SRXL2_isReceived	3
+../Core/Src/FC_RC/Protocol/SRXL2.c:344:10:calculate_crc	4
+../Core/Src/FC_RC/Protocol/SRXL2.c:367:10:insert_crc	1
+../Core/Src/FC_RC/Protocol/SRXL2.c:383:9:countSetBits	1

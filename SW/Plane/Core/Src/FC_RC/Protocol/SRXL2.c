@@ -106,7 +106,7 @@ int SRXL2_getControlData(void){
 		SRXL2_parseControlData((SRXL2_Control_Packet*)RC_Buffer);
 		break;
 	case SRXL_CTRL_CMD_CHANNEL_FS:
-		return RC_setFailsafe(0x1<<8);
+		return RC_setFailsafe(0x1<<SRXL2);
 		break;
 	case SRXL_CTRL_CMD_VTX:
 		break;
@@ -128,9 +128,8 @@ int SRXL2_getControlData(void){
  */
 int SRXL2_parseControlData(SRXL2_Control_Packet *rx)
 {
-	PARAM_RC* param = &paramRc;
-	PARAM_RC_CH* paramCh = paramRcCH;
 	RC_CHANNELS* rc = &RC_channels;
+	PARAM_RC_CH* paramCh = (PARAM_RC_CH*)&param.rc.channel[0];
 
 	uint8_t channelCnt = 0;
 	static uint32_t channelMask = 0;
@@ -150,7 +149,7 @@ int SRXL2_parseControlData(SRXL2_Control_Packet *rx)
 		value = value>SRXL_CTRL_VALUE_MAX?SRXL_CTRL_VALUE_MAX:value;
 
 		// Reverse 처리
-		if((param->reversedMask>>i)&0x01)
+		if((param.rc.reversedMask>>i)&0x01)
 		{
 			rc->value[i] = map(value,
 					SRXL_CTRL_VALUE_MIN, SRXL_CTRL_VALUE_MAX,
