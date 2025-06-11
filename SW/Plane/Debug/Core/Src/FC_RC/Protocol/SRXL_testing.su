@@ -1,3 +1,0 @@
-../Core/Src/FC_RC/Protocol/SRXL_testing.c:20:5:SRXL2_doBind	24	static
-../Core/Src/FC_RC/Protocol/SRXL_testing.c:40:26:SRXL2_reqSignalQuality	48	static
-../Core/Src/FC_RC/Protocol/SRXL_testing.c:87:5:SRXL2_SendTelemetryData	40	static

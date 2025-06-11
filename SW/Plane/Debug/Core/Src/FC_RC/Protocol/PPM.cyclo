@@ -1,3 +1,0 @@
-../Core/Src/FC_RC/Protocol/PPM.c:21:5:PPM_init	2
-../Core/Src/FC_RC/Protocol/PPM.c:39:5:PPM_readData	4
-../Core/Src/FC_RC/Protocol/PPM.c:70:5:PPM_getControlData	7

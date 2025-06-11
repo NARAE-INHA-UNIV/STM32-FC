@@ -1,5 +1,0 @@
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h:881:22:LL_GPIO_SetOutputPin	16	static
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_gpio.h:910:22:LL_GPIO_ResetOutputPin	16	static
-../Core/Src/FC_AHRS/FC_Baro/Baro.c:22:5:Baro_Initialization	8	static
-../Core/Src/FC_AHRS/FC_Baro/Baro.c:41:14:Baro_GetData	8	static
-../Core/Src/FC_AHRS/FC_Baro/Baro.c:64:7:pascal2meter	16	static
