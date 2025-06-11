@@ -20,8 +20,8 @@
 int PARM_load(void){
 	param.rc.OPTIONS = 0;
 	param.rc.OVERRIDE_TIME = 0.0;
-//	param.rc.PROTOCOLS = (0x00);			// 수신기 없이 테스트
-	param.rc.PROTOCOLS = (0x1<<SRXL2);	// SRXL2
+	param.rc.PROTOCOLS = (0x00);			// 수신기 없이 테스트
+//	param.rc.PROTOCOLS = (0x1<<SRXL2);	// SRXL2
 //	param.rc.PROTOCOLS = (0x1<<PPM);		// PPM (FS-iA6B)
 	param.rc.FS_TIMEOUT = 1.0;
 	param.rc.reversedMask = 0x00;
@@ -34,14 +34,14 @@ int PARM_load(void){
 		param.rc.channel[i].DZ = 0;
 		param.rc.channel[i].OPTION = 0;
 	}
-	param.rc.map.THR = 0;		// SRXL2 값
-	param.rc.map.ROL = 1;
-	param.rc.map.PIT = 2;
-	param.rc.map.YAW = 3;
-//	param.rc.map.THR = 2;		// FS-iA6B용 값들
-//	param.rc.map.ROL = 3;
-//	param.rc.map.PIT = 1;
-//	param.rc.map.YAW = 0;
+//	param.rc.map.THR = 0;		// SRXL2 값
+//	param.rc.map.ROL = 1;
+//	param.rc.map.PIT = 2;
+//	param.rc.map.YAW = 3;
+	param.rc.map.THR = 2;		// FS-iA6B용 값들
+	param.rc.map.ROL = 3;
+	param.rc.map.PIT = 1;
+	param.rc.map.YAW = 0;
 
 	param.servo.AUTO_TRIM = 0;
 	param.servo.DSHOT_ESC = 0;

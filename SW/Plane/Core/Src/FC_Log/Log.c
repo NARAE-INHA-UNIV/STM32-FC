@@ -27,20 +27,12 @@ int Log_Send()
 
 	switch(logType)
 	{
-	case 26:
-		Log_transmit((uint8_t*)&scaled_imu, sizeof(scaled_imu));
-		break;
-	case 27:
-		Log_transmit((uint8_t*)&raw_imu, sizeof(raw_imu));
-		break;
-	case 36:
-		Log_transmit((uint8_t*)&servo_output_raw, sizeof(servo_output_raw));
-		break;
-	case 65:
-		Log_transmit((uint8_t*)&RC_channels, sizeof(RC_channels));
-		break;
-	default:
-		break;
+	case 26: LOG_TRANSMIT(scaled_imu); break;
+	case 27: LOG_TRANSMIT(raw_imu); break;
+	case 29: LOG_TRANSMIT(scaled_pressure); break;
+	case 36: LOG_TRANSMIT(servo_output_raw); break;
+	case 65: LOG_TRANSMIT(RC_channels); break;
+	default: break;
 	}
 	return 0;
 }
@@ -72,6 +64,7 @@ int Log_transmit(uint8_t* p, uint8_t len)
 	{
 		while(!LL_USART_IsActiveFlag_TXE(USART2)){}
 		LL_USART_TransmitData8(USART2, packet[i]);
+		LL_USART_TransmitData8(USART3, packet[i]);
 	}
 
     free(packet);

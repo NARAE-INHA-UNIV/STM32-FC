@@ -1,4 +1,0 @@
-../Core/Src/FC_IMU/IMU.c:22:5:IMU_Initialization	1
-../Core/Src/FC_IMU/IMU.c:35:14:IMU_GetData	1
-../Core/Src/FC_IMU/IMU.c:52:6:KalmanFilter	1
-../Core/Src/FC_IMU/IMU.c:58:6:ComplementaryFilter	1

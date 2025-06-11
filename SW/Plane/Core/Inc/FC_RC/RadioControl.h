@@ -15,29 +15,26 @@
 #include <main.h>
 #include <stdlib.h>
 
-#include <FC_RC/driver_RC.h>
-#include <FC_RC/Protocol/SRXL2.h>
+#include <FC_RC/driver.h>
+#include <FC_RC/Protocol/SRXL2/driver.h>
 #include <FC_RC/Protocol/PPM.h>
 
 #include <FC_Param/Param.h>
 #include <GCS_MAVLink/GCS_Common.h>
 
-#include <FC_Basic/driver_Buzzer.h>
-#include <FC_Servo/driver_Servo.h>
+#include <FC_Basic/Buzzer/driver.h>
+#include <FC_Servo/driver.h>
 #include <FC_Failsafe/Failsafe.h>
 
 
 /* Variables -----------------------------------------------------------------*/
 extern uint8_t* RC_Buffer;
 
-typedef struct {
-	uint8_t half_tx : 1;	/** 0 : 송신 아님, 1 : 송신 맞음 **/
-	uint8_t half_using : 1;	/** 0 : 송신 가능, 1 : 송신 불가 **/
-	uint8_t uart : 1;		/** 0 : 수신 없음, 1 : 수신 있음 **/
-} RC_Receive_Flag;
-
-extern RC_Receive_Flag RC_rxFlag;
-
+typedef enum {
+	RX = 0,
+	UART_TX = 1,
+	UART_USING = 2,
+} RC_FLAG;
 
 enum RC_PARM_PROTOCOL{
 	All 	 = 0,
@@ -60,8 +57,7 @@ enum RC_PARM_PROTOCOL{
 };
 
 
-
-/* Functions -----------------------------------------------------------------*/
+/* Functions 1 ---------------------------------------------------------------*/
 int RC_receiveIRQ2(const uint16_t data);
 int RC_isBufferInit(void);
 
@@ -70,6 +66,25 @@ int RC_setFailsafe(uint16_t protocol);
 
 int RC_halfDuplex_Transmit(uint8_t *data, uint8_t len);
 
+
+/* Functions 2 ---------------------------------------------------------------*/
 uint16_t map(uint16_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max);
+
+
+/* Functions 3 ---------------------------------------------------------------*/
+void setFlag(RC_FLAG i);
+void clearFlag(RC_FLAG i);
+int isFlag(RC_FLAG i);
+
+#define SET_FL_RX() setFlag(RX)
+#define SET_FL_UART_TX() setFlag(UART_TX)
+#define SET_FL_UART_USING() setFlag(UART_USING)
+#define CLEAR_FL_RX() clearFlag(RX)
+#define CLEAR_FL_UART_TX() clearFlag(UART_TX)
+#define CLEAR_FL_UART_USING() clearFlag(UART_USING)
+#define IS_FL_RX isFlag(RX)
+#define IS_FL_UART_TX isFlag(UART_TX)
+#define IS_FL_UART_USING isFlag(UART_USING)
+
 
 #endif /* INC_FC_RC_RADIOCONTROL_H_ */

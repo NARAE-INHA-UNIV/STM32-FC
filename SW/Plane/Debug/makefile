@@ -21,10 +21,12 @@ RM := rm -rf
 -include Core/Src/FC_RC/subdir.mk
 -include Core/Src/FC_Param/subdir.mk
 -include Core/Src/FC_Log/subdir.mk
--include Core/Src/FC_IMU/ICM42688P/subdir.mk
--include Core/Src/FC_IMU/subdir.mk
 -include Core/Src/FC_Failsafe/subdir.mk
 -include Core/Src/FC_Basic/subdir.mk
+-include Core/Src/FC_AHRS/FC_IMU/ICM42688P/subdir.mk
+-include Core/Src/FC_AHRS/FC_IMU/subdir.mk
+-include Core/Src/FC_AHRS/FC_Baro/LPS22HH/subdir.mk
+-include Core/Src/FC_AHRS/FC_Baro/subdir.mk
 -include Core/Src/subdir.mk
 -include objects.mk
 

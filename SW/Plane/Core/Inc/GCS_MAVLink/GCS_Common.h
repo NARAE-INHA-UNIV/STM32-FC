@@ -19,7 +19,8 @@
 /* Variables -----------------------------------------------------------------*/
 extern SYSTEM_TIME system_time;
 extern SCALED_IMU scaled_imu;
-extern RAW_IMU raw_imu;
+extern RAW_IMU raw_imu;						// 27
+extern SCALED_PRESSURE scaled_pressure;		// 29
 extern SERVO_OUTPUT_RAW servo_output_raw;
 extern RC_CHANNELS RC_channels;
 

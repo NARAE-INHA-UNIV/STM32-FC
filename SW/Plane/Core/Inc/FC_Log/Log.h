@@ -28,4 +28,8 @@ int Log_Send();
 int Log_transmit(uint8_t* p, uint8_t len);
 
 
+/* Macros --------------------------------------------------------------------*/
+#define LOG_TRANSMIT(x) Log_transmit((uint8_t*)&(x), sizeof(x))
+
+
 #endif /* INC_FC_LOG_LOG_H_ */

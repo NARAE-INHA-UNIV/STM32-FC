@@ -14,14 +14,7 @@
 
 
 /* Variables -----------------------------------------------------------------*/
-/*
- * @brief RC 수신 및 송신 플래그
- *
- * @parm uint8_t halft_tx	: Half-Duplex에서 송신임을 나타내는 플래그 (1bit)
- * @parm uint8_t half_using : Half-Duplex에서 중복을 막기 위한 타이머 플래그 (1bit)
- * @parm uint8_t uart 		: UART1 수신 인터럽트 (1bit)
- */
-RC_Receive_Flag RC_rxFlag;
+uint8_t rxFlag = 0;
 uint8_t* RC_Buffer = 0;
 
 
@@ -97,7 +90,7 @@ int RC_GetData(void)
 	for(int i=0; i<8*sizeof(param.rc.PROTOCOLS); i++)
 	{
 		// 모든 프로토콜에 대해 확인하되, 파마리터에서 설정된 것만 받아옴
-		if(!(param.rc.PROTOCOLS&(0x1<<i))) continue;
+		if(!((param.rc.PROTOCOLS>>i)&0x1)) continue;
 
 		switch(i){
 		case PPM:
@@ -111,7 +104,7 @@ int RC_GetData(void)
 		/*
 		 * Enable multiple receiver support
 		 */
-		if(param.rc.OPTIONS&(0x1<<10)) continue;
+		if((param.rc.OPTIONS>>10)&0x1) continue;
 		else break;
 	}
 
@@ -146,30 +139,38 @@ int RC_checkThrottle(void)
 /* Functions -----------------------------------------------------------------*/
 /*
  * @brief 수신 인터럽트 IRQ2
- * @detail (half_duplex) 모든 수신 패킷을 처리하면 RC_rxFlag를 1로 처리함.
- * @parm uint8_t data : packet 1byte
+ * @detail
+ * 	PPM : data 값은 의미 없음. 수신 인터럽트가 발생한 것을 알리는 목적
+ * 	UART : 수신 받은 data 값 (1byte)
+ * 		- half_duplex : 모든 수신 패킷을 처리하면 RC_rxFlag를 1로 처리함.
+ *
+ * @parm uint8_t data : 1byte packet
+ *
  * @retval 0 : IRQ2 처리 완료
  * @retval 1 : (half_duplex) 송신 패킷임
  */
 int RC_receiveIRQ2(const uint16_t data)
 {
+	SET_FL_UART_USING();
+	// RC_rxFlag.half_using = 1;
 
 	for(int i=0; i<8*sizeof(param.rc.PROTOCOLS); i++)
 	{
-		if(!(param.rc.PROTOCOLS&(0x1<<i))) continue;
+		if(!((param.rc.PROTOCOLS>>i)&0x1)) continue;
 
 		switch(i){
 		case PPM:
 			PPM_readData(data);
+			SET_FL_RX();
 			break;
 		case SRXL2:
 			// Half-Duplex에서 송신한 패킷을 무시
-			if(RC_rxFlag.half_tx == 1) return 1;
+			if(IS_FL_UART_TX == 1) return 1;
 
 			// 모든 바이트를 읽었는지 검사
 			if(SRXL2_readByteIRQ2(data) == 0){
-				RC_rxFlag.uart = 1;
-				RC_rxFlag.half_using = 0;
+				SET_FL_RX();
+				CLEAR_FL_UART_USING();
 			}
 			break;
 		}
@@ -177,7 +178,7 @@ int RC_receiveIRQ2(const uint16_t data)
 		/*
 		 * Enable multiple receiver support
 		 */
-		if(param.rc.OPTIONS&(0x1<<10)) continue;
+		if((param.rc.OPTIONS>>10)&0x1) continue;
 		else break;
 	}
 
@@ -232,7 +233,7 @@ int RC_enterESCcalibration()
 int RC_setFailsafe(uint16_t protocol)
 {
 	// 만약 수신기가 여러 개인 경우, fs를 발동하지 않음.
-	if(param.rc.OPTIONS&(0x1<<10)){
+	if((param.rc.OPTIONS>>10)&0x1) {
 		// (추가) 수신기 하나에서 FS 임을 알림
 		return 0;
 	}
@@ -253,17 +254,18 @@ int RC_setFailsafe(uint16_t protocol)
  */
 int RC_halfDuplex_Transmit(uint8_t *data, uint8_t len)
 {
-	if(RC_rxFlag.half_using == 1) return -1;
+	if(IS_FL_UART_USING == 1) return -1;
 
-	RC_rxFlag.half_using = 1;
-	RC_rxFlag.half_tx = 1;
+	SET_FL_UART_TX();
+	SET_FL_UART_USING();
 
 	for(int i=0; i<len; i++){
 		while(!LL_USART_IsActiveFlag_TXE(USART1));
 		LL_USART_TransmitData8(USART1, data[i]);
 	}
 
-	RC_rxFlag.half_tx = 0;
+	CLEAR_FL_UART_TX();
+	CLEAR_FL_UART_USING();
 	return 0;
 }
 
@@ -280,3 +282,24 @@ int RC_halfDuplex_Transmit(uint8_t *data, uint8_t len)
 uint16_t map(uint16_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max) {
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
+
+
+
+void setFlag(RC_FLAG i)
+{
+	rxFlag |= (0x1<<i);
+	return;
+}
+
+void clearFlag(RC_FLAG i)
+{
+	rxFlag &= (uint8_t)(~(0x1<<i));
+	return;
+}
+
+
+int isFlag(RC_FLAG i)
+{
+	return (rxFlag>>i)&0x1;
+}
+

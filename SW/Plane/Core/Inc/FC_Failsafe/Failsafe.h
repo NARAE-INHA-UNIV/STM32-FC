@@ -11,8 +11,8 @@
 
 
 #include <main.h>
-#include <FC_RC/driver_RC.h>
-#include <FC_Servo/driver_Servo.h>
+#include <FC_RC/driver.h>
+#include <FC_Servo/driver.h>
 
 extern uint8_t fsFlag;
 

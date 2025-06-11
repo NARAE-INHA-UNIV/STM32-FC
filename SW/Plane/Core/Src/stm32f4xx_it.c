@@ -46,12 +46,6 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-/*
- * FC_RC/RadioControl.h
- * USART1
- */
-extern RC_Receive_Flag RC_rxFlag;
-
 
 // Telm1
 uint8_t uart2_rx_flag = 0;
@@ -246,8 +240,6 @@ void USART1_IRQHandler(void)
 	{
 		LL_USART_ClearFlag_RXNE(USART1);
 		uint8_t uart1_rx_data = LL_USART_ReceiveData8(USART1);
-
-		RC_rxFlag.half_using = 1;
 
 		// IRQ2 수행
 		RC_receiveIRQ2(uart1_rx_data);

@@ -15,6 +15,7 @@
 SYSTEM_TIME system_time;
 SCALED_IMU scaled_imu;
 RAW_IMU raw_imu;
+SCALED_PRESSURE scaled_pressure;
 SERVO_OUTPUT_RAW servo_output_raw;
 RC_CHANNELS RC_channels;
 

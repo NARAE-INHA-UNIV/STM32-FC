@@ -1,8 +1,7 @@
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h:1612:22:LL_TIM_CC_EnableChannel	1
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_tim.h:1637:22:LL_TIM_CC_DisableChannel	1
-../Core/Src/FC_Basic/Buzzer.c:13:6:BuzzerPlayNote	1
-../Core/Src/FC_Basic/Buzzer.c:25:6:BuzzerPlayInit	1
-../Core/Src/FC_Basic/Buzzer.c:42:6:BuzzerPlayOneCycle	2
-../Core/Src/FC_Basic/Buzzer.c:52:6:BuzzerEnableThrottleHigh	1
-../Core/Src/FC_Basic/Buzzer.c:62:6:BuzzerDisableThrottleHigh	1
-../Core/Src/FC_Basic/Buzzer.c:69:5:BuzzerToggleThrottleHigh	3
+../Core/Src/FC_Basic/Buzzer.c:21:6:BuzzerPlayInit	1
+../Core/Src/FC_Basic/Buzzer.c:43:6:BuzzerPlayOneCycle	2
+../Core/Src/FC_Basic/Buzzer.c:53:6:BuzzerEnableThrottleHigh	1
+../Core/Src/FC_Basic/Buzzer.c:63:6:BuzzerDisableThrottleHigh	1
+../Core/Src/FC_Basic/Buzzer.c:71:6:playNote	1

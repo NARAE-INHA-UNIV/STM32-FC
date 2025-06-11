@@ -75,6 +75,8 @@ void Error_Handler(void);
 #define LED_BLUE_GPIO_Port GPIOE
 #define GYRO1_NSS_Pin LL_GPIO_PIN_5
 #define GYRO1_NSS_GPIO_Port GPIOE
+#define BARO_NSS_Pin LL_GPIO_PIN_6
+#define BARO_NSS_GPIO_Port GPIOE
 #define RSSI_Pin LL_GPIO_PIN_1
 #define RSSI_GPIO_Port GPIOC
 #define MAIN_CH5_Pin LL_GPIO_PIN_0
@@ -89,6 +91,8 @@ void Error_Handler(void);
 #define MAIN_CH9_GPIO_Port GPIOB
 #define MAIN_CH10_Pin LL_GPIO_PIN_1
 #define MAIN_CH10_GPIO_Port GPIOB
+#define BARO_INT_Pin LL_GPIO_PIN_7
+#define BARO_INT_GPIO_Port GPIOE
 #define MAIN_CH11_Pin LL_GPIO_PIN_11
 #define MAIN_CH11_GPIO_Port GPIOE
 #define MAIN_CH12_Pin LL_GPIO_PIN_13

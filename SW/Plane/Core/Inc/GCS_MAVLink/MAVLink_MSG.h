@@ -61,6 +61,20 @@ typedef struct __attribute__((packed)){
 
 
 /*
+ * SCALED_PRESSURE (29)
+ * The pressure readings for the typical setup of one absolute and differential pressure sensor.
+ * The units are as specified in each field.
+ */
+typedef struct __attribute__((packed)){
+	uint32_t time_boot_ms;			// Timestamp (time since system boot). (ms)
+	float press_abs;				// Absolute pressure (hPa)
+	float press_diff;				// Differential pressure 1 (hPa)
+	int16_t temperature;			// Absolute pressure temperature (cdegC)
+	int16_t temperature_press_diff;	// Differential pressure temperature (0, if not available). Report values of 0 (or 1) as 1 cdegC. (cdegC)
+} SCALED_PRESSURE;
+
+
+/*
  * SERVO_OUTPUT_RAW (36)
  * Superseded by ACTUATOR_OUTPUT_STATUS.
  * The RAW values of the servo outputs (for RC input from the remote, use the RC_CHANNELS messages).

@@ -20,6 +20,12 @@
 
 
 /* Typedef -------------------------------------------------------------------*/
+typedef struct __attribute__((packed)){
+	uint8_t version;
+	uint8_t subVersion;
+	uint16_t len;
+} PARAM_HEADER;
+
 /* SERVO ---------------------------------------------------------------------*/
 typedef struct __attribute__((packed)){
 	uint16_t MIN;

@@ -27,14 +27,15 @@
 #include <FC_Param/Param.h>
 #include <GCS_MAVLink/GCS_Common.h>
 
-#include <FC_Basic/driver_Buzzer.h>
+#include <FC_Basic/Buzzer/driver.h>
 
-#include <FC_IMU/driver_IMU.h>
+#include <FC_Servo/driver.h>
+#include <FC_RC/driver.h>
+
+#include <FC_AHRS/FC_IMU/driver.h>
+#include <FC_AHRS/FC_Baro/driver.h>
 
 #include <FC_Log/Log.h>
-#include <FC_RC/driver_RC.h>
-
-#include <FC_Servo/driver_Servo.h>
 
 
 /* USER CODE END Includes */
@@ -166,6 +167,7 @@ int main(void)
   SERVO_Initialization();
   RC_Initialization();
   IMU_Initialization();
+//  Baro_Initialization();
   BuzzerPlayOneCycle();
   SERVO_doArm();
 
@@ -178,6 +180,7 @@ int main(void)
 	  RC_GetData();
 
 	  IMU_GetData();
+//	  Baro_GetData();
 
 	  if(fsFlag == 1){
 		  FS_mannualMode();
@@ -345,7 +348,7 @@ static void MX_SPI1_Init(void)
   SPI_InitStruct.ClockPolarity = LL_SPI_POLARITY_HIGH;
   SPI_InitStruct.ClockPhase = LL_SPI_PHASE_2EDGE;
   SPI_InitStruct.NSS = LL_SPI_NSS_SOFT;
-  SPI_InitStruct.BaudRate = LL_SPI_BAUDRATEPRESCALER_DIV16;
+  SPI_InitStruct.BaudRate = LL_SPI_BAUDRATEPRESCALER_DIV128;
   SPI_InitStruct.BitOrder = LL_SPI_MSB_FIRST;
   SPI_InitStruct.CRCCalculation = LL_SPI_CRCCALCULATION_DISABLE;
   SPI_InitStruct.CRCPoly = 10;
@@ -1055,18 +1058,26 @@ static void MX_GPIO_Init(void)
   LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOD);
 
   /**/
-  LL_GPIO_ResetOutputPin(GPIOE, LED_BLUE_Pin|GYRO1_NSS_Pin|LED_RED_Pin|LED_YELLOW_Pin);
+  LL_GPIO_ResetOutputPin(GPIOE, LED_BLUE_Pin|GYRO1_NSS_Pin|BARO_NSS_Pin|LED_RED_Pin
+                          |LED_YELLOW_Pin);
 
   /**/
   LL_GPIO_ResetOutputPin(GPS1_SW_LED_GPIO_Port, GPS1_SW_LED_Pin);
 
   /**/
-  GPIO_InitStruct.Pin = LED_BLUE_Pin|GYRO1_NSS_Pin|LED_RED_Pin|LED_YELLOW_Pin;
+  GPIO_InitStruct.Pin = LED_BLUE_Pin|GYRO1_NSS_Pin|BARO_NSS_Pin|LED_RED_Pin
+                          |LED_YELLOW_Pin;
   GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
   GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
   GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
   GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
   LL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+
+  /**/
+  GPIO_InitStruct.Pin = BARO_INT_Pin;
+  GPIO_InitStruct.Mode = LL_GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
+  LL_GPIO_Init(BARO_INT_GPIO_Port, &GPIO_InitStruct);
 
   /**/
   GPIO_InitStruct.Pin = GPS1_SW_LED_Pin;
