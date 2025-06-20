@@ -16,32 +16,14 @@
 #include <FC_Param/Param.h>
 #include <FC_RC/RadioControl.h>
 
+void setRC_None(void);
+void setRC_SRXL2(void);
+void setRC_PPM(void);
 
 int PARM_load(void){
-	param.rc.OPTIONS = 0;
-	param.rc.OVERRIDE_TIME = 0.0;
-	param.rc.PROTOCOLS = (0x00);			// 수신기 없이 테스트
-//	param.rc.PROTOCOLS = (0x1<<SRXL2);	// SRXL2
-//	param.rc.PROTOCOLS = (0x1<<PPM);		// PPM (FS-iA6B)
-	param.rc.FS_TIMEOUT = 1.0;
-	param.rc.reversedMask = 0x00;
-
-	for(int i=0; i<RC_CHANNEL_MAX; i++)
-	{
-		param.rc.channel[i].MIN = 1000;
-		param.rc.channel[i].MAX = 2000;
-		param.rc.channel[i].TRIM = 0;
-		param.rc.channel[i].DZ = 0;
-		param.rc.channel[i].OPTION = 0;
-	}
-//	param.rc.map.THR = 0;		// SRXL2 값
-//	param.rc.map.ROL = 1;
-//	param.rc.map.PIT = 2;
-//	param.rc.map.YAW = 3;
-	param.rc.map.THR = 2;		// FS-iA6B용 값들
-	param.rc.map.ROL = 3;
-	param.rc.map.PIT = 1;
-	param.rc.map.YAW = 0;
+	setRC_None();
+	setRC_SRXL2();
+//	setRC_PPM();
 
 	param.servo.AUTO_TRIM = 0;
 	param.servo.DSHOT_ESC = 0;
@@ -59,4 +41,43 @@ int PARM_load(void){
 		param.servo.channel[i].REVERSED = 0;
 	}
 	return 0;
+}
+
+void setRC_None(void)
+{
+	param.rc.OPTIONS = 0;
+	param.rc.OVERRIDE_TIME = 0.0;
+	param.rc.PROTOCOLS = (0x00);			// 수신기 없이 테스트
+	param.rc.FS_TIMEOUT = 1.0;
+	param.rc.reversedMask = 0x00;
+
+	for(int i=0; i<RC_CHANNEL_MAX; i++)
+	{
+		param.rc.channel[i].MIN = 1000;
+		param.rc.channel[i].MAX = 2000;
+		param.rc.channel[i].TRIM = 0;
+		param.rc.channel[i].DZ = 0;
+		param.rc.channel[i].OPTION = 0;
+	}
+	param.rc.map.THR = 0;		// Default
+	param.rc.map.ROL = 1;
+	param.rc.map.PIT = 2;
+	param.rc.map.YAW = 3;
+
+	return;
+}
+
+void setRC_SRXL2(void)
+{
+	param.rc.PROTOCOLS = (0x1<<SRXL2);	// SRXL2
+	return;
+}
+
+void setRC_PPM(void)
+{
+	param.rc.PROTOCOLS = (0x1<<PPM);		// PPM (FS-iA6B)
+	param.rc.map.THR = 2;		// FS-iA6B용 값들
+	param.rc.map.ROL = 3;
+	param.rc.map.PIT = 1;
+	param.rc.map.YAW = 0;
 }

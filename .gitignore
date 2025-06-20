@@ -3,9 +3,11 @@ HW/STM32-FC/STM32-FC-backups
 HW/STM32-FC/sim
 HW/STM32-FC/lib/trashbin
 
-
 HW/DevTool/DevTool-backups
 
 SW/Plane/Debug
 SW/Plane/.idea
 SW/Plane/.settings
+
+SW/ReadData_Python/lib/__pycache__/
+SW/ReadData_Python/lib/MSG/__pycache__/
