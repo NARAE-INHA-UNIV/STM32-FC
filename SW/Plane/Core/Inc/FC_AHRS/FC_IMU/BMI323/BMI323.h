@@ -20,9 +20,6 @@
 
 
 /* Variables -----------------------------------------------------------------*/
-extern RAW_IMU raw_imu;
-extern SCALED_IMU scaled_imu;
-
 extern int32_t gyro_x_offset, gyro_y_offset, gyro_z_offset;
 
 

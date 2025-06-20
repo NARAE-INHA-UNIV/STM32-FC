@@ -24,6 +24,7 @@ typedef struct __attribute__((packed)){
 	PARAM_HEADER header;
 	PARAM_SERVO servo;
 	PARAM_RC rc;
+	INS ins;
 } PARAM;
 
 extern PARAM param;

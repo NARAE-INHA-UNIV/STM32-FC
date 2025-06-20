@@ -69,10 +69,9 @@ int BMI323_Initialization(void)
 	BMI323_Writebyte(GYR_CONF, 0x404B);
 	HAL_Delay(50);
 
-	// Enable Interrupts when data is ready
-
 	// Remove Gyro X offset
-	return 0; //OK
+
+	return 0;
 }
 
 
