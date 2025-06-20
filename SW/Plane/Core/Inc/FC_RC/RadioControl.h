@@ -20,7 +20,7 @@
 #include <FC_RC/Protocol/PPM.h>
 
 #include <FC_Param/Param.h>
-#include <GCS_MAVLink/GCS_Common.h>
+#include <GCS_MAVLink/GCS_MAVLink.h>
 
 #include <FC_Basic/Buzzer/driver.h>
 #include <FC_Servo/driver.h>
@@ -69,6 +69,13 @@ int RC_halfDuplex_Transmit(uint8_t *data, uint8_t len);
 
 /* Functions 2 ---------------------------------------------------------------*/
 uint16_t map(uint16_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max);
+
+uint16_t RC_MSG_setChannelInfo(uint8_t chancout, uint8_t rssi);
+uint16_t RC_MSG_setChannelValue(uint16_t value, uint8_t index);
+
+uint16_t RC_applyChannelNormMinMax(uint16_t value, uint16_t min, uint16_t max);
+uint16_t RC_applyChannelReverse(uint16_t value, uint8_t shouldInvert);
+uint16_t RC_applyChannelDeadZone(uint16_t value, uint8_t deadZone);
 
 
 /* Functions 3 ---------------------------------------------------------------*/
