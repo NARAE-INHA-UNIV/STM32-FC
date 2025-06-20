@@ -7,6 +7,7 @@ class MSG_NUM:
     SCALED_PRESSURE = 29
     SERVO_OUTPUT_RAW = 36
     RC_CHANNELS = 65
+    SCALED_IMU2 = 116
 
 class MAVLink:
     rx:packet = None

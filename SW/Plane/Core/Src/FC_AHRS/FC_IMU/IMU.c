@@ -24,6 +24,7 @@ int IMU_Initialization(void)
 	LL_GPIO_SetOutputPin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
 
 	ICM42688_Initialization();
+	BMI323_Initialization();
 
 	LL_GPIO_ResetOutputPin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
 	return 0;
@@ -43,6 +44,7 @@ unsigned int IMU_GetData(void)
 	ICM42688_GetData();
 
 	// SCALED_IMU2
+	BMI323_GetData();
 	// SCALED_IMU3
 
 //	ComplementaryFilter();

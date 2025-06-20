@@ -1,10 +1,21 @@
 /*
+ ******************************************************************************
+ *
  * BMI323.c (Work In Progress!)
  * FC_AHRS/FC_IMU/BMI323/BMI323.c
+ *
+ ******************************************************************************
  *
  *  Created on: June 19, 2025
  *      Author: leecurrent04
  *      Email : leecurrent04@inha.edu
+ *
+ ******************************************************************************
+ *
+ *  SPI Configuration
+ *  CPOL = 1 (High) and CPHA = 1 (2nd)
+ *
+ ******************************************************************************
  */
 
 #include <FC_AHRS/FC_IMU/BMI323/BMI323.h>
@@ -15,51 +26,53 @@
  * @brief 초기 설정
  * @detail SPI 연결 수행, 감도 설정, offset 제거
  * @retval 0 : 완료
- * @retval 1 : 센서 없음
+ *         1 : 센서 없음
+ *         2 : 센서 없음
+ *         3 :
  */
 int BMI323_Initialization(void)
 {
-//	uint8_t who_am_i = 0;
-//	int16_t accel_raw_data[3] = {0};  // To remove offset
-//	int16_t gyro_raw_data[3] = {0};   // To remove offset
-//
-//	if(!LL_SPI_IsEnabled(SPI3)){
-//		LL_SPI_Enable(SPI3);
-//	}
-//	CHIP_DESELECT();
-//
-//	// Check
-//	who_am_i = BMI323_Readbyte(WHO_AM_I);
-//	if(who_am_i != 0x47)
-//	{
-//		return 1;
-//	}
-//
-//	// PWR_MGMT0
-//	BMI323_Writebyte(PWR_MGMT0, 0x0F); // Temp on, ACC, GYRO LPF Mode
-//	HAL_Delay(50);
-//
-//	// GYRO_CONFIG0
-//	BMI323_Writebyte(GYRO_CONFIG0, 0x26); // Gyro sensitivity 1000 dps, 1kHz
-//	HAL_Delay(50);
-//	BMI323_Writebyte(GYRO_CONFIG1, 0x00); // Gyro temp DLPF 4kHz, UI Filter 1st, 	DEC2_M2 reserved
-//	HAL_Delay(50);
-//
-//	BMI323_Writebyte(ACCEL_CONFIG0, 0x46); // Acc sensitivity 4g, 1kHz
-//	HAL_Delay(50);
-//	BMI323_Writebyte(ACCEL_CONFIG1, 0x00); // Acc UI Filter 1st, 	DEC2_M2 reserved
-//	HAL_Delay(50);
-//
-//	BMI323_Writebyte(GYRO_ACCEL_CONFIG0, 0x11); // LPF default max(400Hz,ODR)/4
-//	HAL_Delay(50);
-//
-//	// Enable Interrupts when data is ready
-////	BMI323_Writebyte(INT_ENABLE, 0x01); // Enable DRDY Interrupt
-////	HAL_Delay(50);
-//
-//
-//	// Remove Gyro X offset
-//	return 0; //OK
+
+	/*
+	 * datasheet p.15
+	 * who am i
+	 * power check
+	 */
+
+	uint16_t temp = 0;
+
+	if(!LL_SPI_IsEnabled(SPI3)){
+		LL_SPI_Enable(SPI3);
+	}
+	CHIP_DESELECT();
+
+	// Testing communication and initializing the device
+	temp = BMI323_Readbyte(CHIP_ID);
+	if((temp&0xFF) != 0x43) return 1;
+
+	// Checking the correct initialization status
+	temp = BMI323_Readbyte(ERR_REG);
+	if((temp&0xFF) != 0x00) return 2;
+
+	for(int i=0; i<5; i++)
+	{
+		temp = BMI323_Readbyte(STATUS);
+		if((temp&0xFF) == 0x01) break;
+		if(i>=5) return 3;
+	}
+
+
+	// Configure the device for normal power mode
+	BMI323_Writebyte(ACC_CONF, 0x4027);
+	HAL_Delay(50);
+
+	BMI323_Writebyte(GYR_CONF, 0x404B);
+	HAL_Delay(50);
+
+	// Enable Interrupts when data is ready
+
+	// Remove Gyro X offset
+	return 0; //OK
 }
 
 
@@ -70,6 +83,8 @@ int BMI323_Initialization(void)
  */
 int BMI323_GetData(void)
 {
+	if(BMI323_DataReady()) return -1;
+
 	BMI323_Get6AxisRawData();
 
 	BMI323_ConvertGyroRaw2Dps();
@@ -86,19 +101,19 @@ int BMI323_GetData(void)
  */
 void BMI323_Get6AxisRawData()
 {
-//	uint8_t data[14];
-//
-//	BMI323_Readbytes(TEMP_DATA1, 14, data);
-//
-//	raw_imu.time_usec = system_time.time_unix_usec;
-//	raw_imu.temperature = (data[0] << 8) | data[1];
-//	raw_imu.xacc = (data[2] << 8) | data[3];
-//	raw_imu.yacc = (data[4] << 8) | data[5];
-//	raw_imu.zacc = ((data[6] << 8) | data[7]);
-//	raw_imu.xgyro = ((data[8] << 8) | data[9]);
-//	raw_imu.ygyro = ((data[10] << 8) | data[11]);
-//	raw_imu.zgyro = ((data[12] << 8) | data[13]);
-//
+	uint16_t data[7] = {0,};
+
+	BMI323_Readbytes(ACC_DATA_X, 7, &data[0]);
+
+	msg.scaled_imu2.time_boot_ms = msg.system_time.time_boot_ms;
+	msg.scaled_imu2.xacc = data[0];
+	msg.scaled_imu2.yacc = data[1];
+	msg.scaled_imu2.zacc = data[2];
+	msg.scaled_imu2.xgyro = data[3];
+	msg.scaled_imu2.ygyro = data[4];
+	msg.scaled_imu2.zgyro = data[5];
+	msg.scaled_imu2.temperature = data[6];
+
 	return;
 }
 
@@ -112,8 +127,8 @@ void BMI323_Get6AxisRawData()
  */
 void BMI323_ConvertGyroRaw2Dps(void)
 {
-//	uint8_t gyro_reg_val = BMI323_Readbyte(GYRO_CONFIG0);
-//	uint8_t gyro_fs_sel = (gyro_reg_val >> 5) & 0x07;
+//	uint16_t gyro_reg_val = BMI323_Readbyte(GYR_CONF);
+//	uint8_t gyro_fs_sel = (gyro_reg_val >> 4) & 0x07;
 //
 //	float sensitivity;
 //
@@ -150,8 +165,8 @@ void BMI323_ConvertGyroRaw2Dps(void)
  */
 void BMI323_ConvertAccRaw2G(void)
 {
-//	uint8_t acc_reg_val = BMI323_Readbyte(ACCEL_CONFIG0);
-//	uint8_t acc_fs_sel = (acc_reg_val >> 5) & 0x07;
+//	uint8_t acc_reg_val = BMI323_Readbyte(ACC_CONF);
+//	uint8_t acc_fs_sel = (acc_reg_val >> 4) & 0x07;
 //
 //	float sensitivity;
 //
@@ -176,73 +191,82 @@ void BMI323_ConvertAccRaw2G(void)
 /* Functions 2 ---------------------------------------------------------------*/
 inline static void CHIP_SELECT(void)
 {
-//	LL_GPIO_ResetOutputPin(GYRO1_NSS_GPIO_Port, GYRO1_NSS_Pin);
+	LL_GPIO_ResetOutputPin(GYRO2_NSS_GPIO_Port, GYRO2_NSS_Pin);
 }
 
 inline static void CHIP_DESELECT(void)
 {
-//	LL_GPIO_SetOutputPin(GYRO1_NSS_GPIO_Port, GYRO1_NSS_Pin);
+	LL_GPIO_SetOutputPin(GYRO2_NSS_GPIO_Port, GYRO2_NSS_Pin);
 }
 
 
 unsigned char SPI3_SendByte(unsigned char data)
 {
-//	while(LL_SPI_IsActiveFlag_TXE(SPI3)==RESET);
-//	LL_SPI_TransmitData8(SPI3, data);
-//
-//	while(LL_SPI_IsActiveFlag_RXNE(SPI3)==RESET);
-//	return LL_SPI_ReceiveData8(SPI3);
+	while(LL_SPI_IsActiveFlag_TXE(SPI3)==RESET);
+	LL_SPI_TransmitData8(SPI3, data);
+
+	while(LL_SPI_IsActiveFlag_RXNE(SPI3)==RESET);
+	return LL_SPI_ReceiveData8(SPI3);
 }
 
-uint8_t BMI323_Readbyte(uint8_t reg_addr)
+uint16_t BMI323_Readbyte(uint8_t reg_addr)
 {
-//	uint8_t val;
-//
-//	CHIP_SELECT();
-//	SPI3_SendByte(reg_addr | 0x80); //Register. MSB 1 is read instruction.
-//	val = SPI3_SendByte(0x00); //Send DUMMY to read data
-//	CHIP_DESELECT();
-//
-//	return val;
+	uint16_t val=0;
+	uint8_t* p = (uint8_t*)&val;
+
+	CHIP_SELECT();
+
+	SPI3_SendByte(reg_addr | 0x80); //Register. MSB 1 is read instruction.
+	SPI3_SendByte(0x00); //Send DUMMY to read data
+
+	p[0] = SPI3_SendByte(0x00); //Send DUMMY to read data
+	p[1] = SPI3_SendByte(0x00); //Send DUMMY to read data
+
+	CHIP_DESELECT();
+
+	return val;
 }
 
-void BMI323_Readbytes(unsigned char reg_addr, unsigned char len, unsigned char* data)
+void BMI323_Readbytes(uint8_t reg_addr, uint8_t len, uint16_t* data)
 {
-//	unsigned int i = 0;
-//
-//	CHIP_SELECT();
-//	SPI3_SendByte(reg_addr | 0x80); //Register. MSB 1 is read instruction.
-//	while(i < len)
-//	{
-//		data[i++] = SPI3_SendByte(0x00); //Send DUMMY to read data
-//	}
-//	CHIP_DESELECT();
+	CHIP_SELECT();
+
+	SPI3_SendByte(reg_addr | 0x80); //Register. MSB 1 is read instruction.
+	SPI3_SendByte(0x00); //Send DUMMY to read data
+
+	for(int i=0; i<len; i++)
+	{
+		uint8_t* p = (uint8_t*)&data[i];
+		p[0] = SPI3_SendByte(0x00);
+		p[1] = SPI3_SendByte(0x00);
+	}
+
+	CHIP_DESELECT();
+	return;
 }
 
-void BMI323_Writebyte(uint8_t reg_addr, uint8_t val)
+
+void BMI323_Writebyte(uint8_t reg_addr, uint16_t val)
 {
-//	CHIP_SELECT();
-//	SPI3_SendByte(reg_addr & 0x7F); //Register. MSB 0 is write instruction.
-//	SPI3_SendByte(val); //Send Data to write
-//	CHIP_DESELECT();
-}
+	uint8_t* p = (uint8_t*)&val;
 
-void BMI323_Writebytes(unsigned char reg_addr, unsigned char len, unsigned char* data)
-{
-//	unsigned int i = 0;
-//	CHIP_SELECT();
-//	SPI3_SendByte(reg_addr & 0x7F); //Register. MSB 0 is write instruction.
-//	while(i < len)
-//	{
-//		SPI3_SendByte(data[i++]); //Send Data to write
-//	}
-//	CHIP_DESELECT();
+	CHIP_SELECT();
+
+	SPI3_SendByte(reg_addr & 0x7F); //Register. MSB 0 is write instruction.
+
+	SPI3_SendByte(p[0]); //Send Data to write
+	SPI3_SendByte(p[1]); //Send Data to write
+
+	CHIP_DESELECT();
 }
 
 
-/*
 int BMI323_DataReady(void)
 {
-	return LL_GPIO_IsInputPinSet(BMI323_INT_PORT, BMI323_INT_PIN);
+	uint16_t temp = 0;
+	temp = BMI323_Readbyte(STATUS);
+
+	if ( ((temp>>5)&0x03) != 0x03) return 1;
+
+	return 0;
 }
-*/

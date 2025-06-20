@@ -31,6 +31,7 @@ int Log_Send()
 	case 29: LOG_TRANSMIT(msg.scaled_pressure); break;
 	case 36: LOG_TRANSMIT(msg.servo_output_raw); break;
 	case 65: LOG_TRANSMIT(msg.RC_channels); break;
+	case 116 : LOG_TRANSMIT(msg.scaled_imu2); break;
 	default: break;
 	}
 	return 0;
