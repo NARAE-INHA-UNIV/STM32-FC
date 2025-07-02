@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "Communication")
-		(date "2025-06-19")
+		(date "2025-06-23")
 		(rev "A")
 		(company "NARAE")
 		(comment 1 "INHA Univ. Areo-modelling Club")
@@ -15554,7 +15554,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor, small symbol"
 			(at 148.59 27.94 0)
 			(effects
 				(font
@@ -16736,7 +16736,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor, small symbol"
 			(at 118.11 67.31 0)
 			(effects
 				(font
@@ -18328,7 +18328,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor, small symbol"
 			(at 148.59 68.58 0)
 			(effects
 				(font
@@ -18520,7 +18520,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Unpolarized capacitor, small symbol"
 			(at 118.11 26.67 0)
 			(effects
 				(font

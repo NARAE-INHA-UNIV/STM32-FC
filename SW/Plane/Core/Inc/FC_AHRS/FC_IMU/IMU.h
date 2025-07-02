@@ -17,6 +17,7 @@
 #include <FC_AHRS/FC_IMU/driver.h>
 
 #include <FC_AHRS/FC_IMU/ICM42688P/driver.h>
+#include <FC_AHRS/FC_IMU/BMI323/driver.h>
 
 
 /* Variables -----------------------------------------------------------------*/
