@@ -1,3 +1,4 @@
+import sys
 import serial
 from .packet import *
 
@@ -7,6 +8,7 @@ class MSG_NUM:
     SCALED_PRESSURE = 29
     SERVO_OUTPUT_RAW = 36
     RC_CHANNELS = 65
+    SCALED_IMU2 = 116
 
 class MAVLink:
     rx:packet = None
@@ -44,17 +46,22 @@ class MAVLink:
 
     # byte 단위로 데이터 받아옴
     def getByte(self):
-        rx_byte = self.ser.read()  # 1바이트씩 읽기
+        try:
+            rx_byte = self.ser.read()  # 1바이트씩 읽기
 
-        if rx_byte == b'\xFD':  # 0xFD이 나오면
-            self.rx.length = self.__cnt
-            self.__cnt = 0;
+            if rx_byte == b'\xFD':  # 0xFD이 나오면
+                self.rx.length = self.__cnt
+                self.__cnt = 0;
 
-            if(self.rx.length>0 and self.rx.checkCRC()):
-                return 0
+                if(self.rx.length>0 and self.rx.checkCRC()):
+                    return 0
 
-        self.rx.data[self.__cnt] = byte2int(rx_byte.hex())
-        self.__cnt = self.__cnt +1
+            self.rx.data[self.__cnt] = byte2int(rx_byte.hex())
+            self.__cnt = self.__cnt +1
+        except Exception as e:
+            print(e)
+            sys.exit(0)
+
 
         return 1
 

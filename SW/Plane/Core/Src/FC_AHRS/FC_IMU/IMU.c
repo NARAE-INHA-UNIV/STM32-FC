@@ -18,12 +18,21 @@
  * @detail IMU 1 - ICM42688P : GYRO, ACC, TEMP
  * @parm none
  * @retval 0
+ *         -1 : err
  */
 int IMU_Initialization(void)
 {
+	uint8_t temp = 0;
 	LL_GPIO_SetOutputPin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
 
-	ICM42688_Initialization();
+	temp |= (ICM42688_Initialization()<<0);
+//	temp |= (BMI323_Initialization()<<4);
+
+	if(temp!=0)
+	{
+		// send error code
+		return -1;
+	}
 
 	LL_GPIO_ResetOutputPin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
 	return 0;
@@ -38,12 +47,25 @@ int IMU_Initialization(void)
  */
 unsigned int IMU_GetData(void)
 {
+	uint16_t retVal = 0;
 
 	// SCALED_IMU
 	ICM42688_GetData();
 
 	// SCALED_IMU2
+//	retVal = (BMI323_GetData() << 4);
+
+
 	// SCALED_IMU3
+
+	// Error
+	if (retVal & 0x0eee)
+	{
+		LL_GPIO_SetOutputPin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
+		return 1;
+	}
+
+	LL_GPIO_ResetOutputPin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
 
 //	ComplementaryFilter();
 //	KalmanFilter();

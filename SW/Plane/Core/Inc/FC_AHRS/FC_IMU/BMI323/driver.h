@@ -12,8 +12,8 @@
 
 
 /* Functions -----------------------------------------------------------------*/
-int BMI323_Initialization(void);
-int BMI323_GetData(void);
+uint8_t BMI323_Initialization(void);
+uint8_t BMI323_GetData(void);
 
 
 #endif /* INC_FC_AHRS_FC_IMU_BMI323_DRIVER_H_ */
