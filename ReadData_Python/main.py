@@ -21,7 +21,7 @@ print(os.listdir("./lib/MSG"))
 # mav = SCALED_IMU2('COM4')
 
 port = choose_serial_port()
-mav = SCALED_IMU2(port)
+mav = SCALED_IMU(port)
 
 while True:
     mav.getData()
