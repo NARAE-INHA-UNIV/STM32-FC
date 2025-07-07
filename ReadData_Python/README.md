@@ -17,6 +17,7 @@ python main.py
 3. FC가 연결된 포트 선택 (화살표 키로 이동, Enter로 선택)
 
 ```bash
+# 아래에 나오는 포트 목록은 컴퓨터마다 다를 수 있습니다.
 Choose Serial Port: (Use arrow keys)
    /dev/cu.debug-console - n/a
    /dev/cu.wlan-debug - n/a
