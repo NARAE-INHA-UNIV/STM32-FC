@@ -18,11 +18,11 @@
 
 typedef struct __attribute__((packed)){
 	SYSTEM_TIME system_time;
-	SCALED_IMU scaled_imu;
+	SCALED_IMU scaled_imu;	//26 가속도계하고 자이로 합친 값이 출력될 예쩡
 	RAW_IMU raw_imu;				// 27
 	SCALED_PRESSURE scaled_pressure;		// 29
-	SERVO_OUTPUT_RAW servo_output_raw;
-	RC_CHANNELS RC_channels;
+	SERVO_OUTPUT_RAW servo_output_raw; //36
+	RC_CHANNELS RC_channels;  //65
 	SCALED_IMU2 scaled_imu2;			// 116
 } Common;
 

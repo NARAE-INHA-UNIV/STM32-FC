@@ -73,8 +73,6 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define LED_BLUE_Pin LL_GPIO_PIN_2
 #define LED_BLUE_GPIO_Port GPIOE
-#define GYRO2_NSS_Pin LL_GPIO_PIN_3
-#define GYRO2_NSS_GPIO_Port GPIOE
 #define GYRO1_NSS_Pin LL_GPIO_PIN_5
 #define GYRO1_NSS_GPIO_Port GPIOE
 #define BARO_NSS_Pin LL_GPIO_PIN_6
@@ -120,12 +118,12 @@ void Error_Handler(void);
 #define RC_SRXL2_GPIO_Port GPIOA
 #define GPS1_TX_Pin LL_GPIO_PIN_10
 #define GPS1_TX_GPIO_Port GPIOC
-#define GPS2_RX_Pin LL_GPIO_PIN_11
-#define GPS2_RX_GPIO_Port GPIOC
+#define GPS1_RX_Pin LL_GPIO_PIN_11
+#define GPS1_RX_GPIO_Port GPIOC
 #define GPS2_TX_Pin LL_GPIO_PIN_12
 #define GPS2_TX_GPIO_Port GPIOC
-#define GPS2_RXD2_Pin LL_GPIO_PIN_2
-#define GPS2_RXD2_GPIO_Port GPIOD
+#define GPS2_RX_Pin LL_GPIO_PIN_2
+#define GPS2_RX_GPIO_Port GPIOD
 #define Telm1_TX_Pin LL_GPIO_PIN_5
 #define Telm1_TX_GPIO_Port GPIOD
 #define Telm1_RX_Pin LL_GPIO_PIN_6
@@ -138,6 +136,7 @@ void Error_Handler(void);
 #define LED_YELLOW_GPIO_Port GPIOE
 
 /* USER CODE BEGIN Private defines */
+
 
 /* USER CODE END Private defines */
 

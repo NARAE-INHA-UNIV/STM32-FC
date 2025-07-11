@@ -264,6 +264,10 @@ void USART2_IRQHandler(void)
 
 		uart2_rx_data = LL_USART_ReceiveData8(USART2);
 		uart2_rx_flag = 1;
+
+		// UART2 → UART4 중계 이걸로 유센터에서 시리얼 통해 명령을 보냄!
+		while (!LL_USART_IsActiveFlag_TXE(UART4));
+		LL_USART_TransmitData8(UART4, uart2_rx_data);
 	}
   /* USER CODE END USART2_IRQn 0 */
   /* USER CODE BEGIN USART2_IRQn 1 */
@@ -358,6 +362,19 @@ void TIM5_IRQHandler(void)
   /* USER CODE BEGIN TIM5_IRQn 1 */
 
   /* USER CODE END TIM5_IRQn 1 */
+}
+
+/**
+  * @brief This function handles UART4 global interrupt.
+  */
+void UART4_IRQHandler(void)
+{
+  /* USER CODE BEGIN UART4_IRQn 0 */
+	  GPS_UART4_IRQHandler();
+  /* USER CODE END UART4_IRQn 0 */
+  /* USER CODE BEGIN UART4_IRQn 1 */
+
+  /* USER CODE END UART4_IRQn 1 */
 }
 
 /**
