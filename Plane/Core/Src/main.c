@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "usbd_cdc_if.h"
+#include <usbd_cdc_if.h>
 
 #include <FC_Param/Param.h>
 #include <GCS_MAVLink/GCS_MAVLink.h>
@@ -36,8 +36,9 @@
 #include <FC_AHRS/FC_Baro/driver.h>
 
 #include <FC_Log/Log.h>
-
-
+#include <gps.h>
+#include "Speedmeter.h"
+#include "FC_AHRS/FC_IMU/IMU.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -71,7 +72,10 @@ int _write(int file, char *p, int len)
 
 /* Private variables ---------------------------------------------------------*/
 
+
 /* USER CODE BEGIN PV */
+I2C_HandleTypeDef hi2c1;
+
 // Telm1
 extern uint8_t uart2_rx_flag;
 extern uint8_t uart2_rx_data;
@@ -79,6 +83,7 @@ extern uint8_t uart2_rx_data;
 // Telm2
 extern uint8_t uart3_rx_flag;
 extern uint8_t uart3_rx_data;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -97,7 +102,7 @@ static void MX_USART3_UART_Init(void);
 static void MX_UART4_Init(void);
 static void MX_UART5_Init(void);
 static void MX_ADC1_Init(void);
-static void MX_SPI3_Init(void);
+static void MX_I2C1_Init(void);
 /* USER CODE BEGIN PFP */
 extern int PARM_load(void);
 /* USER CODE END PFP */
@@ -149,7 +154,7 @@ int main(void)
   MX_UART5_Init();
   MX_USB_DEVICE_Init();
   MX_ADC1_Init();
-  MX_SPI3_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
 
   LL_TIM_EnableCounter(TIM4);
@@ -169,9 +174,15 @@ int main(void)
   SERVO_Initialization();
   RC_Initialization();
   IMU_Initialization();
+  HAL_Delay(2000);    // 초기 안정화 시간
+  IMU_CalculateOffset();  // Roll, Pitch 오프셋 자동 계산
+  GPS_Init();
+
 //  Baro_Initialization();
   BuzzerPlayOneCycle();
   SERVO_doArm();
+  Speedmeter_Init();
+  Speedmeter_Calibrate();
 
   /* USER CODE END 2 */
 
@@ -182,6 +193,8 @@ int main(void)
 	  RC_GetData();
 
 	  IMU_GetData();
+
+	  Speedmeter_Update();
 //	  Baro_GetData();
 
 	  if(fsFlag == 1){
@@ -193,6 +206,7 @@ int main(void)
 	  }
 
 	  Log_Send();
+
 
     /* USER CODE END WHILE */
 
@@ -308,6 +322,40 @@ static void MX_ADC1_Init(void)
 }
 
 /**
+  * @brief I2C1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_I2C1_Init(void)
+{
+
+  /* USER CODE BEGIN I2C1_Init 0 */
+
+  /* USER CODE END I2C1_Init 0 */
+
+  /* USER CODE BEGIN I2C1_Init 1 */
+
+  /* USER CODE END I2C1_Init 1 */
+  hi2c1.Instance = I2C1;
+  hi2c1.Init.ClockSpeed = 100000;
+  hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
+  hi2c1.Init.OwnAddress1 = 0;
+  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c1.Init.OwnAddress2 = 0;
+  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2C1_Init 2 */
+
+  /* USER CODE END I2C1_Init 2 */
+
+}
+
+/**
   * @brief SPI1 Initialization Function
   * @param None
   * @retval None
@@ -350,7 +398,7 @@ static void MX_SPI1_Init(void)
   SPI_InitStruct.ClockPolarity = LL_SPI_POLARITY_HIGH;
   SPI_InitStruct.ClockPhase = LL_SPI_PHASE_2EDGE;
   SPI_InitStruct.NSS = LL_SPI_NSS_SOFT;
-  SPI_InitStruct.BaudRate = LL_SPI_BAUDRATEPRESCALER_DIV16;
+  SPI_InitStruct.BaudRate = LL_SPI_BAUDRATEPRESCALER_DIV128;
   SPI_InitStruct.BitOrder = LL_SPI_MSB_FIRST;
   SPI_InitStruct.CRCCalculation = LL_SPI_CRCCALCULATION_DISABLE;
   SPI_InitStruct.CRCPoly = 10;
@@ -359,61 +407,6 @@ static void MX_SPI1_Init(void)
   /* USER CODE BEGIN SPI1_Init 2 */
 
   /* USER CODE END SPI1_Init 2 */
-
-}
-
-/**
-  * @brief SPI3 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_SPI3_Init(void)
-{
-
-  /* USER CODE BEGIN SPI3_Init 0 */
-
-  /* USER CODE END SPI3_Init 0 */
-
-  LL_SPI_InitTypeDef SPI_InitStruct = {0};
-
-  LL_GPIO_InitTypeDef GPIO_InitStruct = {0};
-
-  /* Peripheral clock enable */
-  LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_SPI3);
-
-  LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOB);
-  /**SPI3 GPIO Configuration
-  PB3   ------> SPI3_SCK
-  PB4   ------> SPI3_MISO
-  PB5   ------> SPI3_MOSI
-  */
-  GPIO_InitStruct.Pin = LL_GPIO_PIN_3|LL_GPIO_PIN_4|LL_GPIO_PIN_5;
-  GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
-  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
-  GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
-  GPIO_InitStruct.Alternate = LL_GPIO_AF_6;
-  LL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-  /* USER CODE BEGIN SPI3_Init 1 */
-
-  /* USER CODE END SPI3_Init 1 */
-  /* SPI3 parameter configuration*/
-  SPI_InitStruct.TransferDirection = LL_SPI_FULL_DUPLEX;
-  SPI_InitStruct.Mode = LL_SPI_MODE_MASTER;
-  SPI_InitStruct.DataWidth = LL_SPI_DATAWIDTH_8BIT;
-  SPI_InitStruct.ClockPolarity = LL_SPI_POLARITY_HIGH;
-  SPI_InitStruct.ClockPhase = LL_SPI_PHASE_2EDGE;
-  SPI_InitStruct.NSS = LL_SPI_NSS_SOFT;
-  SPI_InitStruct.BaudRate = LL_SPI_BAUDRATEPRESCALER_DIV256;
-  SPI_InitStruct.BitOrder = LL_SPI_MSB_FIRST;
-  SPI_InitStruct.CRCCalculation = LL_SPI_CRCCALCULATION_DISABLE;
-  SPI_InitStruct.CRCPoly = 10;
-  LL_SPI_Init(SPI3, &SPI_InitStruct);
-  LL_SPI_SetStandard(SPI3, LL_SPI_PROTOCOL_MOTOROLA);
-  /* USER CODE BEGIN SPI3_Init 2 */
-
-  /* USER CODE END SPI3_Init 2 */
 
 }
 
@@ -836,7 +829,7 @@ static void MX_UART4_Init(void)
   PC10   ------> UART4_TX
   PC11   ------> UART4_RX
   */
-  GPIO_InitStruct.Pin = GPS1_TX_Pin|GPS2_RX_Pin;
+  GPIO_InitStruct.Pin = GPS1_TX_Pin|GPS1_RX_Pin;
   GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
   GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_VERY_HIGH;
   GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
@@ -844,10 +837,14 @@ static void MX_UART4_Init(void)
   GPIO_InitStruct.Alternate = LL_GPIO_AF_8;
   LL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
+  /* UART4 interrupt Init */
+  NVIC_SetPriority(UART4_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),0, 0));
+  NVIC_EnableIRQ(UART4_IRQn);
+
   /* USER CODE BEGIN UART4_Init 1 */
 
   /* USER CODE END UART4_Init 1 */
-  USART_InitStruct.BaudRate = 115200;
+  USART_InitStruct.BaudRate = 38400;
   USART_InitStruct.DataWidth = LL_USART_DATAWIDTH_8B;
   USART_InitStruct.StopBits = LL_USART_STOPBITS_1;
   USART_InitStruct.Parity = LL_USART_PARITY_NONE;
@@ -896,13 +893,13 @@ static void MX_UART5_Init(void)
   GPIO_InitStruct.Alternate = LL_GPIO_AF_8;
   LL_GPIO_Init(GPS2_TX_GPIO_Port, &GPIO_InitStruct);
 
-  GPIO_InitStruct.Pin = GPS2_RXD2_Pin;
+  GPIO_InitStruct.Pin = GPS2_RX_Pin;
   GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
   GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_VERY_HIGH;
   GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
   GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
   GPIO_InitStruct.Alternate = LL_GPIO_AF_8;
-  LL_GPIO_Init(GPS2_RXD2_GPIO_Port, &GPIO_InitStruct);
+  LL_GPIO_Init(GPS2_RX_GPIO_Port, &GPIO_InitStruct);
 
   /* UART5 interrupt Init */
   NVIC_SetPriority(UART5_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),2, 0));
@@ -1021,7 +1018,7 @@ static void MX_USART2_UART_Init(void)
   /* USER CODE BEGIN USART2_Init 1 */
 
   /* USER CODE END USART2_Init 1 */
-  USART_InitStruct.BaudRate = 57600;
+  USART_InitStruct.BaudRate = 38400;
   USART_InitStruct.DataWidth = LL_USART_DATAWIDTH_8B;
   USART_InitStruct.StopBits = LL_USART_STOPBITS_1;
   USART_InitStruct.Parity = LL_USART_PARITY_NONE;
@@ -1115,26 +1112,19 @@ static void MX_GPIO_Init(void)
   LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOD);
 
   /**/
-  LL_GPIO_ResetOutputPin(GPIOE, LED_BLUE_Pin|GYRO2_NSS_Pin|GYRO1_NSS_Pin|BARO_NSS_Pin
-                          |LED_RED_Pin|LED_YELLOW_Pin);
+  LL_GPIO_ResetOutputPin(GPIOE, LED_BLUE_Pin|GYRO1_NSS_Pin|BARO_NSS_Pin|LED_RED_Pin
+                          |LED_YELLOW_Pin);
 
   /**/
   LL_GPIO_ResetOutputPin(GPS1_SW_LED_GPIO_Port, GPS1_SW_LED_Pin);
 
   /**/
-  GPIO_InitStruct.Pin = LED_BLUE_Pin|LED_RED_Pin|LED_YELLOW_Pin;
+  GPIO_InitStruct.Pin = LED_BLUE_Pin|GYRO1_NSS_Pin|BARO_NSS_Pin|LED_RED_Pin
+                          |LED_YELLOW_Pin;
   GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
   GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
   GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
   GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
-  LL_GPIO_Init(GPIOE, &GPIO_InitStruct);
-
-  /**/
-  GPIO_InitStruct.Pin = GYRO2_NSS_Pin|GYRO1_NSS_Pin|BARO_NSS_Pin;
-  GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
-  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
-  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
-  GPIO_InitStruct.Pull = LL_GPIO_PULL_UP;
   LL_GPIO_Init(GPIOE, &GPIO_InitStruct);
 
   /**/

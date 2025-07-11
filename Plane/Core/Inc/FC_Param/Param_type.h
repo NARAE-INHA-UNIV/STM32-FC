@@ -74,17 +74,4 @@ typedef struct __attribute__((packed)){
 } PARAM_RC;
 
 
-/* INS -----------------------------------------------------------------------*/
-typedef struct __attribute__((packed)){
-	float sensitivity;
-} IMU;
-
-typedef struct __attribute__((packed)){
-	IMU GYRO1;	// ICM-42688-P
-	IMU ACC1;
-	IMU GYRO2;	// BMI323
-	IMU ACC2;
-} INS;
-
-
 #endif /* INC_FC_PARAM_PARAM_TYPE_H_ */

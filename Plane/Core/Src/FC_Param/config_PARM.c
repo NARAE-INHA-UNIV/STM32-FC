@@ -22,7 +22,7 @@ void setRC_PPM(void);
 
 int PARM_load(void){
 	setRC_None();
-//	setRC_SRXL2();
+//	setRC_SRXL2(); 잠시 주석처리(수신기 연결안해서)
 //	setRC_PPM();
 
 	param.servo.AUTO_TRIM = 0;
