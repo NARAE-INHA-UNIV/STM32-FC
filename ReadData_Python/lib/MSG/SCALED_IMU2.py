@@ -1,11 +1,8 @@
 from ..MAVLink import *
 import struct
 
-class SCALED_IMU2(MAVLink):
-    def __init__(self, port, baudrate=115200):
-        super().__init__(port, baudrate)
-        super().select(MSG_NUM.SCALED_IMU2)
-
+class SCALED_IMU2():
+    def __init__(self):
         self.xdeg:float = 0;
         self.ydeg:float = 0;
         self.zdeg:float = 0;

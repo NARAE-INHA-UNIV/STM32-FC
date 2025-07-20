@@ -1,11 +1,7 @@
 from ..MAVLink import *
 import struct
 
-class SERVO_OUTPUT_RAW(MAVLink):
-    def __init__(self, port, baudrate=115200):
-        super().__init__(port, baudrate)
-        super().select(MSG_NUM.SERVO_OUTPUT_RAW)
-
+class SERVO_OUTPUT_RAW():
     def update(self):
         # 데이터 포맷: (각 항목의 바이트 크기에 맞게 포맷 지정)
         # 'I' = 4바이트 (uint32_t), 

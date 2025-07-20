@@ -5,7 +5,7 @@
 1. 패키지 설치 (최초 1회만)
 
 ```bash
-pip isntall pyserial questionary
+pip isntall pyserial questionary keyboard
 ```
 
 2. 실행
@@ -25,3 +25,8 @@ Choose Serial Port: (Use arrow keys)
 ```
 
 4. 결과 확인
+
+
+
+## 동작 원리
+

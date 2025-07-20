@@ -17,6 +17,9 @@
 const uint8_t code = 0xFD;
 uint16_t logType = 26;
 
+LogPacket logTx;
+
+
 /* Functions -----------------------------------------------------------------*/
 int Log_Send()
 {
@@ -26,16 +29,9 @@ int Log_Send()
 	if(!(msg.system_time.time_boot_ms - previous_time > 100)) return -1;
 	previous_time = msg.system_time.time_boot_ms;
 
-	switch(logType)
-	{
-	case 26: LOG_TRANSMIT(msg.scaled_imu); break;
-	case 27: LOG_TRANSMIT(msg.raw_imu); break;
-	case 29: LOG_TRANSMIT(msg.scaled_pressure); break;
-	case 36: LOG_TRANSMIT(msg.servo_output_raw); break;
-	case 65: LOG_TRANSMIT(msg.RC_channels); break;
-	case 116 : LOG_TRANSMIT(msg.scaled_imu2); break;
-	default: break;
-	}
+	#define GENERATE_CASE(type, field) Log_transmit(type, (uint8_t*)&(msg.field), sizeof(msg.field));
+	LOG_TABLE(GENERATE_CASE);
+	#undef GENERATE_CASE
 	return 0;
 }
 
@@ -47,22 +43,35 @@ int Log_Send()
  * 	- readByte 내에 cal crc 수행 후 타입에 따라 리턴
  */
 extern uint16_t calculate_crc(const uint8_t *data, uint8_t len);
-int Log_transmit(uint8_t* p, uint8_t len)
+
+/*
+ * @brief 로그 전송
+ * @detail 헤더 및 패킷의 길이 계산, CRC 입력
+ * @parm *p : msg 하위 구조체(ex. msg.raw_imu)
+ * 		 len : 구조체의 크기 (!= 로그 패킷의 길이가 아님)
+ */
+int Log_transmit(uint16_t msgId, uint8_t* p, uint8_t len)
 {
+	logTx.header = code;
+	logTx.length = sizeof(LogPacket) + len + sizeof(uint16_t);
+	logTx.seq++;
+	logTx.msgId = msgId;
 
-    uint8_t packetLen = len+sizeof(uint8_t)*3;
-    uint8_t* packet = malloc(packetLen);
+	// create array for packet
+    uint8_t* packet = (uint8_t*)malloc(logTx.length);
 
-    memcpy(packet, &code, sizeof(uint8_t));
-    memcpy(packet + sizeof(uint8_t), p, len);
+    // insert header, length, seq, msg id, payload
+    memcpy(packet, &logTx, sizeof(LogPacket));
+    memcpy(packet + sizeof(LogPacket), p, len);
 
-    uint16_t crc = calculate_crc(packet, packetLen);
+    // insert crc
+    uint16_t crc = calculate_crc(packet, logTx.length);
+    memcpy(packet + logTx.length - sizeof(uint16_t), &crc, sizeof(uint16_t));
 
-    memcpy(packet + sizeof(uint8_t) + len, &crc, sizeof(uint16_t));
+    // 전송
+	CDC_Transmit_FS(packet, logTx.length);
 
-	CDC_Transmit_FS(packet, packetLen);
-
-	for(int i=0; i<packetLen; i++)
+	for(int i=0; i<logTx.length; i++)
 	{
 		if(param.serial[1].protocol == 2)
 		{
@@ -79,6 +88,6 @@ int Log_transmit(uint8_t* p, uint8_t len)
 
     free(packet);
 
-	return packetLen;
+	return logTx.length;
 }
 

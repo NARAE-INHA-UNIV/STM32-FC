@@ -1,11 +1,6 @@
-from ..MAVLink import *
 import struct
 
-class RC_CHANNELS(MAVLink):
-    def __init__(self, port, baudrate=115200):
-        super().__init__(port, baudrate)
-        super().select(MSG_NUM.RC_CHANNELS)
-
+class RC_CHANNELS():
     def update(self):
         # 데이터 포맷: (각 항목의 바이트 크기에 맞게 포맷 지정)
         # 'I' = 4바이트 (uint32_t), 

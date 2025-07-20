@@ -1,27 +1,25 @@
-from ..MAVLink import *
 import struct
 
-class RAW_IMU(MAVLink):
-    def __init__(self, port, baudrate=115200, GYRO_SENS=2000, ACC_SENS=16):
-        super().__init__(port, baudrate)
-        super().select(MSG_NUM.RAW_IMU)
+class RAW_IMU():
+    xdeg = 0
+    ydeg = 0
+    zdeg = 0
 
-        self.xdeg = 0;
-        self.ydeg = 0;
-        self.zdeg = 0;
+    time_previous = 0
 
-        self.time_previous = 0;
+    GYRO_SENSITIVITY_DPS = 0
+    ACC_SENSITIVITY_DPS = 0
 
+    xgyro_offset = 0
+    ygyro_offset = 0
+    zgyro_offset = 0
+    xacc_offset = 0
+    yacc_offset = 0
+    zacc_offset = 0
+
+    def __init__(self, GYRO_SENS=2000, ACC_SENS=16):
         self.GYRO_SENSITIVITY_DPS = float(GYRO_SENS/32768.0)
         self.ACC_SENSITIVITY_DPS = float(ACC_SENS/32768.0)
-
-        self.xgyro_offset = 0
-        self.ygyro_offset = 0
-        self.zgyro_offset = 0
-        self.xacc_offset = 0
-        self.yacc_offset = 0
-        self.zacc_offset = 0
-
         self.calibration()
 
     def calibration(self):
@@ -48,7 +46,7 @@ class RAW_IMU(MAVLink):
         self.time_previous = self.time_usec / 1.0e6
             
 
-    def update(self):
+    def update(self, rx):
         # 데이터 포맷: (각 항목의 바이트 크기에 맞게 포맷 지정)
         # 'Q' = 8바이트 unsigned long long (uint64_t), 
         # 'h' = 2바이트 signed short (int16_t), 
@@ -56,7 +54,7 @@ class RAW_IMU(MAVLink):
         fmt = '<QhhhhhhhhhBh'  # 작은 엔디안 순서로 24바이트 데이터를 처리
         
         # struct.unpack을 사용해 데이터를 한 번에 풀어냄
-        unpacked_data = struct.unpack(fmt, bytes(self.rx.data[1:self.rx.length-2]))
+        unpacked_data = struct.unpack(fmt, bytes(rx.data[5:rx.length-2]))
 
         # unpack된 데이터를 멤버 변수에 할당
         self.time_usec = unpacked_data[0]  # uint64_t (Timestamp)
@@ -106,19 +104,21 @@ class RAW_IMU(MAVLink):
         self.zacc = self.zacc * self.ACC_SENSITIVITY_DPS
 
 
-    def display(self):
-        self.raw2dps_cal()
+    def display(self, rx):
+        self.update(self,rx)
+        # self.raw2dps_cal(self)
         #self.raw2dps()
-        self.dps2deg()
+        # self.dps2deg(self)
 
-        self.raw2g_cal()
+        # self.raw2g_cal(self)
         #self.raw2g()
 
         print("%0.2f %0.2f: (%0.2f %0.2f %0.2f) (%0.2f %0.2f %0.2f)"%(
-            self.time, self.time_diff,
-            self.xdeg, self.ydeg, self.zdeg,
-            #self.xacc, self.yacc, self.zacc
-            self.xdps, self.ydps, self.zdps,
-            #self.xgyro, self.ygyro, self.zgyro,
+            # self.time, self.time_diff,
+            self.time_usec, 0.0,
+            # self.xdeg, self.ydeg, self.zdeg,
+            self.xacc, self.yacc, self.zacc,
+            # self.xdps, self.ydps, self.zdps,
+            self.xgyro, self.ygyro, self.zgyro,
             )
             )
