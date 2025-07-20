@@ -5,3 +5,7 @@ Plane/.settings
 
 ReadData_Python/lib/__pycache__
 ReadData_Python/lib/MSG/__pycache__
+ReadData_Python/venv
+
+.metadata
+.vscode
