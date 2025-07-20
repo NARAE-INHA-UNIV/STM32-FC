@@ -5,7 +5,7 @@ import os
 print(os.listdir("./lib/MSG"))
 # mav = RAW_IMU('COM3', 0, 1000, 4)
 # mav = RC_CHANNELS('COM3')
-mav = SCALED_IMU2('COM4')
+mav = SCALED_IMU('COM3', 57600)
 
 while True: 
     mav.getData()

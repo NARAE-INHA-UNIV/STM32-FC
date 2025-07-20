@@ -51,7 +51,7 @@ class SCALED_IMU(MAVLink):
     def display(self):
         self.dps2deg()
 
-        print("%0.2f %0.2f: (%3.2f %3.2f %3.2f) (%1.2f %1.2f %1.2f)"%(
+        print("%0.2f:%0.2f: (%3.2f %3.2f %3.2f) (%1.2f %1.2f %1.2f)"%(
             self.time, self.time_diff,
             self.xgyro, self.ygyro, self.zgyro,
             #self.xdeg, self.ydeg, self.zdeg,
