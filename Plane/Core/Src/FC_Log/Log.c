@@ -11,9 +11,11 @@
 #include <FC_Log/Log.h>
 #include <GCS_MAVLink/GCS_MAVLink.h>
 
+#include <FC_Param/Param.h>
+
 /* Variables -----------------------------------------------------------------*/
 const uint8_t code = 0xFD;
-uint16_t logType = 0;
+uint16_t logType = 26;
 
 /* Functions -----------------------------------------------------------------*/
 int Log_Send()
@@ -62,9 +64,17 @@ int Log_transmit(uint8_t* p, uint8_t len)
 
 	for(int i=0; i<packetLen; i++)
 	{
-		while(!LL_USART_IsActiveFlag_TXE(USART2)){}
-		LL_USART_TransmitData8(USART2, packet[i]);
-		LL_USART_TransmitData8(USART3, packet[i]);
+		if(param.serial[1].protocol == 2)
+		{
+			while(!LL_USART_IsActiveFlag_TXE(USART2)){}
+			LL_USART_TransmitData8(USART2, packet[i]);
+		}
+
+		if(param.serial[2].protocol == 2)
+		{
+			while(!LL_USART_IsActiveFlag_TXE(USART3)){}
+			LL_USART_TransmitData8(USART3, packet[i]);
+		}
 	}
 
     free(packet);
@@ -72,16 +82,3 @@ int Log_transmit(uint8_t* p, uint8_t len)
 	return packetLen;
 }
 
-
-void USB_CDC_RxHandler(uint8_t* Buf, uint32_t Len)
-{
-	if(Len<3 || Len > 255) return;
-	if(Buf[0] != code) return;
-
-	uint16_t crc = ((uint16_t)Buf[Len -2] << 8 | Buf[Len -1]);
-	if(crc != calculate_crc(&Buf[0], (uint8_t)Len)) return;
-
-	logType = Buf[1];
-
-	return;
-}

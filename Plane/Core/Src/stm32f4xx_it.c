@@ -47,14 +47,6 @@
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
 
-// Telm1
-uint8_t uart2_rx_flag = 0;
-uint8_t uart2_rx_data = 0;
-
-// Telm2
-uint8_t uart3_rx_flag = 0;
-uint8_t uart3_rx_data = 0;
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -256,19 +248,22 @@ void USART1_IRQHandler(void)
   */
 void USART2_IRQHandler(void)
 {
-  /* USER CODE BEGIN USART2_IRQn 0 */
+	/* USER CODE BEGIN USART2_IRQn 0 */
 
+	// SERIAL1 - Telem1
 	if(LL_USART_IsActiveFlag_RXNE(USART2))
 	{
 		LL_USART_ClearFlag_RXNE(USART2);
 
-		uart2_rx_data = LL_USART_ReceiveData8(USART2);
-		uart2_rx_flag = 1;
-	}
-  /* USER CODE END USART2_IRQn 0 */
-  /* USER CODE BEGIN USART2_IRQn 1 */
+		uint8_t data = LL_USART_ReceiveData8(USART2);
 
-  /* USER CODE END USART2_IRQn 1 */
+		// IRQ2 수행
+		SERIAL_receivedIRQ2(1, data);
+	}
+	/* USER CODE END USART2_IRQn 0 */
+	/* USER CODE BEGIN USART2_IRQn 1 */
+
+	/* USER CODE END USART2_IRQn 1 */
 }
 
 /**
@@ -276,12 +271,24 @@ void USART2_IRQHandler(void)
   */
 void USART3_IRQHandler(void)
 {
-  /* USER CODE BEGIN USART3_IRQn 0 */
+	/* USER CODE BEGIN USART3_IRQn 0 */
 
-  /* USER CODE END USART3_IRQn 0 */
-  /* USER CODE BEGIN USART3_IRQn 1 */
+	// SERIAL2 - Telem2
+	if(LL_USART_IsActiveFlag_RXNE(USART3))
+	{
+		LL_USART_ClearFlag_RXNE(USART3);
 
-  /* USER CODE END USART3_IRQn 1 */
+		uint8_t data = LL_USART_ReceiveData8(USART3);
+
+		// IRQ2 수행
+		SERIAL_receivedIRQ2(2, data);
+	}
+
+
+	/* USER CODE END USART3_IRQn 0 */
+	/* USER CODE BEGIN USART3_IRQn 1 */
+
+	/* USER CODE END USART3_IRQn 1 */
 }
 
 /**

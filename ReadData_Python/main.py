@@ -14,11 +14,7 @@ def choose_serial_port():
     ).ask()
     return answer.split(" - ")[0]
 
-
 print(os.listdir("./lib/MSG"))
-# mav = RAW_IMU('COM3', 0, 1000, 4)
-# mav = RC_CHANNELS('COM3')
-# mav = SCALED_IMU2('COM4')
 
 port = choose_serial_port()
 mav = SCALED_IMU(port)

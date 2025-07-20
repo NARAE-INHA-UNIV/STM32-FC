@@ -22,9 +22,10 @@
 /* Variables -----------------------------------------------------------------*/
 typedef struct __attribute__((packed)){
 	PARAM_HEADER header;
-	PARAM_SERVO servo;
-	PARAM_RC rc;
 	INS ins;
+	PARAM_RC rc;
+	PARAM_SERIAL serial[4];
+	PARAM_SERVO servo;
 } PARAM;
 
 extern PARAM param;
