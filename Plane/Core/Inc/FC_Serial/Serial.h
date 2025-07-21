@@ -14,11 +14,14 @@
 #include <main.h>
 
 #include <FC_Param/Param.h>
-#include <FC_Log/Log.h>
+#include <FC_Serial/Log/Log.h>
 
 
 /* Functions -----------------------------------------------------------------*/
-void SERIAL_Initialization();
+int SERIAL_Initialization();
+int SERIAL_Send();
+
+/* Functions 3 ---------------------------------------------------------------*/
 void SERIAL_receivedIRQ2(uint8_t serialNumber, uint8_t data);
 
 

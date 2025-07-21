@@ -44,6 +44,9 @@ try:
 except Exception as err:
     print(err)
 
+if(os.path.isdir("./log") == False):
+    os.makedirs("./log")
+
 mav = MAVLink(port, baudrate, logType)
 
 while True:

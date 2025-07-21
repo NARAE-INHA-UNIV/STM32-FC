@@ -35,7 +35,7 @@
 #include <FC_AHRS/FC_IMU/driver.h>
 #include <FC_AHRS/FC_Baro/driver.h>
 
-#include <FC_Log/Log.h>
+#include <FC_Serial/Serial.h>
 
 
 /* USER CODE END Includes */
@@ -170,6 +170,7 @@ int main(void)
   RC_Initialization();
   IMU_Initialization();
 //  Baro_Initialization();
+  SERIAL_Initialization();
   BuzzerPlayOneCycle();
   SERVO_doArm();
 
@@ -192,7 +193,7 @@ int main(void)
 		  SERVO_control();
 	  }
 
-	  Log_Send();
+	  SERIAL_Send();
 
     /* USER CODE END WHILE */
 

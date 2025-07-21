@@ -4,6 +4,9 @@
  *  Created on: Jul 13, 2025
  *      Author: leecurrent04
  *      Email : leecurrent04@inha.edu
+ *
+ *  @detail :
+ *  	UART, CDC를 통합 관리하는 코드
  */
 
 
@@ -12,11 +15,21 @@
 
 
 /* Functions -----------------------------------------------------------------*/
-void SERIAL_Initialization()
+int SERIAL_Initialization()
 {
-	return;
+	jumboTx.start = (uint8_t*)malloc(sizeof(uint8_t)*LOG_BUFFER_SIZE);
+	if(jumboTx.start == 0) { return 1; }
+	jumboTx.offset = jumboTx.start;
+
+	return 0;
 }
 
+int SERIAL_Send()
+{
+	Log_Send();
+
+	return 0;
+}
 
 extern uint16_t calculate_crc(const uint8_t *data, uint8_t len);
 void SERIAL_receivedIRQ2(uint8_t serialNumber, uint8_t data)

@@ -29,12 +29,27 @@ typedef struct __attribute__((packed)){
 	uint16_t msgId;
 } LogPacket;
 
+typedef struct{
+	uint8_t* start;
+	uint8_t* offset;
+	uint16_t length;
+} JumboPakcet;
+
+extern JumboPakcet jumboTx;
+
 /* Functions -----------------------------------------------------------------*/
 int Log_Send();
-int Log_transmit(uint16_t msgId, uint8_t* p, uint8_t len);
+
+/* Functions 1 ---------------------------------------------------------------*/
+int Log_pack(uint16_t msgId, uint8_t* payload, uint8_t len);
+int Log_transmit_UART(uint8_t *packet, uint8_t len);
+int Log_addMailBox_CDC(uint8_t* packet, uint8_t len);
+int Log_transmit_CDC();
 
 
 /* Macros --------------------------------------------------------------------*/
+#define LOG_BUFFER_SIZE 1024
+
 #define LOG_TABLE(X) \
     X(26,  scaled_imu) \
     X(27,  raw_imu) \
@@ -42,8 +57,6 @@ int Log_transmit(uint16_t msgId, uint8_t* p, uint8_t len);
     X(36,  servo_output_raw) \
     X(65,  RC_channels) \
     X(116, scaled_imu2)
-
-#define LOG_TRANSMIT(a, x) Log_transmit(a, (uint8_t*)&(x), sizeof(x))
 
 
 #endif /* INC_FC_LOG_LOG_H_ */

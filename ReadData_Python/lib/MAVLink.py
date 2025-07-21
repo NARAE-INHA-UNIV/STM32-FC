@@ -1,15 +1,24 @@
 import sys
+import datetime
 import serial
 from .packet import *
 from lib.MSG import *
 
+count = {
+    26 : 0,
+    27 : 0,
+    29 : 0,
+    36 : 0,
+    65 : 0,
+    116 : 0
+}
 handlerDict = {
     26 : SCALED_IMU,
     27 : RAW_IMU,
-    # 29 : SCALED_IMU,
-    # 36 : SERVO_OUTPUT_RAW,
-    # 65 : RC_CHANNELS,
-    # 116 : SCALED_IMU2
+    29 : SCALED_IMU,
+    36 : SERVO_OUTPUT_RAW,
+    65 : RC_CHANNELS,
+    116 : SCALED_IMU2
 }
 
 class MAVLink:
@@ -27,8 +36,15 @@ class MAVLink:
     def getData(self):
         if(self.getByte() != 0): return -1
 
+        now = datetime.datetime.now().strftime('%Y-%m-%d(%H-%M)')
+        with open(f"./log/{now}-packet-raw.txt", 'a') as fp:
+            for i in range(0, self.rx.length):
+                fp.write("%02x "%self.rx.data[i])
+            fp.write("\n")
+
         self.rx.seq = self.rx.data[2]
         self.rx.msgId = self.rx.data[3] | self.rx.data[4] << 8
+        count[self.rx.msgId] = count[self.rx.msgId] +1
 
         handler = handlerDict.get(self.__MSG_ID)
         if(self.__MSG_ID != self.rx.msgId) : return 0
@@ -56,6 +72,10 @@ class MAVLink:
     def getByte(self):
         try:
             rx_byte = self.ser.read()  # 1바이트씩 읽기
+
+            if(self.__cnt >= len(self.rx.data)):
+                print("Must increase Buffer size! %d"%(len(self.rx.data)))
+                self.__cnt = 0
 
             self.rx.data[self.__cnt] = byte2int(rx_byte.hex())
             match(self.__cnt):
