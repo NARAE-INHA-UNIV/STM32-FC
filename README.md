@@ -1,7 +1,8 @@
 **본 문서는 STM32 firmware만을 다루고 있습니다.**
 
-- [Documents : How to use, Specification](https://github.com/INHA-NARAE/STM32-FC-docs)
-- [Hardware : KiCAD, Schematic, PCB Artwork](https://github.com/INHA-NARAE/STM32-FC-hw)
+> [Documents : How to use, Specification](https://github.com/NARAE-INHA-UNIV/STM32-FC-docs)
+> [Hardware : KiCAD, Schematic, PCB Artwork](https://github.com/NARAE-INHA-UNIV/STM32-FC-hw)
+> [NALDA_backend_serial : Data analysis like msg, log, param](https://github.com/NARAE-INHA-UNIV/NALDA_backend_serial)
 
 -----
 
