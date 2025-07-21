@@ -35,7 +35,7 @@
 #include <FC_AHRS/FC_IMU/driver.h>
 #include <FC_AHRS/FC_Baro/driver.h>
 
-#include <FC_Log/Log.h>
+#include <FC_Serial/Serial.h>
 
 
 /* USER CODE END Includes */
@@ -170,6 +170,7 @@ int main(void)
   RC_Initialization();
   IMU_Initialization();
 //  Baro_Initialization();
+  SERIAL_Initialization();
   BuzzerPlayOneCycle();
   SERVO_doArm();
 
@@ -192,7 +193,7 @@ int main(void)
 		  SERVO_control();
 	  }
 
-	  Log_Send();
+	  SERIAL_Send();
 
     /* USER CODE END WHILE */
 
@@ -1078,7 +1079,7 @@ static void MX_USART3_UART_Init(void)
   /* USER CODE BEGIN USART3_Init 1 */
 
   /* USER CODE END USART3_Init 1 */
-  USART_InitStruct.BaudRate = 115200;
+  USART_InitStruct.BaudRate = 57600;
   USART_InitStruct.DataWidth = LL_USART_DATAWIDTH_8B;
   USART_InitStruct.StopBits = LL_USART_STOPBITS_1;
   USART_InitStruct.Parity = LL_USART_PARITY_NONE;

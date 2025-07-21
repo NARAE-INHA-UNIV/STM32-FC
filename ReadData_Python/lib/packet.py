@@ -1,6 +1,8 @@
 class packet:
-    data = [0 for i in range(0, 255)]
+    data = [0 for i in range(0, 512)]
     length = 0
+    seq = 0;
+    msgId = 0;
 
     def checkCRC(self):
         rxCRC = self.data[self.length-2]|self.data[self.length-1]<<8
