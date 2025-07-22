@@ -15,8 +15,8 @@
 
 #include <FC_Serial/Log/Log.h>
 
-#include <GCS_MAVLink/GCS_MAVLink.h>
 #include <FC_Param/Param.h>
+#include <GCS_MiniLink/GCS_MiniLink.h>
 
 
 /* Functions -----------------------------------------------------------------*/

@@ -11,9 +11,8 @@
 
 
 /* Includes ------------------------------------------------------------------*/
+#include <GCS_MiniLink/Common_MSG.h>
 #include <main.h>
-
-#include <GCS_MAVLink/MAVLink_Common_MSG.h>
 
 
 typedef struct __attribute__((packed)){
@@ -21,7 +20,9 @@ typedef struct __attribute__((packed)){
 	uint8_t length;
 	uint8_t seq;
 	uint16_t msgId;
-} MAVLinkPacket;
+	uint8_t* payload;
+	uint16_t crc;
+} MiniLinkPacket;
 
 typedef struct __attribute__((packed)){
 	SYSTEM_TIME system_time;

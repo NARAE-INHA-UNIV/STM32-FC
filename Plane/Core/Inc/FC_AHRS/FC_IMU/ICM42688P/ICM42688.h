@@ -15,10 +15,9 @@
 #include "main.h"
 
 #include <FC_Param/Param.h>
-#include <GCS_MAVLink/GCS_MAVLink.h>
-
 #include <FC_AHRS/FC_IMU/ICM42688P/driver.h>
 #include <FC_AHRS/FC_IMU/ICM42688P/register_map.h>
+#include <GCS_MiniLink/GCS_MiniLink.h>
 
 
 /* Variables -----------------------------------------------------------------*/

@@ -12,12 +12,11 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include <GCS_MAVLink/GCS_MAVLink.h>
-
 #include <FC_AHRS/FC_IMU/driver.h>
 
 #include <FC_AHRS/FC_IMU/ICM42688P/driver.h>
 #include <FC_AHRS/FC_IMU/BMI323/driver.h>
+#include <GCS_MiniLink/GCS_MiniLink.h>
 
 
 /* Variables -----------------------------------------------------------------*/

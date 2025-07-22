@@ -12,7 +12,7 @@
 
 
 /* Variables -----------------------------------------------------------------*/
-MAVLinkPacket logTx;
+MiniLinkPacket logTx;
 JumboPakcet jumboTx;
 
 
@@ -53,7 +53,7 @@ extern uint16_t calculate_crc(const uint8_t *data, uint8_t len);
 int Log_pack(uint16_t msgId, uint8_t* payload, uint8_t len)
 {
 	logTx.header = LOG_MAVLINK_HEADER;
-	logTx.length = sizeof(MAVLinkPacket) + len + sizeof(uint16_t);
+	logTx.length = sizeof(MiniLinkPacket) + len + sizeof(uint16_t);
 	logTx.seq++;
 	logTx.msgId = msgId;
 
@@ -61,8 +61,8 @@ int Log_pack(uint16_t msgId, uint8_t* payload, uint8_t len)
 	uint8_t* packet = (uint8_t*)malloc(logTx.length);
 
 	// insert header, length, seq, msg id, payload
-	memcpy(packet, &logTx, sizeof(MAVLinkPacket));
-	memcpy(packet + sizeof(MAVLinkPacket), payload, len);
+	memcpy(packet, &logTx, sizeof(MiniLinkPacket));
+	memcpy(packet + sizeof(MiniLinkPacket), payload, len);
 
 	// insert crc
 	uint16_t crc = calculate_crc(packet, logTx.length);
