@@ -19,9 +19,14 @@
 #include <GCS_MiniLink/GCS_MiniLink.h>
 
 
+/* Variables -----------------------------------------------------------------*/
+extern MiniLinkPacket serialRX;
+
+
 /* Functions -----------------------------------------------------------------*/
 int SERIAL_Initialization();
-int SERIAL_Send();
+int SERIAL_Handler();
+
 
 /* Functions 3 ---------------------------------------------------------------*/
 void SERIAL_receivedIRQ2(uint8_t serialNumber, uint8_t data);

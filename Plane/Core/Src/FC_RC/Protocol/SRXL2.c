@@ -329,6 +329,7 @@ int SRXL2_isReceived(void){
 /* Functions 3 ---------------------------------------------------------------*/
 /*
  * crc 계산
+ * @detail : Big-endian
  * @parm const uint8_t* data : data address
  * @parm uint8_t len : sizeof(data)
  * @retval uint16_t crc
@@ -352,6 +353,7 @@ uint16_t calculate_crc(const uint8_t *data, uint8_t len)
 
 /*
  * crc 계산 후 삽입
+ * @detail : Big-endian
  * @parm uint8_t* data : data address
  * @parm uint8_t len : sizeof(data)
  * @retval uint16_t crc

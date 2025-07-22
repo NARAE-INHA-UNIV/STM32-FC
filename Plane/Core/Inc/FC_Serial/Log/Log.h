@@ -18,8 +18,8 @@
 #include <FC_Param/Param.h>
 #include <GCS_MiniLink/GCS_MiniLink.h>
 
-/* Variables -----------------------------------------------------------------*/
 
+/* Variables -----------------------------------------------------------------*/
 typedef struct{
 	uint8_t* start;
 	uint8_t* offset;
@@ -27,15 +27,6 @@ typedef struct{
 } JumboPakcet;
 
 extern JumboPakcet jumboTx;
-
-/* Functions -----------------------------------------------------------------*/
-int Log_Send();
-
-/* Functions 1 ---------------------------------------------------------------*/
-int Log_pack(uint16_t msgId, uint8_t* payload, uint8_t len);
-int Log_transmit_UART(uint8_t *packet, uint8_t len);
-int Log_addMailBox_CDC(uint8_t* packet, uint8_t len);
-int Log_transmit_CDC();
 
 
 /* Macros --------------------------------------------------------------------*/
@@ -49,6 +40,17 @@ int Log_transmit_CDC();
     X(36,  servo_output_raw) \
     X(65,  RC_channels) \
     X(116, scaled_imu2)
+
+
+/* Functions -----------------------------------------------------------------*/
+int Log_Send();
+
+
+/* Functions 1 ---------------------------------------------------------------*/
+int Log_pack(uint16_t msgId, uint8_t* payload, uint8_t len);
+int Log_transmit_UART(uint8_t *packet, uint8_t len);
+int Log_addMailBox_CDC(uint8_t* packet, uint8_t len);
+int Log_transmit_CDC();
 
 
 #endif /* INC_FC_LOG_LOG_H_ */

@@ -16,12 +16,18 @@
 
 
 typedef struct __attribute__((packed)){
-	uint8_t header;
+	uint8_t stx;
 	uint8_t length;
 	uint8_t seq;
 	uint16_t msgId;
+} MiniLinkHeader;
+
+typedef struct __attribute__((packed)){
+	MiniLinkHeader header;
 	uint8_t* payload;
-	uint16_t crc;
+	struct{
+		uint8_t ack : 1;
+	} flag;
 } MiniLinkPacket;
 
 typedef struct __attribute__((packed)){

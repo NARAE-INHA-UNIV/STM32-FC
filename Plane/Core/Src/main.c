@@ -193,6 +193,8 @@ int main(void)
 	  IMU_GetData();
 //	  Baro_GetData();
 
+	  SERIAL_Handler();
+
 	  if(fsFlag == 1){
 		  FS_mannualMode();
 	  }
@@ -200,7 +202,6 @@ int main(void)
 		  LL_GPIO_ResetOutputPin(LED_RED_GPIO_Port, LED_RED_Pin);
 		  SERVO_control();
 	  }
-	  SERIAL_Send();
 
     /* USER CODE END WHILE */
 
