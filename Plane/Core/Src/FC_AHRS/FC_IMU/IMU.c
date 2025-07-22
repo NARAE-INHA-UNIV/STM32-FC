@@ -9,7 +9,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <FC_AHRS/FC_IMU/IMU.h>
-#include <GCS_MAVLink/GCS_MAVLink.h>
+#include <GCS_MiniLink/GCS_MiniLink.h>
 
 
 /* Functions -----------------------------------------------------------------*/

@@ -14,11 +14,10 @@
 #include "main.h"
 #include <math.h>
 
-#include <GCS_MAVLink/GCS_MAVLink.h>
-
 #include <FC_AHRS/FC_Baro/driver.h>
 
 #include <FC_AHRS/FC_Baro/LPS22HH/driver.h>
+#include <GCS_MiniLink/GCS_MiniLink.h>
 
 
 /* Variables -----------------------------------------------------------------*/

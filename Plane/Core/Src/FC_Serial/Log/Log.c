@@ -9,15 +9,10 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <FC_Serial/Log/Log.h>
-#include <GCS_MAVLink/GCS_MAVLink.h>
 
-#include <FC_Param/Param.h>
 
 /* Variables -----------------------------------------------------------------*/
-const uint8_t code = 0xFD;
-uint16_t logType = 26;
-
-LogPacket logTx;
+MiniLinkHeader logTx;
 JumboPakcet jumboTx;
 
 
@@ -57,8 +52,8 @@ extern uint16_t calculate_crc(const uint8_t *data, uint8_t len);
  */
 int Log_pack(uint16_t msgId, uint8_t* payload, uint8_t len)
 {
-	logTx.header = code;
-	logTx.length = sizeof(LogPacket) + len + sizeof(uint16_t);
+	logTx.stx = LOG_MAVLINK_HEADER;
+	logTx.length = sizeof(MiniLinkHeader) + len + sizeof(uint16_t);
 	logTx.seq++;
 	logTx.msgId = msgId;
 
@@ -66,8 +61,8 @@ int Log_pack(uint16_t msgId, uint8_t* payload, uint8_t len)
 	uint8_t* packet = (uint8_t*)malloc(logTx.length);
 
 	// insert header, length, seq, msg id, payload
-	memcpy(packet, &logTx, sizeof(LogPacket));
-	memcpy(packet + sizeof(LogPacket), payload, len);
+	memcpy(packet, &logTx, sizeof(MiniLinkHeader));
+	memcpy(packet + sizeof(MiniLinkHeader), payload, len);
 
 	// insert crc
 	uint16_t crc = calculate_crc(packet, logTx.length);

@@ -25,8 +25,6 @@
 #include "usbd_cdc_if.h"
 
 #include <FC_Param/Param.h>
-#include <GCS_MAVLink/GCS_MAVLink.h>
-
 #include <FC_Basic/Buzzer/driver.h>
 
 #include <FC_Servo/driver.h>
@@ -36,6 +34,7 @@
 #include <FC_AHRS/FC_Baro/driver.h>
 
 #include <FC_Serial/Serial.h>
+#include <GCS_MiniLink/GCS_MiniLink.h>
 
 
 /* USER CODE END Includes */
@@ -52,8 +51,24 @@ int _write(int file, char *p, int len)
 		LL_USART_TransmitData8(USART2, *(p+i));
 	}
 #else
-	while(USBD_BUSY == CDC_Transmit_FS((uint8_t*)p, len)) {}
-	return len;
+	static uint8_t* prePacket = 0;
+	static uint16_t preLenth = 0;
+
+	uint8_t* temp = prePacket;
+	prePacket = (uint8_t*)malloc((len+preLenth)*sizeof(uint8_t));
+
+	memcpy(prePacket, temp, preLenth);
+	memcpy(prePacket+preLenth, p, len);
+
+	free(temp);
+	preLenth += len;
+
+	if (USBD_OK == CDC_Transmit_FS((uint8_t*)prePacket, preLenth)) {
+		preLenth = 0;
+		return preLenth;
+	}
+
+	return -1;
 #endif
 }
 
@@ -72,13 +87,6 @@ int _write(int file, char *p, int len)
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-// Telm1
-extern uint8_t uart2_rx_flag;
-extern uint8_t uart2_rx_data;
-
-// Telm2
-extern uint8_t uart3_rx_flag;
-extern uint8_t uart3_rx_data;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -185,6 +193,8 @@ int main(void)
 	  IMU_GetData();
 //	  Baro_GetData();
 
+	  SERIAL_Handler();
+
 	  if(fsFlag == 1){
 		  FS_mannualMode();
 	  }
@@ -192,8 +202,6 @@ int main(void)
 		  LL_GPIO_ResetOutputPin(LED_RED_GPIO_Port, LED_RED_Pin);
 		  SERVO_control();
 	  }
-
-	  SERIAL_Send();
 
     /* USER CODE END WHILE */
 
