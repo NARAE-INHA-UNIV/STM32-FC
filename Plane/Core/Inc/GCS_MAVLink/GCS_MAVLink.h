@@ -17,6 +17,13 @@
 
 
 typedef struct __attribute__((packed)){
+	uint8_t header;
+	uint8_t length;
+	uint8_t seq;
+	uint16_t msgId;
+} MAVLinkPacket;
+
+typedef struct __attribute__((packed)){
 	SYSTEM_TIME system_time;
 	SCALED_IMU scaled_imu;
 	RAW_IMU raw_imu;				// 27

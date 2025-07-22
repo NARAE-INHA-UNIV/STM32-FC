@@ -16,18 +16,9 @@
 #include <string.h>
 
 #include <GCS_MAVLink/GCS_MAVLink.h>
-
+#include <FC_Param/Param.h>
 
 /* Variables -----------------------------------------------------------------*/
-extern const uint8_t code;
-extern uint16_t logType;
-
-typedef struct __attribute__((packed)){
-	uint8_t header;
-	uint8_t length;
-	uint8_t seq;
-	uint16_t msgId;
-} LogPacket;
 
 typedef struct{
 	uint8_t* start;
@@ -48,6 +39,7 @@ int Log_transmit_CDC();
 
 
 /* Macros --------------------------------------------------------------------*/
+#define LOG_MAVLINK_HEADER 0xFA
 #define LOG_BUFFER_SIZE 1024
 
 #define LOG_TABLE(X) \

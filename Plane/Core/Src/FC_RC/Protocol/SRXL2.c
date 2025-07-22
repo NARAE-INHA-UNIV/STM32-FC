@@ -184,23 +184,23 @@ int SRXL2_readByteIRQ2(const uint8_t data)
 		RC_Buffer[cnt] = data;
 		cnt++;
 		break;
-	default :
-		RC_Buffer[cnt] = data;
+		default :
+			RC_Buffer[cnt] = data;
 
-		/*
-		 * Control Packet은 사이즈가 가변적임
-		 * 3번째 바이트가 패킷의 크기를 결정함
-		 */
-		if(maxLen == 80) maxLen = RC_Buffer[cnt];
+			/*
+			 * Control Packet은 사이즈가 가변적임
+			 * 3번째 바이트가 패킷의 크기를 결정함
+			 */
+			if(maxLen == 80) maxLen = RC_Buffer[cnt];
 
-		if(cnt == maxLen-1){
-			cnt=0;
-			return 0;
-		}
-		else{
-			cnt++;
-		}
-		break;
+			if(cnt == maxLen-1){
+				cnt=0;
+				return 0;
+			}
+			else{
+				cnt++;
+			}
+			break;
 	}
 	return 1;
 }
@@ -374,9 +374,9 @@ uint16_t insert_crc(uint8_t *data, uint8_t len)
  */
 uint8_t countSetBits(uint32_t i)
 {
-     // C or C++: use uint32_t
-     i = i - ((i >> 1) & 0x55555555);        // add pairs of bits
-     i = (i & 0x33333333) + ((i >> 2) & 0x33333333);  // quads
-     i = (i + (i >> 4)) & 0x0F0F0F0F;        // groups of 8
-     return (uint8_t)((i * 0x01010101) >> 24);          // horizontal sum of bytes
+	// C or C++: use uint32_t
+	i = i - ((i >> 1) & 0x55555555);        // add pairs of bits
+	i = (i & 0x33333333) + ((i >> 2) & 0x33333333);  // quads
+	i = (i + (i >> 4)) & 0x0F0F0F0F;        // groups of 8
+	return (uint8_t)((i * 0x01010101) >> 24);          // horizontal sum of bytes
 }
