@@ -22,7 +22,6 @@ extern double gps_course;
 
 float imu_roll = 0.0f;
 float imu_pitch = 0.0f;
-float global_dt = 0.01f; // 전역 dt, 한 번만 계산
 float pitch_offset = 0.0f;
 float roll_offset = 0.0f;
 #define OFFSET_SAMPLE_COUNT 100
@@ -70,11 +69,8 @@ unsigned int IMU_GetData(void)
 //	ComplementaryFilter();
 //	KalmanFilter();
 
-    // === dt 계산 (한 번만) ===
-    static uint32_t last_time = 0;
-    uint32_t now_time = msg.system_time.time_boot_ms;
-    global_dt = (now_time - last_time) / 1000.0f;
-    if (global_dt <= 0 || global_dt > 1.0f) global_dt = 0.01f;
+    static uint32_t last_time = msg.system_time.time_boot_ms;
+	float dt = (msg.system_time.time_boot_ms - last_time) / 1000.0f;
     last_time = now_time;
 
 	//	MadgwickFilter

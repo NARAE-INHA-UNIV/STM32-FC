@@ -76,6 +76,55 @@ typedef struct __attribute__((packed)){
 
 
 /*
+ * ATTITUDE (30)
+ * The attitude in the aeronautical frame (right-handed, Z-down, Y-right, X-front, ZYX, intrinsic).
+ */
+typedef struct __attribute__((packed)){
+	uint32_t time_boot_ms;		// Timestamp (time since system boot). (ms)
+	float roll;					// Roll angle (-pi..+pi)
+	float pitch;				// Pitch angle (-pi..+pi)
+	float yaw;					// Yaw angle (-pi..+pi)
+	float rollspeed;			// Roll angular speed
+	float pitchspeed;			// Pitch angular speed
+	float yawspeed;				// Yaw angular speed
+} ATTITUDE;
+
+
+/*
+ * ATTITUDE_QUATERNION (31)
+ * The attitude in the aeronautical frame (right-handed, Z-down, X-front, Y-right), expressed as quaternion.
+ * Quaternion order is w, x, y, z and a zero rotation would be expressed as (1 0 0 0).
+ */
+typedef struct __attribute__((packed)){
+	uint32_t time_boot_ms;		// Timestamp (time since system boot). (ms)
+	float q1;
+	float q2;
+	float q3;
+	float q4;
+	float rollspeed;			// Roll angular speed
+	float pitchspeed;			// Pitch angular speed
+	float yawspeed;				// Yaw angular speed
+	float repr_offet_q[4];
+} ATTITUDE_QUATERNION;
+
+
+/*
+ * LOCAL_POSITION_NED (32)
+ * The filtered local position (e.g. fused computer vision and accelerometers).
+ * Coordinate frame is right-handed, Z-axis down (aeronautical frame, NED / north-east-down convention)
+ */
+typedef struct __attribute__((packed)){
+	uint32_t time_boot_ms;		// Timestamp (time since system boot). (ms)
+	float x;					// X Postion
+	float y;					// Y Postion
+	float z;					// Z Postion
+	float vx;					// X Postion
+	float vy;					// Y Postion
+	float vz;					// Z Postion
+} LOCAL_POSITION_NED;
+
+
+/*
  * SERVO_OUTPUT_RAW (36)
  * Superseded by ACTUATOR_OUTPUT_STATUS.
  * The RAW values of the servo outputs (for RC input from the remote, use the RC_CHANNELS messages).

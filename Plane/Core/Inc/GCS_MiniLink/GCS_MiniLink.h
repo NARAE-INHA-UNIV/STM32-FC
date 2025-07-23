@@ -12,7 +12,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <GCS_MiniLink/Common_MSG.h>
-#include <main.h>
+#include <stdint.h>
 
 
 typedef struct __attribute__((packed)){
@@ -22,6 +22,7 @@ typedef struct __attribute__((packed)){
 	uint16_t msgId;
 } MiniLinkHeader;
 
+
 typedef struct __attribute__((packed)){
 	MiniLinkHeader header;
 	uint8_t* payload;
@@ -30,15 +31,20 @@ typedef struct __attribute__((packed)){
 	} flag;
 } MiniLinkPacket;
 
+
 typedef struct __attribute__((packed)){
-	SYSTEM_TIME system_time;
-	SCALED_IMU scaled_imu;
-	RAW_IMU raw_imu;				// 27
-	SCALED_PRESSURE scaled_pressure;		// 29
-	SERVO_OUTPUT_RAW servo_output_raw;
-	RC_CHANNELS RC_channels;
-	SCALED_IMU2 scaled_imu2;			// 116
+	SYSTEM_TIME system_time;					// 2
+	SCALED_IMU scaled_imu;						// 26
+	RAW_IMU raw_imu;							// 27
+	SCALED_PRESSURE scaled_pressure;			// 29
+	ATTITUDE attitude;							// 30
+	ATTITUDE_QUATERNION attitude_quaternion;	// 31
+	LOCAL_POSITION_NED local_position_ned;		// 32
+	SERVO_OUTPUT_RAW servo_output_raw;			// 36
+	RC_CHANNELS RC_channels;					// 65
+	SCALED_IMU2 scaled_imu2;					// 116
 } Common;
+
 
 extern Common msg;
 /* Variables -----------------------------------------------------------------*/
