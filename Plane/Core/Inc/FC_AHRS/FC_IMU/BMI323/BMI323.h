@@ -15,7 +15,7 @@
 #include "main.h"
 #include <FC_AHRS/FC_IMU/BMI323/driver.h>
 #include <FC_AHRS/FC_IMU/BMI323/register_map.h>
-#include <GCS_MiniLink/GCS_MiniLink.h>
+#include <FC_Serial/MiniLink/MiniLink.h>
 
 
 /* Variables -----------------------------------------------------------------*/

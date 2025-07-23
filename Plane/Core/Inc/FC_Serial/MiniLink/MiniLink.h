@@ -1,13 +1,13 @@
 /*
- * Log.h
+ * GCS_MAVLink.h
  *
- *  Created on: Mar 23, 2025
+ *  Created on: Mar 27, 2025
  *      Author: leecurrent04
  *      Email : leecurrent04@inha.edu
  */
 
-#ifndef INC_FC_LOG_LOG_H_
-#define INC_FC_LOG_LOG_H_
+#ifndef INC_GCS_MAVLINK_GCS_MAVLink_H_
+#define INC_GCS_MAVLINK_GCS_MAVLink_H_
 
 
 /* Includes ------------------------------------------------------------------*/
@@ -15,11 +15,29 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <FC_Param/Param.h>
-#include <GCS_MiniLink/GCS_MiniLink.h>
+#include <FC_Serial/MiniLink/driver.h>
+
+#include <FC_Serial/MiniLink/Param/Param.h>
 
 
 /* Variables -----------------------------------------------------------------*/
+typedef struct __attribute__((packed)){
+	uint8_t stx;
+	uint8_t length;
+	uint8_t seq;
+	uint16_t msgId;
+} MiniLinkHeader;
+
+
+typedef struct __attribute__((packed)){
+	MiniLinkHeader header;
+	uint8_t* payload;
+	struct{
+		uint8_t ack : 1;
+	} flag;
+} MiniLinkPacket;
+
+
 typedef struct{
 	uint8_t* start;
 	uint8_t* offset;
@@ -44,7 +62,7 @@ extern JumboPakcet jumboTx;
 
 
 /* Functions -----------------------------------------------------------------*/
-int Log_Send();
+int MiniLink_Send();
 
 
 /* Functions 1 ---------------------------------------------------------------*/
@@ -54,4 +72,5 @@ int Log_addMailBox_CDC(uint8_t* packet, uint8_t len);
 int Log_transmit_CDC();
 
 
-#endif /* INC_FC_LOG_LOG_H_ */
+
+#endif /* INC_GCS_MAVLINK_GCS_COMMON_H_ */

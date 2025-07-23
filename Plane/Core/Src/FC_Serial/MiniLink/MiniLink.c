@@ -1,23 +1,25 @@
 /*
- * Log.c
+ * GCS_Common.c
  *
- *  Created on: Mar 23, 2025
+ *  Created on: Mar 27, 2025
  *      Author: leecurrent04
  *      Email : leecurrent04@inha.edu
  */
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <FC_Serial/Log/Log.h>
+#include <FC_Serial/MiniLink/MiniLink.h>
 
 
 /* Variables -----------------------------------------------------------------*/
+Messages msg;
+
 MiniLinkHeader logTx;
 JumboPakcet jumboTx;
 
 
 /* Functions -----------------------------------------------------------------*/
-int Log_Send()
+int MiniLink_Send()
 {
 	static uint32_t previous_time = 0;
 
@@ -42,7 +44,6 @@ int Log_Send()
  * 	- readByte 내에 cal crc 수행 후 타입에 따라 리턴
  */
 extern uint16_t calculate_crc(const uint8_t *data, uint8_t len);
-
 /*
  * @brief log msg를 packet으로 묶음
  * @detail 헤더 및 패킷의 길이 계산, CRC 입력
@@ -106,6 +107,7 @@ int Log_addMailBox_CDC(uint8_t* packet, uint8_t len)
 
 }
 
+
 /*
  * @brief UART 전송
  * @detail MiniLink Packet을 UART로 전달함
@@ -133,7 +135,6 @@ int Log_transmit_UART(uint8_t* packet, uint8_t len)
 }
 
 
-
 /*
  * @brief USB 전송
  * @detail MiniLink Packet을 USB로 전달함
@@ -149,3 +150,6 @@ int Log_transmit_CDC()
 
 	return 0;
 }
+
+
+

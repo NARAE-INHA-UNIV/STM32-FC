@@ -9,7 +9,7 @@
 #include "main.h"
 #include <FC_Basic/Buzzer/Buzzer.h>
 
-#include <GCS_MiniLink/GCS_MiniLink.h>
+#include <FC_Serial/MiniLink/MiniLink.h>
 
 
 /* Functions -----------------------------------------------------------------*/

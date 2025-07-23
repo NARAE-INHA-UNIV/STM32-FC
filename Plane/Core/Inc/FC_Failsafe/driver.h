@@ -1,18 +1,23 @@
 /*
- * GCS_Common.c
+ * driver.h
  *
- *  Created on: Mar 27, 2025
+ *  Created on: Jul 23, 2025
  *      Author: leecurrent04
  *      Email : leecurrent04@inha.edu
  */
 
+#ifndef INC_FC_FAILSAFE_DRIVER_H_
+#define INC_FC_FAILSAFE_DRIVER_H_
 
-/* Includes ------------------------------------------------------------------*/
-#include <GCS_MiniLink/GCS_MiniLink.h>
 
 
 /* Variables -----------------------------------------------------------------*/
-Common msg;
+extern uint8_t fsFlag;
 
 
 /* Functions -----------------------------------------------------------------*/
+int FS_IsFailsafe(void);
+
+
+
+#endif /* INC_FC_FAILSAFE_DRIVER_H_ */

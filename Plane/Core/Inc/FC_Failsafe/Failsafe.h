@@ -10,12 +10,20 @@
 #define INC_FC_FAILSAFE_FAILSAFE_H_
 
 
+/* Includes ------------------------------------------------------------------*/
 #include <main.h>
+
+#include <FC_Failsafe/driver.h>
+
 #include <FC_RC/driver.h>
 #include <FC_Servo/driver.h>
 
-extern uint8_t fsFlag;
 
+/* Variables -----------------------------------------------------------------*/
+
+
+/* Functions -----------------------------------------------------------------*/
 void FS_mannualMode(void);
+
 
 #endif /* INC_FC_FAILSAFE_FAILSAFE_H_ */

@@ -19,7 +19,7 @@
 
 #include <FC_AHRS/FC_IMU/Filter/Filter.h>
 
-#include <GCS_MiniLink/GCS_MiniLink.h>
+#include <FC_Serial/MiniLink/MiniLink.h>
 
 
 /* Variables -----------------------------------------------------------------*/

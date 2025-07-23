@@ -13,8 +13,11 @@
  *      Email : leecurrent04@inha.edu
  */
 
-#include <FC_Param/Param.h>
-#include <FC_RC/RadioControl.h>
+
+#include <FC_Serial/MiniLink/driver.h>
+#include <FC_Serial/MiniLink/Param/Param.h>
+
+PARAM param;
 
 void setRC_None(void);
 void setRC_SRXL2(void);

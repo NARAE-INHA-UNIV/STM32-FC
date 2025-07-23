@@ -24,8 +24,9 @@
 /* USER CODE BEGIN Includes */
 #include "usbd_cdc_if.h"
 
-#include <FC_Param/Param.h>
+#include <FC_Serial/driver.h>
 #include <FC_Basic/Buzzer/driver.h>
+#include <FC_Failsafe/driver.h>
 
 #include <FC_Servo/driver.h>
 #include <FC_RC/driver.h>
@@ -33,8 +34,7 @@
 #include <FC_AHRS/FC_IMU/driver.h>
 #include <FC_AHRS/FC_Baro/driver.h>
 
-#include <FC_Serial/Serial.h>
-#include <GCS_MiniLink/GCS_MiniLink.h>
+#include <FC_Serial/MiniLink/driver.h>
 
 
 /* USER CODE END Includes */
@@ -209,13 +209,10 @@ int main(void)
 
 	  SERIAL_Handler();
 
-	  if(fsFlag == 1){
-		  FS_mannualMode();
-	  }
-	  else{
-		  LL_GPIO_ResetOutputPin(LED_RED_GPIO_Port, LED_RED_Pin);
+	  if(FS_IsFailsafe() == 0){
 		  SERVO_control();
 	  }
+
 
     /* USER CODE END WHILE */
 

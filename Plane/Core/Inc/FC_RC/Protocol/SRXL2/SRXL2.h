@@ -13,13 +13,13 @@
 /* Includes ------------------------------------------------------------------*/
 #include <main.h>
 
-#include <FC_Param/Param.h>
 #include <FC_RC/RadioControl.h>
 
 #include <FC_RC/Protocol/SRXL2/driver.h>
 #include <FC_RC/Protocol/SRXL2/spm_srxl.h>
 #include <FC_RC/Protocol/SRXL2/SRXL2_type.h>
-#include <GCS_MiniLink/GCS_MiniLink.h>
+
+#include <FC_Serial/MiniLink/driver.h>
 
 
 /* Macro ---------------------------------------------------------------------*/

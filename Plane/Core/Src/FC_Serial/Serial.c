@@ -39,7 +39,7 @@ int SERIAL_Handler()
 {
 	if(serialRX.flag.ack == 0)
 	{
-		Log_Send();
+		MiniLink_Send();
 	}
 
 	if(serialRX.header.msgId == 10){

@@ -6,10 +6,14 @@
  *      Email : leecurrent04@inha.edu
  */
 
+
 #include <FC_Failsafe/Failsafe.h>
+
 
 uint8_t fsFlag = 0;
 
+
+/* Functions -----------------------------------------------------------------*/
 void FS_mannualMode(void)
 {
 	LL_GPIO_SetOutputPin(LED_RED_GPIO_Port, LED_RED_Pin);
@@ -22,3 +26,15 @@ void FS_mannualMode(void)
 	return;
 }
 
+
+int FS_IsFailsafe(void)
+{
+	if(fsFlag == 1){
+		FS_mannualMode();
+	}
+	else{
+		LL_GPIO_ResetOutputPin(LED_RED_GPIO_Port, LED_RED_Pin);
+	}
+
+	return 0;
+}

@@ -6,10 +6,12 @@
  *      Email : leecurrent04@inha.edu
  */
 
-#ifndef INC_GCS_MINILINK_COMMON_MSG_H_
-#define INC_GCS_MINILINK_COMMON_MSG_H_
+#ifndef INC_FC_SERIAL_MINILINK_MSG_CMD_COMMON_H_
+#define INC_FC_SERIAL_MINILINK_MSG_CMD_COMMON_H_
+
 
 #include <stdint.h>
+
 
 /*
  * SYSTEM_TIME (2)
@@ -184,4 +186,4 @@ typedef struct __attribute__((packed)){
 
 
 
-#endif /* INC_GCS_MINILINK_COMMON_MSG_H_ */
+#endif /* INC_FC_SERIAL_MINILINK_MSG_CMD_COMMON_H_ */

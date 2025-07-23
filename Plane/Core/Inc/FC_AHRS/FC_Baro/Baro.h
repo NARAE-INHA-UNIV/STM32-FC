@@ -17,7 +17,7 @@
 #include <FC_AHRS/FC_Baro/driver.h>
 
 #include <FC_AHRS/FC_Baro/LPS22HH/driver.h>
-#include <GCS_MiniLink/GCS_MiniLink.h>
+#include <FC_Serial/MiniLink/MiniLink.h>
 
 
 /* Variables -----------------------------------------------------------------*/

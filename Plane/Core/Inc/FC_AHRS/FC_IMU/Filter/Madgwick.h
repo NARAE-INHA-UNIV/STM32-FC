@@ -9,8 +9,8 @@
 #define INC_FC_AHRS_FC_IMU_FILTER_MADGWICK_H_
 
 
+#include <FC_Serial/MiniLink/MiniLink.h>
 #include <math.h>
-#include <GCS_MiniLink/GCS_MiniLink.h>
 
 
 void Madgwick_update(SCALED_IMU* imu);
