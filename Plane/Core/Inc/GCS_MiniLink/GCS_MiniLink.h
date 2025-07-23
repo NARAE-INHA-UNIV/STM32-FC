@@ -11,18 +11,32 @@
 
 
 /* Includes ------------------------------------------------------------------*/
+#include <GCS_MiniLink/Common_MSG.h>
 #include <main.h>
-
-#include <GCS_MAVLink/MAVLink_Common_MSG.h>
 
 
 typedef struct __attribute__((packed)){
+	uint8_t stx;
+	uint8_t length;
+	uint8_t seq;
+	uint16_t msgId;
+} MiniLinkHeader;
+
+typedef struct __attribute__((packed)){
+	MiniLinkHeader header;
+	uint8_t* payload;
+	struct{
+		uint8_t ack : 1;
+	} flag;
+} MiniLinkPacket;
+
+typedef struct __attribute__((packed)){
 	SYSTEM_TIME system_time;
-	SCALED_IMU scaled_imu;	//26 가속도계하고 자이로 합친 값이 출력될 예쩡
+	SCALED_IMU scaled_imu;
 	RAW_IMU raw_imu;				// 27
 	SCALED_PRESSURE scaled_pressure;		// 29
-	SERVO_OUTPUT_RAW servo_output_raw; //36
-	RC_CHANNELS RC_channels;  //65
+	SERVO_OUTPUT_RAW servo_output_raw;
+	RC_CHANNELS RC_channels;
 	SCALED_IMU2 scaled_imu2;			// 116
 } Common;
 

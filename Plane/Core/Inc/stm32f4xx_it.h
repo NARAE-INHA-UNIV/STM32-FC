@@ -63,7 +63,6 @@ void EXTI15_10_IRQHandler(void);
 void TIM8_UP_TIM13_IRQHandler(void);
 void TIM8_TRG_COM_TIM14_IRQHandler(void);
 void TIM5_IRQHandler(void);
-void UART4_IRQHandler(void);
 void UART5_IRQHandler(void);
 void OTG_FS_IRQHandler(void);
 /* USER CODE BEGIN EFP */

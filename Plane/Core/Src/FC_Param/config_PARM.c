@@ -22,7 +22,7 @@ void setRC_PPM(void);
 
 int PARM_load(void){
 	setRC_None();
-//	setRC_SRXL2(); 잠시 주석처리(수신기 연결안해서)
+//	setRC_SRXL2();
 //	setRC_PPM();
 
 	param.servo.AUTO_TRIM = 0;
@@ -33,6 +33,11 @@ int PARM_load(void){
 	param.servo.RC_FS_MSK = 0xFF;
 	param.servo._32_ENABLE = 0;
 
+	for(int i=0; i<4; i++){
+		param.serial[i].baud = 57;
+		param.serial[i].protocol = 2;
+		param.serial[i].options = 0;
+	}
 	for(int i=0; i<SERVO_CHANNEL_MAX; i++){
 		param.servo.channel[i].FUNCTION = 0;
 		param.servo.channel[i].MAX = 2000;

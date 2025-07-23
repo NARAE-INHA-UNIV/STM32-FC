@@ -8,6 +8,7 @@
 
 #include <FC_AHRS/FC_IMU/ICM42688P/ICM42688.h>
 
+int32_t gyro_x_offset, gyro_y_offset, gyro_z_offset; // To remove offset
 
 
 /* Functions -----------------------------------------------------------------*/
@@ -53,12 +54,10 @@ int ICM42688_Initialization(void)
 	ICM42688_Writebyte(GYRO_ACCEL_CONFIG0, 0x11); // LPF default max(400Hz,ODR)/4
 	HAL_Delay(50);
 
-	// Enable Interrupts when data is ready
-//	ICM42688_Writebyte(INT_ENABLE, 0x01); // Enable DRDY Interrupt
-//	HAL_Delay(50);
-
+	ICM42688_GetSensitivity();
 
 	// Remove Gyro X offset
+
 	return 0; //OK
 }
 
@@ -70,6 +69,9 @@ int ICM42688_Initialization(void)
  */
 int ICM42688_GetData(void)
 {
+	// Check data is ready
+	if(ICM42688_DataReady()) return -1;
+
 	ICM42688_Get6AxisRawData();
 
 	ICM42688_ConvertGyroRaw2Dps();
@@ -84,7 +86,7 @@ int ICM42688_GetData(void)
  * @brief 6축 데이터를 레지스터 레벨에서 로딩
  * @retval None
  */
-void ICM42688_Get6AxisRawData()
+int ICM42688_Get6AxisRawData()
 {
 	uint8_t data[14];
 
@@ -99,7 +101,7 @@ void ICM42688_Get6AxisRawData()
 	msg.raw_imu.ygyro = ((data[10] << 8) | data[11]);
 	msg.raw_imu.zgyro = ((data[12] << 8) | data[13]);
 
-	return;
+	return 0;
 }
 
 
@@ -112,32 +114,14 @@ void ICM42688_Get6AxisRawData()
  */
 void ICM42688_ConvertGyroRaw2Dps(void)
 {
-	uint8_t gyro_reg_val = ICM42688_Readbyte(GYRO_CONFIG0);
-	uint8_t gyro_fs_sel = (gyro_reg_val >> 5) & 0x07;
-
-	float sensitivity=0.0f;
-
-
-
-	switch (gyro_fs_sel)
-	{
-	case 0: sensitivity = 16.4f; break;       // ±2000 dps
-	case 1: sensitivity = 32.8f; break;       // ±1000 dps
-	case 2: sensitivity = 65.5f; break;       // ±500 dps
-	case 3: sensitivity = 131.0f; break;      // ±250 dps
-	case 4: sensitivity = 262.0f; break;      // ±125 dps
-	case 5: sensitivity = 524.3f; break;      // ±62.5 dps
-	case 6: sensitivity = 1048.6f; break;     // ±31.25 dps
-	case 7: sensitivity = 2097.2f; break;     // ±15.625 dps
-	default: sensitivity = 16.4f; break;      // fallback: ±2000 dps
-	}
+	float sensitivity = param.ins.GYRO1.sensitivity;
 
 	msg.scaled_imu.time_boot_ms = msg.system_time.time_boot_ms;
 
 	// m degree
-	msg.scaled_imu.xgyro = (int16_t)((float)msg.raw_imu.xgyro / sensitivity * 1000+0.5f);
-	msg.scaled_imu.ygyro = (int16_t)((float)msg.raw_imu.ygyro / sensitivity * 1000+0.5f);
-	msg.scaled_imu.zgyro = (int16_t)((float)msg.raw_imu.zgyro / sensitivity * 1000+0.5f);
+	msg.scaled_imu.xgyro = (float)msg.raw_imu.xgyro / sensitivity * 1000;
+	msg.scaled_imu.ygyro = (float)msg.raw_imu.ygyro / sensitivity * 1000;
+	msg.scaled_imu.zgyro = (float)msg.raw_imu.zgyro / sensitivity * 1000;
 
 	return;
 }
@@ -152,10 +136,45 @@ void ICM42688_ConvertGyroRaw2Dps(void)
  */
 void ICM42688_ConvertAccRaw2G(void)
 {
+	float sensitivity = param.ins.ACC1.sensitivity;
+
+	// mG
+	msg.scaled_imu.xacc = (float)msg.raw_imu.xacc / sensitivity * 1000;
+	msg.scaled_imu.yacc = (float)msg.raw_imu.yacc / sensitivity * 1000;
+	msg.scaled_imu.zacc = (float)msg.raw_imu.zacc / sensitivity * 1000;
+
+	return;
+}
+
+
+/*
+ * @brief 민감도 값 로드
+ * @detail 레지스터로부터 로드
+ * @retval 0 : 완료
+ */
+int ICM42688_GetSensitivity(void)
+{
+	float sensitivity;
+
+	uint8_t gyro_reg_val = ICM42688_Readbyte(GYRO_CONFIG0);
+	uint8_t gyro_fs_sel = (gyro_reg_val >> 5) & 0x07;
+
 	uint8_t acc_reg_val = ICM42688_Readbyte(ACCEL_CONFIG0);
 	uint8_t acc_fs_sel = (acc_reg_val >> 5) & 0x07;
 
-	float sensitivity;
+	switch (gyro_fs_sel)
+	{
+	case 0: sensitivity = 16.4f; break;       // ±2000 dps
+	case 1: sensitivity = 32.8f; break;       // ±1000 dps
+	case 2: sensitivity = 65.5f; break;       // ±500 dps
+	case 3: sensitivity = 131.0f; break;      // ±250 dps
+	case 4: sensitivity = 262.0f; break;      // ±125 dps
+	case 5: sensitivity = 524.3f; break;      // ±62.5 dps
+	case 6: sensitivity = 1048.6f; break;     // ±31.25 dps
+	case 7: sensitivity = 2097.2f; break;     // ±15.625 dps
+	default: sensitivity = 16.4f; break;      // fallback: ±2000 dps
+	}
+	param.ins.GYRO1.sensitivity = sensitivity;
 
 	switch (acc_fs_sel)
 	{
@@ -165,13 +184,9 @@ void ICM42688_ConvertAccRaw2G(void)
 	case 3: sensitivity = 16384.0f; break;   // ±2g
 	default: sensitivity = 2048.0f; break;   // fallback: ±16g
 	}
+	param.ins.ACC1.sensitivity = sensitivity;
 
-	// mG
-	msg.scaled_imu.xacc = (int16_t)((float)msg.raw_imu.xacc / sensitivity * 1000+0.5f);
-	msg.scaled_imu.yacc = (int16_t)((float)msg.raw_imu.yacc / sensitivity * 1000+0.5f);
-	msg.scaled_imu.zacc = (int16_t)((float)msg.raw_imu.zacc / sensitivity * 1000+0.5f);
-
-	return;
+	return 0;
 }
 
 
@@ -242,9 +257,12 @@ void ICM42688_Writebytes(unsigned char reg_addr, unsigned char len, unsigned cha
 }
 
 
-/*
 int ICM42688_DataReady(void)
 {
-	return LL_GPIO_IsInputPinSet(ICM42688_INT_PORT, ICM42688_INT_PIN);
+	uint8_t temp = 0;
+	temp =ICM42688_Readbyte(INT_STATUS);
+
+	if((temp>>3)&0x01) return 0;
+	return 1;
+//	return LL_GPIO_IsInputPinSet(ICM42688_INT_PORT, ICM42688_INT_PIN);
 }
-*/

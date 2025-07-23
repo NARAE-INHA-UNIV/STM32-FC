@@ -23,10 +23,10 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <FC_Param/Param.h>
-#include <GCS_MAVLink/GCS_MAVLink.h>
-
+#include <FC_Serial/Serial.h>
 #include <FC_Basic/RingBuffer.h>
 #include <FC_RC/RadioControl.h>
+#include <GCS_MiniLink/GCS_MiniLink.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -46,14 +46,6 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-
-// Telm1
-uint8_t uart2_rx_flag = 0;
-uint8_t uart2_rx_data = 0;
-
-// Telm2
-uint8_t uart3_rx_flag = 0;
-uint8_t uart3_rx_data = 0;
 
 /* USER CODE END PV */
 
@@ -256,23 +248,22 @@ void USART1_IRQHandler(void)
   */
 void USART2_IRQHandler(void)
 {
-  /* USER CODE BEGIN USART2_IRQn 0 */
+	/* USER CODE BEGIN USART2_IRQn 0 */
 
+	// SERIAL1 - Telem1
 	if(LL_USART_IsActiveFlag_RXNE(USART2))
 	{
 		LL_USART_ClearFlag_RXNE(USART2);
 
-		uart2_rx_data = LL_USART_ReceiveData8(USART2);
-		uart2_rx_flag = 1;
+		uint8_t data = LL_USART_ReceiveData8(USART2);
 
-		// UART2 → UART4 중계 이걸로 유센터에서 시리얼 통해 명령을 보냄!
-		while (!LL_USART_IsActiveFlag_TXE(UART4));
-		LL_USART_TransmitData8(UART4, uart2_rx_data);
+		// IRQ2 수행
+		SERIAL_receivedIRQ2(1, data);
 	}
-  /* USER CODE END USART2_IRQn 0 */
-  /* USER CODE BEGIN USART2_IRQn 1 */
+	/* USER CODE END USART2_IRQn 0 */
+	/* USER CODE BEGIN USART2_IRQn 1 */
 
-  /* USER CODE END USART2_IRQn 1 */
+	/* USER CODE END USART2_IRQn 1 */
 }
 
 /**
@@ -280,12 +271,24 @@ void USART2_IRQHandler(void)
   */
 void USART3_IRQHandler(void)
 {
-  /* USER CODE BEGIN USART3_IRQn 0 */
+	/* USER CODE BEGIN USART3_IRQn 0 */
 
-  /* USER CODE END USART3_IRQn 0 */
-  /* USER CODE BEGIN USART3_IRQn 1 */
+	// SERIAL2 - Telem2
+	if(LL_USART_IsActiveFlag_RXNE(USART3))
+	{
+		LL_USART_ClearFlag_RXNE(USART3);
 
-  /* USER CODE END USART3_IRQn 1 */
+		uint8_t data = LL_USART_ReceiveData8(USART3);
+
+		// IRQ2 수행
+		SERIAL_receivedIRQ2(2, data);
+	}
+
+
+	/* USER CODE END USART3_IRQn 0 */
+	/* USER CODE BEGIN USART3_IRQn 1 */
+
+	/* USER CODE END USART3_IRQn 1 */
 }
 
 /**
@@ -362,19 +365,6 @@ void TIM5_IRQHandler(void)
   /* USER CODE BEGIN TIM5_IRQn 1 */
 
   /* USER CODE END TIM5_IRQn 1 */
-}
-
-/**
-  * @brief This function handles UART4 global interrupt.
-  */
-void UART4_IRQHandler(void)
-{
-  /* USER CODE BEGIN UART4_IRQn 0 */
-	  GPS_UART4_IRQHandler();
-  /* USER CODE END UART4_IRQn 0 */
-  /* USER CODE BEGIN UART4_IRQn 1 */
-
-  /* USER CODE END UART4_IRQn 1 */
 }
 
 /**
