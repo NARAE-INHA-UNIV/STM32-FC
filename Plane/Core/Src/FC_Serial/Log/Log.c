@@ -107,10 +107,10 @@ int Log_addMailBox_CDC(uint8_t* packet, uint8_t len)
 }
 
 /*
- * @brief 로그 전송
- * @detail 헤더 및 패킷의 길이 계산, CRC 입력
- * @parm *p : msg 하위 구조체(ex. msg.raw_imu)
- * 		 len : 구조체의 크기 (!= 로그 패킷의 길이가 아님)
+ * @brief UART 전송
+ * @detail MiniLink Packet을 UART로 전달함
+ * @parm *p : packet 구조체
+ * 		 len : packet 구조체의 크기
  */
 int Log_transmit_UART(uint8_t* packet, uint8_t len)
 {
@@ -133,6 +133,13 @@ int Log_transmit_UART(uint8_t* packet, uint8_t len)
 }
 
 
+
+/*
+ * @brief USB 전송
+ * @detail MiniLink Packet을 USB로 전달함
+ * @parm *p : packet 구조체
+ * 		 len : packet 구조체의 크기
+ */
 int Log_transmit_CDC()
 {
 	jumboTx.length = (uint16_t)(jumboTx.offset-jumboTx.start);

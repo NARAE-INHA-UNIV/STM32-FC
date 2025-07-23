@@ -16,7 +16,5 @@ void Speedmeter_Update(void);
 float Speedmeter_GetAirspeed(void);
 void Speedmeter_Filter(float raw_airspeed);
 
-extern I2C_HandleTypeDef hi2c1;
-
 #endif
  /* INC_SPEEDMETER_H_ */

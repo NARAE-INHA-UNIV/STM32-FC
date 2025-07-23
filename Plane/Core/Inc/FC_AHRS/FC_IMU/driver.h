@@ -13,6 +13,7 @@
 /* Functions -----------------------------------------------------------------*/
 int IMU_Initialization(void);
 unsigned int IMU_GetData(void);
+void IMU_CalibrateOffset(void);
 
 
 #endif /* INC_SEN_ICM42688_DRIVER_H_ */

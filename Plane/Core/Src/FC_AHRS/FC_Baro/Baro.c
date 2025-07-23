@@ -21,6 +21,9 @@
  */
 int Baro_Initialization(void)
 {
+	// Work in progress!
+	return 0;
+
 	LL_GPIO_SetOutputPin(LED_RED_GPIO_Port, LED_RED_Pin);
 	LL_GPIO_SetOutputPin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
 
@@ -40,6 +43,8 @@ int Baro_Initialization(void)
  */
 unsigned int Baro_GetData(void)
 {
+	// Work In Progress!
+	return 0;
 
 	// SCALED_PRESSURE
 	LPS22HH_GetData();

@@ -21,6 +21,13 @@ MiniLinkPacket serialRX;
 /* Functions -----------------------------------------------------------------*/
 int SERIAL_Initialization()
 {
+	// interrupt when finished receiving
+	LL_USART_EnableIT_RXNE(USART1);
+	LL_USART_EnableIT_RXNE(USART2);
+	LL_USART_EnableIT_RXNE(USART3);
+	LL_USART_EnableIT_RXNE(UART4);
+	LL_USART_EnableIT_RXNE(UART5);
+
 	jumboTx.start = (uint8_t*)malloc(sizeof(uint8_t)*LOG_BUFFER_SIZE);
 	if(jumboTx.start == 0) { return 1; }
 	jumboTx.offset = jumboTx.start;

@@ -16,6 +16,8 @@
 
 #include <FC_AHRS/FC_IMU/ICM42688P/driver.h>
 #include <FC_AHRS/FC_IMU/BMI323/driver.h>
+
+#include <FC_AHRS/FC_IMU/Madgwick.h>
 #include <GCS_MiniLink/GCS_MiniLink.h>
 
 
@@ -24,7 +26,24 @@ extern SCALED_IMU scaled_imu;
 extern RAW_IMU raw_imu;
 
 
+typedef struct {
+    float vx;
+    float vy;
+    float vz;
+} IMU_Velocity_t;
+
+/* extern 변수 선언 */
+
+extern IMU_Velocity_t imu_velocity;
+extern float imu_roll;
+extern float imu_pitch;
+
+
 /* Functions -----------------------------------------------------------------*/
+unsigned int IMU_getDataRaw(void);
+void IMU_computeVelocity(void);
+
+
 void KalmanFilter(void);
 void ComplementaryFilter(void);
 

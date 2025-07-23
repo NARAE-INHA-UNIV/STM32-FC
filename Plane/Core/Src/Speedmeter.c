@@ -29,13 +29,14 @@ void Speedmeter_Init(void)
 
 void Speedmeter_Calibrate(void)
 {
+	return ;
     uint32_t sum = 0;
     const int samples = 100;
 
     for (int i = 0; i < samples; i++)
     {
         uint8_t data[4] = {0};
-        HAL_I2C_Master_Receive(&hi2c1, MS4525_ADDR, data, 4, HAL_MAX_DELAY);
+//        HAL_I2C_Master_Receive(&hi2c1, MS4525_ADDR, data, 4, HAL_MAX_DELAY);
         uint16_t raw = ((data[0] & 0x3F) << 8) | data[1];
         sum += raw;
         HAL_Delay(10);
@@ -47,9 +48,12 @@ void Speedmeter_Calibrate(void)
 
 void Speedmeter_Update(void)
 {
+	return ;
     uint8_t data[4] = {0};
 
-    if (HAL_I2C_Master_Receive(&hi2c1, MS4525_ADDR, data, 4, HAL_MAX_DELAY) == HAL_OK)
+    uint8_t retVal = 0;
+//    retVal = HAL_I2C_Master_Receive(&hi2c1, MS4525_ADDR, data, 4, HAL_MAX_DELAY);
+    if (retVal == HAL_OK)
     {
         uint16_t raw_pressure = ((data[0] & 0x3F) << 8) | data[1];
         diff_pressure_raw = raw_pressure;

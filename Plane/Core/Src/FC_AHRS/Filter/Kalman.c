@@ -4,7 +4,7 @@
  *  Created on: Jul 6, 2025
  *      Author: rlawn
  */
-#include "Kalman.h"
+#include <FC_AHRS/Filter/Kalman.h>
 
 // Kalman 필터 초기화
 void Kalman_Init(Kalman1D_t *kalman, float Q, float R, float initial_P)
