@@ -4,7 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "gps.h"
+#include <test/gps.h>
 
 volatile uint8_t gps_buf[GPS_BUF_SIZE];
 volatile uint16_t gps_cnt = 0;
@@ -19,28 +19,28 @@ double gps_course = 0.0;
 
 void GPS_Init(void)
 {
-    LL_USART_EnableIT_RXNE(UART4);
+	return;
 }
 
-void GPS_UART4_IRQHandler(void) //인터럽트마다 gps데이터를 받아서 버퍼에 저장 및 파싱
-{
-    if (LL_USART_IsActiveFlag_RXNE(UART4) && LL_USART_IsEnabledIT_RXNE(UART4))
-    {
-        rx_data = LL_USART_ReceiveData8(UART4);
-
-        // 버퍼에 저장
-        if (gps_cnt < GPS_BUF_SIZE - 1)
-        {
-            gps_buf[gps_cnt++] = rx_data;
-        }
-        if (rx_data == '\n')
-        {
-            gps_ready_flag = 1;
-            GPS_Parse();     // 즉시 파싱 제어용 사용가능
-            gps_cnt = 0;     // 버퍼 초기화
-        }
-    }
-}
+//void GPS_UART4_IRQHandler(void) //인터럽트마다 gps데이터를 받아서 버퍼에 저장 및 파싱
+//{
+//    if (LL_USART_IsActiveFlag_RXNE(UART4) && LL_USART_IsEnabledIT_RXNE(UART4))
+//    {
+//        rx_data = LL_USART_ReceiveData8(UART4);
+//
+//        // 버퍼에 저장
+//        if (gps_cnt < GPS_BUF_SIZE - 1)
+//        {
+//            gps_buf[gps_cnt++] = rx_data;
+//        }
+//        if (rx_data == '\n')
+//        {
+//            gps_ready_flag = 1;
+//            GPS_Parse();     // 즉시 파싱 제어용 사용가능
+//            gps_cnt = 0;     // 버퍼 초기화
+//        }
+//    }
+//}
 
 void GPS_Parse(void)
 {

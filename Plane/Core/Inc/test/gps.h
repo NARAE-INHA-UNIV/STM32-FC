@@ -1,5 +1,5 @@
-#ifndef INC_GPS_H_
-#define INC_GPS_H_
+#ifndef INC_TEST_GPS_H_
+#define INC_TEST_GPS_H_
 
 #include "main.h"
 
@@ -17,7 +17,7 @@ extern double gps_speed;
 extern double gps_course;
 
 void GPS_Init(void);
-void GPS_UART4_IRQHandler(void);
+//void GPS_UART4_IRQHandler(void);
 void GPS_Parse(void);
 
-#endif /* INC_GPS_H_ */
+#endif /* INC_TEST_GPS_H_ */

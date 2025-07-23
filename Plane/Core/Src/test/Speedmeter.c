@@ -4,9 +4,9 @@
  *  Created on: Jul 11, 2025
  *      Author: rlawn
  */
-#include "Speedmeter.h"
 #include <math.h>
 #include <stdio.h>
+#include <test/Speedmeter.h>
 
 #define MS4525_ADDR (0x28 << 1)
 #define AIRSPEED_BUF_SIZE 15 // Moving Average 표본 개수
