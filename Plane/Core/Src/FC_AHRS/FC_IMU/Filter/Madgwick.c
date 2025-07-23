@@ -5,12 +5,23 @@
  *      Author: rlawn
  */
 
-#include <FC_AHRS/FC_IMU/Madgwick.h>
-#include <math.h>
+#include <FC_AHRS/FC_IMU/Filter/Madgwick.h>
+
 static float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f; // 쿼터니언 초기값
 float beta = 0.1f;                                       // 필터 게인 (응답 속도 조절)
 
-void MadgwickAHRSupdateIMU(float gx, float gy, float gz, float ax, float ay, float az)
+
+// 최종 Roll, Pitch, Yaw 추출 함수
+void Madgwick_GetEuler(float* roll, float* pitch, float* yaw)
+{
+    *roll  = atan2f(2.0f * (q0*q1 + q2*q3), 1.0f - 2.0f * (q1*q1 + q2*q2)) * 180.0f / M_PI; // Roll 계산
+    *pitch = asinf(2.0f * (q0*q2 - q3*q1)) * 180.0f / M_PI;                                // Pitch 계산
+    *yaw   = atan2f(2.0f * (q0*q3 + q1*q2), 1.0f - 2.0f * (q2*q2 + q3*q3)) * 180.0f / M_PI; // Yaw 계산
+}
+
+
+// Madgwick 필터 메인 업데이트 함수
+void Madgwick_update(SCALED_IMU* imu)
 {
     float recipNorm;
     float s0, s1, s2, s3;
@@ -30,6 +41,17 @@ void MadgwickAHRSupdateIMU(float gx, float gy, float gz, float ax, float ay, flo
     float q1q2 = q1 * q2;
     float q1q3 = q1 * q3;
     float q2q3 = q2 * q3;
+
+	//	MadgwickFilter
+	// mG → G
+	float ax = (float)imu->xacc / 1000.0f;
+	float ay = (float)imu->yacc / 1000.0f;
+	float az = (float)imu->zacc / 1000.0f;
+
+	// mrad/s → rad/s
+	float gx = (float)imu->xgyro / 1000.0f;
+	float gy = (float)imu->ygyro / 1000.0f;
+	float gz = (float)imu->zgyro / 1000.0f;
 
 
     // 가속도 normalize
@@ -79,12 +101,5 @@ void MadgwickAHRSupdateIMU(float gx, float gy, float gz, float ax, float ay, flo
     q1 *= recipNorm;
     q2 *= recipNorm;
     q3 *= recipNorm;
-}
-
-void Madgwick_GetEuler(float* roll, float* pitch, float* yaw)
-{
-    *roll  = atan2f(2.0f * (q0*q1 + q2*q3), 1.0f - 2.0f * (q1*q1 + q2*q2)) * 180.0f / M_PI; // Roll 계산
-    *pitch = asinf(2.0f * (q0*q2 - q3*q1)) * 180.0f / M_PI;                                // Pitch 계산
-    *yaw   = atan2f(2.0f * (q0*q3 + q1*q2), 1.0f - 2.0f * (q2*q2 + q3*q3)) * 180.0f / M_PI; // Yaw 계산
 }
 

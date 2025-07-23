@@ -11,8 +11,8 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <GCS_MiniLink/Common_MSG.h>
 #include <stdint.h>
+#include <GCS_MiniLink/Common_MSG.h>
 
 
 typedef struct __attribute__((packed)){

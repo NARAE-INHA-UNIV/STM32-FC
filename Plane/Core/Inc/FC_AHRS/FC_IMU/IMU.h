@@ -17,7 +17,8 @@
 #include <FC_AHRS/FC_IMU/ICM42688P/driver.h>
 #include <FC_AHRS/FC_IMU/BMI323/driver.h>
 
-#include <FC_AHRS/FC_IMU/Madgwick.h>
+#include <FC_AHRS/FC_IMU/Filter/Filter.h>
+
 #include <GCS_MiniLink/GCS_MiniLink.h>
 
 
