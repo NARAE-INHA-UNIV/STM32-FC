@@ -415,6 +415,17 @@ void TIM5_IRQHandler(void)
 void UART4_IRQHandler(void)
 {
   /* USER CODE BEGIN UART4_IRQn 0 */
+	// SERIAL3 - GPS1
+	if(LL_USART_IsActiveFlag_RXNE(UART4))
+	{
+		LL_USART_ClearFlag_RXNE(UART4);
+
+		uint8_t data = LL_USART_ReceiveData8(UART4);
+
+		// IRQ2 수행
+		SERIAL_receivedIRQ2(3, data);
+	}
+
 
   /* USER CODE END UART4_IRQn 0 */
   /* USER CODE BEGIN UART4_IRQn 1 */
@@ -428,6 +439,16 @@ void UART4_IRQHandler(void)
 void UART5_IRQHandler(void)
 {
   /* USER CODE BEGIN UART5_IRQn 0 */
+	// SERIAL4 - GPS2
+	if(LL_USART_IsActiveFlag_RXNE(UART5))
+	{
+		LL_USART_ClearFlag_RXNE(UART5);
+
+		uint8_t data = LL_USART_ReceiveData8(UART5);
+
+		// IRQ2 수행
+		SERIAL_receivedIRQ2(4, data);
+	}
 
   /* USER CODE END UART5_IRQn 0 */
   /* USER CODE BEGIN UART5_IRQn 1 */

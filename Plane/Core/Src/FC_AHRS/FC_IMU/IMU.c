@@ -69,9 +69,7 @@ unsigned int IMU_GetData(void)
 //	ComplementaryFilter();
 //	KalmanFilter();
 
-    static uint32_t last_time = msg.system_time.time_boot_ms;
-	float dt = (msg.system_time.time_boot_ms - last_time) / 1000.0f;
-    last_time = now_time;
+	float dt = (msg.system_time.time_boot_ms - msg.attitude.time_boot_ms) / 1000.0f;
 
 	//	MadgwickFilter
     float ax = (float)msg.scaled_imu.xacc / 1000.0f; // mG → G
@@ -91,7 +89,8 @@ unsigned int IMU_GetData(void)
     Madgwick_GetEuler(&imu_roll, &imu_pitch, NULL);
     imu_roll  -= roll_offset;
     imu_pitch -= pitch_offset;
-    IMU_computeVelocity();
+
+    IMU_computeVelocity(dt);
 
     // GPS 속도 X, Y 변환
     float course_rad = gps_course * M_PI / 180.0f;
@@ -99,8 +98,8 @@ unsigned int IMU_GetData(void)
     float gps_speed_y = gps_speed * sinf(course_rad);
 
     // Kalman 업데이트
-    kalman_velocity.vx = Kalman_Update(&kal_vx, gps_speed_x, ax * 9.81f, global_dt);
-    kalman_velocity.vy = Kalman_Update(&kal_vy, gps_speed_y, ay * 9.81f, global_dt);
+    kalman_velocity.vx = Kalman_Update(&kal_vx, gps_speed_x, ax * 9.81f, dt);
+    kalman_velocity.vy = Kalman_Update(&kal_vy, gps_speed_y, ay * 9.81f, dt);
 
 	return 0;
 }
@@ -120,7 +119,7 @@ void IMU_CalculateOffset(void)
 
     for (int i = 0; i < OFFSET_SAMPLE_COUNT; i++)
     {
-        IMU_GetDataRaw();
+        IMU_getDataRaw();
 
         roll_sum  += imu_roll;
         pitch_sum += imu_pitch;
@@ -171,7 +170,7 @@ unsigned int IMU_getDataRaw(void)
 }
 
 
-void IMU_computeVelocity(void)
+void IMU_computeVelocity(float dt)
 {
     float ax = (float)msg.scaled_imu.xacc / 1000.0f * 9.81f;
     float ay = (float)msg.scaled_imu.yacc / 1000.0f * 9.81f;
@@ -209,9 +208,9 @@ void IMU_computeVelocity(void)
     float az_corrected = az - gz_b;
 
     // 속도 적분
-    imu_velocity.vx += ax_corrected * global_dt;
-    imu_velocity.vy += ay_corrected * global_dt;
-    imu_velocity.vz += az_corrected * global_dt;
+    imu_velocity.vx += ax_corrected * dt;
+    imu_velocity.vy += ay_corrected * dt;
+    imu_velocity.vz += az_corrected * dt;
 }
 
 

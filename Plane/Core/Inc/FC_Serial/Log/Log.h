@@ -37,6 +37,7 @@ extern JumboPakcet jumboTx;
     X(26,  scaled_imu) \
     X(27,  raw_imu) \
     X(29,  scaled_pressure) \
+    X(30,  attitude) \
     X(36,  servo_output_raw) \
     X(65,  RC_channels) \
     X(116, scaled_imu2)

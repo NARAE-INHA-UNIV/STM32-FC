@@ -41,7 +41,7 @@ extern float imu_pitch;
 
 /* Functions -----------------------------------------------------------------*/
 unsigned int IMU_getDataRaw(void);
-void IMU_computeVelocity(void);
+void IMU_computeVelocity(float dt);
 
 
 void KalmanFilter(void);

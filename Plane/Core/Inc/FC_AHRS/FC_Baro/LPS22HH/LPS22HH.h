@@ -12,8 +12,11 @@
 
 
 /* Include -------------------------------------------------------------------*/
+#include <main.h>
+
 #include <FC_AHRS/FC_Baro/LPS22HH/driver.h>
 #include <FC_AHRS/FC_Baro/LPS22HH/register_map.h>
+
 #include <GCS_MiniLink/GCS_MiniLink.h>
 
 
