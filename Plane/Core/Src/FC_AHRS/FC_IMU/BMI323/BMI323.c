@@ -37,9 +37,7 @@ uint8_t BMI323_Initialization(void)
 
 	uint16_t temp = 0;
 
-	if(!LL_SPI_IsEnabled(SPI3)){
-		LL_SPI_Enable(SPI3);
-	}
+	SPI_Enable(DEVICE_SPI);
 	CHIP_DESELECT();
 
 	// Testing communication and initializing the device

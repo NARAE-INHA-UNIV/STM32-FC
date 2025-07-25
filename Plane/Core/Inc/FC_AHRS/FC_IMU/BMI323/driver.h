@@ -1,5 +1,5 @@
 /*
- * driver.h
+ * BMI323/driver.h
  * FC_AHRS/FC_IMU/BMI323/driver.h
  *
  *  Created on: June 19, 2025

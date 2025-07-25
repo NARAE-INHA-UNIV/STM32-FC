@@ -29,13 +29,17 @@ float roll_offset = 0.0f;
 
 /* Functions -----------------------------------------------------------------*/
 /*
- * @detail: (MAG)LIS2MDF Sensor's default mode is 3-wire SPI.
+ * @brief IMU, MAG, Baro Initialization
+ * @detail (MAG)LIS2MDF Sensor's default mode is 3-wire SPI.
+ * @param
+ * 		void
+ * @retval 0
  */
 int AHRS_Initialization(void)
 {
 	uint8_t err = 0;
-	err |= MAG_Initialization();
-	err |= IMU_Initialization();
+	err |= MAG_Initialization()<<0;		// Exec first
+	err |= IMU_Initialization()<<1;
 	err |= Baro_Initialization();
 
 	LED_SetAHRS(err);
