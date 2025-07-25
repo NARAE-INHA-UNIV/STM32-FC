@@ -18,11 +18,9 @@ int32_t gyro_x_offset, gyro_y_offset, gyro_z_offset; // To remove offset
  * @retval 0 : 완료
  * @retval 1 : 센서 없음
  */
-int ICM42688_Initialization(void)
+uint8_t ICM42688_Initialization(void)
 {
 	uint8_t who_am_i = 0;
-	int16_t accel_raw_data[3] = {0};  // To remove offset
-	int16_t gyro_raw_data[3] = {0};   // To remove offset
 
 	if(!LL_SPI_IsEnabled(SPI1)){
 		LL_SPI_Enable(SPI1);
@@ -56,8 +54,6 @@ int ICM42688_Initialization(void)
 
 	ICM42688_GetSensitivity();
 
-	// Remove Gyro X offset
-
 	return 0; //OK
 }
 
@@ -67,16 +63,25 @@ int ICM42688_Initialization(void)
  * @detail 자이로, 가속도 및 온도 데이터 로딩, 물리량 변환
  * @retval 0 : 완료
  */
-int ICM42688_GetData(void)
+uint8_t ICM42688_GetData(void)
 {
 	// Check data is ready
-	if(ICM42688_DataReady()) return -1;
+	if(ICM42688_DataReady()) return 1;
 
 	ICM42688_Get6AxisRawData();
 
 	ICM42688_ConvertGyroRaw2Dps();
 	ICM42688_ConvertAccRaw2G();
 
+	return 0;
+}
+
+
+uint8_t ICM42688_CalibrateOffset(void)
+{
+	// Remove Gyro X offset
+	int16_t accel_raw_data[3] = {0};
+	int16_t gyro_raw_data[3] = {0};
 	return 0;
 }
 
@@ -119,9 +124,9 @@ void ICM42688_ConvertGyroRaw2Dps(void)
 	msg.scaled_imu.time_boot_ms = msg.system_time.time_boot_ms;
 
 	// m degree
-	msg.scaled_imu.xgyro = (float)msg.raw_imu.xgyro / sensitivity * 1000;
-	msg.scaled_imu.ygyro = (float)msg.raw_imu.ygyro / sensitivity * 1000;
-	msg.scaled_imu.zgyro = (float)msg.raw_imu.zgyro / sensitivity * 1000;
+	msg.scaled_imu.xgyro = (int16_t)(msg.raw_imu.xgyro / sensitivity * 1000 + 0.5f);
+	msg.scaled_imu.ygyro = (int16_t)(msg.raw_imu.ygyro / sensitivity * 1000 + 0.5f);
+	msg.scaled_imu.zgyro = (int16_t)(msg.raw_imu.zgyro / sensitivity * 1000 + 0.5f);
 
 	return;
 }
@@ -139,9 +144,9 @@ void ICM42688_ConvertAccRaw2G(void)
 	float sensitivity = param.ins.ACC1.sensitivity;
 
 	// mG
-	msg.scaled_imu.xacc = (float)msg.raw_imu.xacc / sensitivity * 1000;
-	msg.scaled_imu.yacc = (float)msg.raw_imu.yacc / sensitivity * 1000;
-	msg.scaled_imu.zacc = (float)msg.raw_imu.zacc / sensitivity * 1000;
+	msg.scaled_imu.xacc = (int16_t)(msg.raw_imu.xacc / sensitivity * 1000 + 0.5f);
+	msg.scaled_imu.yacc = (int16_t)(msg.raw_imu.yacc / sensitivity * 1000 + 0.5f);
+	msg.scaled_imu.zacc = (int16_t)(msg.raw_imu.zacc / sensitivity * 1000 + 0.5f);
 
 	return;
 }
@@ -201,15 +206,6 @@ inline static void CHIP_DESELECT(void)
 	LL_GPIO_SetOutputPin(GYRO1_NSS_GPIO_Port, GYRO1_NSS_Pin);
 }
 
-
-unsigned char SPI1_SendByte(unsigned char data)
-{
-	while(LL_SPI_IsActiveFlag_TXE(SPI1)==RESET);
-	LL_SPI_TransmitData8(SPI1, data);
-	
-	while(LL_SPI_IsActiveFlag_RXNE(SPI1)==RESET);
-	return LL_SPI_ReceiveData8(SPI1);
-}
 
 uint8_t ICM42688_Readbyte(uint8_t reg_addr)
 {

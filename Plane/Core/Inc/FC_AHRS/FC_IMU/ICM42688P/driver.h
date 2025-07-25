@@ -11,8 +11,9 @@
 
 
 /* Functions -----------------------------------------------------------------*/
-int ICM42688_Initialization(void);
-int ICM42688_GetData(void);
+uint8_t ICM42688_Initialization(void);
+uint8_t ICM42688_GetData(void);
+uint8_t ICM42688_CalibrateOffset(void);
 
 
 #endif /* INC_SEN_ICM42688_DRIVER_H_ */

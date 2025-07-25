@@ -12,14 +12,20 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
+#include <main.h>
+#include <FC_Basic/SPI.h>
+
 #include <FC_AHRS/FC_IMU/BMI323/driver.h>
 #include <FC_AHRS/FC_IMU/BMI323/register_map.h>
-#include <GCS_MiniLink/GCS_MiniLink.h>
+
+#include <FC_Serial/MiniLink/MiniLink.h>
+
+
+/* Macros --------------------------------------------------------------------*/
+#define DEVICE_SPI (SPI3)
 
 
 /* Variables -----------------------------------------------------------------*/
-extern int32_t gyro_x_offset, gyro_y_offset, gyro_z_offset;
 
 
 /* Functions 1 ---------------------------------------------------------------*/
@@ -32,7 +38,6 @@ uint8_t BMI323_DataReady(void);
 /* Functions 2 ---------------------------------------------------------------*/
 inline static void CHIP_SELECT(void);
 inline static void CHIP_DESELECT(void);
-unsigned char SPI3_SendByte(unsigned char data);
 
 uint16_t BMI323_Readbyte(uint8_t reg_addr);
 void BMI323_Readbytes(uint8_t reg_addr, uint8_t len, uint16_t* data);

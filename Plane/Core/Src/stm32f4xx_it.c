@@ -1,20 +1,20 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file    stm32f4xx_it.c
-  * @brief   Interrupt Service Routines.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2025 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file    stm32f4xx_it.c
+ * @brief   Interrupt Service Routines.
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2025 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
@@ -22,11 +22,14 @@
 #include "stm32f4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <FC_Param/Param.h>
-#include <FC_Serial/Serial.h>
 #include <FC_Basic/RingBuffer.h>
+
+#include <FC_Serial/Serial.h>
 #include <FC_RC/RadioControl.h>
-#include <GCS_MiniLink/GCS_MiniLink.h>
+
+#include <FC_Serial/MiniLink/driver.h>
+
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -61,6 +64,8 @@
 
 /* External variables --------------------------------------------------------*/
 extern PCD_HandleTypeDef hpcd_USB_OTG_FS;
+extern CAN_HandleTypeDef hcan1;
+extern CAN_HandleTypeDef hcan2;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -77,9 +82,9 @@ void NMI_Handler(void)
 
   /* USER CODE END NonMaskableInt_IRQn 0 */
   /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
-   while (1)
-  {
-  }
+	while (1)
+	{
+	}
   /* USER CODE END NonMaskableInt_IRQn 1 */
 }
 
@@ -204,6 +209,20 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
+  * @brief This function handles CAN1 RX0 interrupts.
+  */
+void CAN1_RX0_IRQHandler(void)
+{
+  /* USER CODE BEGIN CAN1_RX0_IRQn 0 */
+
+  /* USER CODE END CAN1_RX0_IRQn 0 */
+  HAL_CAN_IRQHandler(&hcan1);
+  /* USER CODE BEGIN CAN1_RX0_IRQn 1 */
+
+  /* USER CODE END CAN1_RX0_IRQn 1 */
+}
+
+/**
   * @brief This function handles TIM1 update interrupt and TIM10 global interrupt.
   */
 void TIM1_UP_TIM10_IRQHandler(void)
@@ -219,6 +238,32 @@ void TIM1_UP_TIM10_IRQHandler(void)
   /* USER CODE BEGIN TIM1_UP_TIM10_IRQn 1 */
 
   /* USER CODE END TIM1_UP_TIM10_IRQn 1 */
+}
+
+/**
+  * @brief This function handles I2C1 event interrupt.
+  */
+void I2C1_EV_IRQHandler(void)
+{
+  /* USER CODE BEGIN I2C1_EV_IRQn 0 */
+
+  /* USER CODE END I2C1_EV_IRQn 0 */
+  /* USER CODE BEGIN I2C1_EV_IRQn 1 */
+
+  /* USER CODE END I2C1_EV_IRQn 1 */
+}
+
+/**
+  * @brief This function handles I2C1 error interrupt.
+  */
+void I2C1_ER_IRQHandler(void)
+{
+  /* USER CODE BEGIN I2C1_ER_IRQn 0 */
+
+  /* USER CODE END I2C1_ER_IRQn 0 */
+  /* USER CODE BEGIN I2C1_ER_IRQn 1 */
+
+  /* USER CODE END I2C1_ER_IRQn 1 */
 }
 
 /**
@@ -248,7 +293,7 @@ void USART1_IRQHandler(void)
   */
 void USART2_IRQHandler(void)
 {
-	/* USER CODE BEGIN USART2_IRQn 0 */
+  /* USER CODE BEGIN USART2_IRQn 0 */
 
 	// SERIAL1 - Telem1
 	if(LL_USART_IsActiveFlag_RXNE(USART2))
@@ -260,10 +305,10 @@ void USART2_IRQHandler(void)
 		// IRQ2 수행
 		SERIAL_receivedIRQ2(1, data);
 	}
-	/* USER CODE END USART2_IRQn 0 */
-	/* USER CODE BEGIN USART2_IRQn 1 */
+  /* USER CODE END USART2_IRQn 0 */
+  /* USER CODE BEGIN USART2_IRQn 1 */
 
-	/* USER CODE END USART2_IRQn 1 */
+  /* USER CODE END USART2_IRQn 1 */
 }
 
 /**
@@ -271,7 +316,7 @@ void USART2_IRQHandler(void)
   */
 void USART3_IRQHandler(void)
 {
-	/* USER CODE BEGIN USART3_IRQn 0 */
+  /* USER CODE BEGIN USART3_IRQn 0 */
 
 	// SERIAL2 - Telem2
 	if(LL_USART_IsActiveFlag_RXNE(USART3))
@@ -285,10 +330,10 @@ void USART3_IRQHandler(void)
 	}
 
 
-	/* USER CODE END USART3_IRQn 0 */
-	/* USER CODE BEGIN USART3_IRQn 1 */
+  /* USER CODE END USART3_IRQn 0 */
+  /* USER CODE BEGIN USART3_IRQn 1 */
 
-	/* USER CODE END USART3_IRQn 1 */
+  /* USER CODE END USART3_IRQn 1 */
 }
 
 /**
@@ -304,7 +349,7 @@ void EXTI15_10_IRQHandler(void)
     LL_EXTI_ClearFlag_0_31(LL_EXTI_LINE_14);
     /* USER CODE BEGIN LL_EXTI_LINE_14 */
 		// IRQ2 수행
-	RC_receiveIRQ2(0);
+		RC_receiveIRQ2(0);
 
     /* USER CODE END LL_EXTI_LINE_14 */
   }
@@ -368,16 +413,64 @@ void TIM5_IRQHandler(void)
 }
 
 /**
+  * @brief This function handles UART4 global interrupt.
+  */
+void UART4_IRQHandler(void)
+{
+  /* USER CODE BEGIN UART4_IRQn 0 */
+	// SERIAL3 - GPS1
+	if(LL_USART_IsActiveFlag_RXNE(UART4))
+	{
+		LL_USART_ClearFlag_RXNE(UART4);
+
+		uint8_t data = LL_USART_ReceiveData8(UART4);
+
+		// IRQ2 수행
+		SERIAL_receivedIRQ2(3, data);
+	}
+
+
+  /* USER CODE END UART4_IRQn 0 */
+  /* USER CODE BEGIN UART4_IRQn 1 */
+
+  /* USER CODE END UART4_IRQn 1 */
+}
+
+/**
   * @brief This function handles UART5 global interrupt.
   */
 void UART5_IRQHandler(void)
 {
   /* USER CODE BEGIN UART5_IRQn 0 */
+	// SERIAL4 - GPS2
+	if(LL_USART_IsActiveFlag_RXNE(UART5))
+	{
+		LL_USART_ClearFlag_RXNE(UART5);
+
+		uint8_t data = LL_USART_ReceiveData8(UART5);
+
+		// IRQ2 수행
+		SERIAL_receivedIRQ2(4, data);
+	}
 
   /* USER CODE END UART5_IRQn 0 */
   /* USER CODE BEGIN UART5_IRQn 1 */
 
   /* USER CODE END UART5_IRQn 1 */
+}
+
+/**
+  * @brief This function handles CAN2 RX0 interrupts.
+  */
+void CAN2_RX0_IRQHandler(void)
+{
+  /* USER CODE BEGIN CAN2_RX0_IRQn 0 */
+
+  /* USER CODE END CAN2_RX0_IRQn 0 */
+  HAL_CAN_IRQHandler(&hcan2);
+  /* USER CODE BEGIN CAN2_RX0_IRQn 1 */
+
+  /* USER CODE END CAN2_RX0_IRQn 1 */
 }
 
 /**

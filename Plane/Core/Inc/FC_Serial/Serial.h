@@ -11,12 +11,10 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <main.h>
+#include <FC_Serial/driver.h>
 
-#include <FC_Serial/Log/Log.h>
-
-#include <FC_Param/Param.h>
-#include <GCS_MiniLink/GCS_MiniLink.h>
+#include <FC_Serial/MiniLink/driver.h>
+#include <FC_Serial/MiniLink/MiniLink.h>
 
 
 /* Variables -----------------------------------------------------------------*/
@@ -24,8 +22,6 @@ extern MiniLinkPacket serialRX;
 
 
 /* Functions -----------------------------------------------------------------*/
-int SERIAL_Initialization();
-int SERIAL_Handler();
 
 
 /* Functions 3 ---------------------------------------------------------------*/

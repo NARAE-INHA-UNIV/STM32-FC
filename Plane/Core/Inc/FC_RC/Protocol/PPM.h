@@ -13,10 +13,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include <main.h>
 
-#include <FC_Param/Param.h>
 #include <FC_RC/driver.h>
 #include <FC_RC/RadioControl.h>
-#include <GCS_MiniLink/GCS_MiniLink.h>
+#include <FC_Serial/MiniLink/driver.h>
 
 
 /* Macro ---------------------------------------------------------------------*/

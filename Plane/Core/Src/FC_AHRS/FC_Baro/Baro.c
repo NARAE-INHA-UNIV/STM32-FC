@@ -9,7 +9,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <FC_AHRS/FC_Baro/Baro.h>
-#include <GCS_MiniLink/GCS_MiniLink.h>
+#include <FC_Serial/MiniLink/MiniLink.h>
 
 
 /* Functions -----------------------------------------------------------------*/
@@ -19,15 +19,13 @@
  * @parm none
  * @retval 0
  */
-int Baro_Initialization(void)
+uint8_t Baro_Initialization(void)
 {
-	LL_GPIO_SetOutputPin(LED_RED_GPIO_Port, LED_RED_Pin);
-	LL_GPIO_SetOutputPin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
+	// Work in progress!
+	return 0;
 
 	LPS22HH_Initialization();
 
-	LL_GPIO_ResetOutputPin(LED_RED_GPIO_Port, LED_RED_Pin);
-	LL_GPIO_ResetOutputPin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
 	return 0;
 }
 
@@ -40,6 +38,8 @@ int Baro_Initialization(void)
  */
 unsigned int Baro_GetData(void)
 {
+	// Work In Progress!
+	return 0;
 
 	// SCALED_PRESSURE
 	LPS22HH_GetData();
