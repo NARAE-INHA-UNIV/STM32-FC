@@ -101,15 +101,6 @@ unsigned int IMU_getDataRaw(void)
 
 	// SCALED_IMU3
 
-	// Error
-	if (retVal & 0x0eee)
-	{
-		LL_GPIO_SetOutputPin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
-		return 1;
-	}
-
-	LL_GPIO_ResetOutputPin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
-
 	return 0;
 }
 

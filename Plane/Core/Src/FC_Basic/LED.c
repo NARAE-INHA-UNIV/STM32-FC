@@ -26,7 +26,7 @@ LED_CONTROL control[3];
 void LED_Update(void)
 {
 	static uint32_t previous_t = 0;
-	for(uint8_t i=0; i<3; i++)
+	for(uint8_t i=0; i<sizeof(control)/sizeof(control[0]); i++)
 	{
 		if(control[i].enabled == 0 ) continue;
 
@@ -51,11 +51,9 @@ void LED_Update(void)
 
 		if(control[i].led_state){
 			LED_controlOFF(i);
-			control[i].led_state = 0;
 		}
 		else{
 			LED_controlON(i);
-			control[i].led_state = 1;
 		}
 	}
 }
@@ -107,6 +105,8 @@ void LED_SetTest(uint8_t state)
 /* Functions 1 ---------------------------------------------------------------*/
 void LED_controlON(uint8_t index)
 {
+	control[index].led_state = 1;
+
 	switch(index)
 	{
 	case 0: LL_GPIO_SetOutputPin(LED_RED_GPIO_Port, LED_RED_Pin); break;
@@ -118,6 +118,8 @@ void LED_controlON(uint8_t index)
 
 void LED_controlOFF(uint8_t index)
 {
+	control[index].led_state = 0;
+
 	switch(index)
 	{
 	case 0: LL_GPIO_ResetOutputPin(LED_RED_GPIO_Port, LED_RED_Pin); break;

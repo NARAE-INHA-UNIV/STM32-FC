@@ -43,16 +43,10 @@ int SERIAL_Handler()
 	}
 
 	if(serialRX.header.msgId == 10){
-		LL_GPIO_SetOutputPin(LED_BLUE_GPIO_Port, LED_BLUE_Pin);
-	}
-	else if(serialRX.header.msgId == 20)
-	{
-		LL_GPIO_ResetOutputPin(LED_BLUE_GPIO_Port, LED_BLUE_Pin);
-	}
-	else if(serialRX.header.msgId == 0)
-	{
+		LED_SetRC(1);
 		serialRX.flag.ack = 0;
 	}
+
 	free(serialRX.payload);
 
 	return 0;

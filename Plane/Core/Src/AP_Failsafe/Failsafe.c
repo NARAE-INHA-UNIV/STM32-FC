@@ -33,7 +33,7 @@ int FS_IsFailsafe(void)
 		FS_mannualMode();
 	}
 	else{
-		LL_GPIO_ResetOutputPin(LED_RED_GPIO_Port, LED_RED_Pin);
+//		LL_GPIO_ResetOutputPin(LED_RED_GPIO_Port, LED_RED_Pin);
 	}
 
 	return 0;
