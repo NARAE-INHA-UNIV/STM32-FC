@@ -207,15 +207,6 @@ inline static void CHIP_DESELECT(void)
 }
 
 
-unsigned char SPI1_SendByte(unsigned char data)
-{
-	while(LL_SPI_IsActiveFlag_TXE(SPI1)==RESET);
-	LL_SPI_TransmitData8(SPI1, data);
-	
-	while(LL_SPI_IsActiveFlag_RXNE(SPI1)==RESET);
-	return LL_SPI_ReceiveData8(SPI1);
-}
-
 uint8_t ICM42688_Readbyte(uint8_t reg_addr)
 {
 	uint8_t val;

@@ -24,11 +24,6 @@
 extern SCALED_PRESSURE scaled_pressure;
 
 
-/* Functions -----------------------------------------------------------------*/
-int Baro_Initialization(void);
-unsigned int Baro_GetData(void);
-
-
 /* Functions 2 ---------------------------------------------------------------*/
 float pascal2meter(float pressure, float temperature);
 

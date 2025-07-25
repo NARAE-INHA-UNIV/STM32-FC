@@ -173,15 +173,6 @@ inline static void CHIP_DESELECT(void)
 }
 
 
-unsigned char SPI3_SendByte(unsigned char data)
-{
-	while(LL_SPI_IsActiveFlag_TXE(SPI3)==RESET);
-	LL_SPI_TransmitData8(SPI3, data);
-
-	while(LL_SPI_IsActiveFlag_RXNE(SPI3)==RESET);
-	return LL_SPI_ReceiveData8(SPI3);
-}
-
 uint16_t BMI323_Readbyte(uint8_t reg_addr)
 {
 	uint16_t val=0;

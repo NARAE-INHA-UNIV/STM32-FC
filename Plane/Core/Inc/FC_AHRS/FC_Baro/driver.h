@@ -10,8 +10,11 @@
 #define INC_FC_BARO_DRIVER_H_
 
 
+#include <stdint.h>
+
+
 /* Functions -----------------------------------------------------------------*/
-int Baro_Initialization(void);
+uint8_t Baro_Initialization(void);
 unsigned int Baro_GetData(void);
 
 

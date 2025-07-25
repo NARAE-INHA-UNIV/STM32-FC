@@ -10,9 +10,13 @@
 #define INC_FC_IMU_DRIVER_H_
 
 
+/* Includes ------------------------------------------------------------------*/
+#include <stdint.h>
+
+
 /* Functions -----------------------------------------------------------------*/
-int IMU_Initialization(void);
-unsigned int IMU_GetData(void);
+uint8_t IMU_Initialization(void);
+uint8_t IMU_GetData(void);
 void IMU_CalibrateOffset(void);
 
 

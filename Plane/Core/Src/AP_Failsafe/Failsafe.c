@@ -7,7 +7,7 @@
  */
 
 
-#include <FC_Failsafe/Failsafe.h>
+#include <AP_Failsafe/Failsafe.h>
 
 
 uint8_t fsFlag = 0;

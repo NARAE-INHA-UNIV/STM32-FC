@@ -6,9 +6,12 @@
  *      Email : leecurrent04@inha.edu
  */
 
-#ifndef INC_FC_FAILSAFE_DRIVER_H_
-#define INC_FC_FAILSAFE_DRIVER_H_
+#ifndef INC_AP_FAILSAFE_DRIVER_H_
+#define INC_AP_FAILSAFE_DRIVER_H_
 
+
+/* Includes ------------------------------------------------------------------*/
+#include <stdint.h>
 
 
 /* Variables -----------------------------------------------------------------*/
@@ -20,4 +23,4 @@ int FS_IsFailsafe(void);
 
 
 
-#endif /* INC_FC_FAILSAFE_DRIVER_H_ */
+#endif /* INC_AP_FAILSAFE_DRIVER_H_ */

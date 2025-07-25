@@ -19,18 +19,13 @@
  * @parm none
  * @retval 0
  */
-int Baro_Initialization(void)
+uint8_t Baro_Initialization(void)
 {
 	// Work in progress!
 	return 0;
 
-	LL_GPIO_SetOutputPin(LED_RED_GPIO_Port, LED_RED_Pin);
-	LL_GPIO_SetOutputPin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
-
 	LPS22HH_Initialization();
 
-	LL_GPIO_ResetOutputPin(LED_RED_GPIO_Port, LED_RED_Pin);
-	LL_GPIO_ResetOutputPin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
 	return 0;
 }
 

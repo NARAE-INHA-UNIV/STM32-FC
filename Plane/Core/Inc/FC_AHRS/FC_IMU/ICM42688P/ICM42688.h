@@ -13,11 +13,16 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include <FC_Basic/SPI.h>
 
 #include <FC_AHRS/FC_IMU/ICM42688P/driver.h>
 #include <FC_AHRS/FC_IMU/ICM42688P/register_map.h>
 
 #include <FC_Serial/MiniLink/driver.h>
+
+
+/* Macros --------------------------------------------------------------------*/
+#define DEVICE_SPI (SPI1)
 
 
 /* Variables -----------------------------------------------------------------*/
@@ -35,7 +40,6 @@ int ICM42688_GetSensitivity(void);
 /* Functions 2 ---------------------------------------------------------------*/
 inline static void CHIP_SELECT(void);
 inline static void CHIP_DESELECT(void);
-unsigned char SPI1_SendByte(unsigned char data);
 
 uint8_t ICM42688_Readbyte(uint8_t reg_addr);
 void ICM42688_Readbytes(unsigned char reg_addr, unsigned char len, unsigned char* data);

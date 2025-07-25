@@ -76,6 +76,8 @@ void Error_Handler(void);
 #define LED_BLUE_GPIO_Port GPIOE
 #define GYRO2_NSS_Pin LL_GPIO_PIN_3
 #define GYRO2_NSS_GPIO_Port GPIOE
+#define MAG_NSS_Pin LL_GPIO_PIN_4
+#define MAG_NSS_GPIO_Port GPIOE
 #define GYRO1_NSS_Pin LL_GPIO_PIN_5
 #define GYRO1_NSS_GPIO_Port GPIOE
 #define BARO_NSS_Pin LL_GPIO_PIN_6

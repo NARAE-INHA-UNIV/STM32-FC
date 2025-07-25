@@ -5,24 +5,57 @@
  *      Author: rlawn
  */
 
-#include <FC_AHRS/FC_IMU/Filter/Madgwick.h>
 
-static float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f; // 쿼터니언 초기값
+/* Includes ------------------------------------------------------------------*/
+#include <FC_AHRS/AP_Filter/Madgwick.h>
+
+
+/* Variables -----------------------------------------------------------------*/
 float beta = 0.1f;                                       // 필터 게인 (응답 속도 조절)
 
 
-// 최종 Roll, Pitch, Yaw 추출 함수
-void Madgwick_GetEuler(float* roll, float* pitch, float* yaw)
+/* Functions -----------------------------------------------------------------*/
+/*
+ * @brief 알고리즘 초기 설정
+ * @parm ATTITUDE_QUATERNION * atti
+ */
+void Magwick_Initialization(ATTITUDE_QUATERNION* qu)
 {
-    *roll  = atan2f(2.0f * (q0*q1 + q2*q3), 1.0f - 2.0f * (q1*q1 + q2*q2)) * 180.0f / M_PI; // Roll 계산
-    *pitch = asinf(2.0f * (q0*q2 - q3*q1)) * 180.0f / M_PI;                                // Pitch 계산
-    *yaw   = atan2f(2.0f * (q0*q3 + q1*q2), 1.0f - 2.0f * (q2*q2 + q3*q3)) * 180.0f / M_PI; // Yaw 계산
+	// 쿼터니언 초기값
+	qu->q1 = 1.0f;
+	qu->q2 = 0.0f;
+	qu->q3 = 0.0f;
+	qu->q4 = 0.0f;
+
+	return;
+}
+
+
+/*
+ * @detail 최종 Roll, Pitch, Yaw 추출 함수
+ * @parm ATTITUDE * atti
+ */
+void Madgwick_GetEuler(ATTITUDE_QUATERNION* qu, ATTITUDE* atti)
+{
+	float q0 = qu->q1;
+	float q1 = qu->q2;
+	float q2 = qu->q3;
+	float q3 = qu->q4;
+
+	atti->roll = atan2f(2.0f * (q0*q1 + q2*q3), 1.0f - 2.0f * (q1*q1 + q2*q2)) * 180.0f / M_PI;
+    atti->pitch = asinf(2.0f * (q0*q2 - q3*q1)) * 180.0f / M_PI;
+    atti->yaw = atan2f(2.0f * (q0*q3 + q1*q2), 1.0f - 2.0f * (q2*q2 + q3*q3)) * 180.0f / M_PI;
 }
 
 
 // Madgwick 필터 메인 업데이트 함수
-void Madgwick_update(SCALED_IMU* imu)
+void Madgwick_Update(ATTITUDE_QUATERNION* qu, SCALED_IMU* imu)
 {
+	float q0 = qu->q1;
+	float q1 = qu->q2;
+	float q2 = qu->q3;
+	float q3 = qu->q4;
+
     float recipNorm;
     float s0, s1, s2, s3;
     float qDot1, qDot2, qDot3, qDot4;
@@ -97,9 +130,11 @@ void Madgwick_update(SCALED_IMU* imu)
     // normalize
     recipNorm = sqrtf(q0 * q0 + q1 * q1 + q2 * q2 + q3 * q3);
     recipNorm = 1.0f / recipNorm;
-    q0 *= recipNorm;
-    q1 *= recipNorm;
-    q2 *= recipNorm;
-    q3 *= recipNorm;
+
+    qu->q1 = q0 * recipNorm;
+    qu->q2 = q1 * recipNorm;
+    qu->q3 = q2 * recipNorm;
+    qu->q4 = q3 * recipNorm;
+    return ;
 }
 
