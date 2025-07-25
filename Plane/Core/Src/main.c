@@ -195,7 +195,7 @@ int main(void)
   /* INITIAILIZE  END */
   BuzzerPlayOneCycle();
   SERVO_doArm();
-  LED_SetRadioControlIMU(5);
+  LED_SetTest(5);
 
   /* USER CODE END 2 */
 
@@ -211,7 +211,7 @@ int main(void)
 	  }
 
 	  SERIAL_Handler();
-//	  LED_Update();
+	  LED_Update();
 
     /* USER CODE END WHILE */
 

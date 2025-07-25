@@ -12,9 +12,11 @@
 
 /* Includes ------------------------------------------------------------------*/
 /* Functions -----------------------------------------------------------------*/
-void LED_SetAHRS(uint8_t state);
-void LED_SetRadioControlIMU(uint8_t state);
 void LED_Update(void);
+
+void LED_SetRC(uint8_t state);
+void LED_SetAHRS(uint8_t state);
+void LED_SetTest(uint8_t state);
 
 
 

@@ -13,6 +13,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include <main.h>
 
+
+/* Functions -----------------------------------------------------------------*/
 void SPI_Enable(SPI_TypeDef* spi);
 
 uint8_t SPI_SendByte(SPI_TypeDef* spi, uint8_t data);
