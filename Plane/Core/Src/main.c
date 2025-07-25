@@ -195,9 +195,8 @@ int main(void)
   /* INITIAILIZE  END */
   BuzzerPlayOneCycle();
   SERVO_doArm();
-//  LED_SetRC(2);
+
   LED_SetAHRS(5);
-  LED_SetTest(3);
 
   /* USER CODE END 2 */
 

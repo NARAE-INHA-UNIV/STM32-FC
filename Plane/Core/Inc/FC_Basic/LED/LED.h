@@ -19,6 +19,7 @@ typedef struct __attribute__((packed)){
 	uint64_t blink_pattern;				// LED가 켜고 꺼지는 시간을 정한 비트
 	uint8_t shifter;					// timeMask의 bit shifter
 	uint16_t next_change_time;			// delay time
+	uint32_t previous_change_time;		// 이전 LED 상태 변화한 시각
 	uint8_t previous_long_bit : 1;		// 이전 상황의 비트
 	uint8_t led_state :1;				// 이전 LED의 상태
 	uint8_t enabled : 1;				// 활성화/비활성화

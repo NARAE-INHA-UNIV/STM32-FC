@@ -25,13 +25,12 @@ LED_CONTROL control[3];
 /* Functions -----------------------------------------------------------------*/
 void LED_Update(void)
 {
-	static uint32_t previous_t = 0;
 	for(uint8_t i=0; i<sizeof(control)/sizeof(control[0]); i++)
 	{
-		if(control[i].enabled == 0 ) continue;
+		if(msg.system_time.time_boot_ms - control[i].previous_change_time < control[i].next_change_time) continue;
+		control[i].previous_change_time = msg.system_time.time_boot_ms;
 
-		if(msg.system_time.time_boot_ms - previous_t < control[i].next_change_time) continue;
-		 previous_t = msg.system_time.time_boot_ms;
+		if(control[i].enabled == 0 ) continue;
 
 		uint8_t enable = GET_BIT(control[i].blink_pattern, control[i].shifter++);
 		control[i].next_change_time = (enable==1?2000:500);
