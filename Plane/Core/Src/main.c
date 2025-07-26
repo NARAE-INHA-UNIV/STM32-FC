@@ -196,7 +196,7 @@ int main(void)
   BuzzerPlayOneCycle();
   SERVO_doArm();
 
-  LED_SetAHRS(5);
+  LED_SetYellow(1);
 
   /* USER CODE END 2 */
 

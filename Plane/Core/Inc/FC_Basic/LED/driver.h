@@ -14,10 +14,13 @@
 /* Functions -----------------------------------------------------------------*/
 void LED_Update(void);
 
-void LED_SetRC(uint8_t state);
-void LED_SetAHRS(uint8_t state);
-void LED_SetTest(uint8_t state);
+void LED_SetRed(uint8_t state);
+void LED_SetYellow(uint8_t state);
+void LED_SetBlue(uint8_t state);
 
+void LED_ResetRed(void);
+void LED_ResetYellow(void);
+void LED_ResetBlue(void);
 
 
 #endif /* INC_FC_BASIC_LED_DRIVER_H_ */

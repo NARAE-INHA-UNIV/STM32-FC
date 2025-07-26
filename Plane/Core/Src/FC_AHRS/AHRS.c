@@ -42,8 +42,6 @@ int AHRS_Initialization(void)
 	err |= IMU_Initialization()<<1;
 	err |= Baro_Initialization();
 
-	LED_SetAHRS(err);
-
 	Magwick_Initialization(&msg.attitude_quaternion);
 
 	/*

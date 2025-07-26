@@ -58,7 +58,7 @@ void LED_Update(void)
 }
 
 
-void LED_SetRC(uint8_t state)
+void LED_SetRed(uint8_t state)
 {
 	if(state == 0)
 	{
@@ -73,7 +73,7 @@ void LED_SetRC(uint8_t state)
 }
 
 
-void LED_SetAHRS(uint8_t state)
+void LED_SetYellow(uint8_t state)
 {
 	if(state == 0)
 	{
@@ -87,7 +87,7 @@ void LED_SetAHRS(uint8_t state)
 }
 
 
-void LED_SetTest(uint8_t state)
+void LED_SetBlue(uint8_t state)
 {
 	if(state == 0)
 	{
@@ -97,6 +97,26 @@ void LED_SetTest(uint8_t state)
 
 	control[2].enabled = 1;
 	control[2].blink_pattern = LED_makeBlinkPattern(state);
+	return;
+}
+
+void LED_ResetRed(void)
+{
+	control[0].enabled = 0;
+	return;
+}
+
+
+void LED_ResetYello(void)
+{
+	control[1].enabled = 0;
+	return;
+}
+
+
+void LED_ResetBlue(void)
+{
+	control[2].enabled = 0;
 	return;
 }
 
