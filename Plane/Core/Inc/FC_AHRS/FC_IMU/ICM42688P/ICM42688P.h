@@ -30,21 +30,21 @@ extern int32_t gyro_x_offset, gyro_y_offset, gyro_z_offset;
 
 
 /* Functions 1 ---------------------------------------------------------------*/
-int ICM42688_Get6AxisRawData(void);
-void ICM42688_ConvertGyroRaw2Dps(void);
-void ICM42688_ConvertAccRaw2G(void);
-int ICM42688_DataReady(void);
+void ICM42688P_convertGyroRaw2Dps(void);
+void ICM42688P_convertAccRaw2G(void);
+int ICM42688P_dataReady(void);
+int ICM42688P_get6AxisRawData(void);
+int ICM42688P_getSensitivity(void);
 
-int ICM42688_GetSensitivity(void);
 
 /* Functions 2 ---------------------------------------------------------------*/
 inline static void CHIP_SELECT(void);
 inline static void CHIP_DESELECT(void);
 
-uint8_t ICM42688_Readbyte(uint8_t reg_addr);
-void ICM42688_Readbytes(unsigned char reg_addr, unsigned char len, unsigned char* data);
-void ICM42688_Writebyte(uint8_t reg_addr, uint8_t val);
-void ICM42688_Writebytes(unsigned char reg_addr, unsigned char len, unsigned char* data);
+uint8_t ICM42688P_readbyte(uint8_t reg_addr);
+void ICM42688P_readbytes(unsigned char reg_addr, unsigned char len, unsigned char* data);
+void ICM42688P_writebyte(uint8_t reg_addr, uint8_t val);
+void ICM42688P_writebytes(unsigned char reg_addr, unsigned char len, unsigned char* data);
 
 
 #endif

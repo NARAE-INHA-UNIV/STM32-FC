@@ -29,23 +29,21 @@
 
 
 /* Functions 1 ---------------------------------------------------------------*/
-void BMI323_Get6AxisRawData(void);
-void BMI323_ConvertGyroRaw2Dps(void);
-void BMI323_ConvertAccRaw2G(void);
-uint8_t BMI323_DataReady(void);
+uint16_t BMI323_checkValue(uint8_t addr, uint16_t value);
+uint16_t BMI323_checkNBit(uint8_t addr, uint8_t n);
+uint8_t BMI323_dataReady(void);
+void BMI323_get6AxisRawData(void);
+void BMI323_convertGyroRaw2Dps(void);
+void BMI323_convertAccRaw2G(void);
 
 
 /* Functions 2 ---------------------------------------------------------------*/
 inline static void CHIP_SELECT(void);
 inline static void CHIP_DESELECT(void);
 
-uint16_t BMI323_Readbyte(uint8_t reg_addr);
-void BMI323_Readbytes(uint8_t reg_addr, uint8_t len, uint16_t* data);
-void BMI323_Writebyte(uint8_t reg_addr, uint16_t val);
-int BMI323_Writebyte_S(uint8_t reg_addr, uint16_t val);
-
-int BMI323_initTry(uint8_t addr, uint16_t value);
-void delay_us(uint16_t time);
+uint16_t BMI323_readbyte(uint8_t reg_addr);
+void BMI323_readbytes(uint8_t reg_addr, uint8_t len, uint16_t* data);
+void BMI323_writebyte(uint8_t reg_addr, uint16_t val);
 
 
 #endif /* INC_FC_AHRS_FC_IMU_BMI323_BMI321_H_ */

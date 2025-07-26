@@ -27,7 +27,7 @@
 uint8_t IMU_Initialization(void)
 {
 	uint8_t temp = 0;
-	temp |= (ICM42688_Initialization()<<0);
+	temp |= (ICM42688P_Initialization()<<0);
 	temp |= (BMI323_Initialization()<<1);
 
 	return 0;
@@ -93,22 +93,13 @@ unsigned int IMU_getDataRaw(void)
 	uint16_t retVal = 0;
 
 	// SCALED_IMU
-	retVal = ICM42688_GetData();
+	retVal = ICM42688P_GetData();
 
 	// SCALED_IMU2
 	retVal = (BMI323_GetData() << 4);
 
 
 	// SCALED_IMU3
-
-	// Error
-	if (retVal & 0x0eee)
-	{
-		LL_GPIO_SetOutputPin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
-		return 1;
-	}
-
-	LL_GPIO_ResetOutputPin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
 
 	return 0;
 }

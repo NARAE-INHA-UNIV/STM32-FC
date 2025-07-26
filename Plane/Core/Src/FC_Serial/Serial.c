@@ -13,6 +13,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include <FC_Serial/Serial.h>
 
+#include <FC_Basic/LED/driver.h>
+
 
 /* Variables -----------------------------------------------------------------*/
 MiniLinkPacket serialRX;
@@ -40,19 +42,23 @@ int SERIAL_Handler()
 	if(serialRX.flag.ack == 0)
 	{
 		MiniLink_Send();
+		return 0;
 	}
 
-	if(serialRX.header.msgId == 10){
-		LL_GPIO_SetOutputPin(LED_BLUE_GPIO_Port, LED_BLUE_Pin);
-	}
-	else if(serialRX.header.msgId == 20)
+	switch(serialRX.header.msgId )
 	{
-		LL_GPIO_ResetOutputPin(LED_BLUE_GPIO_Port, LED_BLUE_Pin);
+	case 1:
+		LED_SetRed(2);
+		break;
+	case 2:
+		LED_SetYellow(serialRX.payload[0]);
+		break;
+	case 3:
+		LED_SetBlue(serialRX.payload[0]);
+		break;
 	}
-	else if(serialRX.header.msgId == 0)
-	{
-		serialRX.flag.ack = 0;
-	}
+
+	serialRX.flag.ack = 0;
 	free(serialRX.payload);
 
 	return 0;
@@ -100,7 +106,7 @@ void SERIAL_receivedIRQ2(uint8_t serialNumber, uint8_t data)
 			serialRX.header.seq = p[2];
 			serialRX.header.msgId = (uint16_t)p[3] << 8 | p[4];
 			serialRX.payload = (uint8_t*)malloc((serialRX.header.length)*sizeof(uint8_t));
-			memcpy(serialRX.payload, p, serialRX.header.length);
+			memcpy(serialRX.payload, &p[5], serialRX.header.length);
 
 			free(p);
 			cnt = 0;
@@ -135,7 +141,7 @@ void USB_CDC_RxHandler(uint8_t* Buf, uint32_t Len)
 	serialRX.header.seq = Buf[2];
 	serialRX.header.msgId = (uint16_t)Buf[4] << 8 | Buf[3];
 	serialRX.payload = (uint8_t*)malloc((serialRX.header.length-7)*sizeof(uint8_t));
-	memcpy(serialRX.payload, &Buf[0], serialRX.header.length);
+	memcpy(serialRX.payload, &Buf[5], serialRX.header.length);
 
 	serialRX.flag.ack = 1;
 

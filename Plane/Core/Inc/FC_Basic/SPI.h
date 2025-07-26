@@ -13,9 +13,11 @@
 /* Includes ------------------------------------------------------------------*/
 #include <main.h>
 
+
+/* Functions -----------------------------------------------------------------*/
 void SPI_Enable(SPI_TypeDef* spi);
 
-unsigned char SPI_SendByte(SPI_TypeDef* spi, unsigned char data);
+uint8_t SPI_SendByte(SPI_TypeDef* spi, uint8_t data);
 unsigned char SPI1_SendByte(unsigned char data);
 unsigned char SPI2_SendByte(unsigned char data);
 unsigned char SPI3_SendByte(unsigned char data);
