@@ -8,7 +8,7 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <FC_AHRS/FC_Magnetic/Magnetic.h>
+#include <FC_AHRS/FC_Magnetic/Magnetic_module.h>
 
 
 /* Functions -----------------------------------------------------------------*/

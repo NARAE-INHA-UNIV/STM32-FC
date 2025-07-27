@@ -1,7 +1,7 @@
 /*
- * SERVO.h
+ * driver.h
  *
- *  Created on: Mar 26, 2025
+ *  Created on: Mar 27, 2025
  *      Author: leecurrent04
  *      Email : leecurrent04@inha.edu
  */
@@ -11,27 +11,20 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <main.h>
 
-#include <FC_Servo/driver.h>
-
-#include <FC_Serial/MiniLink/driver.h>
 
 /* Variables -----------------------------------------------------------------*/
-extern const uint8_t SERVO_TIMER_MAP[];
 
 
 /* Functions -----------------------------------------------------------------*/
-int doArm2Channel(uint8_t ch, uint8_t state);
-int doArm2Channels(uint8_t *pCh, uint8_t len, uint8_t state);
-uint8_t configurePWM(uint16_t hz);
+int SERVO_Initialization(void);
 
-void calculateServoOutput(void);
+void SERVO_doArm(void);
+void SERVO_doDisarm(void);
+void SERVO_control(void);
 
-void setPWM(void);
-int setPWM2Channel(uint8_t ch, uint16_t value);
-int setPWM2Channels(uint8_t *pCh, uint8_t len, uint16_t value);
-
+void SERVO_setFailsafe(void);
+void SERVO_doCalibrate(uint8_t mode);
 
 
-#endif /* INC_FC_SERVO_SERVO_H_ */
+#endif /* INC_FC_SERVO_DRIVER_SERVO_H_ */

@@ -7,22 +7,22 @@
  *      Email : leecurrent04@inha.edu
  */
 
-#ifndef INC_FC_RC_RADIOCONTROL_H_
-#define INC_FC_RC_RADIOCONTROL_H_
+#ifndef INC_FC_RC_RC_MODULE_H_
+#define INC_FC_RC_RC_MODULE_H_
 
 
 /* Includes ------------------------------------------------------------------*/
+#include <AP_Failsafe/Failsafe.h>
+#include <FC_Basic/Buzzer/Buzzer.h>
 #include <main.h>
 #include <stdlib.h>
 
-#include <FC_RC/driver.h>
-#include <FC_RC/Protocol/SRXL2/driver.h>
 #include <FC_RC/Protocol/PPM.h>
 
-#include <FC_Basic/Buzzer/driver.h>
-#include <AP_Failsafe/driver.h>
-#include <FC_Servo/driver.h>
-#include <FC_Serial/MiniLink/driver.h>
+#include <FC_RC/Protocol/SRXL2/SRXL2.h>
+#include <FC_RC/RC.h>
+#include <FC_Serial/MiniLink/MiniLink.h>
+#include <FC_Servo/Servo.h>
 
 
 /* Variables -----------------------------------------------------------------*/
@@ -92,4 +92,4 @@ int isFlag(RC_FLAG i);
 #define IS_FL_UART_USING isFlag(UART_USING)
 
 
-#endif /* INC_FC_RC_RADIOCONTROL_H_ */
+#endif /* INC_FC_RC_RC_MODULE_H_ */

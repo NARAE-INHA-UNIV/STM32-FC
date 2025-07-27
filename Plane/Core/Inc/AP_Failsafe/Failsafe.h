@@ -1,7 +1,7 @@
 /*
- * Failsafe.h
+ * driver.h
  *
- *  Created on: Mar 29, 2025
+ *  Created on: Jul 23, 2025
  *      Author: leecurrent04
  *      Email : leecurrent04@inha.edu
  */
@@ -11,18 +11,16 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <AP_Failsafe/driver.h>
-#include <main.h>
-
-#include <FC_RC/driver.h>
-#include <FC_Servo/driver.h>
+#include <stdint.h>
 
 
 /* Variables -----------------------------------------------------------------*/
+extern uint8_t fsFlag;
 
 
 /* Functions -----------------------------------------------------------------*/
-void FS_mannualMode(void);
+int FS_IsFailsafe(void);
+
 
 
 #endif /* INC_AP_FAILSAFE_FAILSAFE_H_ */

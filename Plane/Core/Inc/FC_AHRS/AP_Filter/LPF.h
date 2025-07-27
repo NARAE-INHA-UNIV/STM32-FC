@@ -15,7 +15,7 @@
 #include <stdint.h>
 
 #include <FC_AHRS/AHRS_common.h>
-#include <FC_Serial/MiniLink/driver.h>
+#include <FC_Serial/MiniLink/MiniLink.h>
 
 
 /* Variables -----------------------------------------------------------------*/

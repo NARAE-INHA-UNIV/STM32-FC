@@ -6,8 +6,8 @@
  *      Email : leecurrent04@inha.edu
  */
 
-#ifndef INC_FC_RC_DRIVER_H_
-#define INC_FC_RC_DRIVER_H_
+#ifndef INC_FC_RC_RC_H_
+#define INC_FC_RC_RC_H_
 
 
 /* Functions -----------------------------------------------------------------*/

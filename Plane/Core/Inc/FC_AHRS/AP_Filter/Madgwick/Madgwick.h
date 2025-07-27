@@ -10,9 +10,9 @@
 
 
 /* Includes ------------------------------------------------------------------*/
+#include <FC_Serial/MiniLink/MiniLink_module.h>
 #include <math.h>
 
-#include <FC_Serial/MiniLink/MiniLink.h>
 
 
 /* Functions -----------------------------------------------------------------*/

@@ -7,7 +7,7 @@
  */
 
 
-#include <FC_AHRS/FC_Magnetic/LIS2MDL/LIS2MDL.h>
+#include <FC_AHRS/FC_Magnetic/LIS2MDL/LIS2MDL_module.h>
 
 
 /* Functions -----------------------------------------------------------------*/

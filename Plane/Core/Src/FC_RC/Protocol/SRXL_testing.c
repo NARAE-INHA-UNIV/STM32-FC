@@ -7,7 +7,7 @@
  *      Email : leecurrent04@inha.edu
  */
 
-#include <FC_RC/Protocol/SRXL2/SRXL2.h>
+#include <FC_RC/Protocol/SRXL2/SRXL2_module.h>
 
 
 /*
