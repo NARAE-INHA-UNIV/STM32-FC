@@ -7,7 +7,7 @@
  */
 
 
-#include <FC_AHRS/FC_Magnetic/LIS2MDL/LIS2MDL.h>
+#include <FC_AHRS/FC_Magnetic/LIS2MDL/LIS2MDL_module.h>
 
 
 /* Functions -----------------------------------------------------------------*/
@@ -63,13 +63,14 @@ uint8_t LIS2MDL_Initialization(void)
  *         1 : isn't ready
  *         2 : sensor error
  */
-uint8_t LIS2MDL_GetData(void)
+uint8_t LIS2MDL_GetData(SCALED_IMU* imu)
 {
 	uint8_t retVal = LIS2MDL_dataReady();
 	if(retVal) return retVal;
 
-	LIS2MDL_getRawData();
+	LIS2MDL_getRawData(&msg.raw_imu);
 
+	LIS2MDL_convertRaw2Gauss(imu);
 
 	return 0;
 }
@@ -91,15 +92,27 @@ uint8_t LIS2MDL_dataReady(void)
 }
 
 
-void LIS2MDL_getRawData(void)
+int LIS2MDL_convertRaw2Gauss(SCALED_IMU* imu)
+{
+	imu->xmag = msg.raw_imu.xmag * SENSITIVITY;
+	imu->ymag = msg.raw_imu.ymag * SENSITIVITY;
+	imu->zmag = msg.raw_imu.zmag * SENSITIVITY;
+
+	return 0;
+}
+
+
+int LIS2MDL_getRawData(RAW_IMU* imu)
 {
 	uint8_t data[6];
 
 	LIS2MDL_readbytes(OUTX_L_REG, sizeof(data)/sizeof(data[0]), data);
 
-	msg.raw_imu.xmag = (data[1] << 8) | data[0];
-	msg.raw_imu.ymag = (data[3] << 8) | data[2];
-	msg.raw_imu.zmag = ((data[5] << 8) | data[4]);
+	imu->xmag = (data[1] << 8) | data[0];
+	imu->ymag = (data[3] << 8) | data[2];
+	imu->zmag = ((data[5] << 8) | data[4]);
+
+	return 0;
 }
 
 /* Functions 2 ---------------------------------------------------------------*/

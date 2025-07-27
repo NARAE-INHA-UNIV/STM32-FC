@@ -1,33 +1,23 @@
 /*
- * IMU.h
+ * FC_IMU/driver.h
  *
- *  Created on: May 1, 2025
+ *  Created on: April 30, 2025
  *      Author: leecurrent04
  *      Email : leecurrent04@inha.edu
  */
 
-#ifndef INC_FC_IMU_IMU_H_
-#define INC_FC_IMU_IMU_H_
+#ifndef INC_FC_IMU_DRIVER_H_
+#define INC_FC_IMU_DRIVER_H_
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <main.h>
-
-#include <FC_AHRS/FC_IMU/driver.h>
-
-#include <FC_AHRS/FC_IMU/ICM42688P/driver.h>
-#include <FC_AHRS/FC_IMU/BMI323/driver.h>
-
-#include <FC_Serial/MiniLink/MiniLink.h>
-
-
-/* Variables -----------------------------------------------------------------*/
-extern SCALED_IMU scaled_imu;
-extern RAW_IMU raw_imu;
+#include <stdint.h>
 
 
 /* Functions -----------------------------------------------------------------*/
-unsigned int IMU_getDataRaw(void);
+uint8_t IMU_Initialization(void);
+uint8_t IMU_GetData(void);
+void IMU_CalibrateOffset(void);
 
 
-#endif /* INC_FC_IMU_IMU_H_ */
+#endif /* INC_SEN_ICM42688_DRIVER_H_ */

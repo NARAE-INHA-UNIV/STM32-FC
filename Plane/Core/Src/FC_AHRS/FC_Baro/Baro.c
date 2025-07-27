@@ -8,8 +8,8 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <FC_AHRS/FC_Baro/Baro.h>
-#include <FC_Serial/MiniLink/MiniLink.h>
+#include <FC_AHRS/FC_Baro/Baro_module.h>
+#include <FC_Serial/MiniLink/MiniLink_module.h>
 
 
 /* Functions -----------------------------------------------------------------*/

@@ -24,17 +24,15 @@
 /* USER CODE BEGIN Includes */
 #include "usbd_cdc_if.h"
 
-#include <AP_Failsafe/driver.h>
+#include <FC_AHRS/AHRS.h>
+#include <FC_Basic/Buzzer/Buzzer.h>
+#include <FC_Basic/LED/LED.h>
+#include <AP_Failsafe/Failsafe.h>
+#include <FC_RC/RC.h>
+#include <FC_Serial/MiniLink/MiniLink.h>
 
-#include <FC_AHRS/driver.h>
-#include <FC_Basic/Buzzer/driver.h>
-#include <FC_Basic/LED/driver.h>
-
-#include <FC_RC/driver.h>
-
-#include <FC_Serial/driver.h>
-#include <FC_Servo/driver.h>
-#include <FC_Serial/MiniLink/driver.h>
+#include <FC_Serial/Serial.h>
+#include <FC_Servo/Servo.h>
 
 
 

@@ -11,11 +11,10 @@
 
 
 /* Includes ------------------------------------------------------------------*/
+#include <FC_Basic/LED/LED_module.h>
 #include <main.h>
 
-#include <FC_Basic/LED/LED.h>
-
-#include <FC_Serial/MiniLink/driver.h>
+#include <FC_Serial/MiniLink/MiniLink.h>
 
 
 /* Variables -----------------------------------------------------------------*/

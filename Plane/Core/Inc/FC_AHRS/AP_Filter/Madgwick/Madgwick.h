@@ -5,14 +5,14 @@
  *      Author: rlawn
  */
 
-#ifndef INC_FC_AHRS_AP_FILTER_MADGWICK_H_
-#define INC_FC_AHRS_AP_FILTER_MADGWICK_H_
+#ifndef INC_FC_AHRS_AP_FILTER_MADGWICK_MADGWICK_H_
+#define INC_FC_AHRS_AP_FILTER_MADGWICK_MADGWICK_H_
 
 
 /* Includes ------------------------------------------------------------------*/
+#include <FC_Serial/MiniLink/MiniLink_module.h>
 #include <math.h>
 
-#include <FC_Serial/MiniLink/MiniLink.h>
 
 
 /* Functions -----------------------------------------------------------------*/
@@ -21,4 +21,4 @@ void Madgwick_Update(ATTITUDE_QUATERNION* qu, SCALED_IMU* imu);
 void Madgwick_GetEuler(ATTITUDE_QUATERNION* qu, ATTITUDE* atti);
 
 
-#endif /* INC_FC_AHRS_AP_FILTER_MADGWICK_H_ */
+#endif /* INC_FC_AHRS_AP_FILTER_MADGWICK_MADGWICK_H_ */

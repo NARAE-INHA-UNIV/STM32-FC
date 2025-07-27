@@ -14,7 +14,7 @@
  */
 
 
-#include <FC_Serial/MiniLink/driver.h>
+#include <FC_Serial/MiniLink/MiniLink.h>
 #include <FC_Serial/MiniLink/Param/Param.h>
 
 PARAM param;

@@ -11,9 +11,8 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <FC_Serial/Serial.h>
-
-#include <FC_Basic/LED/driver.h>
+#include <FC_Basic/LED/LED.h>
+#include <FC_Serial/Serial_module.h>
 
 
 /* Variables -----------------------------------------------------------------*/

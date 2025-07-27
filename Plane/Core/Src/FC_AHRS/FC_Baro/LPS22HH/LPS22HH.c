@@ -11,7 +11,7 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <FC_AHRS/FC_Baro/LPS22HH/LPS22HH.h>
+#include <FC_AHRS/FC_Baro/LPS22HH/LPS22HH_module.h>
 
 
 /* Functions -----------------------------------------------------------------*/

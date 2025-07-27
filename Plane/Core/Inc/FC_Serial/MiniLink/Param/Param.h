@@ -11,11 +11,11 @@
 
 
 /* Includes ------------------------------------------------------------------*/
+#include <FC_RC/RC_module.h>
+#include <FC_Servo/Servo_module.h>
 #include <main.h>
 
 
-#include <FC_RC/RadioControl.h>
-#include <FC_Servo/Servo.h>
 
 
 /* Variables -----------------------------------------------------------------*/

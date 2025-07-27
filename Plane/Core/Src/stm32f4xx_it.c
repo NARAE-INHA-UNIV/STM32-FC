@@ -23,11 +23,10 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <FC_Basic/RingBuffer.h>
+#include <FC_RC/RC_module.h>
+#include <FC_Serial/MiniLink/MiniLink.h>
 
-#include <FC_Serial/Serial.h>
-#include <FC_RC/RadioControl.h>
-
-#include <FC_Serial/MiniLink/driver.h>
+#include <FC_Serial/Serial_module.h>
 
 
 /* USER CODE END Includes */

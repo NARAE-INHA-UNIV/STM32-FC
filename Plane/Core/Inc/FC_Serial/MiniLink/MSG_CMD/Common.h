@@ -174,6 +174,25 @@ typedef struct __attribute__((packed)){
 
 
 /*
+ * SCALED_IMU3 (129)
+ * The RAW IMU readings for secondary 9DOF sensor setup. This message should contain the scaled values to the described units
+ */
+typedef struct __attribute__((packed)){
+	uint32_t time_boot_ms;		// Timestamp (time since system boot). (ms)
+	int16_t xacc;			// X acceleration (mG)
+	int16_t yacc;			// Y acceleration (mG)
+	int16_t zacc;			// Z acceleration (mG)
+	int16_t xgyro;			// Angular speed around X axis (mrad/s)
+	int16_t ygyro;			// Angular speed around Y axis (mrad/s)
+	int16_t zgyro;			// Angular speed around Z axis (mras/s)
+	int16_t xmag;			// X Magnetic field (mgauss)
+	int16_t ymag;			// Y Magnetic field (mgauss)
+	int16_t zmag;			// Z Magnetic field (mgauss)
+	int16_t temperature;	// Temperature, 0: IMU does not provide temperature values. If the IMU is at 0C it must send 1 (0.01C).
+} SCALED_IMU3;
+
+
+/*
  * ACTUATOR_OUTPUT_STATUS (375)
  * The raw values of the actuator outputs (e.g. on Pixhawk, from MAIN, AUX ports).
  * This message supersedes SERVO_OUTPUT_RAW.

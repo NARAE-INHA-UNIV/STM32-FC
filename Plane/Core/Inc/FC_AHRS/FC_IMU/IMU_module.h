@@ -1,23 +1,23 @@
 /*
- * Magnetic.h
+ * IMU.h
  *
- *  Created on: Jul 25, 2025
+ *  Created on: May 1, 2025
  *      Author: leecurrent04
  *      Email : leecurrent04@inha.edu
  */
 
-#ifndef INC_FC_AHRS_FC_MAGNETIC_MAGNETIC_H_
-#define INC_FC_AHRS_FC_MAGNETIC_MAGNETIC_H_
+#ifndef INC_FC_IMU_IMU_H_
+#define INC_FC_IMU_IMU_H_
 
 
 /* Includes ------------------------------------------------------------------*/
+#include <FC_AHRS/FC_IMU/BMI323/BMI323.h>
 #include <main.h>
-#include <FC_Basic/SPI.h>
 
-#include <FC_AHRS/FC_Magnetic/driver.h>
-#include <FC_AHRS/FC_Magnetic/LIS2MDL/driver.h>
+#include <FC_AHRS/FC_IMU/ICM42688P/ICM42688P.h>
+#include <FC_AHRS/FC_IMU/IMU.h>
 
-#include <FC_Serial/MiniLink/MiniLink.h>
+#include <FC_Serial/MiniLink/MiniLink_module.h>
 
 
 /* Variables -----------------------------------------------------------------*/
@@ -26,7 +26,7 @@ extern RAW_IMU raw_imu;
 
 
 /* Functions -----------------------------------------------------------------*/
-unsigned int MAG_getDataRaw(void);
+unsigned int IMU_getDataRaw(void);
 
 
-#endif /* INC_FC_AHRS_FC_MAGNETIC_MAGNETIC_H_ */
+#endif /* INC_FC_IMU_IMU_H_ */

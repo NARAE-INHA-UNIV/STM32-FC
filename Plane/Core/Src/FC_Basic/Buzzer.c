@@ -6,10 +6,9 @@
  *      Email : leecurrent04@inha.edu
  */
 
+#include <FC_Basic/Buzzer/Buzzer_module.h>
 #include "main.h"
-#include <FC_Basic/Buzzer/Buzzer.h>
-
-#include <FC_Serial/MiniLink/MiniLink.h>
+#include <FC_Serial/MiniLink/MiniLink_module.h>
 
 
 /* Functions -----------------------------------------------------------------*/

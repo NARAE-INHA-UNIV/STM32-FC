@@ -8,7 +8,7 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <FC_AHRS/FC_IMU/IMU.h>
+#include <FC_AHRS/FC_IMU/IMU_module.h>
 
 
 /* Macros --------------------------------------------------------------------*/
@@ -93,10 +93,10 @@ unsigned int IMU_getDataRaw(void)
 	uint16_t retVal = 0;
 
 	// SCALED_IMU
-	retVal = ICM42688P_GetData();
+	retVal = ICM42688P_GetData((SCALED_IMU*)&msg.scaled_imu);
 
 	// SCALED_IMU2
-	retVal = (BMI323_GetData() << 4);
+	retVal = (BMI323_GetData((SCALED_IMU*)&msg.scaled_imu2) << 4);
 
 
 	// SCALED_IMU3
