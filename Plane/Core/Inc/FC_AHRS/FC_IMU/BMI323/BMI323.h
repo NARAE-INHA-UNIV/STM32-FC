@@ -7,8 +7,8 @@
  *      Email : leecurrent04@inha.edu
  */
 
-#ifndef INC_FC_AHRS_FC_IMU_BMI323_BMI321_H_
-#define INC_FC_AHRS_FC_IMU_BMI323_BMI321_H_
+#ifndef INC_FC_AHRS_FC_IMU_BMI323_BMI323_H_
+#define INC_FC_AHRS_FC_IMU_BMI323_BMI323_H_
 
 
 /* Includes ------------------------------------------------------------------*/
