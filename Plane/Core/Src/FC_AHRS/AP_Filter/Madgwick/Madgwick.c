@@ -7,7 +7,7 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <FC_AHRS/AP_Filter/Madgwick.h>
+#include <FC_AHRS/AP_Filter/Madgwick/Madgwick.h>
 
 
 /* Variables -----------------------------------------------------------------*/

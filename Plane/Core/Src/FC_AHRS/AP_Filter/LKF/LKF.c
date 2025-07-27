@@ -1,13 +1,15 @@
 /*
- * FC_AHRS/FC_IMU/Fiter/Fiter.c
+ * LKF.c
+ * FC_AHRS/AP_Filter/LKF
  *
  *  Created on: July 27, 2025
  *      Author: twwawy
  *      Email : twwawy37@gmail.com
  */
 
-#include <FC_AHRS/FC_IMU/Fiter/Fiter.h>
-#include <math.h>
+
+#include <FC_AHRS/AP_Filter/LKF/LKF.h>
+
 
 // 전역 구조체 인스턴스 선언
 LPFState acc_phy_x,  acc_phy_y,  acc_phy_z;
@@ -33,11 +35,7 @@ float roll_kf, pitch_kf, yaw_kf;
  * 수식 노이즈(Q) : 바이어스 변화량의 표준편차의 제곱
  * 센서 노이즈(R) : 가속도&지자기 기반 쿼터니언 값의 표준편차의 제곱
  */
-void AHRS(
-    int32_t x_acc_raw,  int32_t y_acc_raw,  int32_t z_acc_raw,
-    int32_t x_gyro_raw, int32_t y_gyro_raw, int32_t z_gyro_raw,
-    int32_t x_mag_raw,  int32_t y_mag_raw,  int32_t z_mag_raw,
-    float dt)
+void LKF_Update(SCALED_IMU* imu, float dt)
 {
 	///// 칼만필터 외부 /////
 
@@ -63,34 +61,34 @@ void AHRS(
 	 * 센서값이 아닌 물리량 값으로 값을 받아도 단위변환을 해 주어야 함
 	 * 물리량을 꼭 (m/s^2), (rad/s), (uT)로 변환할 것
 	 */
-    // 가속도 센서값 → 물리량 변환(m/s^2)
-    x_acc_phy = (x_acc_raw / 16384.0) * 9.81;
-    y_acc_phy = (y_acc_raw / 16384.0) * 9.81;
-    z_acc_phy = (z_acc_raw / 16384.0) * 9.81;
+    // 가속도 센서값 → 물리량 변환(m G -> m/s^2)
+    x_acc_phy = imu->xacc/1000.0f *9.81;
+    y_acc_phy = imu->yacc/1000.0f *9.81;
+    z_acc_phy = imu->zacc/1000.0f *9.81;
 
-    // 자이로 센서값 → 물리량 변환(rad/s)
-    x_gyro_phy = (x_gyro_raw / 131.0) * (3.141592 / 180.0);
-    y_gyro_phy = (y_gyro_raw / 131.0) * (3.141592 / 180.0);
-    z_gyro_phy = (z_gyro_raw / 131.0) * (3.141592 / 180.0);
+    // 자이로 센서값 → 물리량 변환(m rad/s -> rad/s)
+    x_gyro_phy = imu->xgyro/1000.0f;
+    y_gyro_phy = imu->ygyro/1000.0f;
+    z_gyro_phy = imu->zgyro/1000.0f;
 
     // 지자계 센서값 → 물리량 변환(uT)
-    x_mag_phy = x_mag_raw * 0.6f;
-    y_mag_phy = y_mag_raw * 0.6f;
-    z_mag_phy = z_mag_raw * 0.6f;
+    x_mag_phy = imu->xmag * 0.6f;
+    y_mag_phy = imu->ymag * 0.6f;
+    z_mag_phy = imu->zmag * 0.6f;
 
 
     // LPF 업데이트
-    x_acc = LPF(&acc_phy_x, x_acc_phy);
-    y_acc = LPF(&acc_phy_y, y_acc_phy);
-    z_acc = LPF(&acc_phy_z, z_acc_phy);
+    x_acc = LPF_update(&acc_phy_x, x_acc_phy);
+    y_acc = LPF_update(&acc_phy_y, y_acc_phy);
+    z_acc = LPF_update(&acc_phy_z, z_acc_phy);
 
-    x_gyro_mea = LPF(&gyro_phy_x, x_gyro_phy);
-    y_gyro_mea = LPF(&gyro_phy_y, y_gyro_phy);
-    z_gyro_mea = LPF(&gyro_phy_z, z_gyro_phy);
+    x_gyro_mea = LPF_update(&gyro_phy_x, x_gyro_phy);
+    y_gyro_mea = LPF_update(&gyro_phy_y, y_gyro_phy);
+    z_gyro_mea = LPF_update(&gyro_phy_z, z_gyro_phy);
 
-    x_mag = LPF(&mag_phy_x, x_mag_phy);
-    y_mag = LPF(&mag_phy_y, y_mag_phy);
-    z_mag = LPF(&mag_phy_z, z_mag_phy);
+    x_mag = LPF_update(&mag_phy_x, x_mag_phy);
+    y_mag = LPF_update(&mag_phy_y, y_mag_phy);
+    z_mag = LPF_update(&mag_phy_z, z_mag_phy);
 
 
     // 가속도를 기반으로 roll, pitch 게산
@@ -110,9 +108,6 @@ void AHRS(
     // 쿼터니언 정규화
     float norm1 = sqrtf( q0_mea*q0_mea + q1_mea*q1_mea + q2_mea*q2_mea + q3_mea*q3_mea );
     q0_mea /= norm1;  q1_mea /= norm1;  q2_mea /= norm1;  q3_mea /= norm1;
-
-
-
 
 
     ///// 칼만필터 내부 /////
@@ -379,7 +374,7 @@ void AHRS(
  */
 
 // LPF 상태 초기화
-void LPF_Setting(void)
+void LPF_init(void)
 {
     // 가속도 LPF 상태 초기화
     acc_phy_x.phy_pre  = 0.0f;  acc_phy_x.alpha  = 0.95f;
@@ -398,7 +393,7 @@ void LPF_Setting(void)
 }
 
 // 1차 저주파 통과 필터
-float LPF(LPFState *str, float in)
+float LPF_update(LPFState *str, float in)
 {
     // 1차 저주파 필터 : x_k = a*x_(k-1) + (1-a)*x_k
 	float out = str->alpha * in + (1.0f - str->alpha) * str->phy_pre;
@@ -457,181 +452,3 @@ float YAW(float x_mag, float y_mag, float z_mag, float roll, float pitch)
 
 
 
-/* 행렬 계산 함수 ------------------------------------------------------------------*/
-
-/*
- * Matrix addition function
- * Matrix C is automatically initialized
- * C = A + B
- */
-void mat_add(const float *A,
-             const float *B,
-             float *C,
-             int rows,
-             int cols)
-{
-  for (int i = 0; i < rows; ++i)
-  {
-    for (int j = 0; j < cols; ++j)
-    {
-      // C[i][j] → C[i*cols + j]
-      C[i*cols + j] = A[i*cols + j] + B[i*cols + j];
-    }
-  }
-}
-
-
-/**
- * Matrix subtraction function
- * Matrix C is automatically initialized
- * C = A − B
- */
-void mat_sub(const float *A,
-             const float *B,
-             float *C,
-             int rows,
-             int cols)
-{
-  for (int i = 0; i < rows; ++i)
-  {
-    for (int j = 0; j < cols; ++j)
-    {
-      // C[i][j] → C[i*cols + j]
-      C[i*cols + j] = A[i*cols + j] - B[i*cols + j];
-    }
-  }
-}
-
-
-/*
- * Matrix multiplication function
- * Matrix C is automatically initialized
- * C = A × B
- */
-void mat_mul(const float *A,
-             const float *B,
-             float *C,
-             int rowsA,
-             int colsA,
-             int colsB)
-{
-  for (int i = 0; i < rowsA; ++i)
-  {
-    for (int j = 0; j < colsB; ++j)
-    {
-      float sum = 0.0f;
-
-      for (int k = 0; k < colsA; ++k)
-      {
-        // A[i][k] → A[i*colsA + k],  B[k][j] → B[k*colsB + j]
-        sum += A[i*colsA + k] * B[k*colsB + j];
-      }
-
-      // C[i][j] → C[i*colsB + j]
-      C[i*colsB + j] = sum;
-    }
-  }
-}
-
-
-/*
- * Matrix copy function
- * Matrix C is automatically initialized
- * C = A
- */
-void mat_copy(const float *A,
-              float *C,
-              int rows,
-              int cols)
-{
-  for (int i = 0; i < rows; ++i)
-  {
-    for (int j = 0; j < cols; ++j)
-    {
-      // A[i][j] → A[i*cols + j]
-      // C[i][j] → C[i*cols + j]
-      C[i*cols + j] = A[i*cols + j];
-    }
-  }
-}
-
-
-/*
- * Matrix transpose function
- * Matrix C is automatically initialized
- * C = Aᵀ
- */
-void mat_trp(const float *A,
-                   float *C,
-                   int rowsA,
-                   int colsA)
-{
-  for (int i = 0; i < rowsA; ++i)
-  {
-    for (int j = 0; j < colsA; ++j)
-    {
-      // A[i][j] → A[i*cols + j]
-      // C[j][i] → C[j*rows + i]
-      C[j*rowsA + i] = A[i*colsA + j];
-    }
-  }
-}
-
-
-/*
- * Matrix inverse function (Gauss–Jordan elimination)
- * Matrix C is automatically initialized
- * C = A⁻¹
- * A: n × n (must be square)
- * C: n × n
- * @retval  1  : success
- * @retval 0  : singular (no inverse)
- */
-int mat_inv(const float *A,
-            float *C,
-            int n)
-{
-    // 1) working copy of A
-    float tmp[n * n];
-
-    // 2) init tmp = A, C = I
-    for (int i = 0; i < n; ++i)
-    {
-        for (int j = 0; j < n; ++j)
-        {
-            tmp[i * n + j] = A[i * n + j];
-            C  [i * n + j] = (i == j) ? 1.0f : 0.0f;
-        }
-    }
-
-    // 3) Gauss–Jordan elimination
-    for (int k = 0; k < n; ++k)
-    {
-        float pivot = tmp[k * n + k];
-        if (fabsf(pivot) < 1e-6f)
-            return 0;  // singular
-
-        // normalize pivot row
-        for (int j = 0; j < n; ++j)
-        {
-            tmp[k * n + j] /= pivot;
-            C  [k * n + j] /= pivot;
-        }
-
-        // eliminate other rows
-        for (int i = 0; i < n; ++i)
-        {
-            if (i == k)
-                continue;
-
-            float factor = tmp[i * n + k];
-            for (int j = 0; j < n; ++j)
-            {
-                tmp[i * n + j] -= factor * tmp[k * n + j];
-                C  [i * n + j] -= factor * C  [k * n + j];
-            }
-        }
-    }
-
-    return 1;
-}

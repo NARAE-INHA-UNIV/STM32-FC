@@ -11,8 +11,10 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <FC_AHRS/AP_Filter/Kalman.h>
-#include <FC_AHRS/AP_Filter/Madgwick.h>
+#include <FC_AHRS/AP_Filter/LKF/driver.h>
+
+#include <FC_AHRS/AP_Filter/Kalman/Kalman.h>
+#include <FC_AHRS/AP_Filter/Madgwick/Madgwick.h>
 //#include <FC_AHRS/AP_Filter/MadgwickAHRS.h>
 
 

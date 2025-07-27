@@ -131,3 +131,14 @@ void AHRS_computeVelocity(float dt)
 	imu_velocity.vz += az_corrected * dt;
 }
 
+
+/* Functions (common.h) ------------------------------------------------------*/
+float AHRS_degree2rad(float value)
+{
+	return (value * (M_PI / 180.0));
+}
+
+float AHRS_rad2degree(float value)
+{
+	return (value * (180.0 / M_PI));
+}

@@ -1,21 +1,25 @@
 /*
- * Fiter.h
- * FC_AHRS/FC_IMU/Fiter/Fiter.h
+ * LKF.h
+ * FC_AHRS/AP_Filter/LKF
  *
  *  Created on: July 27, 2025
  *      Author: twwawy
  *      Email : twwawy37@gmail.com
  */
 
-#ifndef INC_FC_AHRS_FC_IMU_FITER_FITER_H_
-#define INC_FC_AHRS_FC_IMU_FITER_FITER_H_
+#ifndef INC_FC_AHRS_AP_FILTER_LKF_LKF_H_
+#define INC_FC_AHRS_AP_FILTER_LKF_LKF_H_
 
 
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
+#include <math.h>
+#include <stdint.h>
 
-#include <FC_AHRS/FC_IMU/BMI323/BMI323.h>
-#include <FC_AHRS/FC_IMU/ICM42688P/ICM42688.h>
+#include <FC_Basic/Matrix/Matrix.h>
+
+#include <FC_AHRS/AP_Filter/LKF/driver.h>
+
+#include <FC_Serial/MiniLink/driver.h>
 
 
 /* Variables -----------------------------------------------------------------*/
@@ -25,21 +29,18 @@ extern float pitch_kf;
 extern float yaw_kf;
 
 
-/* 최종 함수 -------------------------------------------------------------------*/
-void AHRS(
-    int32_t x_acc_raw,  int32_t y_acc_raw,  int32_t z_acc_raw,
-    int32_t x_gyro_raw, int32_t y_gyro_raw, int32_t z_gyro_raw,
-    int32_t x_mag_raw,  int32_t y_mag_raw,  int32_t z_mag_raw,
-    float dt);
 
 
-/* 내부 함수 -------------------------------------------------------------------*/
+/* Variables -----------------------------------------------------------------*/
 typedef struct {
     float phy_pre;
     float alpha;
 } LPFState;
-void LPF_Setting(void);
-float LPF(LPFState *str, float in);
+
+
+/* Functions -----------------------------------------------------------------*/
+void LPF_init(void);
+float LPF_update(LPFState *str, float in);
 float YAW(float x_mag, float y_mag, float z_mag, float roll, float pitch);
 
 
@@ -52,4 +53,4 @@ void mat_trp(const float *A, float *C, int rows, int cols);
 int mat_inv(const float *A, float *C, int n);
 
 
-#endif /* INC_FC_AHRS_FC_IMU_FITER_FITER_H_ */
+#endif /* INC_FC_AHRS_AP_FILTER_LKF_LKF_H_ */

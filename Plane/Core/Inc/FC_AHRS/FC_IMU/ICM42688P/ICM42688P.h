@@ -12,8 +12,10 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
+#include <stdint.h>
 #include <FC_Basic/SPI.h>
+
+#include <FC_AHRS/AHRS_common.h>
 
 #include <FC_AHRS/FC_IMU/ICM42688P/driver.h>
 #include <FC_AHRS/FC_IMU/ICM42688P/register_map.h>
@@ -30,8 +32,8 @@ extern int32_t gyro_x_offset, gyro_y_offset, gyro_z_offset;
 
 
 /* Functions 1 ---------------------------------------------------------------*/
-void ICM42688P_convertGyroRaw2Dps(void);
-void ICM42688P_convertAccRaw2G(void);
+void ICM42688P_convertGyroRaw2Dps(SCALED_IMU* imu);
+void ICM42688P_convertAccRaw2G(SCALED_IMU* imu);
 int ICM42688P_dataReady(void);
 int ICM42688P_get6AxisRawData(void);
 int ICM42688P_getSensitivity(void);

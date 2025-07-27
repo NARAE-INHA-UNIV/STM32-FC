@@ -14,6 +14,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include <math.h>
 #include <FC_AHRS/driver.h>
+#include <FC_AHRS/AHRS_common.h>
 
 #include <FC_AHRS/FC_Baro/driver.h>
 #include <FC_AHRS/FC_IMU/driver.h>

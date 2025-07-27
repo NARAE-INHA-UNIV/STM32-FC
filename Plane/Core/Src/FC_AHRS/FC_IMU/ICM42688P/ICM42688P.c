@@ -69,8 +69,8 @@ uint8_t ICM42688P_GetData(void)
 
 	ICM42688P_get6AxisRawData();
 
-	ICM42688P_convertGyroRaw2Dps();
-	ICM42688P_convertAccRaw2G();
+	ICM42688P_convertGyroRaw2Dps(&msg.scaled_imu);
+	ICM42688P_convertAccRaw2G(&msg.scaled_imu);
 
 	return 0;
 }
@@ -87,25 +87,27 @@ uint8_t ICM42688P_CalibrateOffset(void)
 
 /* Functions 1 ---------------------------------------------------------------*/
 /*
- * @brief GYRO RAW를 mdps로 변환
+ * @brief GYRO RAW를 m rad/s로 변환
  * @detail SCALED_IMU에 저장.
- * 			m degree/s
- * @parm none
+ * 			m rad/s
+ * @parm SCALED_IMU* imu
+ * 		RAW_IMU가 아님에 주의
  * @retval none
  */
-void ICM42688P_convertGyroRaw2Dps(void)
+void ICM42688P_convertGyroRaw2Dps(SCALED_IMU* imu)
 {
 	float sensitivity = param.ins.GYRO1.sensitivity;
 
-	msg.scaled_imu.time_boot_ms = msg.system_time.time_boot_ms;
+	imu->time_boot_ms = msg.system_time.time_boot_ms;
 
 	// m degree
-	msg.scaled_imu.xgyro = (int16_t)(msg.raw_imu.xgyro / sensitivity * 1000 + 0.5f);
-	msg.scaled_imu.ygyro = (int16_t)(msg.raw_imu.ygyro / sensitivity * 1000 + 0.5f);
-	msg.scaled_imu.zgyro = (int16_t)(msg.raw_imu.zgyro / sensitivity * 1000 + 0.5f);
+	imu->xgyro = (int16_t)(AHRS_degree2rad(msg.raw_imu.xgyro/sensitivity)*1000 + 0.5f);
+	imu->ygyro = (int16_t)(AHRS_degree2rad(msg.raw_imu.ygyro/sensitivity)*1000 + 0.5f);
+	imu->zgyro = (int16_t)(AHRS_degree2rad(msg.raw_imu.zgyro/sensitivity)*1000 + 0.5f);
 
 	return;
 }
+
 
 
 /*
@@ -115,14 +117,14 @@ void ICM42688P_convertGyroRaw2Dps(void)
  * @parm none
  * @retval none
  */
-void ICM42688P_convertAccRaw2G(void)
+void ICM42688P_convertAccRaw2G(SCALED_IMU* imu)
 {
 	float sensitivity = param.ins.ACC1.sensitivity;
 
 	// mG
-	msg.scaled_imu.xacc = (int16_t)(msg.raw_imu.xacc / sensitivity * 1000 + 0.5f);
-	msg.scaled_imu.yacc = (int16_t)(msg.raw_imu.yacc / sensitivity * 1000 + 0.5f);
-	msg.scaled_imu.zacc = (int16_t)(msg.raw_imu.zacc / sensitivity * 1000 + 0.5f);
+	imu->xacc = (int16_t)(msg.raw_imu.xacc/sensitivity * 1000 + 0.5f);
+	imu->yacc = (int16_t)(msg.raw_imu.yacc/sensitivity * 1000 + 0.5f);
+	imu->zacc = (int16_t)(msg.raw_imu.zacc/sensitivity * 1000 + 0.5f);
 
 	return;
 }
