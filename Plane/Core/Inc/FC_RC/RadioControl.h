@@ -19,12 +19,10 @@
 #include <FC_RC/Protocol/SRXL2/driver.h>
 #include <FC_RC/Protocol/PPM.h>
 
-#include <FC_Param/Param.h>
-#include <GCS_MAVLink/GCS_MAVLink.h>
-
 #include <FC_Basic/Buzzer/driver.h>
+#include <AP_Failsafe/driver.h>
 #include <FC_Servo/driver.h>
-#include <FC_Failsafe/Failsafe.h>
+#include <FC_Serial/MiniLink/driver.h>
 
 
 /* Variables -----------------------------------------------------------------*/

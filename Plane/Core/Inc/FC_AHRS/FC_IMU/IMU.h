@@ -1,5 +1,5 @@
 /*
- * FC_IMU/driver_IMU.h
+ * IMU.h
  *
  *  Created on: May 1, 2025
  *      Author: leecurrent04
@@ -11,13 +11,14 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
-#include <GCS_MAVLink/GCS_MAVLink.h>
+#include <main.h>
 
 #include <FC_AHRS/FC_IMU/driver.h>
 
 #include <FC_AHRS/FC_IMU/ICM42688P/driver.h>
 #include <FC_AHRS/FC_IMU/BMI323/driver.h>
+
+#include <FC_Serial/MiniLink/MiniLink.h>
 
 
 /* Variables -----------------------------------------------------------------*/
@@ -26,8 +27,7 @@ extern RAW_IMU raw_imu;
 
 
 /* Functions -----------------------------------------------------------------*/
-void KalmanFilter(void);
-void ComplementaryFilter(void);
+unsigned int IMU_getDataRaw(void);
 
 
 #endif /* INC_FC_IMU_IMU_H_ */

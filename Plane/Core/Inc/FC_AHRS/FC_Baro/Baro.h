@@ -14,20 +14,14 @@
 #include "main.h"
 #include <math.h>
 
-#include <GCS_MAVLink/GCS_MAVLink.h>
-
 #include <FC_AHRS/FC_Baro/driver.h>
 
 #include <FC_AHRS/FC_Baro/LPS22HH/driver.h>
+#include <FC_Serial/MiniLink/MiniLink.h>
 
 
 /* Variables -----------------------------------------------------------------*/
 extern SCALED_PRESSURE scaled_pressure;
-
-
-/* Functions -----------------------------------------------------------------*/
-int Baro_Initialization(void);
-unsigned int Baro_GetData(void);
 
 
 /* Functions 2 ---------------------------------------------------------------*/
