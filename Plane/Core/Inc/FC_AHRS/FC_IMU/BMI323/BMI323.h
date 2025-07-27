@@ -13,11 +13,12 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <stdint.h>
+#include <FC_Serial/MiniLink/MiniLink.h>
 
 
 /* Functions -----------------------------------------------------------------*/
 uint8_t BMI323_Initialization(void);
-uint8_t BMI323_GetData(void);
+uint8_t BMI323_GetData(SCALED_IMU* imu);
 
 
 #endif /* INC_FC_AHRS_FC_IMU_BMI323_BMI323_H_ */

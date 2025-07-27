@@ -72,15 +72,15 @@ uint8_t BMI323_Initialization(void)
  *         1 : isn't ready
  *         2 : sensor error
  */
-uint8_t BMI323_GetData(void)
+uint8_t BMI323_GetData(SCALED_IMU* imu)
 {
 	uint8_t retVal = BMI323_dataReady();
 	if(retVal) return retVal;
 
-	BMI323_get6AxisRawData();
+	BMI323_get6AxisRawData(imu);
 
-	BMI323_convertGyroRaw2Dps();
-	BMI323_convertAccRaw2G();
+	BMI323_convertGyroRaw2Dps(imu);
+	BMI323_convertAccRaw2G(imu);
 
 
 	return 0;
@@ -130,22 +130,22 @@ uint8_t BMI323_dataReady(void)
  * @detail SCALED_IMU2에 저장.
  * @retval None
  */
-void BMI323_get6AxisRawData()
+void BMI323_get6AxisRawData(SCALED_IMU* imu)
 {
 	uint16_t data[7] = {0,};
 
 	BMI323_readbytes(ACC_DATA_X, sizeof(data)/sizeof(data[0]), &data[0]);
 
-	msg.scaled_imu2.time_boot_ms = msg.system_time.time_boot_ms;
+	imu->time_boot_ms = msg.system_time.time_boot_ms;
 
-	msg.scaled_imu2.xacc = data[0];
-	msg.scaled_imu2.yacc = data[1];
-	msg.scaled_imu2.zacc = data[2];
-	msg.scaled_imu2.xgyro = data[3];
-	msg.scaled_imu2.ygyro = data[4];
-	msg.scaled_imu2.zgyro = data[5];
+	imu->xacc = data[0];
+	imu->yacc = data[1];
+	imu->zacc = data[2];
+	imu->xgyro = data[3];
+	imu->ygyro = data[4];
+	imu->zgyro = data[5];
 
-	msg.scaled_imu2.temperature = data[6];
+	imu->temperature = data[6];
 
 	return;
 }
@@ -158,7 +158,7 @@ void BMI323_get6AxisRawData()
  * @parm none
  * @retval none
  */
-void BMI323_convertGyroRaw2Dps(void)
+void BMI323_convertGyroRaw2Dps(SCALED_IMU* imu)
 {
 //	float sensitivity;
 //
@@ -180,7 +180,7 @@ void BMI323_convertGyroRaw2Dps(void)
  * @parm none
  * @retval none
  */
-void BMI323_convertAccRaw2G(void)
+void BMI323_convertAccRaw2G(SCALED_IMU* imu)
 {
 //	float sensitivity;
 //

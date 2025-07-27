@@ -12,9 +12,9 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <FC_AHRS/FC_IMU/BMI323/BMI323.h>
-#include <main.h>
+#include <stdint.h>
 #include <FC_Basic/SPI.h>
+#include <FC_AHRS/FC_IMU/BMI323/BMI323.h>
 
 #include <FC_AHRS/FC_IMU/BMI323/register_map.h>
 
@@ -32,9 +32,9 @@
 uint16_t BMI323_checkValue(uint8_t addr, uint16_t value);
 uint16_t BMI323_checkNBit(uint8_t addr, uint8_t n);
 uint8_t BMI323_dataReady(void);
-void BMI323_get6AxisRawData(void);
-void BMI323_convertGyroRaw2Dps(void);
-void BMI323_convertAccRaw2G(void);
+void BMI323_get6AxisRawData(SCALED_IMU* imu);
+void BMI323_convertGyroRaw2Dps(SCALED_IMU* imu);
+void BMI323_convertAccRaw2G(SCALED_IMU* imu);
 
 
 /* Functions 2 ---------------------------------------------------------------*/

@@ -35,7 +35,7 @@ extern int32_t gyro_x_offset, gyro_y_offset, gyro_z_offset;
 void ICM42688P_convertGyroRaw2Dps(SCALED_IMU* imu);
 void ICM42688P_convertAccRaw2G(SCALED_IMU* imu);
 int ICM42688P_dataReady(void);
-int ICM42688P_get6AxisRawData(void);
+int ICM42688P_get6AxisRawData(RAW_IMU* imu);
 int ICM42688P_getSensitivity(void);
 
 

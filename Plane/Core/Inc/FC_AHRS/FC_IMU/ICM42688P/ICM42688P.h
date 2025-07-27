@@ -10,9 +10,14 @@
 #define INC_FC_IMU_ICM42688P_DRIVER_H_
 
 
+/* Includes ------------------------------------------------------------------*/
+#include <stdint.h>
+#include <FC_Serial/MiniLink/MiniLink.h>
+
+
 /* Functions -----------------------------------------------------------------*/
 uint8_t ICM42688P_Initialization(void);
-uint8_t ICM42688P_GetData(void);
+uint8_t ICM42688P_GetData(SCALED_IMU* imu);
 uint8_t ICM42688P_CalibrateOffset(void);
 
 

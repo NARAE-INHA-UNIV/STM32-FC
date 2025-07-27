@@ -15,22 +15,24 @@
 #include <FC_Basic/SPI.h>
 
 #include <FC_AHRS/FC_Magnetic/LIS2MDL/LIS2MDL.h>
-
 #include <FC_AHRS/FC_Magnetic/LIS2MDL/register_map.h>
 
-#include <FC_Serial/MiniLink/MiniLink_module.h>
+#include <FC_Serial/MiniLink/MiniLink.h>
 
 
 /* Macros --------------------------------------------------------------------*/
 #define DEVICE_SPI (SPI3)
+
+#define SENSITIVITY 1.5f
 
 
 /* Variables -----------------------------------------------------------------*/
 
 
 /* Functions 1 ---------------------------------------------------------------*/
-void LIS2MDL_getRawData(void);
 uint8_t LIS2MDL_dataReady(void);
+int LIS2MDL_convertRaw2Gauss(SCALED_IMU* imu);
+int LIS2MDL_getRawData(RAW_IMU* imu);
 
 
 /* Functions 2 ---------------------------------------------------------------*/

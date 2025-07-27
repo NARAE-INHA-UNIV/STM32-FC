@@ -31,6 +31,7 @@ typedef struct __attribute__((packed)){
 	SERVO_OUTPUT_RAW servo_output_raw;			// 36
 	RC_CHANNELS RC_channels;					// 65
 	SCALED_IMU2 scaled_imu2;					// 116
+	SCALED_IMU3 scaled_imu3;					// 129
 
 	// Development
 	AIRSPEED airspeed1;

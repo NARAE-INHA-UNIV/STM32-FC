@@ -21,7 +21,7 @@ uint8_t MAG_Initialization(void)
 
 uint8_t MAG_GetData(void)
 {
-	LIS2MDL_GetData();
+	LIS2MDL_GetData((SCALED_IMU*)&msg.scaled_imu);
 	return 0;
 }
 

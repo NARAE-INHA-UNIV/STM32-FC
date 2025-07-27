@@ -57,7 +57,8 @@ extern JumboPakcet jumboTx;
     X(30,  attitude) \
     X(36,  servo_output_raw) \
     X(65,  RC_channels) \
-    X(116, scaled_imu2)
+    X(116, scaled_imu2)	\
+    X(129, scaled_imu3)	\
 
 
 /* Functions -----------------------------------------------------------------*/

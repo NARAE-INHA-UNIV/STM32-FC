@@ -62,15 +62,17 @@ uint8_t ICM42688P_Initialization(void)
  * @detail 자이로, 가속도 및 온도 데이터 로딩, 물리량 변환
  * @retval 0 : 완료
  */
-uint8_t ICM42688P_GetData(void)
+uint8_t ICM42688P_GetData(SCALED_IMU* imu)
 {
 	// Check data is ready
 	if(ICM42688P_dataReady()) return 1;
 
-	ICM42688P_get6AxisRawData();
+	ICM42688P_get6AxisRawData(&msg.raw_imu);
 
-	ICM42688P_convertGyroRaw2Dps(&msg.scaled_imu);
-	ICM42688P_convertAccRaw2G(&msg.scaled_imu);
+	imu->time_boot_ms = msg.system_time.time_boot_ms;
+
+	ICM42688P_convertGyroRaw2Dps(imu);
+	ICM42688P_convertAccRaw2G(imu);
 
 	return 0;
 }
@@ -97,8 +99,6 @@ uint8_t ICM42688P_CalibrateOffset(void)
 void ICM42688P_convertGyroRaw2Dps(SCALED_IMU* imu)
 {
 	float sensitivity = param.ins.GYRO1.sensitivity;
-
-	imu->time_boot_ms = msg.system_time.time_boot_ms;
 
 	// m degree
 	imu->xgyro = (int16_t)(DEG2RAD(msg.raw_imu.xgyro/sensitivity)*1000 + 0.5f);
@@ -135,20 +135,21 @@ void ICM42688P_convertAccRaw2G(SCALED_IMU* imu)
  * @detail RAW_IMU에 저장
  * @retval 0
  */
-int ICM42688P_get6AxisRawData()
+int ICM42688P_get6AxisRawData(RAW_IMU* imu)
 {
 	uint8_t data[14];
 
 	ICM42688P_readbytes(TEMP_DATA1, sizeof(data)/sizeof(data[0]), data);
 
-	msg.raw_imu.time_usec = msg.system_time.time_unix_usec;
-	msg.raw_imu.temperature = (data[0] << 8) | data[1];
-	msg.raw_imu.xacc = (data[2] << 8) | data[3];
-	msg.raw_imu.yacc = (data[4] << 8) | data[5];
-	msg.raw_imu.zacc = ((data[6] << 8) | data[7]);
-	msg.raw_imu.xgyro = ((data[8] << 8) | data[9]);
-	msg.raw_imu.ygyro = ((data[10] << 8) | data[11]);
-	msg.raw_imu.zgyro = ((data[12] << 8) | data[13]);
+	imu->time_usec = msg.system_time.time_unix_usec;
+	imu->temperature = (data[0] << 8) | data[1];
+	imu->xacc = (data[2] << 8) | data[3];
+	imu->yacc = (data[4] << 8) | data[5];
+	imu->zacc = ((data[6] << 8) | data[7]);
+	imu->xgyro = ((data[8] << 8) | data[9]);
+	imu->ygyro = ((data[10] << 8) | data[11]);
+	imu->zgyro = ((data[12] << 8) | data[13]);
+	imu->id = 0;
 
 	return 0;
 }

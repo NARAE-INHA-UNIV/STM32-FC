@@ -42,7 +42,8 @@ int AHRS_Initialization(void)
 	err |= IMU_Initialization()<<1;
 	err |= Baro_Initialization();
 
-	Magwick_Initialization(&msg.attitude_quaternion);
+	LPF_init();
+//	Magwick_Initialization(&msg.attitude_quaternion);
 
 	/*
 	// Kalman 초기화
@@ -89,10 +90,10 @@ int AHRS_GetData(void)
     gyro.y = imu->ygyro/1000.0f;
     gyro.z = imu->zgyro/1000.0f;
 
-    // 지자계 센서값 → 물리량 변환(uT)
-    mag.x = imu->xmag * 0.6f;
-    mag.y = imu->ymag * 0.6f;
-    mag.z = imu->zmag * 0.6f;
+    // 지자계 센서값 → 물리량 변환(m gauss -> uT)
+    mag.x = imu->xmag * 0.1f;
+    mag.y = imu->ymag * 0.1f;
+    mag.z = imu->zmag * 0.1f;
 
 
     // LPF 업데이트
@@ -113,7 +114,7 @@ int AHRS_GetData(void)
     angQ = AHRS_NormalizeQuaternion(angQ);
 
     angQ = LKF_Update(gyro, angQ, dt);
-    msg.attitude.time_boot_ms = msg.system_time.time_boot_ms;
+    msg.attitude_quaternion.time_boot_ms = msg.system_time.time_boot_ms;
     msg.attitude_quaternion.q1 = angQ.q0;
     msg.attitude_quaternion.q2 = angQ.q1;
     msg.attitude_quaternion.q3 = angQ.q2;
