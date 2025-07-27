@@ -30,7 +30,9 @@
 - Src : Source code (.c)
 - Inc : header (.h)
   - {Module Name}.h
-  - driver.h
+  - {Module Name}_module.h
+  - {Module Name}_common.h
+  - {Module Name}_type.h
 
 {Module Name} 앞의 접두사의 의미 :
 - `FC` : 보드 내부 HW 관리 (UART, RC, Servo etc.)
