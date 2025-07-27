@@ -133,12 +133,34 @@ void AHRS_computeVelocity(float dt)
 
 
 /* Functions (common.h) ------------------------------------------------------*/
-float AHRS_degree2rad(float value)
+// 오일러 각(roll, pitch, yaw)을 쿼터니언(q0_mea, q1_mea, q2_mea, q3_mea)으로 변환
+Quaternion AHRS_Euler2Quaternion(const Euler* angle)
 {
-	return (value * (M_PI / 180.0));
+	Quaternion ret;
+	Euler a;
+	a.roll = angle->roll / 2;
+	a.pitch = angle->pitch / 2;
+	a.yaw = angle->yaw / 2;
+
+    ret.q0 = cos(a.roll) * cos(a.pitch) * cos(a.yaw) + sin(a.roll) * sin(a.pitch) * sin(a.yaw);
+    ret.q1 = sin(a.roll) * cos(a.pitch) * cos(a.yaw) - cos(a.roll) * sin(a.pitch) * sin(a.yaw);
+    ret.q2 = cos(a.roll) * sin(a.pitch) * cos(a.yaw) + sin(a.roll) * cos(a.pitch) * sin(a.yaw);
+    ret.q3 = cos(a.roll) * cos(a.pitch) * sin(a.yaw) - sin(a.roll) * sin(a.pitch) * cos(a.yaw);
+
+    return ret;
 }
 
-float AHRS_rad2degree(float value)
+// 쿼터니언 정규화
+Quaternion AHRS_NormalizeQuaternion(const Quaternion* ori)
 {
-	return (value * (180.0 / M_PI));
+	Quaternion ret;
+#define POW(x) (x*x)
+    float norm = sqrtf(POW(ori->q0)+POW(ori->q1)+POW(ori->q2)+POW(ori->q3));
+#undef POW(x)
+    ret.q0 = ori->q0 / norm;
+    ret.q1 = ori->q1 / norm;
+    ret.q2 = ori->q2 / norm;
+    ret.q3 = ori->q3 / norm;
+
+    return ret;
 }

@@ -13,6 +13,8 @@
 /* Includes ------------------------------------------------------------------*/
 
 /* Functions -----------------------------------------------------------------*/
+void mat_copy(const float *A, float *C, int rows, int cols);
+
 void mat_add(const float *A, const float *B, float *C, int rows, int cols);
 void mat_sub(const float *A, const float *B, float *C, int rows, int cols);
 void mat_mul(const float *A, const float *B, float *C, int rowsA, int colsA, int colsB);

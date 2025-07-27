@@ -9,10 +9,11 @@
 #ifndef INC_FC_AHRS_AP_FILTER_LKF_DRIVER_H_
 #define INC_FC_AHRS_AP_FILTER_LKF_DRIVER_H_
 
+#include <FC_AHRS/AHRS_common.h>
 #include <FC_Serial/MiniLink/driver.h>
 
 
-void LKF_Update(SCALED_IMU* imu, float dt);
+Euler LKF_Update(SCALED_IMU* imu, float dt);
 
 
 #endif /* INC_FC_AHRS_AP_FILTER_LKF_DRIVER_H_ */

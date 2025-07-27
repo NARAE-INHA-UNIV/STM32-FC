@@ -101,9 +101,9 @@ void ICM42688P_convertGyroRaw2Dps(SCALED_IMU* imu)
 	imu->time_boot_ms = msg.system_time.time_boot_ms;
 
 	// m degree
-	imu->xgyro = (int16_t)(AHRS_degree2rad(msg.raw_imu.xgyro/sensitivity)*1000 + 0.5f);
-	imu->ygyro = (int16_t)(AHRS_degree2rad(msg.raw_imu.ygyro/sensitivity)*1000 + 0.5f);
-	imu->zgyro = (int16_t)(AHRS_degree2rad(msg.raw_imu.zgyro/sensitivity)*1000 + 0.5f);
+	imu->xgyro = (int16_t)(DEG2RAD(msg.raw_imu.xgyro/sensitivity)*1000 + 0.5f);
+	imu->ygyro = (int16_t)(DEG2RAD(msg.raw_imu.ygyro/sensitivity)*1000 + 0.5f);
+	imu->zgyro = (int16_t)(DEG2RAD(msg.raw_imu.zgyro/sensitivity)*1000 + 0.5f);
 
 	return;
 }
