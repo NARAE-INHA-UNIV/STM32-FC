@@ -41,6 +41,7 @@ extern float imu_pitch;
 
 /* Functions -----------------------------------------------------------------*/
 void AHRS_computeVelocity(float dt);
+float AHRS_calculateYAW(Vector3D mag, Euler angle);
 
 
 

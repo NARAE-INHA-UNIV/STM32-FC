@@ -39,8 +39,9 @@ typedef struct{
 #define DEG2RAD(x) (x * (M_PI / 180.0))
 #define RAD2DEG(x) (x * (180.0 / M_PI))
 
-Quaternion AHRS_Euler2Quaternion(const Euler* angle);
-Quaternion AHRS_NormalizeQuaternion(const Quaternion* ori);
+Quaternion AHRS_Euler2Quaternion(const Euler ori);
+Euler AHRS_Quaternion2Euler(const Quaternion ori);
+Quaternion AHRS_NormalizeQuaternion(const Quaternion ori);
 
 
 #endif /* INC_FC_AHRS_AHRS_COMMON_H_ */
