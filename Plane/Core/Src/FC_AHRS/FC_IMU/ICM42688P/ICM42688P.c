@@ -89,33 +89,41 @@ uint8_t ICM42688P_GetData(void)
  */
 uint8_t ICM42688P_CalibrateOffset(int samples)
 {
-	SCALED_IMU* imu = icm42688p;
-
-	// Remove Gyro X offset
-	int16_t accel_raw_data[3] = {0,};
-	int16_t gyro_raw_data[3] = {0,};
+	int16_t offset[6] = {0,};
 
 	for(int cnt=0; cnt<samples;)
 	{
-		if(ICM42688P_GetData()){
+		RAW_IMU imu;
+		if(ICM42688P_get6AxisRawData(&imu)){
 			continue;
 		}
-		accel_raw_data[0] += imu->xacc;
-		accel_raw_data[1] += imu->yacc;
-		accel_raw_data[2] += imu->zacc;
-		gyro_raw_data[0] += imu->xgyro;
-		gyro_raw_data[1] += imu->ygyro;
-		gyro_raw_data[2] += imu->zgyro;
+		offset[0] += imu.xacc;
+		offset[1] += imu.yacc;
+		offset[2] += imu.zacc;
+		offset[3] += imu.xgyro;
+		offset[4] += imu.ygyro;
+		offset[5] += imu.zgyro;
 
 		cnt++;
 	}
 
-	accel_raw_data[0] /= samples;
-	accel_raw_data[1] /= samples;
-	accel_raw_data[2] /= samples;
-	gyro_raw_data[0] /= samples;
-	gyro_raw_data[1] /= samples;
-	gyro_raw_data[2] /= samples;
+	offset[0] *= (-1/samples);
+	offset[1] *= (-1/samples);
+	offset[2] *= (-1/samples);
+	offset[3] *= (-1/samples);
+	offset[4] *= (-1/samples);
+	offset[5] *= (-1/samples);
+
+	ICM42688P_writebyte(OFFSET_USER0, offset[0]&0xFF);
+	ICM42688P_writebyte(OFFSET_USER1, ( ((offset[0]>>8)&0xF) | ((offset[1]>>8)&0xF)<<4) );
+	ICM42688P_writebyte(OFFSET_USER2, offset[1]&0xFF);
+	ICM42688P_writebyte(OFFSET_USER3, offset[2]&0xFF);
+	ICM42688P_writebyte(OFFSET_USER4, ( ((offset[2]>>8)&0xF) | ((offset[3]>>8)&0xF)<<4) );
+	ICM42688P_writebyte(OFFSET_USER5, offset[3]&0xFF);
+	ICM42688P_writebyte(OFFSET_USER6, offset[4]&0xFF);
+	ICM42688P_writebyte(OFFSET_USER7, ( ((offset[4]>>8)&0xF) | ((offset[5]>>8)&0xF)<<4));
+	ICM42688P_writebyte(OFFSET_USER8, offset[5]&0xFF);
+
 
 	return 0;
 }

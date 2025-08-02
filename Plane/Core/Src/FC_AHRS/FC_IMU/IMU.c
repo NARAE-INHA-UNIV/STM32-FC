@@ -29,6 +29,7 @@ uint8_t IMU_Initialization(void)
 	err |= (ICM42688P_Initialization((SCALED_IMU *)&msg.scaled_imu)<<0);
 	err |= (BMI323_Initialization((SCALED_IMU*)&msg.scaled_imu2)<<1);
 
+	IMU_CalibrateOffset();
 	return err;
 }
 

@@ -11,8 +11,10 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <FC_Basic/LED/LED.h>
 #include <FC_Serial/Serial_module.h>
+
+#include <FC_Basic/LED/LED.h>
+#include <FC_AHRS/FC_IMU/IMU.h>
 
 
 /* Variables -----------------------------------------------------------------*/
@@ -50,7 +52,7 @@ int SERIAL_Handler()
 		LED_SetRed(2);
 		break;
 	case 2:
-		LED_SetYellow(serialRX.payload[0]);
+		IMU_CalibrateOffset();
 		break;
 	case 3:
 		LED_SetBlue(serialRX.payload[0]);
