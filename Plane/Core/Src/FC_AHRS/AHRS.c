@@ -38,9 +38,15 @@ float roll_offset = 0.0f;
 int AHRS_Initialization(void)
 {
 	uint8_t err = 0;
-	err |= MAG_Initialization()<<0;		// Exec first
-	err |= IMU_Initialization()<<1;
-	err |= Baro_Initialization();
+
+	LL_GPIO_SetOutputPin(GYRO1_NSS_GPIO_Port, GYRO1_NSS_Pin);
+	LL_GPIO_SetOutputPin(GYRO2_NSS_GPIO_Port, GYRO2_NSS_Pin);
+	LL_GPIO_SetOutputPin(MAG_NSS_GPIO_Port, MAG_NSS_Pin);
+	LL_GPIO_SetOutputPin(BARO_NSS_GPIO_Port, BARO_NSS_Pin);
+
+	err |= IMU_Initialization()<<0;
+	err |= MAG_Initialization()<<2;
+	err |= Baro_Initialization()<<4;
 
 	LPF_init();
 //	Magwick_Initialization(&msg.attitude_quaternion);

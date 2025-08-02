@@ -12,7 +12,6 @@
 
 
 /* Macros --------------------------------------------------------------------*/
-#define OFFSET_SAMPLE_COUNT 100
 
 
 /* Functions -----------------------------------------------------------------*/
@@ -26,11 +25,11 @@
  */
 uint8_t IMU_Initialization(void)
 {
-	uint8_t temp = 0;
-	temp |= (ICM42688P_Initialization()<<0);
-	temp |= (BMI323_Initialization()<<1);
+	uint8_t err = 0;
+	err |= (ICM42688P_Initialization((SCALED_IMU *)&msg.scaled_imu)<<0);
+	err |= (BMI323_Initialization((SCALED_IMU*)&msg.scaled_imu2)<<1);
 
-	return 0;
+	return err;
 }
 
 
@@ -57,23 +56,9 @@ uint8_t IMU_GetData(void)
  * @parm none
  * @retval none
  */
-void IMU_CalculateOffset(void)
+void IMU_CalibrateOffset(void)
 {
-	float roll_sum = 0.0f;
-	float pitch_sum = 0.0f;
-
-	for (int i = 0; i < OFFSET_SAMPLE_COUNT; i++)
-	{
-		IMU_getDataRaw();
-
-//		roll_sum  += imu_roll;
-//		pitch_sum += imu_pitch;
-
-		HAL_Delay(10);      // 약 1초 동안 평균
-	}
-
-//	roll_offset = roll_sum / OFFSET_SAMPLE_COUNT;
-//	pitch_offset = pitch_sum / OFFSET_SAMPLE_COUNT;
+	ICM42688P_CalibrateOffset(10);
 
 	return;
 }
@@ -93,15 +78,15 @@ unsigned int IMU_getDataRaw(void)
 	uint16_t retVal = 0;
 
 	// SCALED_IMU
-	retVal = ICM42688P_GetData((SCALED_IMU*)&msg.scaled_imu);
+	retVal = (ICM42688P_GetData() << 0);
 
 	// SCALED_IMU2
-	retVal = (BMI323_GetData((SCALED_IMU*)&msg.scaled_imu2) << 4);
+	retVal = (BMI323_GetData() << 4);
 
 
 	// SCALED_IMU3
 
-	return 0;
+	return retVal;
 }
 
 
