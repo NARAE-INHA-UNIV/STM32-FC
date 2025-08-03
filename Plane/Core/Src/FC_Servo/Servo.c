@@ -257,9 +257,29 @@ void calculateServoOutput(void)
 			continue;
 		}
 
-		msg.servo_output_raw.servo_raw[i] = msg.RC_channels.value[i];
+		msg.servo_output_raw.servo_raw[i] = Servo_nomalize(msg.RC_channels.value[i]);
 		// servo_output_raw.servo_raw[i] = scaled_imu + RC_channels 를 기반으로 요리조리 계산해서 결정.
 	}
+
+		PARAM_RC_MAP *map = &param.rc.map;
+
+		const uint16_t thr = msg.RC_channels.value[map->THR];
+		const uint16_t pit = msg.RC_channels.value[map->PIT];
+		const uint16_t rol = msg.RC_channels.value[map->ROL];
+		const uint16_t yaw = msg.RC_channels.value[map->YAW];
+		const int16_t ang_r = msg.attitude.roll * 10;
+		const int16_t ang_p = msg.attitude.pitch * 10;
+		const int16_t ang_y = msg.attitude.yaw * 10;
+
+		msg.servo_output_raw.servo_raw[0] = 1000 + (thr-1000)*1.0 - (pit-1500)*0.6 - (rol-1500)*0.6 + (yaw-1500)*0.6 + ang_r - ang_p;
+		msg.servo_output_raw.servo_raw[1] = 1000 + (thr-1000)*1.0 + (pit-1500)*0.6 + (rol-1500)*0.6 + (yaw-1500)*0.6 - ang_r + ang_p;
+		msg.servo_output_raw.servo_raw[2] = 1000 + (thr-1000)*1.0 - (pit-1500)*0.6 + (rol-1500)*0.6 - (yaw-1500)*0.6 - ang_r - ang_p;
+		msg.servo_output_raw.servo_raw[3] = 1000 + (thr-1000)*1.0 + (pit-1500)*0.6 - (rol-1500)*0.6 - (yaw-1500)*0.6 + ang_r + ang_p;
+
+		msg.servo_output_raw.servo_raw[0] = Servo_nomalize(msg.servo_output_raw.servo_raw[0]);
+		msg.servo_output_raw.servo_raw[1] = Servo_nomalize(msg.servo_output_raw.servo_raw[1]);
+		msg.servo_output_raw.servo_raw[2] = Servo_nomalize(msg.servo_output_raw.servo_raw[2]);
+		msg.servo_output_raw.servo_raw[3] = Servo_nomalize(msg.servo_output_raw.servo_raw[3]);
 
 	return;
 }
