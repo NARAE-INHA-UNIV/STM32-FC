@@ -139,7 +139,7 @@ void USB_CDC_RxHandler(uint8_t* Buf, uint32_t Len)
 	serialRX.header.length = Buf[1]-7;
 	serialRX.header.seq = Buf[2];
 	serialRX.header.msgId = (uint16_t)Buf[4] << 8 | Buf[3];
-	serialRX.payload = (uint8_t*)malloc((serialRX.header.length-7)*sizeof(uint8_t));
+	serialRX.payload = (uint8_t*)malloc((serialRX.header.length)*sizeof(uint8_t));
 	memcpy(serialRX.payload, &Buf[5], serialRX.header.length);
 
 	serialRX.flag.ack = 1;
