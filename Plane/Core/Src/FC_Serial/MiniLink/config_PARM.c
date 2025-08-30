@@ -24,8 +24,8 @@ void setRC_PPM(void);
 
 int PARM_load(void){
 	setRC_None();
-//	setRC_SRXL2();
-	setRC_PPM();
+	setRC_SRXL2();
+//	setRC_PPM();
 
 	param.servo.AUTO_TRIM = 0;
 	param.servo.DSHOT_ESC = 0;
