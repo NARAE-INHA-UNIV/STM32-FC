@@ -11,13 +11,14 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <FC_AHRS/FC_IMU/BMI323/BMI323.h>
-#include <main.h>
+#include <stdint.h>
 
-#include <FC_AHRS/FC_IMU/ICM42688P/ICM42688P.h>
 #include <FC_AHRS/FC_IMU/IMU.h>
 
-#include <FC_Serial/MiniLink/MiniLink_module.h>
+#include <FC_AHRS/FC_IMU/ICM42688P/ICM42688P.h>
+#include <FC_AHRS/FC_IMU/BMI323/BMI323.h>
+
+#include <FC_Serial/MiniLink/MiniLink.h>
 
 
 /* Variables -----------------------------------------------------------------*/

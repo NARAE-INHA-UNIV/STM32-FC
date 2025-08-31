@@ -17,8 +17,8 @@
 
 
 /* Functions -----------------------------------------------------------------*/
-uint8_t BMI323_Initialization(void);
-uint8_t BMI323_GetData(SCALED_IMU* imu);
+uint8_t BMI323_Initialization(SCALED_IMU* p);
+uint8_t BMI323_GetData(void);
 
 
 #endif /* INC_FC_AHRS_FC_IMU_BMI323_BMI323_H_ */

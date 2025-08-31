@@ -11,8 +11,10 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <FC_Basic/LED/LED.h>
 #include <FC_Serial/Serial_module.h>
+
+#include <FC_Basic/LED/LED.h>
+#include <FC_AHRS/FC_IMU/IMU.h>
 
 
 /* Variables -----------------------------------------------------------------*/
@@ -43,27 +45,47 @@ int SERIAL_Handler()
 		MiniLink_Send();
 		return 0;
 	}
+	if(serialRX.flag.nack == 1)
+	{
+		// re-ask
+		return 0;
+	}
 
-	switch(serialRX.header.msgId )
+	serialRX.flag.ack = 0;
+
+	switch(serialRX.header.msgId)
 	{
 	case 1:
 		LED_SetRed(2);
 		break;
 	case 2:
-		LED_SetYellow(serialRX.payload[0]);
+		IMU_CalibrateOffset();
 		break;
 	case 3:
 		LED_SetBlue(serialRX.payload[0]);
 		break;
-	}
+	case 29:
+		float *tmp = (float*)serialRX.payload;
+		msg.scaled_pressure.time_boot_ms = serialRX.header.length;
+		msg.scaled_pressure.press_abs = tmp[0];
+		msg.scaled_pressure.press_diff = tmp[1];
 
-	serialRX.flag.ack = 0;
-	free(serialRX.payload);
+		break;
+	}
 
 	return 0;
 }
 
-extern uint16_t calculate_crc(const uint8_t *data, uint8_t len);
+
+/*
+ * @brief 수신 인터럽트 IRQ2 (UART 전용)
+ * @detail
+ * 		USB_CDC는 USB_CDC_RxHandler(); 참고
+ * 		uint8_t *p (malloc) 메모리 할당 주의
+ * @param
+ * 		uint8_t serialNumber : Telem 1/2, GPS 1/2 등을 알리는 번호
+ * 		uint8_t data : 1 byte rx data
+ */
 void SERIAL_receivedIRQ2(uint8_t serialNumber, uint8_t data)
 {
 	if(2 != param.serial[serialNumber].protocol)
@@ -87,35 +109,56 @@ void SERIAL_receivedIRQ2(uint8_t serialNumber, uint8_t data)
 	default :
 		p[cnt-1] = data;
 
-		if(cnt>=p[1])
-		{
-			uint8_t len = p[1];
-			uint16_t crc = (uint16_t)p[len-2] << 8 | p[len-1];
-
-			if(crc != calculate_crc(p, len)){
-				free(p);
-				cnt = 0;
-				return;
-			}
-
-			if(serialRX.payload != 0){
-				free(serialRX.payload);
-			}
-			serialRX.header.length = p[1]-7;
-			serialRX.header.seq = p[2];
-			serialRX.header.msgId = (uint16_t)p[3] << 8 | p[4];
-			serialRX.payload = (uint8_t*)malloc((serialRX.header.length)*sizeof(uint8_t));
-			memcpy(serialRX.payload, &p[5], serialRX.header.length);
-
-			free(p);
-			cnt = 0;
-		}
 		break;
+	}
+
+	// all byte recevied
+	if(cnt>=p[1])
+	{
+		cnt = 0;
+
+		uint8_t len = p[1];
+		SERIAL_receviedParser(p, len);
+
+		free(p);
 	}
 
 	return;
 }
 
+
+/*
+ * @brief 수신 후 값 파싱
+ * @detail
+ * 		uint8_t* serial.payload (malloc) 주의
+ * @param
+ * 		uint8_t serialNumber : Telem 1/2, GPS 1/2 등을 알리는 번호
+ * 		uint8_t data : 1 byte rx data
+ */
+void SERIAL_receviedParser(uint8_t* Buf, uint32_t Len)
+{
+	serialRX.flag.ack = 1;
+	serialRX.flag.nack = 0;
+
+	uint16_t crc = ((uint16_t)Buf[Len -2] << 8 | Buf[Len -1]);
+
+	if(crc != calculate_crc(&Buf[0], (uint8_t)Len)){
+		serialRX.flag.nack = 1;
+		return;
+	}
+
+	if(serialRX.payload != NULL){
+		free(serialRX.payload);
+		serialRX.payload = NULL;
+	}
+
+	serialRX.header.length = Buf[1]-7;
+	serialRX.header.seq = Buf[2];
+	serialRX.header.msgId = (uint16_t)Buf[4] << 8 | Buf[3];
+
+	serialRX.payload = (uint8_t*)malloc((serialRX.header.length)*sizeof(uint8_t));
+	memcpy(serialRX.payload, &Buf[5], serialRX.header.length);
+}
 
 
 /* USB Functions -------------------------------------------------------------*/
@@ -124,25 +167,7 @@ void USB_CDC_RxHandler(uint8_t* Buf, uint32_t Len)
 	if(Len<3 || Len > 255) return;
 	if(Buf[0] != LOG_MAVLINK_HEADER) return;
 
-	uint16_t crc = ((uint16_t)Buf[Len -2] << 8 | Buf[Len -1]);
-
-	if(crc != calculate_crc(&Buf[0], (uint8_t)Len)){
-		// NACK
-		return;
-	}
-
-	if(serialRX.payload != 0){
-		free(serialRX.payload);
-	}
-
-
-	serialRX.header.length = Buf[1]-7;
-	serialRX.header.seq = Buf[2];
-	serialRX.header.msgId = (uint16_t)Buf[4] << 8 | Buf[3];
-	serialRX.payload = (uint8_t*)malloc((serialRX.header.length)*sizeof(uint8_t));
-	memcpy(serialRX.payload, &Buf[5], serialRX.header.length);
-
-	serialRX.flag.ack = 1;
-
+	SERIAL_receviedParser(Buf, Len);
 	return;
 }
+

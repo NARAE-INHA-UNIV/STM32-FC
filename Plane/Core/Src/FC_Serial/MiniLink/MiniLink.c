@@ -38,13 +38,6 @@ int MiniLink_Send()
 
 /* Functions 1 ---------------------------------------------------------------*/
 /*
- * cal crc는 SRXL2.c에 존재
- * 추후 RadioControl.c로 이전
- * SRXL2.c 코드 정리
- * 	- readByte 내에 cal crc 수행 후 타입에 따라 리턴
- */
-extern uint16_t calculate_crc(const uint8_t *data, uint8_t len);
-/*
  * @brief log msg를 packet으로 묶음
  * @detail 헤더 및 패킷의 길이 계산, CRC 입력
  * @parm msgId : msg inedex

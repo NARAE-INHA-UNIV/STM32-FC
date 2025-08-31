@@ -1,5 +1,5 @@
 /*
- * SERVO.h
+ * Servo_module.h
  *
  *  Created on: Mar 26, 2025
  *      Author: leecurrent04
@@ -11,10 +11,11 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <FC_Serial/MiniLink/MiniLink.h>
 #include <FC_Servo/Servo.h>
+
 #include <main.h>
 
+#include <FC_Serial/MiniLink/MiniLink.h>
 
 
 /* Variables -----------------------------------------------------------------*/
@@ -31,6 +32,8 @@ void calculateServoOutput(void);
 void setPWM(void);
 int setPWM2Channel(uint8_t ch, uint16_t value);
 int setPWM2Channels(uint8_t *pCh, uint8_t len, uint16_t value);
+
+uint16_t Servo_nomalize(uint16_t val);
 
 
 

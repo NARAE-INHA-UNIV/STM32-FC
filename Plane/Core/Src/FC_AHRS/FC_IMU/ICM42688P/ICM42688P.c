@@ -13,7 +13,8 @@
 
 
 /* Variables -----------------------------------------------------------------*/
-int32_t gyro_x_offset, gyro_y_offset, gyro_z_offset; // To remove offset
+// 출력 결과를 저장하는 변수의 주소를 저장.
+SCALED_IMU* icm42688p;
 
 
 /* Functions -----------------------------------------------------------------*/
@@ -23,8 +24,10 @@ int32_t gyro_x_offset, gyro_y_offset, gyro_z_offset; // To remove offset
  * @retval 0 : 완료
  * @retval 1 : 센서 없음
  */
-uint8_t ICM42688P_Initialization(void)
+uint8_t ICM42688P_Initialization(SCALED_IMU* p)
 {
+	icm42688p = p;
+
 	SPI_Enable(DEVICE_SPI);
 	CHIP_DESELECT();
 
@@ -62,27 +65,66 @@ uint8_t ICM42688P_Initialization(void)
  * @detail 자이로, 가속도 및 온도 데이터 로딩, 물리량 변환
  * @retval 0 : 완료
  */
-uint8_t ICM42688P_GetData(SCALED_IMU* imu)
+uint8_t ICM42688P_GetData(void)
 {
 	// Check data is ready
 	if(ICM42688P_dataReady()) return 1;
 
 	ICM42688P_get6AxisRawData(&msg.raw_imu);
 
-	imu->time_boot_ms = msg.system_time.time_boot_ms;
+	icm42688p->time_boot_ms = msg.system_time.time_boot_ms;
 
-	ICM42688P_convertGyroRaw2Dps(imu);
-	ICM42688P_convertAccRaw2G(imu);
+	ICM42688P_convertGyroRaw2Dps();
+	ICM42688P_convertAccRaw2G();
 
 	return 0;
 }
 
 
-uint8_t ICM42688P_CalibrateOffset(void)
+/*
+ * @brief Offset 캘리브레이션
+ * @detail
+ * @param none
+ * @retval none
+ */
+uint8_t ICM42688P_CalibrateOffset(int samples)
 {
-	// Remove Gyro X offset
-	int16_t accel_raw_data[3] = {0};
-	int16_t gyro_raw_data[3] = {0};
+	int16_t offset[6] = {0,};
+
+	for(int cnt=0; cnt<samples;)
+	{
+		RAW_IMU imu;
+		if(ICM42688P_get6AxisRawData(&imu)){
+			continue;
+		}
+		offset[0] += imu.xacc;
+		offset[1] += imu.yacc;
+		offset[2] += imu.zacc;
+		offset[3] += imu.xgyro;
+		offset[4] += imu.ygyro;
+		offset[5] += imu.zgyro;
+
+		cnt++;
+	}
+
+	offset[0] *= (-1/samples);
+	offset[1] *= (-1/samples);
+	offset[2] *= (-1/samples);
+	offset[3] *= (-1/samples);
+	offset[4] *= (-1/samples);
+	offset[5] *= (-1/samples);
+
+	ICM42688P_writebyte(OFFSET_USER0, offset[0]&0xFF);
+	ICM42688P_writebyte(OFFSET_USER1, ( ((offset[0]>>8)&0xF) | ((offset[1]>>8)&0xF)<<4) );
+	ICM42688P_writebyte(OFFSET_USER2, offset[1]&0xFF);
+	ICM42688P_writebyte(OFFSET_USER3, offset[2]&0xFF);
+	ICM42688P_writebyte(OFFSET_USER4, ( ((offset[2]>>8)&0xF) | ((offset[3]>>8)&0xF)<<4) );
+	ICM42688P_writebyte(OFFSET_USER5, offset[3]&0xFF);
+	ICM42688P_writebyte(OFFSET_USER6, offset[4]&0xFF);
+	ICM42688P_writebyte(OFFSET_USER7, ( ((offset[4]>>8)&0xF) | ((offset[5]>>8)&0xF)<<4));
+	ICM42688P_writebyte(OFFSET_USER8, offset[5]&0xFF);
+
+
 	return 0;
 }
 
@@ -92,12 +134,12 @@ uint8_t ICM42688P_CalibrateOffset(void)
  * @brief GYRO RAW를 m rad/s로 변환
  * @detail SCALED_IMU에 저장.
  * 			m rad/s
- * @parm SCALED_IMU* imu
- * 		RAW_IMU가 아님에 주의
+ * @param none
  * @retval none
  */
-void ICM42688P_convertGyroRaw2Dps(SCALED_IMU* imu)
+void ICM42688P_convertGyroRaw2Dps(void)
 {
+	SCALED_IMU* imu = icm42688p;
 	float sensitivity = param.ins.GYRO1.sensitivity;
 
 	// m degree
@@ -114,11 +156,12 @@ void ICM42688P_convertGyroRaw2Dps(SCALED_IMU* imu)
  * @brief Acc RAW를 mG로 변환
  * @detail SCALED_IMU에 저장.
  * 			mG (9.8m/s^2)
- * @parm none
+ * @param none
  * @retval none
  */
-void ICM42688P_convertAccRaw2G(SCALED_IMU* imu)
+void ICM42688P_convertAccRaw2G(void)
 {
+	SCALED_IMU* imu = icm42688p;
 	float sensitivity = param.ins.ACC1.sensitivity;
 
 	// mG

@@ -12,6 +12,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <FC_Serial/MiniLink/MiniLink.h>
+
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
@@ -33,6 +34,7 @@ typedef struct __attribute__((packed)){
 	uint8_t* payload;
 	struct{
 		uint8_t ack : 1;
+		uint8_t nack : 1;
 	} flag;
 } MiniLinkPacket;
 
@@ -71,6 +73,14 @@ int Log_transmit_UART(uint8_t *packet, uint8_t len);
 int Log_addMailBox_CDC(uint8_t* packet, uint8_t len);
 int Log_transmit_CDC();
 
+
+/*
+ * cal crc는 SRXL2.c에 존재
+ * 추후 RadioControl.c로 이전
+ * SRXL2.c 코드 정리
+ * 	- readByte 내에 cal crc 수행 후 타입에 따라 리턴
+ */
+extern uint16_t calculate_crc(const uint8_t *data, uint8_t len);
 
 
 #endif /* INC_GCS_MAVLINK_GCS_COMMON_H_ */

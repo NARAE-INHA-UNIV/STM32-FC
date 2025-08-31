@@ -19,6 +19,11 @@
 #include <FC_AHRS/FC_IMU/BMI323/BMI323_module.h>
 
 
+/* Variables -----------------------------------------------------------------*/
+// 출력 결과를 저장하는 변수의 주소를 저장.
+SCALED_IMU* bmi323;
+
+
 /* Functions -----------------------------------------------------------------*/
 /*
  * @brief 초기 설정
@@ -26,8 +31,9 @@
  * @retval 0 : 완료
  *         -1 : 센서 에러
  */
-uint8_t BMI323_Initialization(void)
+uint8_t BMI323_Initialization(SCALED_IMU* p)
 {
+	bmi323 = p;
 
 	/*
 	 * datasheet p.15
@@ -58,10 +64,8 @@ uint8_t BMI323_Initialization(void)
 //	BMI323_writebyte(ACC_CONF, 0x4027);
 //	BMI323_writebyte(GYR_CONF, 0x404B);
 
-	if(temp) return temp;
-	// Remove Gyro X offset
 
-	return 0;
+	return temp;
 }
 
 
@@ -72,15 +76,15 @@ uint8_t BMI323_Initialization(void)
  *         1 : isn't ready
  *         2 : sensor error
  */
-uint8_t BMI323_GetData(SCALED_IMU* imu)
+uint8_t BMI323_GetData()
 {
 	uint8_t retVal = BMI323_dataReady();
 	if(retVal) return retVal;
 
-	BMI323_get6AxisRawData(imu);
+	BMI323_get6AxisRawData();
 
-	BMI323_convertGyroRaw2Dps(imu);
-	BMI323_convertAccRaw2G(imu);
+	BMI323_convertGyroRaw2Dps();
+	BMI323_convertAccRaw2G();
 
 
 	return 0;
@@ -130,8 +134,10 @@ uint8_t BMI323_dataReady(void)
  * @detail SCALED_IMU2에 저장.
  * @retval None
  */
-void BMI323_get6AxisRawData(SCALED_IMU* imu)
+void BMI323_get6AxisRawData(void)
 {
+	SCALED_IMU* imu = bmi323;
+
 	uint16_t data[7] = {0,};
 
 	BMI323_readbytes(ACC_DATA_X, sizeof(data)/sizeof(data[0]), &data[0]);
@@ -155,10 +161,10 @@ void BMI323_get6AxisRawData(SCALED_IMU* imu)
  * @brief GYRO RAW를 mdps로 변환
  * @detail SCALED_IMU2에 저장.
  * 			m degree/s
- * @parm none
+ * @param none
  * @retval none
  */
-void BMI323_convertGyroRaw2Dps(SCALED_IMU* imu)
+void BMI323_convertGyroRaw2Dps(void)
 {
 //	float sensitivity;
 //
@@ -177,10 +183,10 @@ void BMI323_convertGyroRaw2Dps(SCALED_IMU* imu)
  * @brief Acc RAW를 mG로 변환
  * @detail SCALED_IMU2에 저장.
  * 			mG (Gauss)
- * @parm none
+ * @param none
  * @retval none
  */
-void BMI323_convertAccRaw2G(SCALED_IMU* imu)
+void BMI323_convertAccRaw2G(void)
 {
 //	float sensitivity;
 //
