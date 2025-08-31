@@ -69,9 +69,6 @@ void SERVO_doArm(void)
 
 		doArm2Channel(i+1, 1);
 	}
-
-	LL_TIM_GenerateEvent_UPDATE(TIM1);
-	LL_TIM_GenerateEvent_UPDATE(TIM5);
 	return;
 }
 
@@ -90,9 +87,6 @@ void SERVO_doDisarm(void)
 	{
 		doArm2Channel(i+1, 0);
 	}
-
-	LL_TIM_GenerateEvent_UPDATE(TIM1);
-	LL_TIM_GenerateEvent_UPDATE(TIM5);
 	return;
 }
 
@@ -185,6 +179,12 @@ int doArm2Channel(uint8_t servoCh, uint8_t state)
 		if(state == 1) LL_TIM_CC_EnableChannel(timer, ch);
 		else if(state == 0) LL_TIM_CC_DisableChannel(timer, ch);
 	}
+
+	LL_TIM_GenerateEvent_UPDATE(TIM1);
+	LL_TIM_GenerateEvent_UPDATE(TIM3);
+	LL_TIM_GenerateEvent_UPDATE(TIM4);
+	LL_TIM_GenerateEvent_UPDATE(TIM5);
+
 	return 0;
 }
 
@@ -232,6 +232,8 @@ uint8_t configurePWM(uint16_t hz)
 	LL_TIM_SetPrescaler(TIM5, 84-1);
 
 	LL_TIM_GenerateEvent_UPDATE(TIM1);
+	LL_TIM_GenerateEvent_UPDATE(TIM3);
+	LL_TIM_GenerateEvent_UPDATE(TIM4);
 	LL_TIM_GenerateEvent_UPDATE(TIM5);
 
 	return 0;
@@ -309,7 +311,6 @@ int setPWM2Channel(uint8_t ch, uint16_t value)
 	case 4: timer->CCR4 = value; break;
 	}
 
-//	LL_TIM_GenerateEvent_UPDATE(TIM5);
 	return 0;
 }
 
@@ -331,3 +332,11 @@ int setPWM2Channels(uint8_t *pCh, uint8_t len, uint16_t value)
 	return 0;
 }
 
+uint16_t Servo_nomalize(uint16_t val)
+{
+	uint16_t temp = 0;
+	temp = val>2000?2000:val;
+	temp = val<1000?1000:val;
+
+	return temp;
+}
