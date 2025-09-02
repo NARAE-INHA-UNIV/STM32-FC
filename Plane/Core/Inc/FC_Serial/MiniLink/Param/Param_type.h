@@ -95,4 +95,26 @@ typedef struct __attribute__((packed)){
 } PARAM_SERVO;
 
 
+/* PID -----------------------------------------------------------------------*/
+typedef struct __attribute__((packed)){
+    float ANGLE_ROLL_KP;
+    float ANGLE_ROLL_KI;
+    float ANGLE_ROLL_KD;
+    float ANGLE_PITCH_KP;
+    float ANGLE_PITCH_KI;
+    float ANGLE_PITCH_KD;
+    float ANGLE_YAW_KP;
+    float ANGLE_YAW_KI;
+    float ANGLE_YAW_KD;
+    float RATE_ROLL_KP;
+    float RATE_ROLL_KI;
+    float RATE_ROLL_KD;
+    float RATE_PITCH_KP;
+    float RATE_PITCH_KI;
+    float RATE_PITCH_KD;
+    float RATE_YAW_KP;
+    float RATE_YAW_KI;
+    float RATE_YAW_KD;
+} PARAM_PID;
+
 #endif /* INC_FC_PARAM_PARAM_TYPE_H_ */

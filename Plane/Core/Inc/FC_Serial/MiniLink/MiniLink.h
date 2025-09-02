@@ -46,6 +46,7 @@ typedef struct __attribute__((packed)){
 	PARAM_RC rc;
 	PARAM_SERIAL serial[4];
 	PARAM_SERVO servo;
+	PARAM_PID pid;
 } PARAM;
 
 extern PARAM param;
