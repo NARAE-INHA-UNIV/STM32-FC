@@ -15,6 +15,7 @@
 /* Variables -----------------------------------------------------------------*/
 int AHRS_Initialization(void);
 int AHRS_GetData(void);
+int AHRS_CalibrateOffset(void);
 
 
 /* Functions -----------------------------------------------------------------*/
