@@ -39,15 +39,6 @@ typedef struct __attribute__((packed)){
 extern Messages msg;
 
 
-typedef struct __attribute__((packed)){
-	PARAM_HEADER header;
-	PARAM_INS ins;
-	PARAM_RC rc;
-	PARAM_SERIAL serial[4];
-	PARAM_SERVO servo;
-	PARAM_PID pid;
-} PARAM;
-
 extern PARAM param;
 
 

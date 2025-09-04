@@ -60,7 +60,7 @@ int PARM_load(void){
 		param.serial[i].protocol = 2;
 		param.serial[i].options = 0;
 	}
-	for(int i=0; i<SERVO_CHANNEL_MAX; i++){
+	for(int i=0; i<sizeof(param.servo.channel)/sizeof(param.servo.channel[0]); i++){
 		param.servo.channel[i].FUNCTION = 0;
 		param.servo.channel[i].MAX = 2000;
 		param.servo.channel[i].MIN = 1000;
@@ -78,7 +78,7 @@ void setRC_None(void)
 	param.rc.FS_TIMEOUT = 1.0;
 	param.rc.reversedMask = 0x00;
 
-	for(int i=0; i<RC_CHANNEL_MAX; i++)
+	for(int i=0; i<sizeof(param.rc.channel)/sizeof(param.rc.channel[0]); i++)
 	{
 		param.rc.channel[i].MIN = 1000;
 		param.rc.channel[i].MAX = 2000;
