@@ -49,7 +49,7 @@ int MiniLink_Send()
  */
 int Log_pack(uint16_t msgId, uint8_t* payload, uint8_t len)
 {
-	logTx.stx = LOG_MAVLINK_HEADER;
+	logTx.stx = MINILINK_STX_CODE;
 	logTx.length = sizeof(MiniLinkHeader) + len + sizeof(uint16_t);
 	logTx.seq++;
 	logTx.msgId = msgId;

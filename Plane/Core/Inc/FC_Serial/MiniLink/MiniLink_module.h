@@ -1,5 +1,5 @@
 /*
- * GCS_MAVLink.h
+ * MAVLink_module.h
  *
  *  Created on: Mar 27, 2025
  *      Author: leecurrent04
@@ -12,6 +12,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <FC_Serial/MiniLink/MiniLink.h>
+#include <FC_Serial/MiniLink/MiniLink_type.h>
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -19,37 +20,10 @@
 
 
 /* Variables -----------------------------------------------------------------*/
-typedef struct __attribute__((packed)){
-	uint8_t stx;
-	uint8_t length;
-	uint8_t seq;
-	uint16_t msgId;
-} MiniLinkHeader;
-
-
-typedef struct __attribute__((packed)){
-	MiniLinkHeader header;
-	uint8_t* payload;
-	struct{
-		uint8_t ack : 1;
-		uint8_t nack : 1;
-	} flag;
-} MiniLinkPacket;
-
-
-typedef struct{
-	uint8_t* start;
-	uint8_t* offset;
-	uint16_t length;
-} JumboPakcet;
-
 extern JumboPakcet jumboTx;
 
 
 /* Macros --------------------------------------------------------------------*/
-#define LOG_MAVLINK_HEADER 0xFA
-#define LOG_BUFFER_SIZE 1024
-
 #define LOG_TABLE(X) \
     X(26,  scaled_imu) \
     X(27,  raw_imu) \
@@ -59,6 +33,13 @@ extern JumboPakcet jumboTx;
     X(65,  RC_channels) \
     X(116, scaled_imu2)	\
     X(129, scaled_imu3)	\
+
+// Header size and Header+CRC size
+#define MINILINK_HEADER_SIZE 		(sizeof(MiniLinkHeader))
+#define MINILINK_MIN_PACKET_SIZE 	(sizeof(MiniLinkHeader)+sizeof(uint16_t))
+
+#define MINILINK_STX_CODE 				(0xFA)
+#define LOG_BUFFER_SIZE 			1024
 
 
 /* Functions -----------------------------------------------------------------*/
