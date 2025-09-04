@@ -140,7 +140,7 @@ uint8_t ICM42688P_CalibrateOffset(int samples)
 void ICM42688P_convertGyroRaw2Dps(void)
 {
 	SCALED_IMU* imu = icm42688p;
-	float sensitivity = param.ins.GYRO1.sensitivity;
+	float sensitivity = param.ins.imu0.gyro.sensitivity;
 
 	// m degree
 	imu->xgyro = (int16_t)(DEG2RAD(msg.raw_imu.xgyro/sensitivity)*1000 + 0.5f);
@@ -162,7 +162,7 @@ void ICM42688P_convertGyroRaw2Dps(void)
 void ICM42688P_convertAccRaw2G(void)
 {
 	SCALED_IMU* imu = icm42688p;
-	float sensitivity = param.ins.ACC1.sensitivity;
+	float sensitivity = param.ins.imu0.acc.sensitivity;
 
 	// mG
 	imu->xacc = (int16_t)(msg.raw_imu.xacc/sensitivity * 1000 + 0.5f);
@@ -225,7 +225,7 @@ int ICM42688P_getSensitivity(void)
 	case 7: sensitivity = 2097.2f; break;     // ±15.625 dps
 	default: sensitivity = 16.4f; break;      // fallback: ±2000 dps
 	}
-	param.ins.GYRO1.sensitivity = sensitivity;
+	param.ins.imu0.gyro.sensitivity = sensitivity;
 
 	switch (acc_fs_sel)
 	{
@@ -235,7 +235,7 @@ int ICM42688P_getSensitivity(void)
 	case 3: sensitivity = 16384.0f; break;   // ±2g
 	default: sensitivity = 2048.0f; break;   // fallback: ±16g
 	}
-	param.ins.ACC1.sensitivity = sensitivity;
+	param.ins.imu0.acc.sensitivity = sensitivity;
 
 	return 0;
 }

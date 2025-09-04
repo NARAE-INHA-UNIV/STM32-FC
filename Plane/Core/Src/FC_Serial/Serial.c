@@ -61,16 +61,8 @@ int SERIAL_Handler()
 
 	switch(serialRX.header.msgId)
 	{
-	case 1:
-		LED_SetRed(2);
-		break;
-
 	case 2:
 		IMU_CalibrateOffset();
-		break;
-
-	case 3:
-		LED_SetBlue(serialRX.payload[0]);
 		break;
 
 	case 250:
@@ -269,3 +261,4 @@ void USB_CDC_RxHandler(uint8_t* new_rx_buffer, uint32_t new_rx_len)
        current_received_size = 0;
    }
 }
+

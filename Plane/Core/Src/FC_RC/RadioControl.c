@@ -34,11 +34,11 @@ int RC_Initialization(void)
 		if(!(param.rc.PROTOCOLS&(0x1<<i))) continue;
 
 		switch(i){
-		case PPM:
+		case RC_PROTOCOL_PPM:
 			RC_Buffer = malloc(PPM_MAX_BUFFER_SIZE*sizeof(uint16_t));
 			PPM_init();
 			break;
-		case SRXL2:
+		case RC_PROTOCOL_SRXL2:
 			RC_Buffer = malloc(SRXL_MAX_BUFFER_SIZE*sizeof(uint8_t));
 			SRXL2_connect();
 			break;
@@ -93,10 +93,10 @@ int RC_GetData(void)
 		if(!((param.rc.PROTOCOLS>>i)&0x1)) continue;
 
 		switch(i){
-		case PPM:
+		case RC_PROTOCOL_PPM:
 			retVal = PPM_getControlData();
 			break;
-		case SRXL2:
+		case RC_PROTOCOL_SRXL2:
 			retVal = SRXL2_getControlData();
 			break;
 		}
@@ -159,11 +159,11 @@ int RC_receiveIRQ2(const uint16_t data)
 		if(!((param.rc.PROTOCOLS>>i)&0x1)) continue;
 
 		switch(i){
-		case PPM:
+		case RC_PROTOCOL_PPM:
 			PPM_readData(data);
 			SET_FL_RX();
 			break;
-		case SRXL2:
+		case RC_PROTOCOL_SRXL2:
 			// Half-Duplex에서 송신한 패킷을 무시
 			if(IS_FL_UART_TX == 1) return 1;
 

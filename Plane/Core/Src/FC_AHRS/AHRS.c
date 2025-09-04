@@ -48,6 +48,8 @@ int AHRS_Initialization(void)
 	err |= MAG_Initialization()<<2;
 	err |= Baro_Initialization()<<4;
 
+	LED_SetYellow(err);
+
 	LPF_init();
 //	Magwick_Initialization(&msg.attitude_quaternion);
 
@@ -87,14 +89,14 @@ int AHRS_GetData(void)
 	 */
     // 가속도 센서값 → 물리량 변환(m G -> m/s^2)
 	SCALED_IMU* imu = &msg.scaled_imu;
-    acc.x = imu->xacc/1000.0f *9.81;
-    acc.y = imu->yacc/1000.0f *9.81;
-    acc.z = imu->zacc/1000.0f *9.81;
+    acc.x = imu->xacc * 0.001f * 9.81;
+    acc.y = imu->yacc * 0.001f * 9.81;
+    acc.z = imu->zacc * 0.001f * 9.81;
 
     // 자이로 센서값 → 물리량 변환(m rad/s -> rad/s)
-    gyro.x = imu->xgyro/1000.0f;
-    gyro.y = imu->ygyro/1000.0f;
-    gyro.z = imu->zgyro/1000.0f;
+    gyro.x = imu->xgyro * 0.001f;
+    gyro.y = imu->ygyro * 0.001f;
+    gyro.z = imu->zgyro * 0.001f;
 
     // 지자계 센서값 → 물리량 변환(m gauss -> uT)
     mag.x = imu->xmag * 0.1f;
@@ -126,7 +128,7 @@ int AHRS_GetData(void)
     msg.attitude_quaternion.q3 = angQ.q2;
     msg.attitude_quaternion.q4 = angQ.q3;
 
-    angE = AHRS_Quaternion2Euler(angQ);
+//    angE = AHRS_Quaternion2Euler(angQ);
     msg.attitude.time_boot_ms = msg.system_time.time_boot_ms;
     msg.attitude.roll = angE.roll;
     msg.attitude.pitch = angE.pitch;
@@ -153,6 +155,12 @@ int AHRS_GetData(void)
 	kalman_velocity.vy = Kalman_Update(&kal_vy, gps_speed_y, msg.scaled_imu.yacc * 9.81f, dt);
 	 */
 
+	return 0;
+}
+
+
+int AHRS_CalibrateOffset(void)
+{
 	return 0;
 }
 

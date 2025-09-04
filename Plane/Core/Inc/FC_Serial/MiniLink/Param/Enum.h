@@ -1,0 +1,32 @@
+/*
+ * Param_enum.h
+ *
+ *  Created on: Sep 4, 2025
+ *      Author: leecurrent04
+ *      Email: leecurrent04@inha.edu
+ */
+
+#ifndef INC_FC_SERIAL_MINILINK_PARAM_ENUM_H_
+#define INC_FC_SERIAL_MINILINK_PARAM_ENUM_H_
+
+enum PARAM_ENUM_RC_PROTOCOL{
+	RC_PROTOCOL_All 	 = 0,
+	RC_PROTOCOL_PPM 	 = 1,
+	RC_PROTOCOL_IBUS 	 = 2,
+	RC_PROTOCOL_SBUS 	 = 3,
+	RC_PROTOCOL_SBUS_NI  = 4,
+	RC_PROTOCOL_DSM 	 = 5,
+	RC_PROTOCOL_SUMD 	 = 6,
+	RC_PROTOCOL_SRXL 	 = 7,
+	RC_PROTOCOL_SRXL2 	 = 8,
+	RC_PROTOCOL_CRSF 	 = 9 ,
+	RC_PROTOCOL_ST24 	 = 10,
+	RC_PROTOCOL_FPORT	 = 11,
+	RC_PROTOCOL_FPORT2 	 = 12,
+	RC_PROTOCOL_FastSBUS = 13,
+	RC_PROTOCOL_DroneCAN = 14,
+	RC_PROTOCOL_Ghost	 = 15,
+	RC_PROTOCOL_MAVRadio = 16,
+};
+
+#endif /* INC_FC_SERIAL_MINILINK_PARAM_ENUM_H_ */

@@ -29,31 +29,18 @@
 /* Variables -----------------------------------------------------------------*/
 extern uint8_t* RC_Buffer;
 
+
+/* Enums ---------------------------------------------------------------------*/
 typedef enum {
 	RX = 0,
 	UART_TX = 1,
 	UART_USING = 2,
 } RC_FLAG;
 
-enum RC_PARM_PROTOCOL{
-	All 	 = 0,
-	PPM 	 = 1,
-	IBUS 	 = 2,
-	SBUS 	 = 3,
-	SBUS_NI  = 4,
-	DSM 	 = 5,
-	SUMD 	 = 6,
-	SRXL 	 = 7,
-	SRXL2 	 = 8,
-	CRSF 	 = 9 ,
-	ST24 	 = 10,
-	FPORT	 = 11,
-	FPORT2 	 = 12,
-	FastSBUS = 13,
-	DroneCAN = 14,
-	Ghost	 = 15,
-	MAVRadio = 16,
-};
+
+
+
+#define RC_CHANNEL_MAX ( sizeof(param.rc.channel)/sizeof(param.rc.channel[0]) )
 
 
 /* Functions 1 ---------------------------------------------------------------*/

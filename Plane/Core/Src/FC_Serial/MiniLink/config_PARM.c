@@ -17,26 +17,6 @@
 #include <FC_Serial/MiniLink/MiniLink.h>
 
 
-enum RC_PARM_PROTOCOL{
-	All 	 = 0,
-	PPM 	 = 1,
-	IBUS 	 = 2,
-	SBUS 	 = 3,
-	SBUS_NI  = 4,
-	DSM 	 = 5,
-	SUMD 	 = 6,
-	SRXL 	 = 7,
-	SRXL2 	 = 8,
-	CRSF 	 = 9 ,
-	ST24 	 = 10,
-	FPORT	 = 11,
-	FPORT2 	 = 12,
-	FastSBUS = 13,
-	DroneCAN = 14,
-	Ghost	 = 15,
-	MAVRadio = 16,
-};
-
 
 void setRC_None(void);
 void setRC_SRXL2(void);
@@ -60,7 +40,7 @@ int PARM_load(void){
 		param.serial[i].protocol = 2;
 		param.serial[i].options = 0;
 	}
-	for(int i=0; i<SERVO_CHANNEL_MAX; i++){
+	for(int i=0; i<sizeof(param.servo.channel)/sizeof(param.servo.channel[0]); i++){
 		param.servo.channel[i].FUNCTION = 0;
 		param.servo.channel[i].MAX = 2000;
 		param.servo.channel[i].MIN = 1000;
@@ -78,7 +58,7 @@ void setRC_None(void)
 	param.rc.FS_TIMEOUT = 1.0;
 	param.rc.reversedMask = 0x00;
 
-	for(int i=0; i<RC_CHANNEL_MAX; i++)
+	for(int i=0; i<sizeof(param.rc.channel)/sizeof(param.rc.channel[0]); i++)
 	{
 		param.rc.channel[i].MIN = 1000;
 		param.rc.channel[i].MAX = 2000;
@@ -96,15 +76,15 @@ void setRC_None(void)
 
 void setRC_SRXL2(void)
 {
-	param.rc.PROTOCOLS = (0x1<<SRXL2);	// SRXL2
+	param.rc.PROTOCOLS = (0x1<<RC_PROTOCOL_SRXL2);	// SRXL2
 	return;
 }
 
 void setRC_PPM(void)
 {
-	param.rc.PROTOCOLS = (0x1<<PPM);		// PPM (FS-iA6B)
+	param.rc.PROTOCOLS = (0x1<<RC_PROTOCOL_PPM);		// PPM (FS-iA6B)
 	param.rc.map.THR = 2;		// FS-iA6B용 값들
-	param.rc.map.ROL = 3;
+	param.rc.map.ROL = 0;
 	param.rc.map.PIT = 1;
-	param.rc.map.YAW = 0;
+	param.rc.map.YAW = 3;
 }

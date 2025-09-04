@@ -110,7 +110,7 @@ int SRXL2_getControlData(void){
 		SRXL2_parseControlData((SRXL2_Control_Packet*)RC_Buffer);
 		break;
 	case SRXL_CTRL_CMD_CHANNEL_FS:
-		return RC_setFailsafe(0x1<<SRXL2);
+		return RC_setFailsafe(0x1<<RC_PROTOCOL_SRXL2);
 		break;
 	case SRXL_CTRL_CMD_VTX:
 		break;

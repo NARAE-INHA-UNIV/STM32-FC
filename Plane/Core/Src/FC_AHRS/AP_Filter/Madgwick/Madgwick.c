@@ -59,10 +59,12 @@ void Madgwick_Update(ATTITUDE_QUATERNION* qu, SCALED_IMU* imu)
     float recipNorm;
     float s0, s1, s2, s3;
     float qDot1, qDot2, qDot3, qDot4;
+
     float _2q0 = 2.0f * q0;
     float _2q1 = 2.0f * q1;
     float _2q2 = 2.0f * q2;
     float _2q3 = 2.0f * q3;
+
     float q0q0 = q0 * q0;
     float q1q1 = q1 * q1;
     float q2q2 = q2 * q2;

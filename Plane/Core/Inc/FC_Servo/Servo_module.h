@@ -18,6 +18,11 @@
 #include <FC_Serial/MiniLink/MiniLink.h>
 
 
+
+/* Macros --------------------------------------------------------------------*/
+#define SERVO_CHANNEL_MAX (sizeof(param.servo.channel)/sizeof(param.servo.channel[0]))
+
+
 /* Variables -----------------------------------------------------------------*/
 extern const uint8_t SERVO_TIMER_MAP[];
 

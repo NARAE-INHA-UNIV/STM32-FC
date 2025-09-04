@@ -222,24 +222,6 @@ void CAN1_RX0_IRQHandler(void)
 }
 
 /**
-  * @brief This function handles TIM1 update interrupt and TIM10 global interrupt.
-  */
-void TIM1_UP_TIM10_IRQHandler(void)
-{
-  /* USER CODE BEGIN TIM1_UP_TIM10_IRQn 0 */
-	if(LL_TIM_IsEnabledIT_UPDATE(TIM1))
-	{
-		LL_TIM_ClearFlag_UPDATE(TIM1);
-		LL_TIM_SetCounter(TIM1, 0);
-	}
-
-  /* USER CODE END TIM1_UP_TIM10_IRQn 0 */
-  /* USER CODE BEGIN TIM1_UP_TIM10_IRQn 1 */
-
-  /* USER CODE END TIM1_UP_TIM10_IRQn 1 */
-}
-
-/**
   * @brief This function handles I2C1 event interrupt.
   */
 void I2C1_EV_IRQHandler(void)
@@ -391,24 +373,6 @@ void TIM8_TRG_COM_TIM14_IRQHandler(void)
   /* USER CODE BEGIN TIM8_TRG_COM_TIM14_IRQn 1 */
 
   /* USER CODE END TIM8_TRG_COM_TIM14_IRQn 1 */
-}
-
-/**
-  * @brief This function handles TIM5 global interrupt.
-  */
-void TIM5_IRQHandler(void)
-{
-  /* USER CODE BEGIN TIM5_IRQn 0 */
-	if(LL_TIM_IsEnabledIT_UPDATE(TIM5))
-	{
-		LL_TIM_ClearFlag_UPDATE(TIM5);
-		LL_TIM_SetCounter(TIM5, 0);
-	}
-
-  /* USER CODE END TIM5_IRQn 0 */
-  /* USER CODE BEGIN TIM5_IRQn 1 */
-
-  /* USER CODE END TIM5_IRQn 1 */
 }
 
 /**

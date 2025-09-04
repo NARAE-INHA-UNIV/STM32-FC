@@ -257,9 +257,42 @@ void calculateServoOutput(void)
 			continue;
 		}
 
-		msg.servo_output_raw.servo_raw[i] = msg.RC_channels.value[i];
+		msg.servo_output_raw.servo_raw[i] = Servo_nomalize(msg.RC_channels.value[i]);
 		// servo_output_raw.servo_raw[i] = scaled_imu + RC_channels 를 기반으로 요리조리 계산해서 결정.
 	}
+
+	// Quad-Copter motor mixer
+	uint16_t thr;
+	uint16_t pit;
+	uint16_t rol;
+	uint16_t yaw;
+	if(param.rc.PROTOCOLS != 0)
+	{
+		thr = Servo_nomalize(msg.RC_channels.value[param.rc.map.THR]);
+		pit = Servo_nomalize(msg.RC_channels.value[param.rc.map.PIT]);
+		rol = Servo_nomalize(msg.RC_channels.value[param.rc.map.ROL]);
+		yaw = Servo_nomalize(msg.RC_channels.value[param.rc.map.YAW]);
+	}
+	else
+	{
+		thr = 1500;
+		pit = 1500;
+		rol = 1500;
+		yaw = 1500;
+	}
+	const int16_t ang_r = msg.attitude.roll * 10;
+	const int16_t ang_p = msg.attitude.pitch * 10;
+	const int16_t ang_y = msg.attitude.yaw * 10;
+
+	msg.servo_output_raw.servo_raw[0] = 1000 + (thr-1000)*1.0 - (pit-1500)*0.6 - (rol-1500)*0.6 + (yaw-1500)*0.6 + ang_r - ang_p;
+	msg.servo_output_raw.servo_raw[1] = 1000 + (thr-1000)*1.0 + (pit-1500)*0.6 + (rol-1500)*0.6 + (yaw-1500)*0.6 - ang_r + ang_p;
+	msg.servo_output_raw.servo_raw[2] = 1000 + (thr-1000)*1.0 - (pit-1500)*0.6 + (rol-1500)*0.6 - (yaw-1500)*0.6 - ang_r - ang_p;
+	msg.servo_output_raw.servo_raw[3] = 1000 + (thr-1000)*1.0 + (pit-1500)*0.6 - (rol-1500)*0.6 - (yaw-1500)*0.6 + ang_r + ang_p;
+
+	msg.servo_output_raw.servo_raw[0] = Servo_nomalize(msg.servo_output_raw.servo_raw[0]);
+	msg.servo_output_raw.servo_raw[1] = Servo_nomalize(msg.servo_output_raw.servo_raw[1]);
+	msg.servo_output_raw.servo_raw[2] = Servo_nomalize(msg.servo_output_raw.servo_raw[2]);
+	msg.servo_output_raw.servo_raw[3] = Servo_nomalize(msg.servo_output_raw.servo_raw[3]);
 
 	return;
 }
@@ -297,7 +330,7 @@ int setPWM2Channel(uint8_t ch, uint16_t value)
 	if(value<800||value>2000) return -2;
 
 	const TIM_TypeDef* timerArr[] = {
-		0, TIM1, 0, TIM3, TIM4, TIM5
+			0, TIM1, 0, TIM3, TIM4, TIM5
 	};
 
 	// map에서 상위 비트로 타이머 선택
@@ -332,11 +365,11 @@ int setPWM2Channels(uint8_t *pCh, uint8_t len, uint16_t value)
 	return 0;
 }
 
-uint16_t Servo_nomalize(uint16_t val)
+uint16_t Servo_nomalize(const uint16_t val)
 {
-	uint16_t temp = 0;
-	temp = val>2000?2000:val;
-	temp = val<1000?1000:val;
+	uint16_t temp = val;
+	temp = temp>2000?2000:temp;
+	temp = temp<1000?1000:temp;
 
 	return temp;
 }
