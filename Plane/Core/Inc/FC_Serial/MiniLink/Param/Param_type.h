@@ -26,17 +26,18 @@ typedef struct __attribute__((packed)){
 	uint16_t len;
 } PARAM_HEADER;
 
+
 /* INS -----------------------------------------------------------------------*/
 typedef struct __attribute__((packed)){
 	float sensitivity;
-} IMU;
+} PARAM_INS_IMU;
 
 typedef struct __attribute__((packed)){
-	IMU GYRO1;	// ICM-42688-P
-	IMU ACC1;
-	IMU GYRO2;	// BMI323
-	IMU ACC2;
-} INS;
+	PARAM_INS_IMU GYRO1;	// ICM-42688-P
+	PARAM_INS_IMU ACC1;
+	PARAM_INS_IMU GYRO2;	// BMI323
+	PARAM_INS_IMU ACC2;
+} PARAM_INS;
 
 
 /* RC ------------------------------------------------------------------------*/
@@ -97,24 +98,22 @@ typedef struct __attribute__((packed)){
 
 /* PID -----------------------------------------------------------------------*/
 typedef struct __attribute__((packed)){
-    float ANGLE_ROLL_KP;
-    float ANGLE_ROLL_KI;
-    float ANGLE_ROLL_KD;
-    float ANGLE_PITCH_KP;
-    float ANGLE_PITCH_KI;
-    float ANGLE_PITCH_KD;
-    float ANGLE_YAW_KP;
-    float ANGLE_YAW_KI;
-    float ANGLE_YAW_KD;
-    float RATE_ROLL_KP;
-    float RATE_ROLL_KI;
-    float RATE_ROLL_KD;
-    float RATE_PITCH_KP;
-    float RATE_PITCH_KI;
-    float RATE_PITCH_KD;
-    float RATE_YAW_KP;
-    float RATE_YAW_KI;
-    float RATE_YAW_KD;
+	float kp;
+	float ki;
+	float kd;
+} pidc_gains_t;
+
+typedef struct __attribute__((packed)){
+	struct __attribute__((packed)){
+		pidc_gains_t roll;
+		pidc_gains_t pitch;
+		pidc_gains_t yaw;
+	} ANGLE;
+	struct __attribute__((packed)){
+		pidc_gains_t roll;
+		pidc_gains_t pitch;
+		pidc_gains_t yaw;
+	} RATE;
 } PARAM_PID;
 
 #endif /* INC_FC_PARAM_PARAM_TYPE_H_ */

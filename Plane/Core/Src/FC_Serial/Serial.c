@@ -13,6 +13,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include <FC_Serial/Serial_module.h>
 
+#include <main.h>
+
 #include <FC_Basic/LED/LED.h>
 #include <FC_AHRS/FC_IMU/IMU.h>
 
@@ -76,41 +78,25 @@ int SERIAL_Handler()
         // 일단 임시로 9개로 나눠서 작성
         // 추후 원인 분석해서 개선 필요
 
-        float *tmp2 = (float*)serialRX.payload;
+		if(serialRX.header.length != sizeof(param.pid.ANGLE)) break;
         
         // 외부 제어기(각도) 제어 이득 설정
-        param.pid.ANGLE_ROLL_KP = tmp2[0];
-        param.pid.ANGLE_ROLL_KI = tmp2[1];
-        param.pid.ANGLE_ROLL_KD = tmp2[2];
-        param.pid.ANGLE_PITCH_KP = tmp2[3];
-        param.pid.ANGLE_PITCH_KI = tmp2[4];
-        param.pid.ANGLE_PITCH_KD = tmp2[5];
-        param.pid.ANGLE_YAW_KP = tmp2[6];
-        param.pid.ANGLE_YAW_KI = tmp2[7];
-        param.pid.ANGLE_YAW_KD = tmp2[8];
+        memcpy(&param.pid.ANGLE, serialRX.payload, sizeof(param.pid.ANGLE));
         
         // 임시 확인용
         msg.scaled_pressure.time_boot_ms= serialRX.header.length;
-        msg.scaled_pressure.press_abs = param.pid.ANGLE_YAW_KD;
+        msg.scaled_pressure.press_abs = param.pid.ANGLE.pitch.kd;
         
         break;
     case 251:
-        float *tmp3 = (float*)serialRX.payload;
         
         // 내부 제어기(각속도) 제어 이득 설정
-        param.pid.RATE_ROLL_KP = tmp3[0];
-        param.pid.RATE_ROLL_KI = tmp3[1];
-        param.pid.RATE_ROLL_KD = tmp3[2];
-        param.pid.RATE_PITCH_KP = tmp3[3];
-        param.pid.RATE_PITCH_KI = tmp3[4];
-        param.pid.RATE_PITCH_KD = tmp3[5];
-        param.pid.RATE_YAW_KP = tmp3[6];
-        param.pid.RATE_YAW_KI = tmp3[7];
-        param.pid.RATE_YAW_KD = tmp3[8];
+		if(serialRX.header.length != sizeof(param.pid.RATE)) break;
+        memcpy(&param.pid.RATE, serialRX.payload, sizeof(param.pid.RATE));
         
         // 임시 확인용
         msg.scaled_pressure.time_boot_ms= serialRX.header.length;
-        msg.scaled_pressure.press_diff = param.pid.RATE_YAW_KD;
+        msg.scaled_pressure.press_diff = param.pid.RATE.pitch.kd;
         
         break;
 	}

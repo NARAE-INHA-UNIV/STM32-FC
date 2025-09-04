@@ -15,9 +15,28 @@
 
 
 #include <FC_Serial/MiniLink/MiniLink.h>
-#include <FC_Serial/MiniLink/Param/Param.h>
 
-PARAM param;
+
+enum RC_PARM_PROTOCOL{
+	All 	 = 0,
+	PPM 	 = 1,
+	IBUS 	 = 2,
+	SBUS 	 = 3,
+	SBUS_NI  = 4,
+	DSM 	 = 5,
+	SUMD 	 = 6,
+	SRXL 	 = 7,
+	SRXL2 	 = 8,
+	CRSF 	 = 9 ,
+	ST24 	 = 10,
+	FPORT	 = 11,
+	FPORT2 	 = 12,
+	FastSBUS = 13,
+	DroneCAN = 14,
+	Ghost	 = 15,
+	MAVRadio = 16,
+};
+
 
 void setRC_None(void);
 void setRC_SRXL2(void);

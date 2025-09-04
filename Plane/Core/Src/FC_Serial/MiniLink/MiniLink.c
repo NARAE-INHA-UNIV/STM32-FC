@@ -1,5 +1,5 @@
 /*
- * GCS_Common.c
+ * MiniLink.c
  *
  *  Created on: Mar 27, 2025
  *      Author: leecurrent04
@@ -10,9 +10,12 @@
 /* Includes ------------------------------------------------------------------*/
 #include <FC_Serial/MiniLink/MiniLink_module.h>
 
+#include <main.h>
+
 
 /* Variables -----------------------------------------------------------------*/
 Messages msg;
+PARAM param;
 
 MiniLinkHeader logTx;
 JumboPakcet jumboTx;

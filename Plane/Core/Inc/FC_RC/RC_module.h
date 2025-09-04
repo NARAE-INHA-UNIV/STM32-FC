@@ -12,17 +12,18 @@
 
 
 /* Includes ------------------------------------------------------------------*/
-#include <AP_Failsafe/Failsafe.h>
-#include <FC_Basic/Buzzer/Buzzer.h>
 #include <main.h>
 #include <stdlib.h>
 
-#include <FC_RC/Protocol/PPM.h>
-
-#include <FC_RC/Protocol/SRXL2/SRXL2.h>
 #include <FC_RC/RC.h>
+#include <FC_RC/Protocol/PPM.h>
+#include <FC_RC/Protocol/SRXL2/SRXL2.h>
+
 #include <FC_Serial/MiniLink/MiniLink.h>
+
 #include <FC_Servo/Servo.h>
+#include <AP_Failsafe/Failsafe.h>
+#include <FC_Basic/Buzzer/Buzzer.h>
 
 
 /* Variables -----------------------------------------------------------------*/
