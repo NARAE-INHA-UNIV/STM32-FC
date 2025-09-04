@@ -26,17 +26,18 @@ typedef struct __attribute__((packed)){
 	uint16_t len;
 } PARAM_HEADER;
 
+
 /* INS -----------------------------------------------------------------------*/
 typedef struct __attribute__((packed)){
 	float sensitivity;
-} IMU;
+} PARAM_INS_IMU;
 
 typedef struct __attribute__((packed)){
-	IMU GYRO1;	// ICM-42688-P
-	IMU ACC1;
-	IMU GYRO2;	// BMI323
-	IMU ACC2;
-} INS;
+	PARAM_INS_IMU GYRO1;	// ICM-42688-P
+	PARAM_INS_IMU ACC1;
+	PARAM_INS_IMU GYRO2;	// BMI323
+	PARAM_INS_IMU ACC2;
+} PARAM_INS;
 
 
 /* RC ------------------------------------------------------------------------*/
@@ -94,5 +95,25 @@ typedef struct __attribute__((packed)){
 	PARAM_SERVO_CH channel[SERVO_CHANNEL_MAX];
 } PARAM_SERVO;
 
+
+/* PID -----------------------------------------------------------------------*/
+typedef struct __attribute__((packed)){
+	float kp;
+	float ki;
+	float kd;
+} pidc_gains_t;
+
+typedef struct __attribute__((packed)){
+	struct __attribute__((packed)){
+		pidc_gains_t roll;
+		pidc_gains_t pitch;
+		pidc_gains_t yaw;
+	} ANGLE;
+	struct __attribute__((packed)){
+		pidc_gains_t roll;
+		pidc_gains_t pitch;
+		pidc_gains_t yaw;
+	} RATE;
+} PARAM_PID;
 
 #endif /* INC_FC_PARAM_PARAM_TYPE_H_ */

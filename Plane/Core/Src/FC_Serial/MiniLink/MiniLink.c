@@ -1,5 +1,5 @@
 /*
- * GCS_Common.c
+ * MiniLink.c
  *
  *  Created on: Mar 27, 2025
  *      Author: leecurrent04
@@ -10,9 +10,12 @@
 /* Includes ------------------------------------------------------------------*/
 #include <FC_Serial/MiniLink/MiniLink_module.h>
 
+#include <main.h>
+
 
 /* Variables -----------------------------------------------------------------*/
 Messages msg;
+PARAM param;
 
 MiniLinkHeader logTx;
 JumboPakcet jumboTx;
@@ -46,7 +49,7 @@ int MiniLink_Send()
  */
 int Log_pack(uint16_t msgId, uint8_t* payload, uint8_t len)
 {
-	logTx.stx = LOG_MAVLINK_HEADER;
+	logTx.stx = MINILINK_STX_CODE;
 	logTx.length = sizeof(MiniLinkHeader) + len + sizeof(uint16_t);
 	logTx.seq++;
 	logTx.msgId = msgId;
