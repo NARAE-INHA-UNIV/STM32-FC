@@ -17,26 +17,6 @@
 #include <FC_Serial/MiniLink/MiniLink.h>
 
 
-enum RC_PARM_PROTOCOL{
-	All 	 = 0,
-	PPM 	 = 1,
-	IBUS 	 = 2,
-	SBUS 	 = 3,
-	SBUS_NI  = 4,
-	DSM 	 = 5,
-	SUMD 	 = 6,
-	SRXL 	 = 7,
-	SRXL2 	 = 8,
-	CRSF 	 = 9 ,
-	ST24 	 = 10,
-	FPORT	 = 11,
-	FPORT2 	 = 12,
-	FastSBUS = 13,
-	DroneCAN = 14,
-	Ghost	 = 15,
-	MAVRadio = 16,
-};
-
 
 void setRC_None(void);
 void setRC_SRXL2(void);
@@ -96,13 +76,13 @@ void setRC_None(void)
 
 void setRC_SRXL2(void)
 {
-	param.rc.PROTOCOLS = (0x1<<SRXL2);	// SRXL2
+	param.rc.PROTOCOLS = (0x1<<RC_PROTOCOL_SRXL2);	// SRXL2
 	return;
 }
 
 void setRC_PPM(void)
 {
-	param.rc.PROTOCOLS = (0x1<<PPM);		// PPM (FS-iA6B)
+	param.rc.PROTOCOLS = (0x1<<RC_PROTOCOL_PPM);		// PPM (FS-iA6B)
 	param.rc.map.THR = 2;		// FS-iA6B용 값들
 	param.rc.map.ROL = 3;
 	param.rc.map.PIT = 1;

@@ -15,6 +15,7 @@
 #include <FC_Serial/MiniLink/MSG_CMD/Development.h>
 
 #include <FC_Serial/MiniLink/Param/Param_type.h>
+#include <FC_Serial/MiniLink/Param/Enum.h>
 
 
 /* Variables -----------------------------------------------------------------*/
