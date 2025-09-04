@@ -1,6 +1,5 @@
 /*
- * driver.h
- * MiniLink Driver
+ * MiniLink.h
  *
  *  Created on: Jul 23, 2025
  *      Author: leecurrent04
@@ -42,10 +41,11 @@ extern Messages msg;
 
 typedef struct __attribute__((packed)){
 	PARAM_HEADER header;
-	INS ins;
+	PARAM_INS ins;
 	PARAM_RC rc;
 	PARAM_SERIAL serial[4];
 	PARAM_SERVO servo;
+	PARAM_PID pid;
 } PARAM;
 
 extern PARAM param;
