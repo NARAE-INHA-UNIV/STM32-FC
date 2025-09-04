@@ -269,3 +269,4 @@ void USB_CDC_RxHandler(uint8_t* new_rx_buffer, uint32_t new_rx_len)
        current_received_size = 0;
    }
 }
+

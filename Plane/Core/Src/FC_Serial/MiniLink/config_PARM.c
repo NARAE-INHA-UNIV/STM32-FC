@@ -84,7 +84,7 @@ void setRC_PPM(void)
 {
 	param.rc.PROTOCOLS = (0x1<<RC_PROTOCOL_PPM);		// PPM (FS-iA6B)
 	param.rc.map.THR = 2;		// FS-iA6B용 값들
-	param.rc.map.ROL = 3;
+	param.rc.map.ROL = 0;
 	param.rc.map.PIT = 1;
-	param.rc.map.YAW = 0;
+	param.rc.map.YAW = 3;
 }
