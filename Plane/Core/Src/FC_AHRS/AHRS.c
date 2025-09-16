@@ -2,8 +2,8 @@
  * AHRS.c
  *
  *  Created on: Jul 23, 2025
- *      Author: rlawn, leecurrent04
- *      Email : (rlawn)
+ *      Author: rlawntj222, leecurrent04
+ *      Email : rlawnstj222@naver.edu
  *      		leecurrent04@inha.edu (leecurrent04)
  */
 
@@ -110,7 +110,7 @@ int AHRS_GetData(void)
     mag =  LPF_update3D(&lpf_mag, &mag);
 
 
-    // 가속도를 기반으로 roll, pitch 게산
+    // 가속도를 기반으로 roll, pitch 계산
     angE.roll = atan2(acc.y, acc.z);
     angE.pitch = atan2(acc.x, sqrt(pow(acc.y, 2) + pow(acc.z, 2)));
 
@@ -128,7 +128,7 @@ int AHRS_GetData(void)
     msg.attitude_quaternion.q3 = angQ.q2;
     msg.attitude_quaternion.q4 = angQ.q3;
 
-//    angE = AHRS_Quaternion2Euler(angQ);
+    angE = AHRS_Quaternion2Euler(angQ);
     msg.attitude.time_boot_ms = msg.system_time.time_boot_ms;
     msg.attitude.roll = angE.roll;
     msg.attitude.pitch = angE.pitch;
@@ -217,41 +217,74 @@ void AHRS_computeVelocity(float dt)
  */
 float AHRS_calculateYAW(Vector3D mag, Euler angle)
 {
-	// Hard-Iron 보정 상수값
-	static const float x_Hmax = 60.0f;
-	static const float y_Hmax = 60.0f;
-	static const float z_Hmax = 60.0f;
-	static const float x_Hmin = -60.0f;
-	static const float y_Hmin = -60.0f;
-	static const float z_Hmin = -60.0f;
+    // ===== 기존 Hmax/Hmin 기반 계산은 잠시 꺼둠 =====
+    /*
+    static const float x_Hmax = 60.0f, x_Hmin = -60.0f;
+    static const float y_Hmax = 60.0f, y_Hmin = -60.0f;
+    static const float z_Hmax = 60.0f, z_Hmin = -60.0f;
 
-	// Hard-Iron
-	static const float x_offset= (x_Hmax + x_Hmin) / (2.0);
-	static const float y_offset= (y_Hmax + y_Hmin) / (2.0);
-	static const float z_offset= (z_Hmax + z_Hmin) / (2.0);
+    static const float x_offset= (x_Hmax + x_Hmin) / 2.0f;
+    static const float y_offset= (y_Hmax + y_Hmin) / 2.0f;
+    static const float z_offset= (z_Hmax + z_Hmin) / 2.0f;
 
-	// Soft-Iron
-	static const float x_scale = ((x_Hmax - x_Hmin)+(y_Hmax - y_Hmin)+(z_Hmax - z_Hmin)) / (3.0*((x_Hmax - x_Hmin)));
-	static const float y_scale = ((x_Hmax - x_Hmin)+(y_Hmax - y_Hmin)+(z_Hmax - z_Hmin)) / (3.0*((y_Hmax - y_Hmin)));
-	static const float z_scale = ((x_Hmax - x_Hmin)+(y_Hmax - y_Hmin)+(z_Hmax - z_Hmin)) / (3.0*((z_Hmax - z_Hmin)));
+    static const float x_scale = ((x_Hmax - x_Hmin)+(y_Hmax - y_Hmin)+(z_Hmax - z_Hmin)) / (3.0f*(x_Hmax - x_Hmin));
+    static const float y_scale = ((x_Hmax - x_Hmin)+(y_Hmax - y_Hmin)+(z_Hmax - z_Hmin)) / (3.0f*(y_Hmax - y_Hmin));
+    static const float z_scale = ((x_Hmax - x_Hmin)+(y_Hmax - y_Hmin)+(z_Hmax - z_Hmin)) / (3.0f*(z_Hmax - z_Hmin));
+    */
 
-	// 보정
-	mag.x = (mag.x - x_offset) * (x_scale);
-	mag.y = (mag.y - y_offset) * (y_scale);
-	mag.z = (mag.z - z_offset) * (z_scale);
+    // ===== 측정한 오프셋 반영 (이 부분만 활성화) =====
+    static const float x_offset = 53.60f;
+    static const float y_offset = 11.25f;
+    static const float z_offset = -11.10f;
+
+    static const float x_scale  = 0.960f;
+    static const float y_scale  = 1.053f;
+    static const float z_scale  = 0.992f;
+
+    // 전원 켠 뒤 '딱 한 번' 기준각을 잡았는지 여부 + 기준각 저장
+    static uint8_t s_zero_done = 0;
+    static float   s_yaw_zero  = 0.0f;
+
+    // ===== 보정 적용 (그대로 유지) =====
+    mag.x = (mag.x - x_offset) * x_scale;
+    mag.y = (mag.y - y_offset) * y_scale;
+    mag.z = (mag.z - z_offset) * z_scale;
 
 
-	// 기울기 보상
-    float Xh = mag.x * cos(angle.pitch) + mag.z * sin(angle.pitch);
-    float Yh = mag.x * sin(angle.roll) * sin(angle.pitch) + mag.y * cos(angle.roll) - mag.z * sin(angle.roll) * cos(angle.pitch);
+    // ===== 기울기 보상 (그대로 유지) =====
+//    float Xh = mag.x * cosf(angle.pitch) + mag.z * sinf(angle.pitch);
+//    float Yh = mag.x * sinf(angle.roll) * sinf(angle.pitch)
+//             + mag.y * cosf(angle.roll)
+//             - mag.z * sinf(angle.roll) * cosf(angle.pitch);
 
+    // ===== 기울기 보상 (표준식; NED) =====
+    const float roll_eff  = -angle.roll;   // ← 필요 시만 '−' 적용 (테스트 포인트)
+    const float pitch_eff =  angle.pitch;
 
-    // yaw값 계산
-	float out = atan2(-Yh, Xh);
+    float cr = cosf(roll_eff),  sr = sinf(roll_eff);
+    float cp = cosf(pitch_eff), sp = sinf(pitch_eff);
 
-	// yaw값 출력
-	return out;
+    float Xh = mag.x*cp + mag.y*sp*sr + mag.z*sp*cr;
+    float Yh = mag.y*cr - mag.z*sr;
+
+    float yaw_raw = atan2f(-Yh, Xh);
+
+    // ---- 전원 켰을 때 '한 번만' 현재를 0으로 설정 ----
+    if (!s_zero_done) {
+        s_yaw_zero  = yaw_raw;   // 지금 바라보는 방향을 0으로
+        s_zero_done = 1;
+    }
+
+    // 제로 기준 적용
+    float out = yaw_raw - s_yaw_zero;
+
+    // [-π, +π]로 래핑
+    if (out >  M_PI) out -= 2.0f * M_PI;
+    if (out < -M_PI) out += 2.0f * M_PI;
+
+    return out; // 라디안
 }
+
 
 
 
@@ -273,17 +306,20 @@ Quaternion AHRS_Euler2Quaternion(const Euler ori)
 
     return ret;
 }
-// 쿼터니언을 오일러 각도로 변환해서 출력
+// 쿼터니언을 오일러 각도로 변환해서 출력 NED기준 좌표계에 맞춤
 Euler AHRS_Quaternion2Euler(const Quaternion ori)
 {
-	Euler ret;
+    Euler ret;
 #define POW(x) (x*x)
-    ret.roll = RAD2DEG(atan2( 2.0f*(ori.q0 * ori.q1 + ori.q2*ori.q3), 1.0f - 2.0f*(POW(ori.q1) + POW(ori.q2)) ));
-    ret.pitch = RAD2DEG(asin( 2.0f*(ori.q0 * ori.q2 - ori.q3*ori.q1) ));
-    ret.yaw = RAD2DEG(atan2( 2.0f*(ori.q0*ori.q3 + ori.q1*ori.q2), 1.0f - 2.0f*(POW(ori.q2) + POW(ori.q3)) ));
+    ret.roll  = atan2( 2.0f*(ori.q0 * ori.q1 + ori.q2*ori.q3),
+                       1.0f - 2.0f*(POW(ori.q1) + POW(ori.q2)) );
+    ret.pitch = asin ( 2.0f*(ori.q0 * ori.q2 - ori.q3*ori.q1) );
+    ret.yaw   = atan2( 2.0f*(ori.q0*ori.q3 + ori.q1*ori.q2),
+                       1.0f - 2.0f*(POW(ori.q2) + POW(ori.q3)) );
 #undef POW
     return ret;
 }
+
 
 // 쿼터니언 정규화
 Quaternion AHRS_NormalizeQuaternion(const Quaternion ori)
